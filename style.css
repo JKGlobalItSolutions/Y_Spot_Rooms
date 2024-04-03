@@ -343,7 +343,7 @@ li {
 }
 
 .bg-overlay-9:after {
-    background-color: rgba(14, 2, 35, 0.9);
+    /* background-color: rgba(14, 2, 35, 0.9); */
 }
 
 .bg-gray {
@@ -351,13 +351,13 @@ li {
 }
 
 .bg-default {
-    background-color: #341a79;
+    background-color: #FF1919;
 }
 
 .dorne-btn {
-    min-width: 180px;
-    height: 52px;
-    background-color: #7643ea;
+    min-width: 120px;
+    height: 47px;
+    background-color: #FF1919;
     border-radius: 0;
     padding: 0 15px;
     line-height: 50px;
@@ -366,6 +366,7 @@ li {
     font-size: 15px;
     -webkit-transition-duration: 500ms;
             transition-duration: 500ms;
+    border-radius: 10px;
 }
 
 .dorne-btn:hover,
@@ -494,7 +495,7 @@ li {
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-item.active .nav-link {
-    color: #7643ea;
+    color: #ffffff;
 }
 
 .dorne-search-btn > a,
@@ -564,7 +565,7 @@ li {
     font-size: 12px;
     font-weight: 700;
     color: #fff;
-    background-color: rgba(144, 103, 238, 0.65);
+    background-color: #e65a5a;
     text-transform: uppercase;
     min-width: 100px;
     height: 44px;
@@ -575,13 +576,13 @@ li {
 
 .hero-search-form .nav-tabs .nav-link.active {
     color: #fff;
-    background-color: rgba(67, 25, 161, 0.65);
+    background-color: #FF1919;
     border-color: transparent;
 }
 
 .hero-search-form .tab-content .tab-pane {
     padding: 35px;
-    background-color: rgba(67, 25, 161, 0.65);
+    background-color: #FF1919;
 }
 
 .hero-search-form .tab-content .tab-pane h6 {
@@ -655,7 +656,7 @@ li {
 }
 
 .single-catagory-area {
-    background-color: #7643ea;
+    background-color: #FF1919;
     text-align: center;
     padding: 60px 15px;
     -webkit-transition-duration: 500ms;
@@ -691,7 +692,7 @@ li {
 }
 
 .about-content span {
-    color: #7643ea;
+    color: #FF1919;
 }
 
 .about-content p {
