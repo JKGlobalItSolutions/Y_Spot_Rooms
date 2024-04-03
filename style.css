@@ -310,7 +310,7 @@ li {
     font-size: 18px;
     right: 0;
     width: 40px;
-    background-color: #341a79;
+    background-color: #150A2A;
     color: #fff;
     text-align: center;
     height: 40px;
@@ -357,7 +357,7 @@ li {
 .dorne-btn {
     min-width: 120px;
     height: 47px;
-    background-color: #FF1919;
+    background-color: #8f0707;
     border-radius: 0;
     padding: 0 15px;
     line-height: 50px;
@@ -372,7 +372,7 @@ li {
 .dorne-btn:hover,
 .dorne-btn:focus {
     color: #fff;
-    background-color: #5d25dd;
+    background-color: #150A2A;
     font-weight: 600;
 }
 
@@ -449,7 +449,7 @@ li {
     position: fixed;
     width: 100%;
     z-index: 9999;
-    height: 120px;
+    height: 100px;
     top: 0;
     left: 0;
     z-index: 99;
