@@ -24,11 +24,6 @@
 </head>
 
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="dorne-load"></div>
-    </div>
-
     <!-- ***** Search Form Area ***** -->
     <div class="dorne-search-form d-flex align-items-center">
         <div class="container">
@@ -68,22 +63,18 @@
                                     <a class="nav-link" href="index.html">Holiday's Trip <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Best Stays<span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="best-stays.html">Best Stays<span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" href="index.html">Today's Offer<span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">About us<span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="contact.html">Contact<span class="sr-only">(current)</span></a>
                                 </li>
                             </ul>
                             <!-- Add listings btn -->
                             <div class="dorne-add-listings-btn">
-                                <a href="#" class="btn dorne-btn">Sign in</a>
-                            </div>
-                            <br>
-                            <div class="dorne-add-listings-btn" style="padding: 10px;">
-                                <a href="#" class="btn dorne-btn">Register</a>
+                                <a href="#" class="btn dorne-btn">Login / Register</a>
                             </div>
                         </div>
                     </nav>
@@ -202,16 +193,16 @@
                         </div>
                         <form>
                             <div class="form-group"> <input class="form-control" type="text"
-                                    placeholder="Country, ZIP, city..."> <span class="form-label">Destination</span>
+                                    placeholder="city..."> <span class="form-label">Destination</span>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group"> <input class="form-control" type="date" required placeholder="Check In"> <span
-                                        class="form-label">Check In</span> </div>
+                                        class="" id="form-chekin-color">Check In</span> </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group"> <input class="form-control" type="date" required> <span
-                                     class="form-label">Check out</span> </div>
+                                     class="" id="form-chekin-color">Check out</span> </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -264,6 +255,7 @@
     <!-- </div> -->
     <!-- ***** About Area End ***** -->
     <br>
+    <br>
     <!-- ***** Editor Pick Area Start ***** -->
     <section class="dorne-editors-pick-area bg-img bg-overlay-9 section-padding-100" style="background-image: url(img/bg-img/tiru2.jpg);">
         <div class="container">
@@ -285,9 +277,6 @@
                                 <a href="#">hotel  name</a>
                                 <!-- <a href="#">1643 Destinations</a> -->
                             </div>
-                            <div class="add-more">
-                                <a href="#">+</a>
-                            </div>
                         </div>
                     </div>
                     <br>
@@ -297,9 +286,6 @@
                             <div class="places-total-destinations d-flex">
                                 <a href="#">hotel  name</a>
                                 <!-- <a href="#">243 Destinations</a> -->
-                            </div>
-                            <div class="add-more">
-                                <a href="#">+</a>
                             </div>
                         </div>
                     </div>
@@ -312,9 +298,6 @@
                                 <a href="#">hotel  name</a>
                                 <!-- <a href="#">943 Destinations</a> -->
                             </div>
-                            <div class="add-more">
-                                <a href="#">+</a>
-                            </div>
                         </div>
                     </div>
                     <div class="single-editors-pick-area wow fadeInUp" data-wow-delay="0.6s">
@@ -323,9 +306,6 @@
                             <div class="places-total-destinations d-flex">
                                 <a href="#">hotel  name</a>
                                 <!-- <a href="#">243 Destinations</a> -->
-                            </div>
-                            <div class="add-more">
-                                <a href="#">+</a>
                             </div>
                         </div>
                     </div>
@@ -466,8 +446,8 @@
                             <img src="img/bg-img/feature-6.jpg" alt="">
                             <!-- Rating & Map Area -->
                             <div class="ratings-map-area d-flex">
-                                <a href="#">8.5</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">8.5</a>
+                                <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                             <div class="feature-content d-flex align-items-center justify-content-between">
                                 <div class="feature-title">
@@ -484,8 +464,8 @@
                             <img src="img/bg-img/feature-7.jpg" alt="">
                             <!-- Rating & Map Area -->
                             <div class="ratings-map-area d-flex">
-                                <a href="#">9.5</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">9.5</a>
+                                <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                             <div class="feature-content d-flex align-items-center justify-content-between">
                                 <div class="feature-title">
@@ -502,8 +482,8 @@
                             <img src="img/bg-img/feature-8.jpg" alt="">
                             <!-- Rating & Map Area -->
                             <div class="ratings-map-area d-flex">
-                                <a href="#">8.2</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">8.2</a>
+                                <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                             <div class="feature-content d-flex align-items-center justify-content-between">
                                 <div class="feature-title">
@@ -520,8 +500,8 @@
                             <img src="img/bg-img/feature-9.jpg" alt="">
                             <!-- Rating & Map Area -->
                             <div class="ratings-map-area d-flex">
-                                <a href="#">8.7</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">8.7</a>
+                                <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                             <div class="feature-content d-flex align-items-center justify-content-between">
                                 <div class="feature-title">
@@ -538,8 +518,8 @@
                             <img src="img/bg-img/feature-10.jpg" alt="">
                             <!-- Rating & Map Area -->
                             <div class="ratings-map-area d-flex">
-                                <a href="#">9.8</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">9.8</a>
+                                <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                             <div class="feature-content d-flex align-items-center justify-content-between">
                                 <div class="feature-title">
@@ -576,8 +556,8 @@
                         <div class="feature-events-thumb">
                             <img src="img/bg-img/event-1.jpg" alt="">
                             <div class="date-map-area d-flex">
-                                <a href="#">26 Nov</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">26 Nov</a> -->
+                                <!-- <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                         </div>
                         <div class="feature-events-content">
@@ -595,8 +575,8 @@
                         <div class="feature-events-thumb">
                             <img src="img/bg-img/event-2.jpg" alt="">
                             <div class="date-map-area d-flex">
-                                <a href="#">26 Nov</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">26 Nov</a> -->
+                                <!-- <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                         </div>
                         <div class="feature-events-content">
@@ -614,8 +594,8 @@
                         <div class="feature-events-thumb">
                             <img src="img/bg-img/event-3.jpg" alt="">
                             <div class="date-map-area d-flex">
-                                <a href="#">26 Nov</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">26 Nov</a> -->
+                                <!-- <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                         </div>
                         <div class="feature-events-content">
@@ -633,8 +613,8 @@
                         <div class="feature-events-thumb">
                             <img src="img/bg-img/event-4.jpg" alt="">
                             <div class="date-map-area d-flex">
-                                <a href="#">26 Nov</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">26 Nov</a> -->
+                                <!-- <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                         </div>
                         <div class="feature-events-content">
@@ -652,8 +632,8 @@
                         <div class="feature-events-thumb">
                             <img src="img/bg-img/event-5.jpg" alt="">
                             <div class="date-map-area d-flex">
-                                <a href="#">26 Nov</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">26 Nov</a> -->
+                                <!-- <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                         </div>
                         <div class="feature-events-content">
@@ -671,8 +651,8 @@
                         <div class="feature-events-thumb">
                             <img src="img/bg-img/event-6.jpg" alt="">
                             <div class="date-map-area d-flex">
-                                <a href="#">26 Nov</a>
-                                <a href="#"><img src="img/core-img/map.png" alt=""></a>
+                                <!-- <a href="#">26 Nov</a> -->
+                                <!-- <a href="#"><img src="img/core-img/map.png" alt=""></a> -->
                             </div>
                         </div>
                         <div class="feature-events-content">

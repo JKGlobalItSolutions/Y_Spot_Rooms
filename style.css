@@ -90,12 +90,12 @@ h5,
 h6 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    color: #2a2a2a;
+    color: #000000;
     line-height: 1.3;
 }
 
 p {
-    color: #848484;
+    color: #000000;
     font-size: 14px;
     line-height: 1.5;
     font-weight: 400;
@@ -723,8 +723,12 @@ li {
 
 .editors-pick-info .places-total-destinations > a:last-child {
     text-transform: capitalize;
-    font-weight: 400;
-    background-color: #2a2a2a;
+    /* font-weight: 400; */
+    background-color: transparent;
+    background: #FF1919;
+    height: auto;
+    border-radius: 8px;
+
 }
 
 .editors-pick-info .add-more > a {
@@ -767,7 +771,7 @@ li {
     position: absolute;
     top: 20px;
     left: 20px;
-    background-color: #7643ea;
+    background-color: #ff1919;
     height: 35px;
     font-size: 12px;
     line-height: 35px;
@@ -776,6 +780,7 @@ li {
     font-weight: 600;
     color: #fff;
     z-index: 9;
+    border-radius: 8px;
 }
 
 .feature-content {
@@ -1003,6 +1008,7 @@ li {
         -ms-flex: 0 0 50%;
             flex: 0 0 50%;
     width: 50%;
+    margin-top: 50px;
 }
 
 #googleMap {
@@ -1041,7 +1047,9 @@ li {
 
 .contact-form {
     padding: 70px 30px;
-    background-color: #f3edff;
+    /* background-color: #654e6f; */
+    margin: 20px;
+    margin-top: 100px;
 }
 
 .contact-form-title h6 {
@@ -1600,3 +1608,6 @@ li {
     opacity: 0.9
 }
 
+#form-chekin-color{
+    color:#FFf;
+}
