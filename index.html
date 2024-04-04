@@ -102,77 +102,6 @@
                         <h2>A Best Place  <br> To Enjoy Your Life</h2>
                     </div>
                     <!-- Hero Search Form -->
-                    <div class="hero-search-form">
-                        <!-- Tabs -->
-                        <div class="nav nav-tabs" id="heroTab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab" aria-controls="nav-places" aria-selected="true">Places</a>
-                            <a class="nav-item nav-link" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Events</a>
-                        </div>
-                        <!-- Tabs Content -->
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
-                                <h6>What are you looking for?</h6>
-                                <form action="#" method="get">
-                                    <select class="custom-select">
-                                        <option value="1">Tiruvanamalai</option>
-                                    </select>
-                                    <select class="custom-select">
-                                        <option selected>Rooms</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                    <select class="custom-select">
-                                        <option selected>Adults</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                    <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
-                                </form>
-                            </div>
-                            <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
-                                <h6>What are you looking for?</h6>
-                                <form action="#" method="get">
-                                    <select class="custom-select">
-                                        <option selected>Your Destinations</option>
-                                        <option value="1">New York</option>
-                                        <option value="2">Latvia</option>
-                                        <option value="3">Dhaka</option>
-                                        <option value="4">Melbourne</option>
-                                        <option value="5">London</option>
-                                    </select>
-                                    <select class="custom-select">
-                                        <option selected>All Catagories</option>
-                                        <option value="1">Catagories 1</option>
-                                        <option value="2">Catagories 2</option>
-                                        <option value="3">Catagories 3</option>
-                                    </select>
-                                    <select class="custom-select">
-                                        <option selected>Price Range</option>
-                                        <option value="1">$100 - $499</option>
-                                        <option value="2">$500 - $999</option>
-                                        <option value="3">$1000 - $4999</option>
-                                    </select>
-                                    <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -261,22 +190,80 @@
         </div>
     </section>
     <!-- ***** Catagory Area End ***** -->
-
+    <br>
     <!-- ***** About Area Start ***** -->
-    <section class="dorne-about-area section-padding-0-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="about-content text-center">
-                        <h2>A Best Place To Enjoy Your  <br><span>Life</span></h2>
-                        <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce quis tempus elit. Sed efficitur tortor neque, vitae aliquet urna varius sit amet. Ut rhoncus, nunc nec tincidunt volutpat, ex libero.</p>
+    <!-- <div id="booking" class="section " style="width: auto; height: 500px;"> -->
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="booking-form">
+                        <div class="form-header">
+                            <h1>Make your reservation</h1>
+                        </div>
+                        <form>
+                            <div class="form-group"> <input class="form-control" type="text"
+                                    placeholder="Country, ZIP, city..."> <span class="form-label">Destination</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" type="date" required placeholder="Check In"> <span
+                                        class="form-label">Check In</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" type="date" required> <span
+                                     class="form-label">Check out</span> </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group"> <select class="form-control" required>
+                                            <option value="" selected hidden>no of rooms</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select> <span class="select-arrow"></span> <span
+                                            class="form-label">Rooms</span> </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group"> <select class="form-control" required>
+                                            <option value="" selected hidden>no of adults</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select> <span class="select-arrow"></span> <span
+                                            class="form-label">Adults</span> </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group"> <select class="form-control" required>
+                                            <option value="" selected hidden>no of children</option>
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                        </select> <span class="select-arrow"></span> <span
+                                            class="form-label">Children</span> </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" type="email"
+                                            placeholder="Enter your Email"> <span class="form-label">Email</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" type="tel"
+                                            placeholder="Enter you Phone"> <span class="form-label">Phone</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn"> <button class="submit-btn">Book Now</button> </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    <!-- </div> -->
     <!-- ***** About Area End ***** -->
-
+    <br>
     <!-- ***** Editor Pick Area Start ***** -->
     <section class="dorne-editors-pick-area bg-img bg-overlay-9 section-padding-100" style="background-image: url(img/bg-img/tiru2.jpg);">
         <div class="container">
