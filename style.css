@@ -274,7 +274,7 @@ li {
 .section-heading span {
     width: 30px;
     height: 2px;
-    background-color: #fff;
+    background-color: #000000;
     margin: 0 auto 15px;
     display: block;
 }
@@ -282,14 +282,14 @@ li {
 .section-heading h4 {
     font-weight: 800;
     line-height: 1;
-    color: #fff;
+    color: #000000;
     margin-bottom: 15px;
     text-transform: uppercase;
 }
 
 .section-heading p {
     line-height: 1;
-    color: #fff;
+    color: #000000;
     margin-bottom: 0;
 }
 
@@ -338,7 +338,7 @@ li {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(14, 2, 35, 0.5);
+    /* background-color: rgba(14, 2, 35, 0.5); */
     z-index: -1;
 }
 
@@ -351,7 +351,7 @@ li {
 }
 
 .bg-default {
-    background-color: #FF1919;
+    /* background-color: #FF1919; */
 }
 
 .dorne-btn {
@@ -754,7 +754,7 @@ li {
 
 .dorne-features-destinations-area,
 .dorne-features-restaurant-area {
-    padding: 100px 35px;
+    padding: 30px 35px;
     position: relative;
     z-index: 1;
 }
@@ -1611,3 +1611,40 @@ li {
 #form-chekin-color{
     color:#FFf;
 }
+.booking-form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    flex: 1 0 calc(50% - 20px); /* Adjust width as needed */
+    margin-right: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #ff1919;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
