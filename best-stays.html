@@ -1,262 +1,398 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Title</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="stylesheet" href="style.css">
-  <!-- Bootstrap CSS v5.2.1 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Y SPOT Rooms</title>
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" href="img/core-img/favicon.ico"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Core Stylesheet -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="css/responsive/responsive.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="style1.css"> -->
+
+
 </head>
 
 <body>
-  <header>
-    <div class="container-fluid h-100">
-      <div class="row h-100">
-        <div class="col-12 h-100">
-          <nav class="h-100 navbar navbar-expand-lg">
-            <!-- <a class="navbar-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a> -->
-            <a class="navbar-brand" href="index.html">
-              <h4>Y SPOT</h4>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
-              aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="fa fa-bars"></span></button>
-            <!-- Nav -->
-            <div class="collapse navbar-collapse" id="dorneNav">
-              <ul class="navbar-nav mr-auto" id="dorneMenu">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Blog <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Holiday's Trip <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="best-stays.html">Best Stays<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Today's Offer<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="contact.html">Contact<span class="sr-only">(current)</span></a>
-                </li>
-              </ul>
-              <!-- Add listings btn -->
-              <div class="dorne-add-listings-btn">
-                <a href="#" class="btn dorne-btn">Login / Register</a>
-              </div>
+
+
+    
+    <!-- ***** Search Form Area ***** -->
+    <div class="dorne-search-form d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="search-close-btn" id="closeBtn">
+                        <i class="pe-7s-close-circle" aria-hidden="true"></i>
+                    </div>
+                    <form action="#" method="get">
+                        <input type="search" name="caviarSearch" id="search"
+                            placeholder="Search Your Desire Destinations or Events">
+                        <input type="submit" class="d-none" value="submit">
+                    </form>
+                </div>
             </div>
-          </nav>
         </div>
-      </div>
     </div>
-  </header>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header_area" id="header">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <nav class="h-100 navbar navbar-expand-lg">
+                        <!-- <a class="navbar-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a> -->
+                        <a class="navbar-brand" href="index.html">
+                            <h4>Y SPOT</h4>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+                            aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                                class="fa fa-bars"></span></button>
+                        <!-- Nav -->
+                        <div class="collapse navbar-collapse" id="dorneNav">
+                            <ul class="navbar-nav mr-auto" id="dorneMenu">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index.html">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item active">
+                                  <a class="nav-link" href="best-stays.html">Stays <span
+                                          class="sr-only">(current)</span></a>
+                              </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index.html">About us <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <div class="dropdown">
+                                    <button class="btn  btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Reservation <i class="fa-solid fa-caret-down"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Hotels</a>
+                                        <a class="dropdown-item" href="#"> Restaurant</a>
+                                        <a class="dropdown-item" href="#">Tour & Travels</a>
+                                        <a class="dropdown-item" href="#">Events</a>
+                                        <a class="dropdown-item" href="#">Destinations</a>
+                                    </div>
+                                </div>
+
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="contact.html">Contact us<span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                            </ul>
+                            <!-- Add listings btn -->
+                            <div class="dorne-add-listings-btn">
+                                <a href="#" class="btn dorne-btn">Login / Register</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid booking mt-5" style="padding-top: 20px;"  >
+      <div class="container pt-5" >
+          <div class="bg-secondary shadow" style="padding: 30px;">
+              <div class="row align-items-center" style="min-height: 60px;">
+                  <div class="col-md-10">
+                      <div class="row">
+                          <div class="col-md-3">
+                              <div class="mb-3 mb-md-0">
+                                  <input type="text" id="destination" name="destination" class="form-control px-4"
+                                      placeholder="Where are you going?" required>
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="mb-3 mb-md-0">
+                                  <div class="date" id="date1" data-target-input="nearest">
+                                      <select name="adults" class="form-control">
+                                          <option value="1">1 adult</option>
+                                          <option value="2">2 adults</option>
+                                          <option value="3">3 adults</option>
+                                          <option value="4">4 adults</option>
+                                          <option value="5">5 adults</option>
+                                          <option value="6">6 adults</option>
+                                          <option value="7">7 adults</option>
+                                          <option value="8">8 adults</option>
+                                          <option value="9">9 adults</option>
+                                          <option value="10">10 adults</option>
+                                          <!-- Add more options as needed -->
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="mb-3 mb-md-0">
+                                  <div class="date" id="date2" data-target-input="nearest">
+                                      <input type="date" id="checkin" name="checkin" class="form-control" required>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="mb-3 mb-md-0">
+                                  <input type="date" id="checkout" name="checkout" class="form-control" required>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <form id="bookingForm">
+                    <!-- Your form elements -->
+                    <!-- Submit button -->
+                    <div class="col-md-2">
+                        <button class="btn btn-danger " type="submit"
+                            style="height: 47px; margin-top: -2px;">Submit</button>
+                    </div>
+                </form>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
   <main>
+   
+    <div class="album py-5 bg-body-tertiary ">
+      <div class="container mt-5">
 
-    <div class="album py-5 bg-body-tertiary">
-      <div class="container">
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+              <!-- <iframe style="width: 300px; height: 200px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62385.734729707045!2d79.02805286493002!3d12.240937612299707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bacc0852cd3d6cd%3A0x74002b16e5bac856!2sTiruvannamalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1712558940303!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
             </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h1.jpg" alt="hotel" class="img-fluid h-100 w-200">
             </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="booknow/Booknow.html" class="btn btn-primary">Book Now</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h2.jpeg" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="booknow/Booknow.html" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h3.jpeg" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h4.webp" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h5.jpg" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h6.jpg" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h7.jpg" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h8.jpg" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h9.jpeg" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h10.jpeg" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pt-5 ">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+              <img src="./stays/stayimages/h11.jpeg" alt="hotel" class="img-fluid h-100 w-200">
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title ">Tulips Village Resorts</h5>
+                  <p class="card-text">Tiruvannamalai</p>
+                  <p class="card-text">3.3 km from center</p>
+                  <p class="card-text">Scored 5.8 (154 reviews)</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
 
   </main>
   <!-- ****** Footer Area Start ****** -->
@@ -270,12 +406,12 @@
               Copyright &copy;
               <script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i
                 class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://jkglobalitsolutions.com/"
-                target="_blank">jk global it solutions </a> &amp; distributed by <a href="index.html" target="_blank">Y
-                SPOT</a>
+                target="_blank"><span style="color: rgb(38, 19, 207);">jkglobalitsolutions</span></a> &amp; distributed by <a href="index.html" target="_blank" <span style="color: rgb(38, 19, 207);"></span>Y
+                SPOT </span></a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
           </div>
-          <div class="footer-social-btns" style="color: white;">
+          <div class="footer-social-btns" style="color: rgb(37, 37, 37);">
             <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
             <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
@@ -284,6 +420,10 @@
         </div>
       </div>
     </div>
+    
+    
+    
+    
   </footer>
   <!-- ****** Footer Area End ****** -->
 
@@ -297,12 +437,17 @@
   <script src="js/others/plugins.js"></script>
   <!-- Active JS -->
   <script src="js/active.js"></script>
+  
+
 </body>
 
 </html>
 
 <style>
-  body{
-    background:linear-gradient(to right, #1B1D45, #7F7A8D);
+  header{
+    background:linear-gradient(to right, #4b8dca, #7F7A8D);
+  }
+  footer{
+    background:linear-gradient(to right, #4b8dca, #7F7A8D);
   }
 </style>

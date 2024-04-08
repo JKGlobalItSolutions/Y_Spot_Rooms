@@ -6,6 +6,11 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+         footer{
+    background:linear-gradient(to right, #4b8dca, #7F7A8D);
+  }
+    </style>
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
@@ -21,12 +26,15 @@
 
     <!-- Responsive CSS -->
     <link href="css/responsive/responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="style1.css">
+    <!-- <link rel="stylesheet" href="style1.css"> -->
 
 
 </head>
 
 <body>
+
+
+    
     <!-- ***** Search Form Area ***** -->
     <div class="dorne-search-form d-flex align-items-center">
         <div class="container">
@@ -66,6 +74,10 @@
                                             class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item active">
+                                    <a class="nav-link" href="best-stays.html">Stays <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item active">
                                     <a class="nav-link" href="index.html">About us <span
                                             class="sr-only">(current)</span></a>
                                 </li>
@@ -91,7 +103,7 @@
                             </ul>
                             <!-- Add listings btn -->
                             <div class="dorne-add-listings-btn">
-                                <a href="#" class="btn dorne-btn">Login / Register</a>
+                                <a href="./admin/login.php" class="btn dorne-btn">Login / Register</a>
                             </div>
                         </div>
                     </nav>
@@ -131,8 +143,7 @@
 
     <!-- ***** Catagory Area Start ***** -->
 
-
-    <div class="container-fluid booking mt-5 pb-5 ">
+    <div class="container-fluid booking mt-5 pb-5">
         <div class="container pb-5">
             <div class="bg-secondary shadow" style="padding: 30px;">
                 <div class="row align-items-center" style="min-height: 60px;">
@@ -140,8 +151,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="mb-3 mb-md-0">
-                                    <input type="text" id="destination" name="destination" class="form-control px-4"
-                                        placeholder="Where are you going?" required>
+                                    <input type="text" id="destination" name="destination" class="form-control px-4" placeholder="Where are you going?" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -178,14 +188,14 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a href="search.html"><button class="btn btn-danger btn-block" type="submit"
-                                style="height: 47px; margin-top: -2px;">Submit</button></a>
+                        <a href="best-stays.html"><button class="btn btn-danger btn-block" type="submit" style="height: 47px; margin-top: -2px;">Submit</button></a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+    
+    
 
 
     <!-- ***** Catagory Area End ***** -->
@@ -686,31 +696,30 @@
     <!-- ****** Footer Area Start ****** -->
     <footer class="dorne-footer-area">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 d-md-flex align-items-center justify-content-between">
-                    <div class="footer-text">
-                        <p>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | Made with
-                            <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
-                                href="https://jkglobalitsolutions.com/" target="_blank">jk global it solutions </a>
-                            &amp; distributed by <a href="index.html" target="_blank">Y SPOT</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                    <div class="footer-social-btns">
-                        <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
-                        <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    </div>
-                </div>
+          <div class="row">
+            <div class="col-12 d-md-flex align-items-center justify-content-between">
+              <div class="footer-text">
+                <p style="color: white;">
+                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                  Copyright &copy;
+                  <script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i
+                    class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://jkglobalitsolutions.com/"
+                    target="_blank"><span style="color: rgb(38, 19, 207);">jkglobalitsolutions</span></a> &amp; distributed by <a href="index.html" target="_blank" <span style="color: rgb(38, 19, 207);"></span>Y
+                    SPOT </span></a>
+                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+              </div>
+              <div class="footer-social-btns" style="color: rgb(37, 37, 37);">
+                <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              </div>
             </div>
+          </div>
         </div>
-    </footer>
+      </footer>
     <!-- ****** Footer Area End ****** -->
-
     <!-- jQuery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -721,6 +730,10 @@
     <script src="js/others/plugins.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
+   
+    
+    </script>
+    
 </body>
 
 </html>
