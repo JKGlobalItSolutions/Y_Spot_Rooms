@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+:root{
+    --color-primary:#f8f8fc;
+    --color-bg:#1b1b42;
+    --color-bg2:#ffffff;
+    --color-white:#ffffff;
+    --color-light:#f5f5f5;
+    --transition: .4s ease;
+}
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    
+}
+h1{
+    font-size: 60px;
+    color: var(--color-white);
+}
+
+/*..................Start Navbar...................*/
+@media(max-width:500px){
+  .nav-links{
+    gap: 25px;
+    display: none;
+  }
+  .logo {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+}
+.dropdown{
+  visibility: visible;
+  height: 20px;
+  width: 20px;
+  margin-top: 30px;
+  cursor: pointer;
+  position: relative;
+  display: block;
+}
+}
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+/*..................End Navbar...................*/
+/*..................Start Header................*/
+.wavy span {
+    font-family: 'Alfa Slab One', cursive;
+    position: relative;
+    display: inline-block;
+    color: #fa3909;
+    text-transform: uppercase;
+    animation: wavy 1s infinite;
+    animation-delay: calc(.1s * var(--i));
+    
+  }
+  @keyframes wavy {
+    0%,40%,100% {
+      transform: translateY(0)
+    }
+    20% {
+      transform: translateY(-20px)
+    }
+  }
+  
