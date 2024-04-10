@@ -18,11 +18,17 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Core Stylesheet -->
     <link href="style.css" rel="stylesheet">
-
     <!-- Responsive CSS -->
     <link href="css/responsive/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="style1.css">
-
+<style>
+    header{
+    background:linear-gradient(to right, #ed1b24, #ed1b24);
+    }
+      footer{
+    background:linear-gradient(to right, #ed1b24, #ed1b24);
+  }
+</style>
 
 </head>
 
@@ -66,9 +72,14 @@
                                             class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item active">
+                                    <a class="nav-link" href="best-stays.html"> Stays <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item active">
                                     <a class="nav-link" href="index.html">About us <span
                                             class="sr-only">(current)</span></a>
                                 </li>
+                               
                                 <div class="dropdown">
                                     <button class="btn  btn-secondary dropdown-toggle" type="button"
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -85,8 +96,7 @@
                                 </div>
 
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="contact.html">Contact us<span
-                                            class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="contact.html">Contact us</a>
                                 </li>
                             </ul>
                             <!-- Add listings btn -->
@@ -100,6 +110,41 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Title</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .animated-title {
+      font-size: 4rem;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .spot {
+      color: #ff6600; /* Customize the color of "Spot" */
+      animation: slideJump 1.5s ease infinite;
+    }
+
+    @keyframes slideJump {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="animated-title">My <span class="spot">Spot</span></h1>
+  </div>
+</body>
+</html>
 
     <!-- ***** Welcome Area Start ***** -->
     <section class="dorne-welcome-area bg-img bg-overlay"
@@ -178,7 +223,7 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a href="search.html"><button class="btn btn-danger btn-block" type="submit"
+                        <a href="best-stays.html"><button class="btn btn-danger btn-block" type="submit"
                                 style="height: 47px; margin-top: -2px;">Submit</button></a>
                     </div>
                 </div>
