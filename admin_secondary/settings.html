@@ -7,422 +7,239 @@
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
     <title>Hotel Dashboard Template</title>
-
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="assets/img/favicon.png"
-    />
-
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png"> -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
     <link
       rel="stylesheet"
       href="assets/plugins/fontawesome/css/fontawesome.min.css"
     />
-
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
     <link rel="stylesheet" href="assets/css/feathericon.min.css" />
-
-    <link
-      rel="stylesheet"
-      href="assets/plugins/datatables/datatables.min.css"
-    />
+    <link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css" />
     <link rel="stylesheet" href="assets/plugins/morris/morris.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="assets/css/bootstrap-datetimepicker.min.css"
-    />
-
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
   <body>
     <div class="main-wrapper">
-		<div class="header">
-		  <div class="header-left">
-			<a href="index.html" class="logo">
-			  <img
+      <div class="header">
+        <div class="header-left">
+          <a href="index.html" class="logo">
+            <!-- <img
 				src="assets/img/hotel_logo.png"
 				width="50"
 				height="70"
 				alt="logo"
-			  />
-			  <span class="logoclass">HOTEL</span>
-			</a>
-			<a href="index.html" class="logo logo-small">
-			  <img
+			  /> -->
+            <span class="logoclass">HOTEL</span>
+          </a>
+          <a href="index.html" class="logo logo-small">
+            <!-- <img
 				src="assets/img/hotel_logo.png"
 				alt="Logo"
 				width="30"
 				height="30"
-			  />
-			</a>
-		  </div>
-  
-		  <a href="javascript:void(0);" id="toggle_btn">
-			<i class="fe fe-text-align-left"></i>
-		  </a>
-  
-		  <a class="mobile_btn" id="mobile_btn">
-			<i class="fas fa-bars"></i>
-		  </a>
-  
-		  <ul class="nav user-menu">
-			<li class="nav-item dropdown noti-dropdown">
-			  <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-				<i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
-			  </a>
-			  <div class="dropdown-menu notifications">
-				<div class="topnav-dropdown-header">
-				  <span class="notification-title">Notifications</span>
-				  <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-				</div>
-				<div class="noti-content">
-				  <ul class="notification-list">
-					<li class="notification-message">
-					  <a href="#">
-						<div class="media">
-						  <span class="avatar avatar-sm">
-							<img
-							  class="avatar-img rounded-circle"
-							  alt="User Image"
-							  src="assets/img/profiles/avatar-02.jpg"
-							/>
-						  </span>
-						  <div class="media-body">
-							<p class="noti-details">
-							  <span class="noti-title">Carlson Tech</span> has
-							  approved
-							  <span class="noti-title">your estimate</span>
-							</p>
-							<p class="noti-time">
-							  <span class="notification-time">4 mins ago</span>
-							</p>
-						  </div>
-						</div>
-					  </a>
-					</li>
-					<li class="notification-message">
-					  <a href="#">
-						<div class="media">
-						  <span class="avatar avatar-sm">
-							<img
-							  class="avatar-img rounded-circle"
-							  alt="User Image"
-							  src="assets/img/profiles/avatar-11.jpg"
-							/>
-						  </span>
-						  <div class="media-body">
-							<p class="noti-details">
-							  <span class="noti-title"
-								>International Software Inc</span
-							  >
-							  has sent you a invoice in the amount of
-							  <span class="noti-title">$218</span>
-							</p>
-							<p class="noti-time">
-							  <span class="notification-time">6 mins ago</span>
-							</p>
-						  </div>
-						</div>
-					  </a>
-					</li>
-					<li class="notification-message">
-					  <a href="#">
-						<div class="media">
-						  <span class="avatar avatar-sm">
-							<img
-							  class="avatar-img rounded-circle"
-							  alt="User Image"
-							  src="assets/img/profiles/avatar-17.jpg"
-							/>
-						  </span>
-						  <div class="media-body">
-							<p class="noti-details">
-							  <span class="noti-title">John Hendry</span> sent a
-							  cancellation request
-							  <span class="noti-title">Apple iPhone XR</span>
-							</p>
-							<p class="noti-time">
-							  <span class="notification-time">8 mins ago</span>
-							</p>
-						  </div>
-						</div>
-					  </a>
-					</li>
-					<li class="notification-message">
-					  <a href="#">
-						<div class="media">
-						  <span class="avatar avatar-sm">
-							<img
-							  class="avatar-img rounded-circle"
-							  alt="User Image"
-							  src="assets/img/profiles/avatar-13.jpg"
-							/>
-						  </span>
-						  <div class="media-body">
-							<p class="noti-details">
-							  <span class="noti-title">Mercury Software Inc</span>
-							  added a new product
-							  <span class="noti-title">Apple MacBook Pro</span>
-							</p>
-							<p class="noti-time">
-							  <span class="notification-time">12 mins ago</span>
-							</p>
-						  </div>
-						</div>
-					  </a>
-					</li>
-				  </ul>
-				</div>
-				<div class="topnav-dropdown-footer">
-				  <a href="#">View all Notifications</a>
-				</div>
-			  </div>
-			</li>
-  
-			<li class="nav-item dropdown has-arrow">
-			  <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-				<span class="user-img"
-				  ><img
+			  /> -->
+          </a>
+        </div>
+
+        <a href="javascript:void(0);" id="toggle_btn">
+          <i class="fe fe-text-align-left"></i>
+        </a>
+
+        <a class="mobile_btn" id="mobile_btn">
+          <i class="fas fa-bars"></i>
+        </a>
+
+        <ul class="nav user-menu">
+          <li class="nav-item dropdown has-arrow">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <span class="user-img">
+                <!-- <img
 					class="rounded-circle"
 					src="assets/img/profiles/avatar-01.jpg"
 					width="31"
-					alt="Soeng Souy"
-				/></span>
-			  </a>
-			  <div class="dropdown-menu">
-				<div class="user-header">
-				  <div class="avatar avatar-sm">
-					<img
-					  src="assets/img/profiles/avatar-01.jpg"
-					  alt="User Image"
-					  class="avatar-img rounded-circle"
-					/>
-				  </div>
-				  <div class="user-text">
-					<h6>Soeng Souy</h6>
-					<p class="text-muted mb-0">Administrator</p>
-				  </div>
-				</div>
-				<a class="dropdown-item" href="profile.html">My Profile</a>
-				<a class="dropdown-item" href="settings.html">Account Settings</a>
-				<a class="dropdown-item" href="login.html">Logout</a>
-			  </div>
-			</li>
-		  </ul>
-		</div>
-
+					alt="Soeng Souy"/> -->
+              </span>
+            </a>
+            <div class="dropdown-menu">
+              <div class="user-header">
+                <div class="avatar avatar-sm">
+                  <img
+                    src="assets/img/profiles/avatar-01.jpg"
+                    alt="User Image"
+                    class="avatar-img rounded-circle"
+                  />
+                </div>
+                <div class="user-text">
+                  <p class="text-muted mb-0">Administrator</p>
+                </div>
+              </div>
+              <a class="dropdown-item" href="profile.html">My Profile</a>
+              <a class="dropdown-item" href="settings.html">Account Settings</a>
+              <a class="dropdown-item" href="login.html">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
       <div class="sidebar" id="sidebar">
         <div class="sidebar-inner slimscroll">
           <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-              <li>
-                <a href="index.html"
-                  ><i class="fe fe-home"></i> <span>Back to Home</span></a
-                >
-              </li>
               <li class="active">
+                <a href="index.html"
+                  ><i class="fas fa-tachometer-alt"></i>
+                  <span>Dashboard</span></a
+                >
+              </li>
+              <li class="list-divider"></li>
+              <li>
+                <a href="Booking.html"
+                  ><i class="fas fa-suitcase"></i> <span>Booked</span>
+                </a>
+              </li>
+              <li>
+                <a href="checkin.html"
+                  ><i class="fas fa-suitcase"></i> <span> Check in </span>
+                </a>
+              </li>
+              <li>
+                <a href="checkout.html"
+                  ><i class="fas fa-suitcase"></i> <span> Check out </span></a
+                >
+              </li>
+              <li>
+                <a href="Room category list.html"
+                  ><i class="fas fa-table"></i>
+                  <span> Room Category List </span></a
+                >
+              </li>
+              <li>
+                <a href="rooms.html"><i class="fas fa-key"></i> <span> Rooms </span> </a>
+              </li>
+              <li>
+                <a href="users.html"
+                  ><i class="fas fa-user"></i> <span> Users </span>
+                </a>
+              </li>
+              <li>
                 <a href="settings.html"
-                  ><i class="fe fe-vector"></i> <span>Company Settings</span></a
+                  ><i class="fas fa-cog"></i> <span>Settings</span></a
                 >
               </li>
-              <li>
-                <a href="localization.html"
-                  ><i class="fe fe-vector"></i> <span>Localization</span></a
-                >
-              </li>
-              <li>
-                <a href="theme-settings.html"
-                  ><i class="fe fe-warning"></i> <span>Theme Settings</span></a
-                >
-              </li>
-              <li>
-                <a href="roles-permissions.html"
-                  ><i class="fe fe-vector"></i>
-                  <span>Roles & Permissions</span></a
-                >
-              </li>
-              <li>
-                <a href="email-settings.html"
-                  ><i class="fe fe-warning"></i> <span>Email Settings</span></a
-                >
-              </li>
-              <li>
-                <a href="invoice-settings.html"
-                  ><i class="fe fe-vector"></i> <span>Invoice Settings</span></a
-                >
-              </li>
-              <li>
-                <a href="salary-settings.html"
-                  ><i class="fe fe-vector"></i> <span>Salary Settings</span></a
-                >
-              </li>
-              <li>
-                <a href="notifications-settings.html"
-                  ><i class="fe fe-warning"></i> <span>Notifications</span></a
-                >
-              </li>
-              <li>
-                <a href="change-password.html"
-                  ><i class="fe fe-vector"></i> <span>Change Password</span></a
-                >
-              </li>
-              <li>
-                <a href="leave-type.html"
-                  ><i class="fe fe-warning"></i> <span>Leave Type</span></a
-                >
-              </li>
+              <li class="list-divider"></li>
             </ul>
           </div>
         </div>
       </div>
-
       <div class="page-wrapper">
-        <div class="content mt-5">
-          <div class="row">
-            <div class="col-lg-12">
-              <form>
-                <h3 class="page-title">Basic Settings</h3>
-                <div class="row mt-4">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label
-                        >Company Name <span class="text-danger">*</span></label
-                      >
-                      <input class="form-control" type="text" value="" />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Contact Person</label>
-                      <input
-                        class="form-control"
-                        value="Daniel Porter"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Address</label>
-                      <input
-                        class="form-control"
-                        value="Daniel Porter"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>City</label>
-                      <input
-                        class="form-control"
-                        value="Daniel Porter"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>State/Province</label>
-                      <select class="form-control" id="sel1" name="sellist1">
-                        <option>Select</option>
-                        <option>California</option>
-                        <option>Tamil nadu</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Postal Code</label>
-                      <input
-                        class="form-control"
-                        value="Daniel Porter"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Email ID</label>
-                      <input
-                        class="form-control"
-                        value="Daniel Porter"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Phone Number</label>
-                      <input
-                        class="form-control"
-                        value="Daniel Porter"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Mobile Number</label>
-                      <input
-                        class="form-control"
-                        value="Daniel Porter"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Fax</label>
-                      <input
-                        class="form-control"
-                        value="Daniel Porter"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Website URL</label>
-                      <input
-                        class="form-control"
-                        value="Daniel Porter"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <button type="button" class="btn btn-primary buttonedit mr-5 mt-5">
-          Save
-        </button>
+        <main id="view-panel">
+        	<div class="container-fluid mt-5 pt-1">
+	
+	<div class="card col-lg-12">
+		<div class="card-body">
+			<form action="" id="manage-settings">
+				<div class="form-group">
+					<label for="name" class="control-label">Hotel Name</label>
+					<input type="text" class="form-control" id="name" name="name" value="Y spot" required="">
+				</div>
+				<div class="form-group">
+					<label for="email" class="control-label">Hotel email</label>
+					<input type="email" class="form-control" id="email" name="email" value="info@sample.com" required="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpiYmZkZTQxOS00ZGRkLWU5NDYtOWQ2MC05OGExNGJiMTA3N2YiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDAyNDkwMkRDOTIyMTFFNkI0MzFGRTk2RjM1OTdENTciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDAyNDkwMkNDOTIyMTFFNkI0MzFGRTk2RjM1OTdENTciIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTU2NTE1NDItMmIzOC1kZjRkLTk0N2UtN2NjOTlmMjQ5ZGFjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOmJiZmRlNDE5LTRkZGQtZTk0Ni05ZDYwLTk4YTE0YmIxMDc3ZiIv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&quot;) !important; background-repeat: no-repeat; background-size: 20px; background-position: 97% center; cursor: auto;" data-temp-mail-org="0">
+				</div>
+				<div class="form-group">
+					<label for="contact" class="control-label">Hotel Contact</label>
+					<input type="text" class="form-control" id="contact" name="contact" value="+6948 8542 623" required="">
+				</div>
+				<div class="form-group">
+					<label for="about" class="control-label">Hotel About Content</label>
+					<div class="jqte"><div class="jqte_toolbar unselectable" role="toolbar" unselectable="on" style="user-select: none;"><div class="jqte_tool jqte_tool_1 unselectable" role="button" data-tool="0" unselectable="on" style="user-select: none;"><a class="jqte_tool_label unselectable" unselectable="on" style="user-select: none;"><span class="jqte_tool_text unselectable" unselectable="on" style="user-select: none;">Normal</span><span class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></span></a><div class="jqte_formats unselectable" unselectable="on" style="user-select: none;"><a jqte-formatval="p" class="jqte_format jqte_format_0 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Normal</a><a jqte-formatval="h1" class="jqte_format jqte_format_1 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Header 1</a><a jqte-formatval="h2" class="jqte_format jqte_format_2 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Header 2</a><a jqte-formatval="h3" class="jqte_format jqte_format_3 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Header 3</a><a jqte-formatval="h4" class="jqte_format jqte_format_4 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Header 4</a><a jqte-formatval="h5" class="jqte_format jqte_format_5 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Header 5</a><a jqte-formatval="h6" class="jqte_format jqte_format_6 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Header 6</a><a jqte-formatval="pre" class="jqte_format jqte_format_7 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Preformatted</a></div></div><div class="jqte_tool jqte_tool_2 unselectable" role="button" data-tool="1" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a><div class="jqte_fontsizes unselectable" unselectable="on" style="user-select: none;"><a jqte-styleval="10" class="jqte_fontsize unselectable" style="font-size: 10px; user-select: none;" role="menuitem" unselectable="on">Abcdefgh...</a><a jqte-styleval="12" class="jqte_fontsize unselectable" style="font-size: 12px; user-select: none;" role="menuitem" unselectable="on">Abcdefgh...</a><a jqte-styleval="16" class="jqte_fontsize unselectable" style="font-size: 16px; user-select: none;" role="menuitem" unselectable="on">Abcdefgh...</a><a jqte-styleval="18" class="jqte_fontsize unselectable" style="font-size: 18px; user-select: none;" role="menuitem" unselectable="on">Abcdefgh...</a><a jqte-styleval="20" class="jqte_fontsize unselectable" style="font-size: 20px; user-select: none;" role="menuitem" unselectable="on">Abcdefgh...</a><a jqte-styleval="24" class="jqte_fontsize unselectable" style="font-size: 24px; user-select: none;" role="menuitem" unselectable="on">Abcdefgh...</a><a jqte-styleval="28" class="jqte_fontsize unselectable" style="font-size: 28px; user-select: none;" role="menuitem" unselectable="on">Abcdefgh...</a></div></div><div class="jqte_tool jqte_tool_3 unselectable" role="button" data-tool="2" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a><div class="jqte_cpalette unselectable" unselectable="on" style="user-select: none;"><a jqte-styleval="0,0,0" class="jqte_color unselectable" style="background-color: rgb(0, 0, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="68,68,68" class="jqte_color unselectable" style="background-color: rgb(68, 68, 68); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="102,102,102" class="jqte_color unselectable" style="background-color: rgb(102, 102, 102); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="153,153,153" class="jqte_color unselectable" style="background-color: rgb(153, 153, 153); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="204,204,204" class="jqte_color unselectable" style="background-color: rgb(204, 204, 204); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="238,238,238" class="jqte_color unselectable" style="background-color: rgb(238, 238, 238); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="243,243,243" class="jqte_color unselectable" style="background-color: rgb(243, 243, 243); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="255,255,255" class="jqte_color unselectable" style="background-color: rgb(255, 255, 255); user-select: none;" role="gridcell" unselectable="on"></a><div class="jqte_colorSeperator"></div><a jqte-styleval="255,0,0" class="jqte_color unselectable" style="background-color: rgb(255, 0, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="255,153,0" class="jqte_color unselectable" style="background-color: rgb(255, 153, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="255,255,0" class="jqte_color unselectable" style="background-color: rgb(255, 255, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="0,255,0" class="jqte_color unselectable" style="background-color: rgb(0, 255, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="0,255,255" class="jqte_color unselectable" style="background-color: rgb(0, 255, 255); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="0,0,255" class="jqte_color unselectable" style="background-color: rgb(0, 0, 255); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="153,0,255" class="jqte_color unselectable" style="background-color: rgb(153, 0, 255); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="255,0,255" class="jqte_color unselectable" style="background-color: rgb(255, 0, 255); user-select: none;" role="gridcell" unselectable="on"></a><div class="jqte_colorSeperator"></div><a jqte-styleval="244,204,204" class="jqte_color unselectable" style="background-color: rgb(244, 204, 204); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="252,229,205" class="jqte_color unselectable" style="background-color: rgb(252, 229, 205); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="255,242,204" class="jqte_color unselectable" style="background-color: rgb(255, 242, 204); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="217,234,211" class="jqte_color unselectable" style="background-color: rgb(217, 234, 211); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="208,224,227" class="jqte_color unselectable" style="background-color: rgb(208, 224, 227); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="207,226,243" class="jqte_color unselectable" style="background-color: rgb(207, 226, 243); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="217,210,233" class="jqte_color unselectable" style="background-color: rgb(217, 210, 233); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="234,209,220" class="jqte_color unselectable" style="background-color: rgb(234, 209, 220); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="234,153,153" class="jqte_color unselectable" style="background-color: rgb(234, 153, 153); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="249,203,156" class="jqte_color unselectable" style="background-color: rgb(249, 203, 156); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="255,229,153" class="jqte_color unselectable" style="background-color: rgb(255, 229, 153); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="182,215,168" class="jqte_color unselectable" style="background-color: rgb(182, 215, 168); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="162,196,201" class="jqte_color unselectable" style="background-color: rgb(162, 196, 201); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="159,197,232" class="jqte_color unselectable" style="background-color: rgb(159, 197, 232); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="180,167,214" class="jqte_color unselectable" style="background-color: rgb(180, 167, 214); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="213,166,189" class="jqte_color unselectable" style="background-color: rgb(213, 166, 189); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="224,102,102" class="jqte_color unselectable" style="background-color: rgb(224, 102, 102); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="246,178,107" class="jqte_color unselectable" style="background-color: rgb(246, 178, 107); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="255,217,102" class="jqte_color unselectable" style="background-color: rgb(255, 217, 102); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="147,196,125" class="jqte_color unselectable" style="background-color: rgb(147, 196, 125); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="118,165,175" class="jqte_color unselectable" style="background-color: rgb(118, 165, 175); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="111,168,220" class="jqte_color unselectable" style="background-color: rgb(111, 168, 220); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="142,124,195" class="jqte_color unselectable" style="background-color: rgb(142, 124, 195); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="194,123,160" class="jqte_color unselectable" style="background-color: rgb(194, 123, 160); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="204,0,0" class="jqte_color unselectable" style="background-color: rgb(204, 0, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="230,145,56" class="jqte_color unselectable" style="background-color: rgb(230, 145, 56); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="241,194,50" class="jqte_color unselectable" style="background-color: rgb(241, 194, 50); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="106,168,79" class="jqte_color unselectable" style="background-color: rgb(106, 168, 79); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="69,129,142" class="jqte_color unselectable" style="background-color: rgb(69, 129, 142); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="61,133,198" class="jqte_color unselectable" style="background-color: rgb(61, 133, 198); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="103,78,167" class="jqte_color unselectable" style="background-color: rgb(103, 78, 167); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="166,77,121" class="jqte_color unselectable" style="background-color: rgb(166, 77, 121); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="153,0,0" class="jqte_color unselectable" style="background-color: rgb(153, 0, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="180,95,6" class="jqte_color unselectable" style="background-color: rgb(180, 95, 6); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="191,144,0" class="jqte_color unselectable" style="background-color: rgb(191, 144, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="56,118,29" class="jqte_color unselectable" style="background-color: rgb(56, 118, 29); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="19,79,92" class="jqte_color unselectable" style="background-color: rgb(19, 79, 92); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="11,83,148" class="jqte_color unselectable" style="background-color: rgb(11, 83, 148); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="53,28,117" class="jqte_color unselectable" style="background-color: rgb(53, 28, 117); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="116,27,71" class="jqte_color unselectable" style="background-color: rgb(116, 27, 71); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="102,0,0" class="jqte_color unselectable" style="background-color: rgb(102, 0, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="120,63,4" class="jqte_color unselectable" style="background-color: rgb(120, 63, 4); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="127,96,0" class="jqte_color unselectable" style="background-color: rgb(127, 96, 0); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="39,78,19" class="jqte_color unselectable" style="background-color: rgb(39, 78, 19); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="12,52,61" class="jqte_color unselectable" style="background-color: rgb(12, 52, 61); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="7,55,99" class="jqte_color unselectable" style="background-color: rgb(7, 55, 99); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="32,18,77" class="jqte_color unselectable" style="background-color: rgb(32, 18, 77); user-select: none;" role="gridcell" unselectable="on"></a><a jqte-styleval="76,17,48" class="jqte_color unselectable" style="background-color: rgb(76, 17, 48); user-select: none;" role="gridcell" unselectable="on"></a></div></div><div class="jqte_tool jqte_tool_4 unselectable" role="button" data-tool="3" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_5 unselectable" role="button" data-tool="4" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_6 unselectable" role="button" data-tool="5" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_7 unselectable" role="button" data-tool="6" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_8 unselectable" role="button" data-tool="7" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_9 unselectable" role="button" data-tool="8" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_10 unselectable" role="button" data-tool="9" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_11 unselectable" role="button" data-tool="10" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_12 unselectable" role="button" data-tool="11" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_13 unselectable" role="button" data-tool="12" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_14 unselectable" role="button" data-tool="13" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_15 unselectable" role="button" data-tool="14" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_16 unselectable" role="button" data-tool="15" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_17 unselectable" role="button" data-tool="16" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_18 unselectable" role="button" data-tool="17" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_19 unselectable" role="button" data-tool="18" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_20 unselectable" role="button" data-tool="19" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_21 unselectable" role="button" data-tool="20" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div></div><div class="jqte_linkform" style="display:none" role="dialog"><div class="jqte_linktypeselect unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypeview unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypearrow unselectable" unselectable="on" style="user-select: none;"></div><div class="jqte_linktypetext">Web Address</div></div><div class="jqte_linktypes unselectable" role="menu" unselectable="on" style="user-select: none;"><a jqte-linktype="0" unselectable="on" class="unselectable" style="user-select: none;">Web Address</a><a jqte-linktype="1" unselectable="on" class="unselectable" style="user-select: none;">E-mail Address</a><a jqte-linktype="2" unselectable="on" class="unselectable" style="user-select: none;">Picture URL</a></div></div><input class="jqte_linkinput" type="text/css" value=""><div class="jqte_linkbutton unselectable" unselectable="on" style="user-select: none;">OK</div> <div style="height:1px;float:none;clear:both"></div></div><div class="jqte_editor" contenteditable="true"><p style="text-align: center; background: transparent; position: relative;"><b>ABOUT US</b></p><p style="text-align: center; background: transparent; position: relative;"><span style="font-size:28px;background: transparent; position: relative;"><span style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-weight: 400; text-align: justify;"><br></span></span></p><p style="text-align: center; background: transparent; position: relative;"></p><h2 style="font-size:28px;background: transparent; position: relative;">Where does it come from?</h2><p style="text-align: center; margin-bottom: 15px; padding: 0px; color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-weight: 400;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p><p></p></div><div class="jqte_source jqte_hiddenField"><textarea name="about" class="text-jqte" data-origin="textarea">&lt;p style="text-align: center; background: transparent; position: relative;"&gt;&lt;b&gt;ABOUT US&lt;/b&gt;&lt;/p&gt;&lt;p style="text-align: center; background: transparent; position: relative;"&gt;&lt;span style="font-size:28px;background: transparent; position: relative;"&gt;&lt;span style="color: rgb(0, 0, 0); font-family: &amp;quot;Open Sans&amp;quot;, Arial, sans-serif; font-weight: 400; text-align: justify;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p style="text-align: center; background: transparent; position: relative;"&gt;&lt;/p&gt;&lt;h2 style="font-size:28px;background: transparent; position: relative;"&gt;Where does it come from?&lt;/h2&gt;&lt;p style="text-align: center; margin-bottom: 15px; padding: 0px; color: rgb(0, 0, 0); font-family: &amp;quot;Open Sans&amp;quot;, Arial, sans-serif; font-weight: 400;"&gt;Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</textarea></div></div>
+
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label">Image</label>
+					<input type="file" class="form-control" name="img" onchange="displayImg(this,$(this))">
+				</div>
+				<div class="form-group">
+					<img src="../assets/img/1600478940_hotel-cover.jpg" alt="" id="cimg">
+				</div>
+				<center>
+					<button class="btn btn-info btn-primary btn-block col-md-2">Save</button>
+				</center>
+			</form>
+		</div>
+	</div>
+	<style>
+	img#cimg{
+		max-height: 10vh;
+		max-width: 6vw;
+	}
+</style>
+
+<script>
+	function displayImg(input,_this) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        	$('#cimg').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+	$('.text-jqte').jqte();
+
+	$('#manage-settings').submit(function(e){
+		e.preventDefault()
+		start_load()
+		$.ajax({
+			url:'ajax.php?action=save_settings',
+			data: new FormData($(this)[0]),
+		    cache: false,
+		    contentType: false,
+		    processData: false,
+		    method: 'POST',
+		    type: 'POST',
+			error:err=>{
+				console.log(err)
+			},
+			success:function(resp){
+				if(resp == 1){
+					alert_toast('Data successfully saved.','success')
+					setTimeout(function(){
+						location.reload()
+					},1000)
+				}
+			}
+		})
+
+	})
+</script>
+<style>
+	
+</style>
+</div>  	
+
+  </main>
       </div>
     </div>
-
+    <script
+      data-cfasync="false"
+      src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
     <script src="assets/js/jquery-3.5.1.min.js"></script>
-
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-    <script src="assets/js/select2.min.js"></script>
-
     <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-
-    <script src="assets/plugins/datatables/datatables.min.js"></script>
+    <script src="assets/plugins/raphael/raphael.min.js"></script>
+    <script src="assets/plugins/morris/morris.min.js"></script>
+    <script src="assets/js/chart.morris.js"></script>
     <script src="assets/js/script.js"></script>
-    <script>
-      $(function () {
-        $("#datetimepicker3").datetimepicker({
-          format: "LT",
-        });
-      });
-    </script>
   </body>
 </html>

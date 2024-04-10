@@ -40,12 +40,12 @@
             <span class="logoclass">HOTEL</span>
           </a>
           <a href="index.html" class="logo logo-small">
-            <!-- <img
-				src="assets/img/hotel_logo.png"
-				alt="Logo"
-				width="30"
-				height="30"
-			  /> -->
+            <img
+              src="assets/img/hotel_logo.png"
+              alt="Logo"
+              width="30"
+              height="30"
+            />
           </a>
         </div>
 
@@ -71,11 +71,11 @@
             <div class="dropdown-menu">
               <div class="user-header">
                 <div class="avatar avatar-sm">
-                  <img
-                    src="assets/img/profiles/avatar-01.jpg"
-                    alt="User Image"
-                    class="avatar-img rounded-circle"
-                  />
+                  <!-- <img
+					  src="assets/img/profiles/avatar-01.jpg"
+					  alt="User Image"
+					  class="avatar-img rounded-circle"
+					/> -->
                 </div>
                 <div class="user-text">
                   <p class="text-muted mb-0">Administrator</p>
@@ -117,8 +117,8 @@
               <li>
                 <a href="Room category list.html"
                   ><i class="fas fa-table"></i>
-                  <span> Room Category List </span></a
-                >
+                  <span> Room Category List </span>
+                </a>
               </li>
               <li>
                 <a href="rooms.html"><i class="fas fa-key"></i> <span> Rooms </span> </a>
@@ -142,6 +142,45 @@
         <main id="view-panel">
           <div class="container-fluid mt-5 pt-1">
             <div class="col-lg-12">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="container-fluid">
+                        <div class="col-md-12">
+                          <form id="filter">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="control-label">Category</label>
+                                <select
+                                  class="custom-select browser-default"
+                                  name="category_id"
+                                >
+                                  <option value="all">All</option>
+                                  <option value="2">Deluxe Room</option>
+                                  <option value="4">Family Room</option>
+                                  <option value="3">Single Room</option>
+                                  <option value="8">super Room</option>
+                                  <option value="9">super Room</option>
+                                  <option value="6">Twin Bed Room</option>
+                                </select>
+                              </div>
+                              <div class="col-md-2">
+                                <label for="" class="control-label"
+                                  >&nbsp;</label
+                                >
+                                <button class="btn btn-block btn-primary">
+                                  Filter
+                                </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="row mt-3">
                 <div class="col-md-12">
                   <div class="card">
@@ -197,7 +236,7 @@
                                 colspan="1"
                                 aria-sort="ascending"
                                 aria-label="#: activate to sort column descending"
-                                style="width: 188.859px"
+                                style="width: 67.2656px"
                               >
                                 #
                               </th>
@@ -208,7 +247,7 @@
                                 rowspan="1"
                                 colspan="1"
                                 aria-label="Category: activate to sort column ascending"
-                                style="width: 524.188px"
+                                style="width: 228.906px"
                               >
                                 Category
                               </th>
@@ -218,10 +257,10 @@
                                 aria-controls="DataTables_Table_0"
                                 rowspan="1"
                                 colspan="1"
-                                aria-label="Reference: activate to sort column ascending"
-                                style="width: 520.031px"
+                                aria-label="Room: activate to sort column ascending"
+                                style="width: 179.016px"
                               >
-                                Reference
+                                Room
                               </th>
                               <th
                                 class="sorting"
@@ -230,7 +269,7 @@
                                 rowspan="1"
                                 colspan="1"
                                 aria-label="Status: activate to sort column ascending"
-                                style="width: 382.328px"
+                                style="width: 157.031px"
                               >
                                 Status
                               </th>
@@ -241,7 +280,7 @@
                                 rowspan="1"
                                 colspan="1"
                                 aria-label="Action: activate to sort column ascending"
-                                style="width: 386.594px"
+                                style="width: 175.781px"
                               >
                                 Action
                               </th>
@@ -251,34 +290,114 @@
                             <tr role="row" class="odd">
                               <td class="text-center sorting_1">1</td>
                               <td class="text-center">Single Room</td>
-                              <td class="">7386714516</td>
+                              <td class="">Room-101</td>
                               <td class="text-center">
-                                <span class="badge badge-warning">Booked</span>
+                                <span class="badge badge-success"
+                                  >Available</span
+                                >
                               </td>
                               <td class="text-center">
                                 <button
-                                  class="btn btn-sm btn-primary check_out"
+                                  class="btn btn-sm btn-primary check_in"
                                   type="button"
-                                  data-id="13"
+                                  data-id="1"
                                 >
-                                  View
+                                  Check-in
                                 </button>
                               </td>
                             </tr>
                             <tr role="row" class="even">
                               <td class="text-center sorting_1">2</td>
-                              <td class="text-center">Family Room</td>
-                              <td class="">304755611</td>
+                              <td class="text-center">Single Room</td>
+                              <td class="">Room-105</td>
                               <td class="text-center">
-                                <span class="badge badge-warning">Booked</span>
+                                <span class="badge badge-success"
+                                  >Available</span
+                                >
                               </td>
                               <td class="text-center">
                                 <button
-                                  class="btn btn-sm btn-primary check_out"
+                                  class="btn btn-sm btn-primary check_in"
                                   type="button"
-                                  data-id="14"
+                                  data-id="4"
                                 >
-                                  View
+                                  Check-in
+                                </button>
+                              </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                              <td class="text-center sorting_1">3</td>
+                              <td class="text-center">Single Room</td>
+                              <td class="">Room-105</td>
+                              <td class="text-center">
+                                <span class="badge badge-success"
+                                  >Available</span
+                                >
+                              </td>
+                              <td class="text-center">
+                                <button
+                                  class="btn btn-sm btn-primary check_in"
+                                  type="button"
+                                  data-id="5"
+                                >
+                                  Check-in
+                                </button>
+                              </td>
+                            </tr>
+                            <tr role="row" class="even">
+                              <td class="text-center sorting_1">4</td>
+                              <td class="text-center">Family Room</td>
+                              <td class="">111</td>
+                              <td class="text-center">
+                                <span class="badge badge-success"
+                                  >Available</span
+                                >
+                              </td>
+                              <td class="text-center">
+                                <button
+                                  class="btn btn-sm btn-primary check_in"
+                                  type="button"
+                                  data-id="6"
+                                >
+                                  Check-in
+                                </button>
+                              </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                              <td class="text-center sorting_1">5</td>
+                              <td class="text-center">Deluxe Room</td>
+                              <td class="">1111</td>
+                              <td class="text-center">
+                                <span class="badge badge-success"
+                                  >Available</span
+                                >
+                              </td>
+                              <td class="text-center">
+                                <button
+                                  class="btn btn-sm btn-primary check_in"
+                                  type="button"
+                                  data-id="7"
+                                >
+                                  Check-in
+                                </button>
+                              </td>
+                            </tr>
+                            <tr role="row" class="even">
+                              <td class="text-center sorting_1">6</td>
+                              <td class="text-center">super Room</td>
+                              <td class="">501</td>
+                              <td class="text-center">
+                                <span class="badge badge-success"
+                                  >Available</span
+                                >
+                              </td>
+                              <td class="text-center">
+                                <button
+                                  class="btn btn-sm btn-primary check_in"
+                                  type="button"
+                                  data-id="8"
+                                >
+                                  Check-in
                                 </button>
                               </td>
                             </tr>
@@ -290,7 +409,7 @@
                           role="status"
                           aria-live="polite"
                         >
-                          Showing 1 to 2 of 2 entries
+                          Showing 1 to 6 of 6 entries
                         </div>
                         <div
                           class="dataTables_paginate paging_simple_numbers"
@@ -330,10 +449,10 @@
 
           <script>
             $("table").dataTable();
-            $(".check_out").click(function () {
+            $(".check_in").click(function () {
               uni_modal(
-                "Check Out",
-                "manage_check_out.php?checkout=1&id=" + $(this).attr("data-id")
+                "Check In",
+                "manage_check_in.php?rid=" + $(this).attr("data-id")
               );
             });
             $("#filter").submit(function (e) {
