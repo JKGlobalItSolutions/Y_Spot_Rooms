@@ -1,0 +1,15 @@
+  /* CSS for screens wider than 768px */
+  @media (min-width: 768px) {
+    #logo {
+        margin-left: 200px; /* Apply margin-left of 200px */
+        max-width: 100%; /* Ensure image doesn't exceed its container's width */
+        height: auto; /* Maintain aspect ratio */
+    }
+}
+
+#email{
+    border-color: #FF1717;
+}
+.btn{
+    border: none;
+}
