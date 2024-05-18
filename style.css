@@ -74,3 +74,26 @@
   .bd-mode-toggle .dropdown-menu .active .bi {
     display: block !important;
   }
+  .image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container img {
+    display: block;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    transform: translate(1%, 1%);
+    color: white;
+    /* background-color: rgba(0, 0, 0, 0.5); Optional: to add a background with opacity */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+body{
+  font-family: Urbanist;
+}
