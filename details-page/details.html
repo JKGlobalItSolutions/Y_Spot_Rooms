@@ -19,8 +19,8 @@
   <!-- Custom styles for this template -->
   <link href="sign-in.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -32,10 +32,12 @@
         <div class="d-flex justify-content-end w-100 px-1">
           <ul class="navbar-nav d-flex flex-row">
             <li class="nav-item  px-3 ">
-              <a class="nav-link" href="#"><button type="button" class="btn btn-light text-danger"><b>Register</b></button></a>
+              <a class="nav-link" href="#"><button type="button"
+                  class="btn btn-light text-danger"><b>Register</b></button></a>
             </li>
             <li class="nav-item  px-3 ">
-              <a class="nav-link" href="login/index.html"><button type="button" class="btn btn-light text-danger"><b>Sign In</b></button></a>
+              <a class="nav-link" href="login/index.html"><button type="button"
+                  class="btn btn-light text-danger"><b>Sign In</b></button></a>
             </li>
           </ul>
         </div>
@@ -47,7 +49,7 @@
         </div>
       </div>
     </nav>
-    
+
     <!-- Second navigation bar: centered content -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FF1717;">
       <div class="container-fluid">
@@ -75,76 +77,255 @@
             </li>
             <li class="nav-item  p-3">
               <button type="button" class="btn text-light rounded-pill ">
-                <i class="fa-solid fa-blog p-2"></i> Airport Taxis
+                <i class="fa-solid fa-blog p-2"></i> Blogs
+              </button>
+            </li>
+            <li class="nav-item  p-3">
+              <button type="button" class="btn text-light rounded-pill ">
+                <i class="fa-solid fa-blog p-2"></i> View Cart
+              </button>
+            </li>
+            <li class="nav-item  p-3">
+              <button type="button" class="btn text-light rounded-pill ">
+                <i class="fa-solid fa-blog p-2"></i> About Us
               </button>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-</header>
-
-  
-  
+  </header>
   <main>
-
-  </main>
-  <!-- <footer class="footer pt-4">
-    <div class="container">
-          <div class="row">
-            <div class="col-md">
-              <h6><b>Help</b></h6>
-              <ul class="list-unstyled">
-                  <li><a href="#" class="text-white textdec small-link">FAQ</a></li>
-                  <li><a href="#" class="text-white textdec small-link">Privacy policy</a></li>
-                  <li><a href="#" class="text-white textdec small-link">Cookies privacy</a></li>
-                  <li><a href="#" class="text-white textdec small-link">Terms of use</a></li>
-                  <li><a href="#" class="text-white textdec small-link">Help centre</a></li>
-              </ul>
+    <!-- brudcrum start -->
+    <div class="header-brudcrum container py-3">
+      <nav
+        style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+        aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item text-danger" style="list-style: none;">
+            <a href="#" style="text-decoration: none; " class="text-danger"><b>Home</b></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page"><b>Tiruvannamalai</b></li>
+          <li class="breadcrumb-item active" aria-current="page"><b>Tamil Nadu</b></li>
+          <li class="breadcrumb-item active" aria-current="page"><b>India</b></li>
+        </ol>
+      </nav>
+    </div>
+    <!-- brudcrum end -->
+    <!-- details content start -->
+    <div class="container mt-3">
+      <div class="row">
+          <!-- Toggle button for mobile view -->
+          <div class="col-md-3 mb-3">
+              <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#filterModal">Toggle Filters</button>
           </div>
-            <div class="col-md">
-                <h6><b>Get the App</b></h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-white textdec small-link">IOS app</a></li>
-                    <li><a href="#" class="text-white textdec small-link">Android app</a></li>
-                </ul>
-            </div>
-            <div class="col-md">
-                <h6><b>Company</b></h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-white textdec small-link">About Us</a></li>
-                    <li><a href="#" class="text-white textdec small-link">Blog</a></li>
-                    <li><a href="#" class="text-white textdec small-link">Careers</a></li>
-                    <li><a href="#" class="text-white textdec small-link">PointMAX</a></li>
-                </ul>
-            </div>
-            <div class="col-md">
-                <h6><b>Destination</b></h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-white textdec small-link">Cities</a></li>
-                    <li><a href="#" class="text-white textdec small-link">Spiritual places </a></li>
-                    <li><a href="#" class="text-white textdec small-link">Hill Stations</a></li>
-                    <li><a href="#" class="text-white textdec small-link">Solo Travel places</a></li>
-                </ul>
-            </div>
-            <div class="col-md">
-                <h6><b>Social Networks</b></h6>
-                <ul class="list-unstyled d-flex p-2">
-                    <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 406.png" alt="Facebook" class="rounded-pill"></a></li>
-                    <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 407.png" alt="Twitter" class="rounded-pill"></a></li>
-                    <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 408.png" alt="Instagram" class="rounded-pill"></a></li>
-                    <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 410.png" alt="Instagram" class="rounded-pill"></a></li>
-                    <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 409.png" alt="Instagram" class="rounded-pill"></a></li>
-                </ul>
-            </div>
+          <!-- right side card section start  -->
+          <div class="col-md-9 mb-4">
+              <h5>Showing properties in Tiruvannamalai</h5>
+              <div class="col-lg-12">
+                <div class="card shadow-0 border rounded-3 shadow">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                        <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                          <img src="./hotel images/Screenshot (3) 1.jpg"
+                            class="w-100" />
+                          <a href="#!">
+                            <div class="hover-overlay">
+                              <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-6 col-xl-6">
+                        <h5>Ramana Towers</h5>
+                        <div class="mt-1 mb-0 text-muted small ms-1">
+                          <div class="textright">
+                              <i class="fa-solid fa-location-dot" style="color: red;"></i>
+                              <span>Opp to Ramana ashram</span><br>
+                              <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
+                          </div>
+                        </div>
+                        <div class="mb-2 text-muted small ms-1">
+                          <i class="fa-solid fa-check" style="color: red;"></i>
+                          <span>24-room service</span>
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-1 ms-1">
+                          <span class="text-dark pe-2"><s>₹2699</s></span>
+                          <h4 class="mb-1 me-1">₹1874</h4>
+                        </div>
+                        <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
+
+                        <button data-mdb-button-init data-mdb-ripple-init class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;" type="button">See availability</button>
+
+                      </div>
+                      <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
+                          <div class="d-flex justify-content-end ">
+                            <div class="align-items-end">
+                              <h4 class="text-danger mt-3 ps-4 me-2 text-end" style="font-size: 18px;">Good <br> <span class="" style="font-size: 14px; color: gray;">480 review</span></h4>
+                            </div>
+                            <div class="right rounded">
+                              <div style=" font-size:25px;"><b>5.2</b></div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <!-- right side card section end -->
+      </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="filterModalLabel">Filters</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <!-- left filter section start  -->
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62385.75381987324!2d79.06925269999999!3d12.2408568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bacc0852cd3d6cd%3A0x74002b16e5bac856!2sTiruvannamalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1716285438379!5m2!1sen!2sin"
+                      width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <!-- category filter start  -->
+                  <div class="card my-3">
+                      <div class="card-header">
+                          Categories
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" value="" id="category1">
+                              <label class="form-check-label" for="category1">Category 1</label>
+                          </li>
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" value="" id="category2">
+                              <label class="form-check-label" for="category2">Category 2</label>
+                          </li>
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" value="" id="category3">
+                              <label class="form-check-label" for="category3">Category 3</label>
+                          </li>
+                      </ul>
+                  </div>
+                  <!-- category filter end  -->
+                  <!-- price range start -->
+                  <div class="card my-3">
+                      <div class="card-header">
+                          Price Range
+                      </div>
+                      <div class="card-body">
+                          <div class="form-group mb-3">
+                              <label for="minPrice" class="form-label">Min Price</label>
+                              <input type="number" class="form-control" id="minPrice" placeholder="0">
+                          </div>
+                          <div class="form-group">
+                              <label for="maxPrice" class="form-label">Max Price</label>
+                              <input type="number" class="form-control" id="maxPrice" placeholder="1000">
+                          </div>
+                      </div>
+                  </div>
+                  <!-- price range end -->
+                  <!-- brand filter start -->
+                  <div class="card my-3">
+                      <div class="card-header">
+                          Brands
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" value="" id="brand1">
+                              <label class="form-check-label" for="brand1">Brand 1</label>
+                          </li>
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" value="" id="brand2">
+                              <label class="form-check-label" for="brand2">Brand 2</label>
+                          </li>
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" value="" id="brand3">
+                              <label class="form-check-label" for="brand3">Brand 3</label>
+                          </li>
+                      </ul>
+                  </div>
+                  <!-- brand filter end -->
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Apply Filters</button>
+              </div>
+          </div>
+      </div>
+  
+  </main>
+  <!-- footer section start  -->
+  <footer class="footer pt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <h6><b>Help</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">FAQ</a></li>
+            <li><a href="#" class="text-white textdec small-link">Privacy policy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Cookies privacy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Terms of use</a></li>
+            <li><a href="#" class="text-white textdec small-link">Help centre</a></li>
+          </ul>
         </div>
+        <div class="col-md">
+          <h6><b>Get the App</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">IOS app</a></li>
+            <li><a href="#" class="text-white textdec small-link">Android app</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Company</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">About Us</a></li>
+            <li><a href="#" class="text-white textdec small-link">Blog</a></li>
+            <li><a href="#" class="text-white textdec small-link">Careers</a></li>
+            <li><a href="#" class="text-white textdec small-link">PointMAX</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Destination</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">Cities</a></li>
+            <li><a href="#" class="text-white textdec small-link">Spiritual places </a></li>
+            <li><a href="#" class="text-white textdec small-link">Hill Stations</a></li>
+            <li><a href="#" class="text-white textdec small-link">Solo Travel places</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Social Networks</b></h6>
+          <ul class="list-unstyled d-flex p-2">
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 406.png" alt="Facebook"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 407.png" alt="Twitter"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 408.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 410.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 409.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="horizantal-line">
 
     </div>
     <h6 class="text-end mx-5 pt-3">&copy; 2023 Y.SPOT Rooms pvt .ltd.</h6>
-</footer> -->
+  </footer>
+  <!-- footer section end  -->
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
