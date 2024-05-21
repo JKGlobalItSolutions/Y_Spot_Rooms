@@ -18,21 +18,74 @@
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Custom styles for this template -->
   <link href="sign-in.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <header>
-        <nav class="navbar" style="background-color: #FF1717;">
-          <div class="container-fluid">
-            <div class="container d-flex justify-content-center"> <!-- Flexbox utility classes -->
-              <a class="navbar-brand" href="../index.html">
-                <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
-              </a>
-              
-            </div>
-          </div>
-        </nav>
-      </header>
+  <header>
+    <!-- First navigation bar: Registration and Sign In buttons -->
+    <nav class="navbar" style="background-color: #FF1717;">
+      <div class="container-fluid d-flex flex-column">
+        <!-- First row: Unordered list aligned to the right -->
+        <div class="d-flex justify-content-end w-100 px-1">
+          <ul class="navbar-nav d-flex flex-row">
+            <li class="nav-item  px-3 ">
+              <a class="nav-link" href="#"><button type="button" class="btn btn-light text-danger"><b>Register</b></button></a>
+            </li>
+            <li class="nav-item  px-3 ">
+              <a class="nav-link" href="login/index.html"><button type="button" class="btn btn-light text-danger"><b>Sign In</b></button></a>
+            </li>
+          </ul>
+        </div>
+        <!-- Second row: Logo centered -->
+        <div class="d-flex justify-content-center w-100 flex-grow-1 align-items-center">
+          <a class="navbar-brand" href="../index.html">
+            <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+          </a>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Second navigation bar: centered content -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FF1717;">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-center w-100">
+          <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center" style="gap: 20px;">
+            <li class="nav-item  p-3 ">
+              <button type="button" class="btn text-light borde rounded-pill active">
+                <i class="fa-solid fa-bed p-2"></i>Stays
+              </button>
+            </li>
+            <li class="nav-item  p-3">
+              <button type="button" class="btn text-light rounded-pill ">
+                <i class="fa-solid fa-bus p-2"></i> Bus
+              </button>
+            </li>
+            <li class="nav-item  p-3">
+              <button type="button" class="btn text-light rounded-pill ">
+                <i class="fa-solid fa-earth-europe p-2"></i> Flight+Hotel
+              </button>
+            </li>
+            <li class="nav-item  p-3">
+              <button type="button" class="btn text-light rounded-pill ">
+                <i class="fa-solid fa-car p-2"></i> Car Rental
+              </button>
+            </li>
+            <li class="nav-item  p-3">
+              <button type="button" class="btn text-light rounded-pill ">
+                <i class="fa-solid fa-blog p-2"></i> Airport Taxis
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+</header>
+
+  
+  
   <main>
 
   </main>
