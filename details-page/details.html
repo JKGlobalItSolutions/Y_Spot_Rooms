@@ -83,13 +83,135 @@
       </div>
     </nav>
 </header>
-
-  
-  
   <main>
-
+    <!-- brudcrum start -->
+    <div class="header-brudcrum container py-3">
+      <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item text-danger" style="list-style: none;">
+            <a href="#" style="text-decoration: none; " class="text-danger"><b>Home</b></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page"><b>Tiruvannamalai</b></li>
+          <li class="breadcrumb-item active" aria-current="page"><b>Tamil Nadu</b></li>
+          <li class="breadcrumb-item active" aria-current="page"><b>India</b></li>
+        </ol>
+      </nav>
+    </div>
+    <!-- brudcrum end -->
+    <!-- details content start -->
+    <div class="container mt-3">
+      <div class="row">
+        <!-- left filter section start  -->
+          <div class="col-md-3 mb-3">
+                <iframe
+                width="256.5px"
+                height= "135px"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345094875!2d144.95373631531686!3d-37.81627937975198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5776cf2b9a4df03!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1616124483413!5m2!1sen!2sau"
+                    allowfullscreen=""
+                    aria-hidden="false"
+                    tabindex="0">
+                </iframe>
+                <!-- category filter start  -->
+                <div class="card my-3">
+                  <div class="card-header">
+                    Categories
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <input class="form-check-input me-1" type="checkbox" value="" id="category1">
+                      <label class="form-check-label" for="category1">Category 1</label>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-1" type="checkbox" value="" id="category2">
+                      <label class="form-check-label" for="category2">Category 2</label>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-1" type="checkbox" value="" id="category3">
+                      <label class="form-check-label" for="category3">Category 3</label>
+                    </li>
+                  </ul>
+                </div>
+                <!-- category filter end  -->
+                <!-- price range start -->
+                <div class="card my-3">
+                  <div class="card-header">
+                    Price Range
+                  </div>
+                  <div class="card-body">
+                    <div class="form-group mb-3">
+                      <label for="minPrice" class="form-label">Min Price</label>
+                      <input type="number" class="form-control" id="minPrice" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                      <label for="maxPrice" class="form-label">Max Price</label>
+                      <input type="number" class="form-control" id="maxPrice" placeholder="1000">
+                    </div>
+                  </div>
+                </div>
+                <!-- price range end -->
+                <!-- brand filter start -->
+                <div class="card my-3">
+                  <div class="card-header">
+                    Brands
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <input class="form-check-input me-1" type="checkbox" value="" id="brand1">
+                      <label class="form-check-label" for="brand1">Brand 1</label>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-1" type="checkbox" value="" id="brand2">
+                      <label class="form-check-label" for="brand2">Brand 2</label>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-1" type="checkbox" value="" id="brand3">
+                      <label class="form-check-label" for="brand3">Brand 3</label>
+                    </li>
+                  </ul>
+                </div>
+                <!-- brand filter end -->
+          </div>
+          <!--left   filter section end -->
+          <!-- right side card section start  -->
+          <div class="col-md-9 mb-4">
+            <h5>Showing properties in tiruvannamalai</h5>
+            <div class="card mb-3 col-md-9" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="./hotel images/Screenshot (3) 1.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="./hotel images/Screenshot (3) 1.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- right side card section end -->
+      </div>
+    </div>
+    <!-- details content end -->
   </main>
-  <!-- <footer class="footer pt-4">
+  <!-- footer section start  -->
+  <footer class="footer pt-4">
     <div class="container">
           <div class="row">
             <div class="col-md">
@@ -143,7 +265,8 @@
 
     </div>
     <h6 class="text-end mx-5 pt-3">&copy; 2023 Y.SPOT Rooms pvt .ltd.</h6>
-</footer> -->
+  </footer>
+  <!-- footer section end  -->
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
