@@ -175,3 +175,45 @@ body{
   margin-top: 10px; /* Adjust as needed */
   font-size: 14px; /* Adjust as needed */
 }
+
+/* hero section search start */
+    
+
+.form-group-label {
+  font-weight: bold;
+}
+
+.input-group-topic {
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  
+}
+
+.input-group-addon {
+  background-color: white;
+}
+#location{
+    height: 50px;
+    margin-top: 10px;
+
+}
+#dates{
+    height: 50px;
+    margin-top: 10px;
+}
+#guests{
+    height: 50px;
+    margin-top: 10px;
+}
+#search{
+    height: 50px;
+    width: 150px;
+    margin-top: 10px;
+}
+#move{
+   
+}
+/* hero section search end */

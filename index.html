@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="./script.js"></script>
+
 </head>
 
 <body>
@@ -84,19 +86,83 @@
     </nav>
   </header>
   <main>
-    <div class="p-5 mb-4 bg-body-tertiary rounded-3 "
-      style="background-image: url(./assets/img/hero1.png); background-repeat: no-repeat; background-color:  rgb(237, 26, 37) ">
+    <div class="p-5 mb-4 bg-body-tertiary "
+      style="background-image: url(./assets/img/Rectangle\ 377.jpg); background-repeat: no-repeat; background-color:  rgb(237, 26, 37) ">
       <div class="container py-5">
         <h1 class="display-5 fw-bold  text-light">Pack the whole toybox</h1>
         <p class="col-md-8 fs-4 text-light ">Unwind and stretch out in a vacation home</p>
         <button type="button" class="btn text-light btn-danger">Discover Vacation Rentals</button>
       </div>
     </div>
+    <!-- hero section search form start -->
+    <div class="container  custom-container rounded mb-5" style="background-color: #1C1B1F; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); width: 100%;" >
+      <div class="container " >   
+          <form>
+              <div class="row form-row justify-content-center rounded-3 p-3"  >
+                  <!-- Destination -->
+                  <div class="form-group col-lg-3 col-md-6 col-sm-12 ">
+                      <input type="text" class="form-control text-danger" id="location" placeholder="Enter destination" required style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                  </div>
+                  <!-- Check-in and Check-out Dates -->
+                  <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                      <input type="text" class="form-control" id="dates" placeholder="Check-in - Check-out" required style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                  </div>
+                  <!-- Combined Input Box for Adults, Children, and Rooms -->
+                  <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                      <input type="text" class="form-control" id="guests" placeholder="Adults, Children & Rooms" required style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                      <div class="dropdown-menu p-3" id="guestsDropdown" aria-labelledby="guestsDropdown" style="display: none;">
+                          <div class="form-group">
+                              <label for="adults">Adults</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <button class="btn btn-outline-secondary btn-minus" type="button" id="adults-minus">-</button>
+                                  </div>
+                                  <input type="number" class="form-control" id="adults" min="0" value="0" required>
+                                  <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary btn-plus" type="button" id="adults-plus">+</button>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="children">Children</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <button class="btn btn-outline-secondary btn-minus" type="button" id="children-minus">-</button>
+                                  </div>
+                                  <input type="number" class="form-control" id="children" min="0" value="0" required>
+                                  <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary btn-plus" type="button" id="children-plus">+</button>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="rooms">Rooms</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <button class="btn btn-outline-secondary btn-minus" type="button" id="rooms-minus">-</button>
+                                  </div>
+                                  <input type="number" class="form-control" id="rooms" min="1" value="1" required>
+                                  <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary btn-plus" type="button" id="rooms-plus">+</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Search Button -->
+                  <div class="form-group col-lg-2 col-md-6 col-sm-12">
+                      <button type="submit" class="btn text-light " id="search" style="background-color: #FF1717;">Search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </div>
+    <!-- hero section search form end -->
     <div class="container">
       <!-- recent search start -->
       <div class="recent-search pb-3">
         <h3 class="text-dark">Your recent searches</h3>
-        <div class="d-flex p-3 bg-light col-md-4  rounded-3  shadow ">
+        <div class="d-flex p-3 bg-light col-md-5  rounded-3  shadow ">
           <div class="flex-shrink-0 ">
             <img src="./assets/img/tiruvannamalai.jpg" class="rounded-3" alt="...">
           </div>
@@ -382,7 +448,73 @@
   <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
     integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
     async></script>
-
+    <script>
+  
+      // Wait for the DOM content to be fully loaded
+      document.addEventListener("DOMContentLoaded", function() {
+                  // Target the #dates input field and initialize Flatpickr
+                  flatpickr("#dates", {
+                    // Set the date format as desired (e.g., "Y-m-d" for YYYY-MM-DD)
+                    dateFormat: "Y-m-d",
+                    // Enable selecting a range of dates (for check-in and check-out)
+                    mode: "range",
+                    // Optional: You can add more options as needed
+                  });
+                }); 
+        
+                  document.addEventListener('DOMContentLoaded', function () {
+                      document.getElementById('guests').addEventListener('click', function () {
+                          var dropdown = document.getElementById('guestsDropdown');
+                          if (dropdown.style.display === "none") {
+                              dropdown.style.display = "block";
+                          } else {
+                              dropdown.style.display = "none";
+                          }
+                      });
+                  });
+                  
+      // Increment and decrement functions for Adults
+                  document.getElementById('adults-plus').addEventListener('click', function() {
+                      document.getElementById('adults').stepUp();
+                      updateGuests();
+                  });
+              
+                  document.getElementById('adults-minus').addEventListener('click', function() {
+                      document.getElementById('adults').stepDown();
+                      updateGuests();
+                  });
+              
+                  // Increment and decrement functions for Children
+                  document.getElementById('children-plus').addEventListener('click', function() {
+                      document.getElementById('children').stepUp();
+                      updateGuests();
+                  });
+              
+                  document.getElementById('children-minus').addEventListener('click', function() {
+                      document.getElementById('children').stepDown();
+                      updateGuests();
+                  });
+              
+                  // Increment and decrement functions for Rooms
+                  document.getElementById('rooms-plus').addEventListener('click', function() {
+                      document.getElementById('rooms').stepUp();
+                      updateGuests();
+                  });
+              
+                  document.getElementById('rooms-minus').addEventListener('click', function() {
+                      document.getElementById('rooms').stepDown();
+                      updateGuests();
+                  });
+              
+                  // Function to update the "Adults, Children & Rooms" input
+                  function updateGuests() {
+                      var adults = document.getElementById('adults').value;
+                      var children = document.getElementById('children').value;
+                      var rooms = document.getElementById('rooms').value;
+                      var guests = "Adults: " + adults + ", Children: " + children + ", Rooms: " + rooms;
+                      document.getElementById('guests').value = guests;
+                  }
+      </script>
 </body>
 
 </html>
