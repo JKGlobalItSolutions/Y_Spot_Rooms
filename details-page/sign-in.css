@@ -146,8 +146,8 @@ body {
   font-size: 14px; /* Adjust as needed */
 }
 .right {
-  height: 50px;
-  width: 50px;
+  height: 38px;
+  width: 38px;
   background-color: red;
   display: flex;
   justify-content: center;
