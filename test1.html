@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding Navigation Menu</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Custom CSS for sliding effect */
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      padding-left: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0;
+      flex-direction: row; /* Align items horizontally */
+    }
+
+    .nav-item {
+      flex: 0 0 auto;
+    }
+
+    /* Additional padding for mobile view */
+    @media (max-width: 767px) {
+      .navbar-nav {
+        padding-left: 40px; /* Adjust this value as needed */
+      }
+    }
+
+    /* Adjustments for tablet view */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .navbar-nav {
+        padding-left: 80px; /* Adjust this value as needed */
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FF1717;">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center w-100">
+      <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center" id="navbarNav">
+        <li class="nav-item p-3">
+          <button type="button" class="btn text-light border rounded-pill active">
+            <i class="fas fa-bed p-2"></i>Stays
+          </button>
+        </li>
+        <li class="nav-item p-3">
+          <button type="button" class="btn text-light rounded-pill">
+            <i class="fas fa-bus p-2"></i> Bus
+          </button>
+        </li>
+        <li class="nav-item p-3">
+          <button type="button" class="btn text-light rounded-pill">
+            <i class="fas fa-plane p-2"></i> Flight+Hotel
+          </button>
+        </li>
+        <li class="nav-item p-3">
+          <button type="button" class="btn text-light rounded-pill">
+            <i class="fas fa-car p-2"></i> Car Rental
+          </button>
+        </li>
+        <li class="nav-item p-3">
+          <button type="button" class="btn text-light rounded-pill">
+            <i class="fas fa-blog p-2"></i> Blogs
+          </button>
+        </li>
+        <li class="nav-item p-3">
+          <button type="button" class="btn text-light rounded-pill">
+            <i class="fas fa-shopping-cart p-2"></i> View Cart
+          </button>
+        </li>
+        <li class="nav-item p-3">
+          <button type="button" class="btn text-light rounded-pill">
+            <i class="fas fa-info-circle p-2"></i> About Us
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  // JavaScript for handling touch events
+  let startX;
+  let currentScrollLeft;
+  
+  document.getElementById('navbarNav').addEventListener('touchstart', function(event) {
+    startX = event.touches[0].pageX;
+    currentScrollLeft = this.scrollLeft;
+  });
+
+  document.getElementById('navbarNav').addEventListener('touchmove', function(event) {
+    const x = event.touches[0].pageX;
+    const walk = (x - startX) * 1.5; // Adjust the sensitivity of scrolling
+
+    this.scrollLeft = currentScrollLeft - walk; 
+  });
+
+  // Scroll to "Stays" button on page load
+  window.onload = function() {
+    const staysButton = document.querySelector('#navbarNav button.active');
+    const container = document.getElementById('navbarNav');
+    const scrollLeft = staysButton.offsetLeft - (container.offsetWidth / 2) + (staysButton.offsetWidth / 2);
+    container.scrollTo({
+      left: scrollLeft,
+      behavior: 'smooth'
+    });
+  };
+</script>
+
+</body>
+</html>
+
