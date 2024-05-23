@@ -14,6 +14,8 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
+
 
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Custom styles for this template -->
@@ -21,19 +23,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-      .navbar-nav {
-        flex-wrap: nowrap;
-      }
-      .navbar-nav.scrollable {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        white-space: nowrap;
-      }
-      .navbar-nav.scrollable .nav-item {
-        display: inline-block;
-      }
-    </style>
 </head>
 
 <body>
@@ -42,14 +31,14 @@
     <nav class="navbar" style="background-color: #FF1717;">
       <div class="container container-fluid d-flex flex-column">
         <!-- First row: Unordered list aligned to the right -->
-        <div class="d-flex login-nav justify-content-end w-100 px-1">
+        <div class="d-flex login-nav  w-100 px-1">
           <ul class="navbar-nav d-flex flex-row">
             <li class="nav-item  px-3  register-nav">
               <a class="nav-link" href="#"><button type="button"
                   class="btn btn-light text-danger" style="height: 30px; display: flex; align-items: center; justify-content: center;"><b>Register</b></button></a>
             </li>
             <li class="nav-item px-3 login-nav">
-              <a class="nav-link" href="login/index.html">
+              <a class="nav-link" href="../login/index.html">
                 <button type="button" class="btn btn-light text-danger" style="height: 30px; display: flex; align-items: center; justify-content: center;">
                   <b>Sign in</b>
                 </button>
@@ -59,12 +48,15 @@
         </div>
         <style>
           @media (max-width: 768px) {
-          .register-nav {
-                margin-right: 30px;
-                }
-          .login-nav{
-            margin-right: 20px;
+            .login-nav {
+              justify-content: center;
+
+            }
           }
+          @media (min-width: 768px) {
+            .login-nav {
+              justify-content: end;
+            }
           }
        </style>
         <!-- Second row: Logo centered -->
