@@ -40,18 +40,22 @@
   <header>
     <!-- First navigation bar: Registration and Sign In buttons -->
     <nav class="navbar" style="background-color: #FF1717;">
-      <div class="container-fluid d-flex flex-column">
+      <div class="container container-fluid d-flex flex-column">
         <!-- First row: Unordered list aligned to the right -->
         <div class="d-flex justify-content-end w-100 px-1">
           <ul class="navbar-nav d-flex flex-row">
-            <li class="nav-item  px-3 ">
+            <li class="nav-item  px-3 align-items-start">
               <a class="nav-link" href="#"><button type="button"
-                  class="btn btn-light text-danger"><b>Register</b></button></a>
+                  class="btn btn-light text-danger" style="height: 30px; display: flex; align-items: center; justify-content: center;"><b>Register</b></button></a>
             </li>
-            <li class="nav-item  px-3 ">
-              <a class="nav-link" href="login/index.html"><button type="button"
-                  class="btn btn-light text-danger"><b>Sign In</b></button></a>
+            <li class="nav-item px-3">
+              <a class="nav-link" href="login/index.html">
+                <button type="button" class="btn btn-light text-danger" style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                  <b>Sign in</b>
+                </button>
+              </a>
             </li>
+            
           </ul>
         </div>
         <!-- Second row: Logo centered -->
@@ -116,23 +120,30 @@ div.scrollmenu a:hover {
           <li class="breadcrumb-item text-danger" style="list-style: none;">
             <a href="#" style="text-decoration: none; " class="text-danger"><b>Home</b></a>
           </li>
-          <li class="breadcrumb-item active" aria-current="page"><b>Tiruvannamalai</b></li>
           <li class="breadcrumb-item active" aria-current="page"><b>Tamil Nadu</b></li>
-          <li class="breadcrumb-item active" aria-current="page"><b>India</b></li>
+          <li class="breadcrumb-item active" aria-current="page"><b>Tiruvannamalai</b></li>
         </ol>
       </nav>
     </div>
     <!-- brudcrum end -->
-    <div class="container mt-5">
+    <div class="container ">
       <div class="row">
+                <!-- Toggle Filter Button in Mobile View -->
+                <div class="col-12 d-lg-none" >
+                  <button class="btn btn-danger mb-3 d-flex text-center align-items-center justify-content-center pe-4" style="background-color: red;"  id="filterButton" onclick="toggleFilter()"><i class="fa-solid fa-filter p-2"></i> <b>Filters</b></button>
+                  <div id="filterList">
+                    <!-- Add more filters as needed -->
+                  </div>
+                </div>
         <!-- Iframe always visible -->
-        <div class="col-3 mt-5 ps-3 mb-3">
+        <div class="col-3 mt-5 pt-3 ps-3 mb-3">
           <div class="card-body">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62385.734729707045!2d79.02805286493!3d12.240937612299705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bacc0852cd3d6cd%3A0x74002b16e5bac856!2sTiruvannamalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1716285118842!5m2!1sen!2sin" width="250" height="160" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
         <div class="col-md-9 mb-4">
           <div class="col-lg-12">
+            <h4 class="p-1"><b>Showing properties in tiruvannamalai</b></h4>
             <div class="card shadow-0 border rounded-3 shadow-sm">
               <div class="card-body">
                 <div class="row">
@@ -182,13 +193,7 @@ div.scrollmenu a:hover {
           </div>
         </div>
   
-        <!-- Toggle Filter Button in Mobile View -->
-        <div class="col-12 d-lg-none">
-          <button class="btn btn-primary mb-3" id="filterButton" onclick="toggleFilter()">Toggle Filters</button>
-          <div id="filterList">
-            <!-- Add more filters as needed -->
-          </div>
-        </div>
+
   
         <!-- Filters Section (Left Side) - Visible in Normal View -->
         <div class="col-lg-3 d-none d-lg-block">
