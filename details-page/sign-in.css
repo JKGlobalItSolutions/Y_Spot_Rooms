@@ -179,31 +179,3 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
   background-color: #f50e0e;
 }
-@media (max-width: 768px) {
-  .login-nav {
-    justify-content: center;
-
-  }
-}
-@media (min-width: 768px) {
-  .login-nav {
-    justify-content: end;
-  }
-}
-div.scrollmenu {
-  background-color: #333;
-  overflow: auto;
-  white-space: nowrap;
-}
-
-div.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}
-
-div.scrollmenu a:hover {
-  background-color: #f50e0e;
-}
