@@ -14,6 +14,8 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
+
 
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Custom styles for this template -->
@@ -21,9 +23,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
     <style>
       .navbar-nav {
         flex-wrap: nowrap;
@@ -37,236 +36,6 @@
         display: inline-block;
       }
     </style>
-    <style>
-      .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
-
-  .b-example-divider {
-    width: 100%;
-    height: 3rem;
-    background-color: rgba(0, 0, 0, .1);
-    border: solid rgba(0, 0, 0, .15);
-    border-width: 1px 0;
-    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-  }
-
-  .b-example-vr {
-    flex-shrink: 0;
-    width: 1.5rem;
-    height: 100vh;
-  }
-
-  .bi {
-    vertical-align: -.125em;
-    fill: currentColor;
-  }
-
-  .nav-scroller {
-    position: relative;
-    z-index: 2;
-    height: 2.75rem;
-    overflow-y: hidden;
-  }
-
-  .nav-scroller .nav {
-    display: flex;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    margin-top: -1px;
-    overflow-x: auto;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .btn-bd-primary {
-    --bd-violet-bg: #712cf9;
-    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-    --bs-btn-font-weight: 600;
-    --bs-btn-color: var(--bs-white);
-    --bs-btn-bg: var(--bd-violet-bg);
-    --bs-btn-border-color: var(--bd-violet-bg);
-    --bs-btn-hover-color: var(--bs-white);
-    --bs-btn-hover-bg: #6528e0;
-    --bs-btn-hover-border-color: #6528e0;
-    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-    --bs-btn-active-color: var(--bs-btn-hover-color);
-    --bs-btn-active-bg: #5a23c8;
-    --bs-btn-active-border-color: #5a23c8;
-  }
-
-  .bd-mode-toggle {
-    z-index: 1500;
-  }
-
-  .bd-mode-toggle .dropdown-menu .active .bi {
-    display: block !important;
-  }
-  .image-container {
-    position: relative;
-    display: inline-block;
-}
-
-.image-container img {
-    display: block;
-}
-
-.overlay-text {
-    position: absolute;
-    top: 1%;
-    left: 1%;
-    transform: translate(1%, 1%);
-    color: white;
-    /* background-color: rgba(0, 0, 0, 0.5); Optional: to add a background with opacity */
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-}
-body{
-  font-family: Urbanist;
-}
-.image-container-wrapper {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-
-.image-container1 {
-  display: flex;
-  animation: scroll 20s linear infinite;
-}
-
-.image-card {
-  flex: 0 0 auto;
-  width: 150px;
-  margin: 0 10px;
-  background-color: white;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-  border-radius: 8px;
-}
-
-.image-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px 8px 0 0;
-}
-
-@keyframes scroll {
-  0% {
-      transform: translateX(0);
-  }
-  100% {
-      transform: translateX(-50%);
-  }
-}
-.card-img-circle {
-  width: 80px; 
-  height: 80px; 
-  border-radius: 50%; 
-  object-fit: cover; 
-  margin-top: -40px; 
-  margin-left: auto; 
-  margin-right: auto; 
-  display: block; 
-  border: 3px solid white;
-}
-.card-body {
-  padding-top: 20px; /* Adjust to fit image properly */
-}
-.card {
-  margin-top: 30px; /* Optional: Adjust to add space above card */
-}
-.small-link {
-  font-size: 12px; /* Adjust the size as needed */
-}
-.footer {
-  background-color: #001524;
-  color: #ffffff;
-  padding: 10px 0;
-}
-
-.textdec {
-  text-decoration: none;
-}
-
-.horizantal-line {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 1px;
-  background-color: white;
-  margin-top: 10px; /* Adjust as needed */
-}
-
-.footer p {
-  text-align: center;
-  margin-top: 10px; /* Adjust as needed */
-  font-size: 14px; /* Adjust as needed */
-}
-
-/* hero section search start */
-    
-
-/* Custom styles */
-          
-
- .form-group-label {
-  font-weight: bold;
-}
-
-.input-group-topic {
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  
-}
-
-.input-group-addon {
-  background-color: white;
-}
-#location{
-    height: 50px;
-    margin-top: 20px;
-
-}
-#dates{
-    height: 50px;
-    margin-top: 20px;
-}
-#guests{
-    height: 50px;
-    margin-top: 20px;
-}
-#search{
-    height: 50px;
-    width: 150px;
-    margin-top: 20px;
-}
-/* CSS for screens wider than 768px */
-/* @media (max-width: 768px) {
-  #move1{
-    margin-top: -250px;
-  }
-  
-} */
-
-
-/* hero section search end */
-    </style>
 </head>
 
 <body>
@@ -275,14 +44,14 @@ body{
     <nav class="navbar" style="background-color: #FF1717;">
       <div class="container container-fluid d-flex flex-column">
         <!-- First row: Unordered list aligned to the right -->
-        <div class="d-flex login-nav justify-content-end w-100 px-1">
+        <div class="d-flex login-nav  w-100 px-1">
           <ul class="navbar-nav d-flex flex-row">
             <li class="nav-item  px-3  register-nav">
               <a class="nav-link" href="#"><button type="button"
                   class="btn btn-light text-danger" style="height: 30px; display: flex; align-items: center; justify-content: center;"><b>Register</b></button></a>
             </li>
             <li class="nav-item px-3 login-nav">
-              <a class="nav-link" href="login/index.html">
+              <a class="nav-link" href="../login/index.html">
                 <button type="button" class="btn btn-light text-danger" style="height: 30px; display: flex; align-items: center; justify-content: center;">
                   <b>Sign in</b>
                 </button>
@@ -290,16 +59,6 @@ body{
             </li>
           </ul>
         </div>
-        <style>
-          @media (max-width: 768px) {
-          .register-nav {
-                margin-right: 30px;
-                }
-          .login-nav{
-            margin-right: 20px;
-          }
-          }
-       </style>
         <!-- Second row: Logo centered -->
         <div class="d-flex justify-content-center w-100 flex-grow-1 align-items-center">
           <a class="navbar-brand" href="../index.html">
@@ -332,25 +91,6 @@ body{
         <i class="fa-solid fa-blog p-2"></i> About Us
       </button></a>
     </div>
-    <style>
-      div.scrollmenu {
-  background-color: #333;
-  overflow: auto;
-  white-space: nowrap;
-}
-
-div.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}
-
-div.scrollmenu a:hover {
-  background-color: #f50e0e;
-}
-    </style>
   </header>
   <main>
     <!-- hero section search form start -->
@@ -426,7 +166,7 @@ div.scrollmenu a:hover {
         aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item text-danger" style="list-style: none;">
-            <a href="#" style="text-decoration: none; " class="text-danger"><b>Home</b></a>
+            <a href="../index.html" style="text-decoration: none; " class="text-danger"><b>Home</b></a>
           </li>
           <li class="breadcrumb-item active" aria-current="page"><b>Tamil Nadu</b></li>
           <li class="breadcrumb-item active" aria-current="page"><b>Tiruvannamalai</b></li>
@@ -457,7 +197,7 @@ div.scrollmenu a:hover {
                 <div class="row">
                   <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img src="./hotel images/Screenshot (3) 1.jpg" class="w-100" />
+                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (3) 1.jpg" class="w-100" /></a>
                       <a href="#!">
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -770,7 +510,7 @@ div.scrollmenu a:hover {
                 <div class="row">
                   <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img src="./hotel images/Screenshot (7) 1.jpg" class="w-100" />
+                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (7) 1.jpg" class="w-100" /></a>
                       <a href="#!">
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -816,7 +556,7 @@ div.scrollmenu a:hover {
                 <div class="row">
                   <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img src="./hotel images/Screenshot (8) 1.jpg" class="w-100" />
+                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (8) 1.jpg" class="w-100" /></a>
                       <a href="#!">
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -862,7 +602,7 @@ div.scrollmenu a:hover {
                 <div class="row">
                   <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img src="./hotel images/Screenshot (10) 1.jpg" class="w-100" />
+                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (10) 1.jpg" class="w-100" /></a>
                       <a href="#!">
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -908,7 +648,7 @@ div.scrollmenu a:hover {
                 <div class="row">
                   <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img src="./hotel images/Screenshot (11) 1.jpg" class="w-100" />
+                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (11) 1.jpg" class="w-100" /></a>
                       <a href="#!">
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -954,7 +694,7 @@ div.scrollmenu a:hover {
                 <div class="row">
                   <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img src="./hotel images/Screenshot (12) 1.jpg" class="w-100" />
+                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (12) 1.jpg" class="w-100" /></a>
                       <a href="#!">
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -1000,7 +740,7 @@ div.scrollmenu a:hover {
                 <div class="row">
                   <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img src="./hotel images/Screenshot (13) 1.jpg" class="w-100" />
+                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (13) 1.jpg" class="w-100" /></a>
                       <a href="#!">
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -1046,7 +786,7 @@ div.scrollmenu a:hover {
                 <div class="row">
                   <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img src="./hotel images/Screenshot (14) 1.jpg" class="w-100" />
+                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (14) 1.jpg" class="w-100" /></a>
                       <a href="#!">
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -1092,7 +832,7 @@ div.scrollmenu a:hover {
                 <div class="row">
                   <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img src="./hotel images/Screenshot (16) 1.jpg" class="w-100" />
+                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (16) 1.jpg" class="w-100" /></a>
                       <a href="#!">
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
