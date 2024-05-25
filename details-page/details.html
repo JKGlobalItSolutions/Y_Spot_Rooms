@@ -13,18 +13,17 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
   <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
 
 
-  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- Custom styles for this template -->
-  <link href="sign-in.css" rel="stylesheet" />
+  <link href="sign-in.css" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/Y_Spot_Rooms/assets/index-asset/style.css">
-   
    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Flatpickr CSS CDN -->
@@ -76,7 +75,7 @@
       </div>
     </nav>
     <!-- Second navigation bar: centered content -->
-    <div class="scrollmenu text-center" style="background-color: #FF1717;">
+    <div class="scrollmenu text-center" style="background-color:#FF1717;">
       <a href="#home"><button type="button" class="btn text-light border rounded-pill active">
         <i class="fa-solid fa-bed p-2"></i>Stays
       </button></a>
@@ -180,73 +179,8 @@
         </div>
     </div>
     
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Initialize Flatpickr for date selection
-            flatpickr("#dates", {
-                dateFormat: "Y-m-d",
-                mode: "range"
-            });
     
-            // Toggle guests dropdown visibility
-            document.getElementById('guests').addEventListener('click', function () {
-                var dropdown = document.getElementById('guestsDropdown');
-                dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
-            });
-    
-            // Add event listeners for incrementing and decrementing adults, children, and rooms
-            document.getElementById('adults-plus').addEventListener('click', function () {
-                incrementValue('adults');
-            });
-    
-            document.getElementById('adults-minus').addEventListener('click', function () {
-                decrementValue('adults');
-            });
-    
-            document.getElementById('children-plus').addEventListener('click', function () {
-                incrementValue('children');
-            });
-    
-            document.getElementById('children-minus').addEventListener('click', function () {
-                decrementValue('children');
-            });
-    
-            document.getElementById('rooms-plus').addEventListener('click', function () {
-                incrementValue('rooms');
-            });
-    
-            document.getElementById('rooms-minus').addEventListener('click', function () {
-                decrementValue('rooms');
-            });
-        });
-    
-        // Function to increment the input value
-        function incrementValue(inputId) {
-            var input = document.getElementById(inputId);
-            var currentValue = parseInt(input.value);
-            input.value = currentValue + 1;
-            updateGuests();
-        }
-    
-        // Function to decrement the input value with a minimum of 0
-        function decrementValue(inputId) {
-            var input = document.getElementById(inputId);
-            var currentValue = parseInt(input.value);
-            if (currentValue > 0) {
-                input.value = currentValue - 1;
-                updateGuests();
-            }
-        }
-    
-        // Function to update the "Adults, Children & Rooms" input
-        function updateGuests() {
-            var adults = document.getElementById('adults').value;
-            var children = document.getElementById('children').value;
-            var rooms = document.getElementById('rooms').value;
-            var guests = "Adults: " + adults + ", Children: " + children + ", Rooms: " + rooms;
-            document.getElementById('guests').value = guests;
-        }
-    </script>
+
     
   
   
@@ -254,8 +188,7 @@
     <!-- brudcrum start -->
     <div class="header-brudcrum container py-3">
       <nav
-        style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
-        aria-label="breadcrumb">
+       >
         <ol class="breadcrumb">
           <li class="breadcrumb-item text-danger" style="list-style: none;">
             <a href="../index.html" style="text-decoration: none; " class="text-danger"><b>Home</b></a>
@@ -1128,8 +1061,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min"></script>
     
         <!-- Your HTML code for the form -->
-        
-       
-        
 </body>
 </html>
