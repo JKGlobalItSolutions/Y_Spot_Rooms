@@ -251,3 +251,10 @@ div.scrollmenu a:hover {
   margin-left: 10px;
   font-weight: bold;
 }
+.highlight-box {
+  background-color: #D9D9D9;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 2px 8px;
+  margin-top: 5px;
+}
