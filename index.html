@@ -91,79 +91,80 @@
     </nav>
   </header>
   <main>
-    <div class="p-5 mb-4 bg-body-tertiary  "
-      style="background-image: url(./assets/img/Rectangle\ 377.jpg); background-repeat: no-repeat; background-color:  rgb(237, 26, 37) ">
+    <div class="p-5 mb-4 bg-body-tertiary" style="background-image: url(./assets/img/Rectangle\ 377.jpg); background-repeat: no-repeat; background-size: cover; background-color: rgb(237, 26, 37);">
       <div class="container py-5">
-        <h1 class="display-5 fw-bold  text-light">Pack the whole toybox</h1>
-        <p class="col-md-8 fs-4 text-light ">Unwind and stretch out in a vacation home</p>
+        <h1 class="display-5 fw-bold text-light">Pack the whole toybox</h1>
+        <p class="col-md-8 fs-4 text-light">Unwind and stretch out in a vacation home</p>
         <button type="button" class="btn text-light btn-danger">Discover Vacation Rentals</button>
       </div>
       <!-- hero section search form start -->
-      <div class="container custom-container rounded" id="move1" style="background-color: #1C1B1F; ; width: 100%; "  >
-        <div class="container  "  style="margin-top: 150px;">   
-            <form   >
-                <div class="form-row justify-content-center rounded-3">
-                    <!-- Destination -->
-                    <div class="form-group col-lg-3 col-md-6 col-sm-12 ">
-                        <input type="text" class="form-control " id="location" placeholder="Enter destination" required style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+      <div class="container ">
+        <div class=" mt-5 rounded" id="move1" style="background-color: rgba(28, 27, 31, 0.9); width: 90%; padding: 10px; margin-top: 50px; margin-left: auto; margin-right: auto;">
+          <form>
+            <div class="form-row justify-content-center rounded-3">
+              <!-- Destination -->
+              <div class="form-group col-lg-3 col-md-6 col-sm-12 mb-3">
+                <input type="text" class="form-control" id="location" placeholder="Enter destination" required style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+              </div>
+              <!-- Check-in and Check-out Dates -->
+              <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
+                <input type="text" class="form-control" id="dates" placeholder="Check-in - Check-out" required style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+              </div>
+              <!-- Combined Input Box for Adults, Children, and Rooms -->
+              <div class="form-group col-lg-3 col-md-6 col-sm-12 mb-3">
+                <input type="text" class="form-control" id="guests" placeholder="Adults, Children & Rooms" required style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                <div class="dropdown-menu p-3" id="guestsDropdown" aria-labelledby="guestsDropdown" style="display: none;">
+                  <div class="form-group">
+                    <label for="adults">Adults</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary btn-minus" type="button" id="adults-minus">-</button>
+                      </div>
+                      <input type="number" class="form-control" id="adults" min="0" value="0" required>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary btn-plus" type="button" id="adults-plus">+</button>
+                      </div>
                     </div>
-                    <!-- Check-in and Check-out Dates -->
-                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                        <input type="text" class="form-control" id="dates" placeholder="Check-in - Check-out" required style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
-                         </div>
-                    <!-- Combined Input Box for Adults, Children, and Rooms -->
-                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                        <input type="text" class="form-control" id="guests" placeholder="Adults, Children & Rooms" required style="border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
-                        <div class="dropdown-menu p-3" id="guestsDropdown" aria-labelledby="guestsDropdown" style="display: none;">
-                            <div class="form-group">
-                                <label for="adults">Adults</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary btn-minus" type="button" id="adults-minus">-</button>
-                                    </div>
-                                    <input type="number" class="form-control" id="adults" min="0" value="0" required>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary btn-plus" type="button" id="adults-plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="children">Children</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary btn-minus" type="button" id="children-minus">-</button>
-                                    </div>
-                                    <input type="number" class="form-control" id="children" min="0" value="0" required>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary btn-plus" type="button" id="children-plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="rooms">Rooms</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary btn-minus" type="button" id="rooms-minus">-</button>
-                                    </div>
-                                    <input type="number" class="form-control" id="rooms" min="1" value="1" required>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary btn-plus" type="button" id="rooms-plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="children">Children</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary btn-minus" type="button" id="children-minus">-</button>
+                      </div>
+                      <input type="number" class="form-control" id="children" min="0" value="0" required>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary btn-plus" type="button" id="children-plus">+</button>
+                      </div>
                     </div>
-                    <!-- Search Button -->
-                    <div class="form-group col-lg-2 col-md-6 col-sm-12">
-                        <button type="button" class="btn text-light " id="search" style="background-color: #FF1717;" onclick="window.location.href='./details-page/details.html'">Search</button>
+                  </div>
+                  <div class="form-group">
+                    <label for="rooms">Rooms</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary btn-minus" type="button" id="rooms-minus">-</button>
+                      </div>
+                      <input type="number" class="form-control" id="rooms" min="1" value="1" required>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary btn-plus" type="button" id="rooms-plus">+</button>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </form>
-            
+              </div>
+              <!-- Search Button -->
+              <div class="form-group col-lg-2 col-md-6 col-sm-12 mb-3">
+                <button type="button" class="btn text-light w-100" id="search" style="background-color: #FF1717;" onclick="window.location.href='./details-page/details.html'">Search</button>
+              </div>
+            </div>
+          </form> 
         </div>
       </div>
-    </div>
-    <!-- hero section search form end -->
+      
+    
+    
+  </div>
+  
     <div class="container">
       <!-- recent search start -->
       <div class="recent-search pb-3">

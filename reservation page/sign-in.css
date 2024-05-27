@@ -356,3 +356,31 @@ border: none;
   clip-path: polygon(0% 0%, 70% 0%, 85% 50%, 70% 100%, 0% 100%, 10% 50%);
 }
 /* price section offer arrow style end */
+/* coupen radio button red color start  */
+.red-radio input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid red;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.red-radio input[type="radio"]:checked::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+.dotted-border {
+  border: 2px dotted red;
+}
+/* coupen radio button red color end */

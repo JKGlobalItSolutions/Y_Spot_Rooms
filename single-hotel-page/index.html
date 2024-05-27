@@ -18,14 +18,17 @@
         />
         <link href="sign-in.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
+    
+  
+
+  </head>
 
     <body>
         <header>
             <!-- First navigation bar: Registration and Sign In buttons -->
             <nav class="navbar" style="background-color: #FF1717;">
               <div class="container container-fluid d-flex flex-column">
-                <!-- First row: Unordered list aligned to the right -->
+                <!-- First row: Unordered list aligned to the right --> 
                 <div class="d-flex login-nav  w-100 px-1">
                   <ul class="navbar-nav d-flex flex-row">
                     <li class="nav-item  px-3  register-nav">
@@ -237,19 +240,18 @@
     <div class="col-lg-3">
       <h1>&nbsp;</h1>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 ps-4">
       <h5 class="pt-4 me-1 ms-1" style="color: #FF1717;">Price</h5>
-      <h5 class="pt-1 me-1 ms-1" style="color: #FF1717;">Price</h5>
+      <div class="discount-banner">30% OFF</div>
         <p class=" pe-2 text-secondary ms-1" ><s>₹5,500</s></p>
         <h4 class="mb-1 me-1 ms-1">₹4,125</h4>
         <p class="pt-1">+₹ 495 taxes and charges</p>
-        <button class="btn text-light ms-1 btn-sm ms-1 mb-3" style="width: 100px; background-color: red;" type="button">Book Now</button>
-    </div>
+        <a href="../reservation page/reservation.html"><button class="btn text-light ms-1 btn-sm ms-1 mb-3" style="width: 100px; background-color: red;" type="button">Book Now</button></a>
+      </div>
   </div>
 </div>
 <!-- Room type and price end  -->
 <div class="change-dates-and-gusts">
-
 </div>
 <!-- Amenities at Ponmozhi Residency start  -->
 <div class="Amenities-Ponmozhi-Residency">
@@ -329,15 +331,203 @@
   </div>
 </div>
 <!-- question section  end -->
-</div>
 <!-- hotel gallery page end -->
-        </main>
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+<!-- Near by properties in Tiruvannamalai start -->
+<h5>Nearby properties in Tiruvannamalai</h5>
+<div class="position-relative">
+  <button class="carousel-button prev" onclick="scrollCarousel(-1)">&#10094;</button>
+  <div class="carousel-container" id="carouselContainer">
+    <!-- Hotel cards -->
+    <div class="card text-center">
+      <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+        <img class="card-img-top mt-5" style="width: 150px; height: 150px;" src="./image/tiruvannamalai near hotel/Screenshot (11) 1.jpg" alt="Hotel 1">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title mt-4 text-danger">Ramana Towers</h5>
+        <div class="d-flex justify-content-center align-items-center mb-1">
+          <span class="pe-2 text-secondary"><s>₹2699</s></span>
+          <h4 class="mb-1">₹1874</h4>
+        </div>
+        <h6 class="room mb-3">1 room per night</h6>
+        <a href="#" class="btn btn-danger">Book Now</a>
+      </div>
+    </div>
+    <!-- Repeat hotel cards as needed -->
+    <div class="card text-center">
+      <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+        <img class="card-img-top mt-5" style="width: 150px; height: 150px;" src="./image/tiruvannamalai near hotel/Screenshot (3) 1 (1).jpg" alt="Hotel 1">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title mt-4 text-danger">MPS Saai Residency</h5>
+        <div class="d-flex justify-content-center align-items-center mb-1">
+          <span class="pe-2 text-secondary"><s>₹5999</s></span>
+          <h4 class="mb-1">₹4271</h4>
+        </div>
+        <h6 class="room mb-3">1 room per night</h6>
+        <a href="#" class="btn btn-danger">Book Now</a>
+      </div>
+    </div>
+    <!-- Add more cards here... -->
+    <div class="card text-center">
+      <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+        <img class="card-img-top mt-5" style="width: 150px; height: 150px;" src="./image/tiruvannamalai near hotel/Screenshot (7) 1.jpg" alt="Hotel 1">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title mt-4 text-danger ">Arunachala Houses</h5>
+        <div class="d-flex justify-content-center align-items-center mb-1">
+          <span class="pe-2 text-secondary"><s>₹3443</s></span>
+          <h4 class="mb-1">₹2788</h4>
+        </div>
+        <h6 class="room mb-3">1 room per night</h6>
+        <a href="#" class="btn btn-danger">Book Now</a>
+      </div>
+    </div>
+    <!-- Add more cards here... -->
+    <div class="card text-center">
+      <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+        <img class="card-img-top mt-5 " style="width: 150px; height: 150px;" src="./image/tiruvannamalai near hotel/Screenshot (8) 1.jpg" alt="Hotel 1">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title mt-4 text-danger">Royal Mini Hall</h5>
+        <div class="d-flex justify-content-center align-items-center mb-1">
+          <span class="pe-2 text-secondary"><s>₹4235</s></span>
+          <h4 class="mb-1">₹2700</h4>
+        </div>
+        <h6 class="room mb-3">1 room per night</h6>
+        <a href="#" class="btn btn-danger">Book Now</a>
+      </div>
+    </div>
+    <!-- Add more cards here... -->
+    <div class="card text-center">
+      <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+        <img class="card-img-top mt-5" style="width: 150px; height: 150px;" src="./image/tiruvannamalai near hotel/Screenshot (11) 1.jpg" alt="Hotel 1">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title mt-4 text-danger">Ramana Towers</h5>
+        <div class="d-flex justify-content-center align-items-center mb-1">
+          <span class="pe-2 text-secondary"><s>₹2699</s></span>
+          <h4 class="mb-1">₹1874</h4>
+        </div>
+        <h6 class="room mb-3">1 room per night</h6>
+        <a href="#" class="btn btn-danger">Book Now</a>
+      </div>
+    </div>
+    <!-- Repeat hotel cards as needed -->
+    <div class="card text-center">
+      <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+        <img class="card-img-top mt-5" style="width: 150px; height: 150px;" src="./image/tiruvannamalai near hotel/Screenshot (3) 1 (1).jpg" alt="Hotel 1">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title mt-4 text-danger">MPS Saai Residency</h5>
+        <div class="d-flex justify-content-center align-items-center mb-1">
+          <span class="pe-2 text-secondary"><s>₹5999</s></span>
+          <h4 class="mb-1">₹4271</h4>
+        </div>
+        <h6 class="room mb-3">1 room per night</h6>
+        <a href="#" class="btn btn-danger">Book Now</a>
+      </div>
+    </div>
+    <!-- Add more cards here... -->
+    <div class="card text-center">
+      <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+        <img class="card-img-top mt-5" style="width: 150px; height: 150px;" src="./image/tiruvannamalai near hotel/Screenshot (7) 1.jpg" alt="Hotel 1">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title mt-4 text-danger ">Arunachala Houses</h5>
+        <div class="d-flex justify-content-center align-items-center mb-1">
+          <span class="pe-2 text-secondary"><s>₹3443</s></span>
+          <h4 class="mb-1">₹2788</h4>
+        </div>
+        <h6 class="room mb-3">1 room per night</h6>
+        <a href="#" class="btn btn-danger">Book Now</a>
+      </div>
+    </div>
+    <!-- Add more cards here... -->
+    <div class="card text-center">
+      <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+        <img class="card-img-top mt-5 " style="width: 150px; height: 150px;" src="./image/tiruvannamalai near hotel/Screenshot (8) 1.jpg" alt="Hotel 1">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title mt-4 text-danger">Royal Mini Hall</h5>
+        <div class="d-flex justify-content-center align-items-center mb-1">
+          <span class="pe-2 text-secondary"><s>₹4235</s></span>
+          <h4 class="mb-1">₹2700</h4>
+        </div>
+        <h6 class="room mb-3">1 room per night</h6>
+        <a href="#" class="btn btn-danger">Book Now</a>
+      </div>
+    </div>
+    <!-- Add more cards here... -->
+  </div>
+  <button class="carousel-button next" onclick="scrollCarousel(1)">&#10095;</button>
+</div>
+<!-- Near by properties in Tiruvannamalai end -->
+</div>
+
+  </main>
+  <footer class="footer pt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <h6><b>Help</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">FAQ</a></li>
+            <li><a href="#" class="text-white textdec small-link">Privacy policy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Cookies privacy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Terms of use</a></li>
+            <li><a href="#" class="text-white textdec small-link">Help centre</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Get the App</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">IOS app</a></li>
+            <li><a href="#" class="text-white textdec small-link">Android app</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Company</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">About Us</a></li>
+            <li><a href="#" class="text-white textdec small-link">Blog</a></li>
+            <li><a href="#" class="text-white textdec small-link">Careers</a></li>
+            <li><a href="#" class="text-white textdec small-link">PointMAX</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Destination</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">Cities</a></li>
+            <li><a href="#" class="text-white textdec small-link">Spiritual places </a></li>
+            <li><a href="#" class="text-white textdec small-link">Hill Stations</a></li>
+            <li><a href="#" class="text-white textdec small-link">Solo Travel places</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Social Networks</b></h6>
+          <ul class="list-unstyled d-flex p-2">
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 406.png" alt="Facebook"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 407.png" alt="Twitter"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 408.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 410.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 409.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="horizantal-line">
+    </div>
+    <h6 class="text-end mx-5 pt-3">&copy; 2023 Y.SPOT Rooms pvt .ltd.</h6>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+
+        
+<script           src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
             crossorigin="anonymous"
         ></script>
@@ -347,5 +537,6 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        <script src="script.js"></script>
     </body>
 </html>
