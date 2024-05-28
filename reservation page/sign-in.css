@@ -390,6 +390,10 @@ border: none;
      height: 25px;
      width: 160px;
   }
+  .even-align{
+  margin-left: 90px;
+  }
+  
 }
 @media (min-width: 900px) {
   .available-soon-sticker{
@@ -398,3 +402,6 @@ border: none;
   }
 }
 /* last section available soon end  */
+.even-align{
+
+}

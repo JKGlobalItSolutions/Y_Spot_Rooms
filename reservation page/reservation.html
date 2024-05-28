@@ -228,19 +228,63 @@
             <!-- first hotel details section end  -->
             <!-- guest details section start  -->
             <div class="border container shadow-sm rounded-3">
-                <h5>GUEST DETAILS</h5>
-                <hr>
-                <form action="">
-
+                <h5 class="p-2">GUEST DETAILS</h5>
+                <hr style="margin: 1%;">
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-lg-4 mb-3 col-md-4">
+                            <label for="firstName" class="form-label">First name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control border-danger" id="firstName" placeholder="Enter your First name*">
+                        </div>
+                        <div class="col-lg-4 mb-3 col-md-4 even-align">
+                            <label for="lastName" class="form-label">Last name<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control border-danger" id="lastName" placeholder="Enter your Last name">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-lg-4  col-md-4">
+                            <label for="email" class="form-label">Email address<span class="text-danger">*</span></label>
+                            <input type="email" class="form-control border-danger" id="email" placeholder="Enter your Email address">
+                            <p style="opacity: 50%;" class="mt-1">The confirmation email is sent to this address.</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-lg-4 mb-3 col-md-4">
+                            <label for="address" class="form-label">Address<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control border-danger" id="address" placeholder="Enter your Address">
+                        </div>
+                        <div class="col-lg-4 mb-3 col-md-4 even-align">
+                            <label for="city" class="form-label">City<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control border-danger" id="city" placeholder="Enter your City">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-lg-4 mb-3 col-md-4">
+                            <label for="pincode" class="form-label">Pin Code<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control border-danger" id="pincode" placeholder="Enter your Pin Code*">
+                        </div>
+                        <div class="col-lg-4 mb-3 col-md-4 even-align">
+                            <label for="country" class="form-label">Country/region<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control border-danger" id="country" placeholder="Enter your Country/region">
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-4 col-md-4">
+                            <label for="mobileNumber" class="form-label">Mobile number<span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control border-danger" id="mobileNumber" placeholder="Enter your Mobile number">
+                            <p style="opacity: 50%;" class="mt-1">So the accommodation can reach you</p>
+                        </div>
+                    </div>
+                    <div class="row"><a href="" class="form-label text-danger" style="text-decoration: none; margin-bottom: 20px;"><b>+Add Guest</b></a></div>
                 </form>
             </div>
             <!-- guest details section end  -->
             <!-- payment method start  -->   
-            <h5>Payment Method</h5>
+            <h5 class="my-3">Payment Method</h5>
             <div class="border container shadow-sm rounded-3 mb-3">
                 <div class="total-cost-overview">
                     <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/stars.jpg" alt="">
+                        <img class="px-1" src="image/payment method icons/stars.jpg" alt="" style="width: 45px; height: 40px;">
                         <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Reservation</b> <br>Pay when you
                             check-in</div>
                         <div class="p-3 flex-shrink-1 bd-highlight "> <img src="./image/arrow_forward_ios.jpg" alt="">
@@ -248,7 +292,7 @@
                     </div>
                     <hr class=" text-danger bold" style="margin: 1%;">
                     <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/image 6.jpg" alt="">
+                        <img class="px-1" src="image/payment method icons/image 6.jpg" alt="" style="width: 45px; height: 40px;">
                         <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">UPI options</b> <br>Pay directly
                             from your Bank Account</div>
                         <div
@@ -260,8 +304,8 @@
                     </div>
                     <hr class=" text-danger bold" style="margin: 1%;">
                     <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/credit_card.jpg" alt="">
-                        <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Credit/Debit/AtM Card </b>
+                        <img class="px-1" src="image/payment method icons/credit_card.jpg" alt="" style="width: 45px; height: 40px;">
+                        <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Credit/Debit Card </b>
                             <br>PVisa, Mastercard, Amex, Rupau and more
                         </div>
                         <div
@@ -273,7 +317,7 @@
                     </div>
                     <hr class=" text-danger bold" style="margin: 1%;">
                     <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/account_balance_wallet.jpg" alt="">
+                        <img class="px-1" src="image/payment method icons/account_balance.jpg" alt="" style="width: 45px; height: 40px;">
                         <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Net Banking</b> <br>All Major
                             Banks Available</div>
                         <div
@@ -285,7 +329,7 @@
                     </div>
                     <hr class=" text-danger bold" style="margin: 1%;">
                     <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/account_balance_wallet.jpg" alt="">
+                        <img class="px-1" src="image/payment method icons/account_balance_wallet.jpg" alt="" style="width: 45px; height: 40px;">
                         <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Mobile Wallets</b>
                             <br>AmazonPay, Mobikwik, Payzapp
                         </div>
@@ -298,12 +342,12 @@
                     </div>
                     <hr class=" text-danger bold" style="margin: 1%;">
                     <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/Frame 623.jpg" alt="">
+                        <img class="px-1" src="image/payment method icons/Frame 623.jpg" alt="" style="width: 45px; height: 40px;">
                         <div class="p-1 w-100 bd-highlight">
                             <b style="font-size: 16px;">EMI</b> <br>Credit/Debit Card EMI available
                         </div>
                         <div
-                            class="col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
+                            class="me-3 col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
                             <b>Available Soon</b>
                         </div>
                         <div class="px-2 flex-shrink-1 bd-highlight d-flex justify-content-center align-items-center">
