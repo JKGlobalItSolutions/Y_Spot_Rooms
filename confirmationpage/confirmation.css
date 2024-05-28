@@ -1,0 +1,40 @@
+#one{
+    color: #9E8585;
+font-family: Urbanist;
+font-size: 22px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+.night{
+    color: #000;
+font-family: Urbanist;
+font-size: 22px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+.price{
+    color: #FF1717;
+    font-family: Urbanist;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.goods{
+    color: #000;
+    font-family: Urbanist;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.rate{
+    color: #000;
+font-family: Urbanist;
+font-size: 22px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
