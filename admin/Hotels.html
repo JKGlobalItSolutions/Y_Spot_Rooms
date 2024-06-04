@@ -37,18 +37,17 @@
                     <img src="img/logo.png" alt="">
                 </div>
             </a>
-            
 
             <!-- Divider -->
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active " >
-                <a class="nav-link bg-dark m-1 " style="border-radius: 10px; width: 90%; " href="#">
+                <a class="nav-link  " href="index.html">
                     <i class=""><img src="img/sidbar icons/person.png" alt=""></i>
                     <span>User Profile</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="Hotels.html">
+                <a class="nav-link bg-dark m-1" style="border-radius: 10px; width: 90%; " href="#">
                     <i class=""><img src="img/sidbar icons/food_bank.png" alt=""></i>
                     <span>Hotels</span></a>
             </li>
@@ -78,7 +77,7 @@
                     <span>Reviews</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="room.html">
+                <a class="nav-link" href="roomstatus.html">
                     <i class=""><img src="img/sidbar icons/concierge.png" alt=""></i>
                     <span>Room Status</span></a>
             </li>
@@ -135,6 +134,7 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+
                         <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
 
                         <!-- Nav Item - User Information -->
@@ -182,8 +182,8 @@
                                         <!-- <h1>Image Upload and Preview</h1> -->
                                         <input type="file" id="imageInput" accept="image/*" style="display: none;">
                                         <div class="preview-container">
-                                            <h4 class="mt-2" style="color: #ff1717;"><b>Click to choose an image</b></h4>
-                                            <img id="imagePreview" style="border-radius: 50%; height: 150px; width: 150px;" src="" alt="">
+                                            <h4 class="mt-2" style="color: #ff1717;"><b>upload property images </b></h4>
+                                            <img id="imagePreview" style="border-radius: 10PX; height: 150px; width: 150px;"   src="" alt="upload property images ">
                                         </div>
                                     </div>
                                 </div>
@@ -191,8 +191,8 @@
                                     <div class="col-md-12 ">
                                         <div class="p-1 py-1 ">
                                             <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Full Name</b></label><input type="text" class="form-control" placeholder="Full Name" value=""></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Hotel Name</b></label><input type="text" class="form-control" value="" placeholder="Hotel Name"></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Hotel Name</b></label><input type="text" class="form-control" placeholder="Hotel Name" value=""></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Accommodation Types</b></label><input type="text" class="form-control" value="" placeholder="Accommodation Types"></div>
                                             </div>
                                             
                                             <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
@@ -203,8 +203,8 @@
                                     <div class="col-md-12 ">
                                         <div class="p-1 py-1 ">
                                             <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Hotel  Website</b></label><input type="text" class="form-control" placeholder="Hotel  Website" value=""></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Email address</b></label><input type="text" class="form-control" value="" placeholder="Email address"></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Add number of rooms</b></label><input type="text" class="form-control" placeholder="Add number of rooms" value=""></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Add accommodation facilities</b></label><input type="text" class="form-control" value="" placeholder="Add accommodation facilities"></div>
                                             </div>
                                             
                                             <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
@@ -215,20 +215,8 @@
                                     <div class="col-md-12 ">
                                         <div class="p-1 py-1 ">
                                             <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Mobile number</b></label><input type="text" class="form-control" placeholder="Mobile number" value=""></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Location</b></label><input type="text" class="form-control" value="" placeholder="Location"></div>
-                                            </div>
-                                            
-                                            <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center d-flex align-items-center">
-                                    <div class="col-md-12 ">
-                                        <div class="p-1 py-1 ">
-                                            <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Submit your Hotel documents</b></label><input type="text" class="form-control" placeholder="Submit your Hotel documents" value=""></div>
-                                                <div class=" text-center col-lg-5 mt-4"><label class="labels">&nbsp;</label><button style="background-color: #ff1717; color: #fff;" class="btn profile-button" type="button" >Save Changes</button></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Enter price details</b></label><input type="text" class="form-control" placeholder="Enter price details" value=""></div>
+                                                <div class=" text-center col-lg-5 mt-4"><label class="labels">&nbsp;</label><button style="background-color: #ff1717; color: #fff;" class="btn profile-button" type="button" >Edit</button></div>
                                             </div>
                                         </div>
                                     </div>
@@ -244,8 +232,9 @@
 
                 </div>
                 <!-- /.container-fluid -->
-
-
+                <div class="d-flex align-items-right justify-content-end m-3">
+                    <h6>+Add more</h6>
+                </div>
             </div>
             <!-- End of Main Content -->
 

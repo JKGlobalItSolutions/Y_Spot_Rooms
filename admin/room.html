@@ -21,6 +21,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -37,23 +38,22 @@
                     <img src="img/logo.png" alt="">
                 </div>
             </a>
-            
 
             <!-- Divider -->
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active " >
-                <a class="nav-link bg-dark m-1 " style="border-radius: 10px; width: 90%; " href="#">
+                <a class="nav-link "  href="index.html">
                     <i class=""><img src="img/sidbar icons/person.png" alt=""></i>
                     <span>User Profile</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="Hotels.html">
+                <a class="nav-link "  href="Hotels.html">
                     <i class=""><img src="img/sidbar icons/food_bank.png" alt=""></i>
                     <span>Hotels</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="room.html">
+                <a class="nav-link bg-dark m-1 " style="border-radius: 10px; width: 90%; " href="#">
                     <i class=""><img src="img/sidbar icons/meeting_room.png" alt=""></i>
                     <span>Rooms</span></a>
             </li>
@@ -63,22 +63,22 @@
                     <span>Guest Details</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="payments.html">
+                <a class="nav-link" href="index.html">
                     <i class=""><img src="img/sidbar icons/currency_rupee.png" alt=""></i>
                     <span>Payments</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="orders.html">
+                <a class="nav-link" href="index.html">
                     <i class=""><img src="img/sidbar icons/format_list_bulleted.png" alt=""></i>
                     <span>Orders</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="reviews.html">
+                <a class="nav-link" href="index.html">
                     <i class=""><img src="img/sidbar icons/stars.png" alt=""></i>
                     <span>Reviews</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="room.html">
+                <a class="nav-link" href="index.html">
                     <i class=""><img src="img/sidbar icons/concierge.png" alt=""></i>
                     <span>Room Status</span></a>
             </li>
@@ -135,6 +135,7 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+
                         <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
 
                         <!-- Nav Item - User Information -->
@@ -173,66 +174,61 @@
                 <div class="container-fluid">
 
 
-                    <div class="border  shadow-sm rounded-3 p-3">
+                    <div class="border p-4 shadow-sm rounded-3 ">
 
                         <div class=" rounded bg-white mb-2">
-                            <form action="">
-                                <div class="text-center mt-2">
-                                    <div class="">
-                                        <!-- <h1>Image Upload and Preview</h1> -->
-                                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
-                                        <div class="preview-container">
-                                            <h4 class="mt-2" style="color: #ff1717;"><b>Click to choose an image</b></h4>
-                                            <img id="imagePreview" style="border-radius: 50%; height: 150px; width: 150px;" src="" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center d-flex align-items-center">
-                                    <div class="col-md-12 ">
-                                        <div class="p-1 py-1 ">
-                                            <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Full Name</b></label><input type="text" class="form-control" placeholder="Full Name" value=""></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Hotel Name</b></label><input type="text" class="form-control" value="" placeholder="Hotel Name"></div>
-                                            </div>
-                                            
-                                            <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center d-flex align-items-center">
-                                    <div class="col-md-12 ">
-                                        <div class="p-1 py-1 ">
-                                            <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Hotel  Website</b></label><input type="text" class="form-control" placeholder="Hotel  Website" value=""></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Email address</b></label><input type="text" class="form-control" value="" placeholder="Email address"></div>
-                                            </div>
-                                            
-                                            <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center d-flex align-items-center">
-                                    <div class="col-md-12 ">
-                                        <div class="p-1 py-1 ">
-                                            <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Mobile number</b></label><input type="text" class="form-control" placeholder="Mobile number" value=""></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Location</b></label><input type="text" class="form-control" value="" placeholder="Location"></div>
-                                            </div>
-                                            
-                                            <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center d-flex align-items-center">
-                                    <div class="col-md-12 ">
-                                        <div class="p-1 py-1 ">
-                                            <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Submit your Hotel documents</b></label><input type="text" class="form-control" placeholder="Submit your Hotel documents" value=""></div>
-                                                <div class=" text-center col-lg-5 mt-4"><label class="labels">&nbsp;</label><button style="background-color: #ff1717; color: #fff;" class="btn profile-button" type="button" >Save Changes</button></div>
+                            <form action="" class="row">
+                                <div class="col-lg-4">
+                                    <div class="text-center mt-2">
+                                        <div class="">
+                                            <!-- <h1>Image Upload and Preview</h1> -->
+                                            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                                            <div class="preview-container">
+                                                <h4 class="mt-2" style="color: #ff1717;"><b>Room Image</b></h4>
+                                                <img id="imagePreview" style="border-radius: 10PX; height: 150px; width: 150px;"   src="" alt="Room Image">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-8">
+                                    <div class="row justify-content-center d-flex align-items-center">
+                                        <div class="col-md-12 ">
+                                            <div class="p-1 py-1 ">
+                                                <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                                    <div class="col-lg-6"><label class="labels"><b>Room type</b></label><input type="text" class="form-control" placeholder="Room type" value=""></div>
+                                                    <div class="col-lg-6"><label class="labels"><b>Room number</b></label><input type="text" class="form-control" value="" placeholder="Room number"></div>
+                                                </div>
+                                                
+                                                <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center d-flex align-items-center">
+                                        <div class="col-md-12 ">
+                                            <div class="p-1 py-1 ">
+                                                <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                                    <div class="col-lg-4"><label class="labels"><b>Price</b></label><input type="text" class="form-control" placeholder="Price" value=""></div>
+                                                    <div class="col-lg-4"><label class="labels"><b>Bed type</b></label><input type="text" class="form-control" value="" placeholder="Bed type"></div>
+                                                    <div class="col-lg-3 align-items-center m-1">
+                                                        <input  type="checkbox" checked data-toggle="toggle" data-on="Active" data-off="Inactive" data-onstyle="danger" data-offstyle="secondary ">
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center d-flex align-items-end">
+                                        <div class="col-md-12 ">
+                                            <div class="p-1 py-1 ">
+                                                <div class="row mt-2 d-flex align-items-end justify-content-end">
+                                                    <div class=" text-center col-lg-5 mt-4"><label class="labels">&nbsp;</label><button style="background-color: #fff; color: #ff1717; border-color: #ff1717;" class="btn profile-button" type="button" ><b>Edit</b></button></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </form>
                         </div>
 
@@ -244,8 +240,9 @@
 
                 </div>
                 <!-- /.container-fluid -->
-
-
+                <div class="d-flex align-items-right justify-content-end m-3">
+                    <h6>+Add more</h6>
+                </div>
             </div>
             <!-- End of Main Content -->
 
@@ -308,6 +305,8 @@
     <script src="js/demo/chart-pie-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 </body>
 
 </html>
