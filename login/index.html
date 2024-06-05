@@ -20,6 +20,7 @@
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Custom styles for this template -->
   <link href="sign-in.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -58,14 +59,16 @@
         <div class="d-flex justify-content-center mb-4" style="gap: 10px;">
           <div class="container text-center" style="gap: 10px;">
             <a href="">
-              <button id="google-login" type="button" class="btn mt-3 p-0" style="width: 60px; height: 60px; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);">
-                <img src="https://example.com/assets/img/Google_Icons-09-512.webp" alt="Google Logo" style="height: 100%; width: 100%; object-fit: cover; border-radius: 5px;">
+              <button type="button"  class="btn mt-3 p-0" style="width: 60px; height: 60px; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);">
+          <img src="https://w7.pngwing.com/pngs/989/129/png-transparent-google-logo-google-search-meng-meng-company-text-logo-thumbnail.png" alt="Google Logo" style="height: 100%; width: 100%; object-fit: cover; border-radius: 5px;">
             </button>
             
             </a>
+            <!-- <button id="signInButton">continue with google</button> -->
           </div>
           <!-- Add more buttons for Facebook, Apple if needed -->
         </div>
+        
         <hr>
         <p class="text-center" style="font-size: 12px;
                           font-weight: 400;">By signing in or creating an account, you agree with our <a href="#"
@@ -74,8 +77,85 @@
 
     </main>
   </div>
+<div class="container">
+  <button id="signInButton">continue with google</button>
+
+        <button id="signOutButton">Sign Out</button>
+
+        <div id="message">
+            <p>You have signed in as <span id="userName"></span> with the email <span id="userEmail"></span> </p>
+        </div>
+      </div>
+  <script type="module">
+  
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+   
+  
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    
+    // Add your own Firebase config here
+   
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+      authDomain: "y-spot-e84ca.firebaseapp.com",
+      databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+      projectId: "y-spot-e84ca",
+      storageBucket: "y-spot-e84ca.appspot.com",
+      messagingSenderId: "783996806068",
+      appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+      measurementId: "G-TSH2JVYJHR"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider()
+  
+    const signInButton = document.getElementById("signInButton");
+    const signOutButton = document.getElementById("signOutButton");
+    const message = document.getElementById("message");
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+  
+    signOutButton.style.display = "none";
+    message.style.display = "none";
+  
+    const userSignIn = async() => {
+      signInWithPopup(auth, provider)
+      .then((result) => {
+          const user = result.user
+          console.log(user);
+      }).catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message
+      })
+    }
+  
+    const userSignOut = async() => {
+      signOut(auth).then(() => {
+          alert("You have signed out successfully!");
+      }).catch((error) => {})
+    }
+  
+    onAuthStateChanged(auth, (user) => {
+      if(user) {
+        signOutButton.style.display = "block";
+        message.style.display = "block";
+        userName.innerHTML = user.displayName;
+        userEmail.innerHTML = user.email
+      } else {
+        signOutButton.style.display = "none";
+        message.style.display = "none";
+      }
+    })
+  
+    signInButton.addEventListener('click', userSignIn);
+    signOutButton.addEventListener('click', userSignOut);
+  
+  </script>
+  
+  
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./script.js" type="module"></script>
   </body>
 
 </html>
