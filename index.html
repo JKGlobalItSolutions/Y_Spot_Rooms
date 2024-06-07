@@ -30,6 +30,49 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+        authDomain: "y-spot-e84ca.firebaseapp.com",
+        databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+        projectId: "y-spot-e84ca",
+        storageBucket: "y-spot-e84ca.appspot.com",
+        messagingSenderId: "783996806068",
+        appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+        measurementId: "G-TSH2JVYJHR"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    window.onload = () => {
+        const signOutButton = document.getElementById("signOutButton");
+        const buttonElement = signOutButton.querySelector("button");
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                buttonElement.innerHTML = "<b>Sign Out</b>";
+                signOutButton.href = "#";
+                buttonElement.onclick = () => {
+                    signOut(auth).then(() => {
+                        alert("You have signed out successfully!");
+                        window.location.reload();
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                };
+            } else {
+                buttonElement.innerHTML = "<b>Sign In</b>";
+                signOutButton.href = "login/index.html";
+                buttonElement.onclick = null;
+            }
+        });
+    };
+</script>
 </head>
 
 <body>
@@ -53,13 +96,21 @@
                   class="btn btn-light text-danger"><b>Register</b></button></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="login/index.html"><button type="button"
-                  class="btn btn-light text-danger"><b>Sign In</b></button></a>
-            </li>
+              <a class="nav-link" id="signOutButton" href="login/index.html">
+                  <button type="button" class="btn btn-light text-danger"><b>Sign In</b></button>
+              </a>
+          </li>
           </ul>
         </div>
       </div>
     </nav>
+    <!-- <div class="container ">
+      <button class="btn btn-danger text-center ms-5  " id="signOutButton">Sign Out</button>
+      <div id="message">
+        <p>You have signed in as <span id="userName"></span> with the email <span id="userEmail"></span></p>
+      </div>
+    </div> -->
+    
 
     <nav class="container navbar navbar-expand-lg navbar-light" style="background-color:  rgb(237, 26, 37);">
       <div class="container-fluid">

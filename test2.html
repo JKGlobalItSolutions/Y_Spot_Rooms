@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+  <script src="../assets/js/color-modes.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+  <meta name="generator" content="Hugo 0.122.0" />
+  <title>Y-spot</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="sign-in.css" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <nav class="navbar" style="background-color: #FF1717;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html" style="margin-left: 100px;">
+          <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-text-top">
+        </a>
+      </div>
+    </nav>
+  </header>
+  <div class="d-flex align-items-center py-4 bg-body-tertiary">
+    <main class="form-signin w-100 m-auto">
+      <form>
+        <h3 class="h4 mb-4 fw-normal">Sign in or create an account</h3>
+        <div class="form-floating pb-2">
+          <input type="email" class="form-control rounded-2 border-danger custom-input" id="floatingInput" placeholder="name@example.com" />
+          <label for="floatingInput" style="opacity: 30%;">Enter Your Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control rounded-2 border-danger" id="floatingPassword" placeholder="Password" />
+          <label for="floatingPassword" style="opacity: 30%;">Enter Your Password</label>
+        </div>
+        <a href="../admin/index.html">
+          <button class="btn text-light w-100 py-2" type="button" style="background-color: #FF1717; height: 50px;">Submit</button>
+        </a>
+        <p class="mt-4 with-line-left with-line-right">Or use one of these options</p>
+        <div class="d-flex justify-content-center mb-4" style="gap: 10px;">
+          <div class="container text-center" style="gap: 10px;">
+            <a id="signInButton" href="./index.html" class="btn mt-3 p-0" style="width: 60px; height: 60px; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); display: inline-block;">
+              <img src="../assets/img/googlelogo.png" alt="Google Logo" style="height: 100%; width: 100%; object-fit: cover; border-radius: 5px;">
+            </a>
+          </div>
+        </div>  
+        <div class="container">
+          <button class="btn btn-danger text-center ms-5" id="signOutButton" style="display:none;">Sign Out</button>
+          <div id="message" style="display:none;">
+            <p>You have signed in as <span id="userName"></span> with the email <span id="userEmail"></span></p>
+          </div>
+        </div>
+        <hr>
+        <p class="text-center" style="font-size: 12px; font-weight: 400;"> By signing in or creating an account, you agree with our <a href="#" class="text-danger">Terms & conditions</a> and <a href="#" class="text-danger">privacy statement</a>.</p>
+      </form>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+      authDomain: "y-spot-e84ca.firebaseapp.com",
+      databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+      projectId: "y-spot-e84ca",
+      storageBucket: "y-spot-e84ca.appspot.com",
+      messagingSenderId: "783996806068",
+      appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+      measurementId: "G-TSH2JVYJHR"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    const signInButton = document.getElementById("signInButton");
+    const signOutButton = document.getElementById("signOutButton");
+    const message = document.getElementById("message");
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+
+    signOutButton.style.display = "none";
+    message.style.display = "none";
+
+    const userSignIn = async() => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          window.location.href = "../index.html"; // Redirect to index page after sign-in
+        }).catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error(errorCode, errorMessage);
+        });
+    };
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        signOutButton.style.display = "block";
+        message.style.display = "block";
+        userName.innerHTML = user.displayName;
+        userEmail.innerHTML = user.email;
+      } else {
+        signOutButton.style.display = "none";
+        message.style.display = "none";
+      }
+    });
+
+    signInButton.addEventListener('click', (event) => {
+      event.preventDefault();  // Prevent the default link behavior
+      userSignIn();
+    });
+  </script>
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

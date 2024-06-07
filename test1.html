@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In/Out Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+            authDomain: "y-spot-e84ca.firebaseapp.com",
+            databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+            projectId: "y-spot-e84ca",
+            storageBucket: "y-spot-e84ca.appspot.com",
+            messagingSenderId: "783996806068",
+            appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+            measurementId: "G-TSH2JVYJHR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        window.onload = () => {
+            const signOutButton = document.getElementById("signOutButton");
+            const buttonElement = signOutButton.querySelector("button");
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    buttonElement.innerHTML = "<b>Sign Out</b>";
+                    signOutButton.href = "#";
+                    buttonElement.onclick = () => {
+                        signOut(auth).then(() => {
+                            alert("You have signed out successfully!");
+                            window.location.reload();
+                        }).catch((error) => {
+                            console.error(error);
+                        });
+                    };
+                } else {
+                    buttonElement.innerHTML = "<b>Sign In</b>";
+                    signOutButton.href = "login/index.html";
+                    buttonElement.onclick = null;
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="nav-item">
+                <a class="nav-link" id="signOutButton" href="login/index.html">
+                    <button type="button" class="btn btn-light text-danger"><b>Sign In</b></button>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <button type="button" class="btn btn-primary" onclick="googleSignIn()">Simulate Google Sign-In</button>
+</body>
+</html>

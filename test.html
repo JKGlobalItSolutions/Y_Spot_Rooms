@@ -3,96 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Red Background Rectangle</title>
+    <title>Image Upload and Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .preview-container {
+            position: relative;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .preview-container img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            padding: 5px;
+            background: #fff;
+            border-radius: 50%;
+            height: 150px;
+            width: 150px;
+        }
+        .plus-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #FF1717;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<style>
-    /* Base styles (default for mobile-first approach) */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
 
-.container {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-}
+    <!-- <h1>Image Upload and Preview</h1> -->
+    <input type="file" id="imageInput" accept="image/*" style="display:none;">
+    
+    <div class="preview-container">
+        <!-- <p>Image Preview:</p> -->
+        <img id="imagePreview" src="" alt="">
+        <button class="plus-button" onclick="document.getElementById('imageInput').click()">+</button>
+    </div>
 
-.header, .main, .footer {
-  margin: 10px 0;
-  padding: 20px;
-  background-color: #ff0000;
-}
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 
-/* Media query for tablets (min-width: 600px) */
-@media (min-width: 600px) {
-  .container {
-    width: 90%;
-    margin: 0 auto;
-  }
-  
-  .header, .main, .footer {
-    padding: 30px;
-  }
-}
-
-/* Media query for desktops (min-width: 900px) */
-@media (min-width: 900px) {
-  .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .header, .main, .footer {
-    flex: 1;
-    margin: 10px;
-  }
-}
-
-</style>
 </body>
 </html>
-<button id="google-login" type="button" class="btn mt-3 p-0" style="width: 60px; height: 60px; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);">
-  <img src="https://example.com/assets/img/Google_Icons-09-512.webp" alt="Google Logo" style="height: 100%; width: 100%; object-fit: cover; border-radius: 5px;">
-</button>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-auth-domain",
-  // Add the rest of your Firebase config here
-};
-
-const app = firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-auth.languageCode = 'en';
-const provider = new firebase.auth.GoogleAuthProvider();
-const googleLogin = document.getElementById('google-login');
-googleLogin.addEventListener("click", function(){
-  auth.signInWithPopup(provider)
-    .then((result) => {
-      // This gives you a Google Access Token.
-      const credential = result.credential;
-      // The signed-in user info.
-      const user = result.user;
-      console.log(user);
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credential = error.credential;
-      // ...
-      console.error(errorMessage);
-    });
-});
-</script>
