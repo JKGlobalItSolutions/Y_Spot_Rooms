@@ -16,11 +16,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
   <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
 
-
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Custom styles for this template -->
   <link href="sign-in.css" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -35,32 +33,33 @@
   </header>
   <div class="d-flex align-items-center py-4 bg-body-tertiary">
     <main class="form-signin w-100 m-auto">
-      <form>
-        <h3 class="h4 mb-4 fw-normal">Sign in or create an account</h3>
+      <form id="signInForm">
+        <h3 class="h4 mb-4 fw-normal">Sign In To Your Account </h3>
 
         <div class="form-floating pb-2">
           <input type="email" class="form-control rounded-2 border-danger custom-input" id="floatingInput" placeholder="name@example.com" />
-          <label for="floatingInput" style="opacity: 30%;">Enter Your Email address</label>
+          <label id="emailInp" for="floatingInput" style="opacity: 30%;">Enter Your Email address</label>
         </div>
         <div class="form-floating">
           <input type="password" class="form-control rounded-2 border-danger" id="floatingPassword" placeholder="Password" />
-          <label for="floatingPassword" style="opacity: 30%;">Enter Your Password</label>
+          <label id="passwordInp" for="floatingPassword" style="opacity: 30%;">Enter Your Password</label>
         </div>
 
-        <a href="../admin/index.html">
-          <button class="btn text-light w-100 py-2" type="button" style="background-color: #FF1717; height: 50px;">Submit</button>
-        </a>
-        <p class="mt-4 with-line-left with-line-right">Or use one of these options</p>
-        <div class="d-flex justify-content-center mb-4" style="gap: 10px;">
+        <button class="btn text-light w-100 py-2" type="button" id="emailSignInButton" style="background-color: #FF1717; height: 50px;">Sign In</button>
+       <a href="./signup.html"> <button class="btn text-light w-100 py-2 mt-2" type="button" id="emailSignInButton" style="background-color: #FF1717; height: 50px;">Sign up</button></a>
+        
+        <div class="d-flex justify-content-center mt-4" style="gap: 10px;">
           <div class="container text-center" style="gap: 10px;">
-            <button id="signInButton" type="button" class="btn mt-3 p-0" style="width: 60px; height: 60px; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);">
-              <img src="../assets/img/googlelogo" alt="Google Logo" style="height: 100%; width: 100%; object-fit: cover; border-radius: 5px;">
-            </button>
+            <div class="media-options">
+              <a id="signInButton" href="#" class="google bg-light border p-2 rounded pb-3 px-2 pe-4 text-dark" style="text-decoration: none;">
+                  <b><img src="../assets/img/google logo.png" height="40px" alt="" class="google-img">Login with Google</b>
+              </a>
           </div>
-          
+          </div>
         </div>  
+        
         <div class="container ">
-          <button class="btn btn-danger text-center   " id="signOutButton">Sign Out</button>
+          <button class="btn btn-danger text-center" id="signOutButton">Sign Out</button>
           <div id="message">
             <p>You have signed in as <span id="userName"></span> with the email <span id="userEmail"></span></p>
           </div>
@@ -71,10 +70,10 @@
     </main>
   </div>
 
-
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
@@ -89,9 +88,13 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
+    const db = getDatabase();
     const provider = new GoogleAuthProvider();
 
+    const emailInp = document.getElementById("floatingInput");
+    const passwordInp = document.getElementById("floatingPassword");
     const signInButton = document.getElementById("signInButton");
+    const emailSignInButton = document.getElementById("emailSignInButton");
     const signOutButton = document.getElementById("signOutButton");
     const message = document.getElementById("message");
     const userName = document.getElementById("userName");
@@ -100,7 +103,33 @@
     signOutButton.style.display = "none";
     message.style.display = "none";
 
-    const userSignIn = async() => {
+    const validateEmail = (email) => {
+      const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      return re.test(email);
+    };
+
+    const validateForm = () => {
+      const email = emailInp.value;
+      const password = passwordInp.value;
+      let valid = true;
+
+      if (!email) {
+        alert("Email is required.");
+        valid = false;
+      } else if (!validateEmail(email)) {
+        alert("Please enter a valid email address.");
+        valid = false;
+      }
+
+      if (!password) {
+        alert("Password is required.");
+        valid = false;
+      }
+
+      return valid;
+    };
+
+    const userSignIn = async () => {
       signInWithPopup(auth, provider)
         .then((result) => {
           const user = result.user;
@@ -112,11 +141,37 @@
         });
     };
 
+    const emailSignIn = async () => {
+      if (!validateForm()) return; // Validate form before signing in
+
+      const email = emailInp.value;
+      const password = passwordInp.value;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        console.log("User signed in:", user);
+        window.location.href = "../index.html"; // Redirect to index page after sign-in
+      } catch (error) {
+        console.error("Error signing in with email and password:", error);
+        alert("Error signing in with email and password. Please check your credentials and try again.");
+      }
+    };
+
+    const userSignOut = async () => {
+      try {
+        await signOut(auth);
+        console.log("User signed out");
+      } catch (error) {
+        console.error("Error signing out:", error);
+      }
+    };
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         signOutButton.style.display = "block";
         message.style.display = "block";
-        userName.innerHTML = user.displayName;
+        userName.innerHTML = user.displayName || "User";
         userEmail.innerHTML = user.email;
       } else {
         signOutButton.style.display = "none";
@@ -128,9 +183,18 @@
       event.preventDefault();  // Prevent the default link behavior
       userSignIn();
     });
+
+    emailSignInButton.addEventListener('click', (event) => {
+      event.preventDefault();  // Prevent the default button behavior
+      emailSignIn();
+    });
+
+    signOutButton.addEventListener('click', (event) => {
+      event.preventDefault();  // Prevent the default button behavior
+      userSignOut();
+    });
   </script>
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
