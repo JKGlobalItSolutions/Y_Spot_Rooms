@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
+
 <head>
   <script src="../assets/js/color-modes.js"></script>
 
@@ -20,7 +21,7 @@
   <link href="sign-in.css" rel="stylesheet" />
 </head>
 
-<body style="background-color: #f8f9fa;">
+<body>
   <header>
     <nav class="navbar" style="background-color: #FF1717;">
       <div class="container-fluid">
@@ -30,11 +31,10 @@
       </div>
     </nav>
   </header>
-
   <div class="d-flex align-items-center py-4 bg-body-tertiary">
     <main class="form-signin w-100 m-auto">
       <form id="signInForm">
-        <h3 class="h4 mb-4 fw-normal">Sign In To Your Account</h3>
+        <h3 class="h4 mb-4 fw-normal">Sign In To Your Account </h3>
 
         <div class="form-floating pb-2">
           <input type="email" class="form-control rounded-2 border-danger custom-input" id="floatingInput" placeholder="name@example.com" />
@@ -43,39 +43,35 @@
         <div class="form-floating">
           <input type="password" class="form-control rounded-2 border-danger" id="floatingPassword" placeholder="Password" />
           <label id="passwordInp" for="floatingPassword" style="opacity: 30%;">Enter Your Password</label>
-          <a href="./forgotpassword.html" id="forgotpassword"  class="text-primary " style="text-decoration: none; cursor: pointer;">Forgot password?</a>
-        </div><br>
-        <button class="btn text-light w-100 py-2" type="button" id="emailSignInButton" style="background-color: #FF1717; height: 50px;">Sign In</button>
-        <a href="./signup.html"><button class="btn text-light w-100 py-2 mt-2" type="button" id="emailSignInButton" style="background-color: #FF1717; height: 50px;">Sign up</button></a>
+        </div>
 
+        <button class="btn text-light w-100 py-2" type="button" id="emailSignInButton" style="background-color: #FF1717; height: 50px;">Sign In</button>
+       <a href="./signup.html"> <button class="btn text-light w-100 py-2 mt-2" type="button" id="emailSignInButton" style="background-color: #FF1717; height: 50px;">Sign up</button></a>
+        
         <div class="d-flex justify-content-center mt-4" style="gap: 10px;">
           <div class="container text-center" style="gap: 10px;">
             <div class="media-options">
               <a id="signInButton" href="#" class="google bg-light border p-2 rounded pb-3 px-2 pe-4 text-dark" style="text-decoration: none;">
-                <b><img src="../assets/img/google logo.png" height="40px" alt="" class="google-img">Login with Google</b>
+                  <b><img src="../assets/img/google logo.png" height="40px" alt="" class="google-img">Login with Google</b>
               </a>
-            </div>
           </div>
-        </div>
-
+          </div>
+        </div>  
         <div class="container ">
           <button class="btn btn-danger text-center" id="signOutButton">Sign Out</button>
           <div id="message">
             <p>You have signed in as <span id="userName"></span> with the email <span id="userEmail"></span></p>
           </div>
         </div>
-
         <hr>
         <p class="text-center" style="font-size: 12px; font-weight: 400;">By signing in or creating an account, you agree with our <a href="#" class="text-danger">Terms & conditions</a> and <a href="#" class="text-danger">privacy statement</a>.</p>
-
-       
       </form>
     </main>
- 
+  </div>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
     import { getDatabase } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signInWithEmailAndPassword, signOut   } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
@@ -94,7 +90,6 @@
     const provider = new GoogleAuthProvider();
     const emailInp = document.getElementById("floatingInput");
     const passwordInp = document.getElementById("floatingPassword");
-    // const forgotpassword = document.getElementById("forgotpassword");
     const signInButton = document.getElementById("signInButton");
     const emailSignInButton = document.getElementById("emailSignInButton");
     const signOutButton = document.getElementById("signOutButton");
@@ -103,7 +98,6 @@
     const userEmail = document.getElementById("userEmail");
     signOutButton.style.display = "none";
     message.style.display = "none";
-
     const validateEmail = (email) => {
       const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
       return re.test(email);
@@ -129,7 +123,6 @@
 
       return valid;
     };
-
 
     const userSignIn = async () => {
       signInWithPopup(auth, provider)
@@ -195,7 +188,6 @@
       event.preventDefault();  // Prevent the default button behavior
       userSignOut();
     });
-
   </script>
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>

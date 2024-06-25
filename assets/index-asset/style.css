@@ -217,12 +217,9 @@ body{
     margin-top: 20px;
 }
 /* CSS for screens wider than 768px */
-/* @media (max-width: 768px) {
-  #move1{
-    margin-top: -250px;
-  }
-  
-} */
-
+/* hero section css start */
+#move2{
+  margin-top: -85px;
+}
 
 /* hero section search end */
