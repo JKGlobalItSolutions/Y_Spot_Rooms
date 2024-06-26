@@ -172,761 +172,898 @@
     <!-- hero section search form end -->
     <!-- brudcrum start -->
     <div class="container py-3" style="border: none;">
-      <nav aria-label="breadcrumb">
-        <ol style="list-style: none; padding: 0; margin: 0;">
-          <li class=" " style="display: inline;">
-            <a href="../index.html" style="text-decoration: none; color: red;"><b>Home</b></a>
-          </li>
-          <li class="" style="display: inline;">
-            <span style="color: black; margin: 0 5px; font-weight: bold;">&gt;</span>
-            <span style="color: #100f10;"><b>Tamil Nadu</b></span>
-          </li>
-          <li style="display: inline;">
-            <span style="color: black; margin: 0 5px; font-weight: bold;">&gt;</span>
-            <span style="color: #100f10;"><b>Tiruvannamalai</b></span>
-          </li>
-        </ol>
-      </nav>
+      <div class="row">
+        <div class="col-8">
+          <nav aria-label="breadcrumb">
+            <ol style="list-style: none; padding: 0; margin: 0;">
+              <li class=" " style="display: inline;">
+                <a href="../index.html" style="text-decoration: none; color: red;"><b>Home</b></a>
+              </li>
+              <li class="" style="display: inline;">
+                <span style="color: black; margin: 0 5px; font-weight: bold;">&gt;</span>
+                <span style="color: #100f10;"><b>Tamil Nadu</b></span>
+              </li>
+              <li style="display: inline;">
+                <span style="color: black; margin: 0 5px; font-weight: bold;">&gt;</span>
+                <span style="color: #100f10;"><b>Tiruvannamalai</b></span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-4 text-center d-lg-none">
+          <button class="text-light bg-danger p-2 px-4 rounded me-1" style="border: none;" data-toggle="modal"
+            data-target="#filterModal">Fillter</button>
+        </div>
+        <div class="modal fade" id="filterModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Select Filters</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form>
+                  <h5 class="mt-3">Recommended for you</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Recommended" id="Recommended1"
+                      value="Air conditioning">
+                    <label class="form-check-label" for="Recommended1">
+                      Air conditioning
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Recommended" id="Recommended2"
+                      value="Breakfast included">
+                    <label class="form-check-label" for="Recommended2">
+                      Breakfast included
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Recommended" id="Recommended3" value="Parking">
+                    <label class="form-check-label" for="Recommended3">
+                      Parking
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Recommended" id="Recommended4"
+                      value="Swimming Pool">
+                    <label class="form-check-label" for="Recommended4">
+                      Swimming Pool
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Recommended" id="Recommended5" value="Balcony">
+                    <label class="form-check-label" for="Recommended5">
+                      Balcony
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Recommended" id="Recommended6"
+                      value="Free cancellation">
+                    <label class="form-check-label" for="Recommended6">
+                      Free cancellation
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Price per night</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Price" id="Price1" value="₹ 0 - ₹ 2000">
+                    <label class="form-check-label" for="Price1">
+                      ₹ 0 - ₹ 2000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Price" id="Price2" value="₹ 2000 - ₹ 3000">
+                    <label class="form-check-label" for="Price2">
+                      ₹ 2000 - ₹ 3000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Price" id="Price3" value="₹ 3000 - ₹ 6000">
+                    <label class="form-check-label" for="Price3">
+                      ₹ 3000 - ₹ 6000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Price" id="Price4" value="₹ 6000 - ₹ 9000">
+                    <label class="form-check-label" for="Price4">
+                      ₹ 6000 - ₹ 9000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Price" id="Price5" value="₹ 9000 - ₹ 12000">
+                    <label class="form-check-label" for="Price5">
+                      ₹ 9000 - ₹ 12000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Price" id="Price6" value="₹ 12000 - ₹ 15000">
+                    <label class="form-check-label" for="Price6">
+                      ₹ 12000 - ₹ 15000
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Meals</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Meals" id="Meals1" value="Self catering">
+                    <label class="form-check-label" for="Meals1">
+                      Self catering
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Meals" id="Meals2" value="Breakfast included">
+                    <label class="form-check-label" for="Meals2">
+                      Breakfast included
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Facilities</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Facilities" id="Facilities1"
+                      value="Fitness centre">
+                    <label class="form-check-label" for="Facilities1">
+                      Fitness centre
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Facilities" id="Facilities2" value="Parking">
+                    <label class="form-check-label" for="Facilities2">
+                      Parking
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Facilities" id="Facilities3" value="Free WiFi">
+                    <label class="form-check-label" for="Facilities3">
+                      Free WiFi
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Facilities" id="Facilities4"
+                      value="Non-smoking rooms">
+                    <label class="form-check-label" for="Facilities4">
+                      Non-smoking rooms
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Facilities" id="Facilities5"
+                      value="Family rooms">
+                    <label class="form-check-label" for="Facilities5">
+                      Family rooms
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Facilities" id="Facilities6"
+                      value="Swimming Pool">
+                    <label class="form-check-label" for="Facilities6">
+                      Swimming Pool
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Property Type</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType1"
+                      value="Homestays">
+                    <label class="form-check-label" for="PropertyType1">
+                      Homestays
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType2"
+                      value="Entire homes & apartments">
+                    <label class="form-check-label" for="PropertyType2">
+                      Entire homes & apartments
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType3"
+                      value="Apartments">
+                    <label class="form-check-label" for="PropertyType3">
+                      Apartments
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType4" value="Hotels">
+                    <label class="form-check-label" for="PropertyType4">
+                      Hotels
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType5" value="Villas">
+                    <label class="form-check-label" for="PropertyType5">
+                      Villas
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType6" value="Lodges">
+                    <label class="form-check-label" for="PropertyType6">
+                      Lodges
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Bed preference</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Bedpreference" id="Bedpreference1"
+                      value="Twin beds">
+                    <label class="form-check-label" for="PropertyType1">
+                      Twin beds
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Bedpreference" id="Bedpreference2"
+                      value="Double bed">
+                    <label class="form-check-label" for="Bedpreference2">
+                      Double bed
+                    </label>
+                  </div>
+                  <h5 class="mt-3">User Rating</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="UserRating" id="UserRating1"
+                      value="Excellent: 4.2+">
+                    <label class="form-check-label" for="UserRating1">
+                      Excellent: 4.2+
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="UserRating" id="UserRating2"
+                      value="Very Good: 3.5+">
+                    <label class="form-check-label" for="UserRating2">
+                      Very Good: 3.5+
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="UserRating" id="UserRating3" value="Good: 3+">
+                    <label class="form-check-label" for="UserRating3">
+                      Good: 3+
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Room Views</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="RoomViews" id="RoomViews1" value="City View">
+                    <label class="form-check-label" for="RoomViews1">
+                      City View
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="RoomViews" id="RoomViews2" value="Garden View">
+                    <label class="form-check-label" for="RoomViews2">
+                      Garden View
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="RoomViews" id="RoomViews3" value="Mountain View">
+                    <label class="form-check-label" for="RoomViews3">
+                      Mountain View
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Room facilities</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities1"
+                      value="Air conditioning">
+                    <label class="form-check-label" for="PropertyType1">
+                      Air conditioning
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities2"
+                      value="Balcony">
+                    <label class="form-check-label" for="Roomfacilities2">
+                      Balcony
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities3"
+                      value="Private bathroom">
+                    <label class="form-check-label" for="Roomfacilities3">
+                      Private bathroom
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities4"
+                      value="Kitchen/kitchenette">
+                    <label class="form-check-label" for="Roomfacilities4">
+                      Kitchen/kitchenette
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities5"
+                      value="Private pool">
+                    <label class="form-check-label" for="Roomfacilities5">
+                      Private pool
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities6"
+                      value="Bath">
+                    <label class="form-check-label" for="Roomfacilities6">
+                      Bath
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities7"
+                      value="Refrigerator">
+                    <label class="form-check-label" for="Roomfacilities7">
+                      Refrigerator
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities8" value="TV">
+                    <label class="form-check-label" for="Roomfacilities8">
+                      TV
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities9"
+                      value="Washing machine">
+                    <label class="form-check-label" for="Roomfacilities9">
+                      Washing machine
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities10"
+                      value="Shower">
+                    <label class="form-check-label" for="Roomfacilities10">
+                      Shower
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Property rating</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating1"
+                      value="3 stars">
+                    <label class="form-check-label" for="Propertyrating1">
+                      3 stars
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating2"
+                      value="3.5 stars">
+                    <label class="form-check-label" for="Propertyrating2">
+                      3.5 stars
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating3"
+                      value="4 stars">
+                    <label class="form-check-label" for="Propertyrating3">
+                      4 stars
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating4"
+                      value="4.5 stars">
+                    <label class="form-check-label" for="Propertyrating4">
+                      4.5 stars
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating5"
+                      value="Unrated">
+                    <label class="form-check-label" for="Propertyrating5">
+                      Unrated
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Reservation policy</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Reservationpolicy" id="Reservationpolicy1"
+                      value="Book without credit card">
+                    <label class="form-check-label" for="Reservationpolicy1">
+                      Book without credit card
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Reservationpolicy" id="Reservationpolicy2"
+                      value="No prepayment">
+                    <label class="form-check-label" for="Reservationpolicy2">
+                      No prepayment
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Distance from centre of
+                    Tiruvannāmalai</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="centreofTiruvannāmalai"
+                      id="centreofTiruvannāmalai1" value="Less than 3 km">
+                    <label class="form-check-label" for="centreofTiruvannāmalai1">
+                      Less than 3 km
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="centreofTiruvannāmalai"
+                      id="centreofTiruvannāmalai2" value="Less than 5 km">
+                    <label class="form-check-label" for="centreofTiruvannāmalai2">
+                      Less than 5 km
+                    </label>
+                  </div>
+                </form>
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Apply Filter</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- brudcrum end -->
 
-    <div class="container ">
+    <!-- main card and map section start  -->
+    <div class="container">
       <div class="row">
-        <!-- Toggle Filter Button in Mobile View -->
-        <div class="col-12 d-lg-none">
-          <button class="btn btn-danger mb-3 d-flex text-center align-items-center justify-content-center"
-            style="background-color: red;" id="filterButton" onclick="toggleFilter()"><i
-              class="fa-solid fa-filter p-2"></i> <b>Filters</b></button>
-          <div id="filterList">
-            <!-- Add more filters as needed -->
-          </div>
-        </div>
-        <!-- Iframe always visible -->
-        <div class="col-3 mt-5 pt-3 ps-3 mb-3">
-          <div class="card-body">
+        <div class="col-3 d-none d-lg-block">
+          <!-- Content for the first column (hidden on mobile and tablet) -->
+          <div class="card-body text-center">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62385.734729707045!2d79.02805286493!3d12.240937612299705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bacc0852cd3d6cd%3A0x74002b16e5bac856!2sTiruvannamalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1716285118842!5m2!1sen!2sin"
-              width="250" height="160" style="border:0;" allowfullscreen="" loading="lazy"
+              class=" mx-auto" width="210" height="160" style="border:0;" allowfullscreen="" loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
-        </div>
-        <div class="col-md-9 mb-4 mt-1">
-          <div class="col-lg-12">
-            <h4 class="p-1"><b>Showing Properties In Tiruvannamalai</b></h4>
-            <div class="card shadow-0 border rounded-3 shadow-sm">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (3) 1.jpg"
-                          class="w-100" /></a>
-                      <a href="#!">
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5>Ramana Towers</h5>
-                    <div class="mt-1 mb-0 text-muted small ms-1">
-                      <div class="textright">
-                        <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                        <span>Opp to Ramana ashram</span><br>
-                        <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
-                      </div>
-                    </div>
-                    <div class="mb-2 text-muted small ms-1">
-                      <i class="fa-solid fa-check" style="color: red;"></i>
-                      <span>24-room service</span>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-1 ms-1">
-                      <span class=" pe-2 text-secondary"><s>₹2699</s></span>
-                      <h4 class="mb-1 me-1">₹1874</h4>
-                    </div>
-                    <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
-                    <button class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;"
-                      type="button">See availability</button>
-                  </div>
-                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
-                    <div class="d-flex justify-content-end ">
-                      <div class="align-items-end">
-                        <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br> <span
-                            class="" style="font-size: 12px; color: gray;">480 review</span></h4>
-                      </div>
-                      <div class="right rounded-1">
-                        <div style="font-size:15px;"><b>5.2</b></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="col-lg-12 d-none d-lg-block">
+            <div class="form-check">
+              <h4 class="mb-3 ">Select Filters</h4>
+              <h5 class="mt-3">Recommended for you</h5>
             </div>
-          </div>
-        </div>
-
-
-
-        <!-- Filters Section (Left Side) - Visible in Normal View -->
-        <div class="col-lg-3 d-none d-lg-block">
-          <div class="form-check">
-            <h4 class="mb-3 ">Select Filters</h4>
             <h5 class="mt-3">Recommended for you</h5>
-          </div>
-          <div class="form-check ">
-            <input class="form-check-input border-danger filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Air conditioning</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Breakfast included</label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter5">
-            <label class="form-check-label" for="filter5">Parking</label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter6">
-            <label class="form-check-label" for="filter6">Swimming Pool</label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter7">
-            <label class="form-check-label" for="filter7">Balcony</label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter8">
-            <label class="form-check-label" for="filter8">Free cancellation</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Recommended" id="Recommended1"
+                value="Air conditioning">
+              <label class="form-check-label" for="Recommended1">
+                Air conditioning
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Recommended" id="Recommended2"
+                value="Breakfast included">
+              <label class="form-check-label" for="Recommended2">
+                Breakfast included
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Recommended" id="Recommended3" value="Parking">
+              <label class="form-check-label" for="Recommended3">
+                Parking
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Recommended" id="Recommended4" value="Swimming Pool">
+              <label class="form-check-label" for="Recommended4">
+                Swimming Pool
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Recommended" id="Recommended5" value="Balcony">
+              <label class="form-check-label" for="Recommended5">
+                Balcony
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Recommended" id="Recommended6"
+                value="Free cancellation">
+              <label class="form-check-label" for="Recommended6">
+                Free cancellation
+              </label>
+            </div>
             <h5 class="mt-3">Price per night</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">₹ 0 - ₹ 2000</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">₹ 2000 - ₹ 3000</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter5">
-            <label class="form-check-label" for="filter5">₹ 3000 - ₹ 6000</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter6">
-            <label class="form-check-label" for="filter6">₹ 6000 - ₹ 9000</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter7">
-            <label class="form-check-label" for="filter7">₹ 9000 - ₹ 12000</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter8">
-            <label class="form-check-label" for="filter8">₹ 12000 - ₹ 15000</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Price" id="Price1" value="₹ 0 - ₹ 2000">
+              <label class="form-check-label" for="Price1">
+                ₹ 0 - ₹ 2000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Price" id="Price2" value="₹ 2000 - ₹ 3000">
+              <label class="form-check-label" for="Price2">
+                ₹ 2000 - ₹ 3000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Price" id="Price3" value="₹ 3000 - ₹ 6000">
+              <label class="form-check-label" for="Price3">
+                ₹ 3000 - ₹ 6000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Price" id="Price4" value="₹ 6000 - ₹ 9000">
+              <label class="form-check-label" for="Price4">
+                ₹ 6000 - ₹ 9000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Price" id="Price5" value="₹ 9000 - ₹ 12000">
+              <label class="form-check-label" for="Price5">
+                ₹ 9000 - ₹ 12000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Price" id="Price6" value="₹ 12000 - ₹ 15000">
+              <label class="form-check-label" for="Price6">
+                ₹ 12000 - ₹ 15000
+              </label>
+            </div>
             <h5 class="mt-3">Meals</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Self catering</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Breakfast included</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Meals" id="Meals1" value="Self catering">
+              <label class="form-check-label" for="Meals1">
+                Self catering
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Meals" id="Meals2" value="Breakfast included">
+              <label class="form-check-label" for="Meals2">
+                Breakfast included
+              </label>
+            </div>
             <h5 class="mt-3">Facilities</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Fitness centre</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Parking</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Free WiFi</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Non-smoking rooms</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Family rooms</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Swimming Pool</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Facilities" id="Facilities1" value="Fitness centre">
+              <label class="form-check-label" for="Facilities1">
+                Fitness centre
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Facilities" id="Facilities2" value="Parking">
+              <label class="form-check-label" for="Facilities2">
+                Parking
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Facilities" id="Facilities3" value="Free WiFi">
+              <label class="form-check-label" for="Facilities3">
+                Free WiFi
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Facilities" id="Facilities4" value="Non-smoking rooms">
+              <label class="form-check-label" for="Facilities4">
+                Non-smoking rooms
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Facilities" id="Facilities5" value="Family rooms">
+              <label class="form-check-label" for="Facilities5">
+                Family rooms
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Facilities" id="Facilities6" value="Swimming Pool">
+              <label class="form-check-label" for="Facilities6">
+                Swimming Pool
+              </label>
+            </div>
             <h5 class="mt-3">Property Type</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Homestays</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Entire homes & apartments</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Apartments</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Hotels</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Villas</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Lodges</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType1" value="Homestays">
+              <label class="form-check-label" for="PropertyType1">
+                Homestays
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType2"
+                value="Entire homes & apartments">
+              <label class="form-check-label" for="PropertyType2">
+                Entire homes & apartments
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType3" value="Apartments">
+              <label class="form-check-label" for="PropertyType3">
+                Apartments
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType4" value="Hotels">
+              <label class="form-check-label" for="PropertyType4">
+                Hotels
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType5" value="Villas">
+              <label class="form-check-label" for="PropertyType5">
+                Villas
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="PropertyType" id="PropertyType6" value="Lodges">
+              <label class="form-check-label" for="PropertyType6">
+                Lodges
+              </label>
+            </div>
             <h5 class="mt-3">Bed preference</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Twin beds</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Double bed</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Bedpreference" id="Bedpreference1" value="Twin beds">
+              <label class="form-check-label" for="PropertyType1">
+                Twin beds
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Bedpreference" id="Bedpreference2" value="Double bed">
+              <label class="form-check-label" for="Bedpreference2">
+                Double bed
+              </label>
+            </div>
             <h5 class="mt-3">User Rating</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Excellent: 4.2+</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Very Good: 3.5+</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Good: 3+</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="UserRating" id="UserRating1" value="Excellent: 4.2+">
+              <label class="form-check-label" for="UserRating1">
+                Excellent: 4.2+
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="UserRating" id="UserRating2" value="Very Good: 3.5+">
+              <label class="form-check-label" for="UserRating2">
+                Very Good: 3.5+
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="UserRating" id="UserRating3" value="Good: 3+">
+              <label class="form-check-label" for="UserRating3">
+                Good: 3+
+              </label>
+            </div>
             <h5 class="mt-3">Room Views</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">City View</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Garden View</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Mountain View</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="RoomViews" id="RoomViews1" value="City View">
+              <label class="form-check-label" for="RoomViews1">
+                City View
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="RoomViews" id="RoomViews2" value="Garden View">
+              <label class="form-check-label" for="RoomViews2">
+                Garden View
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="RoomViews" id="RoomViews3" value="Mountain View">
+              <label class="form-check-label" for="RoomViews3">
+                Mountain View
+              </label>
+            </div>
             <h5 class="mt-3">Room facilities</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Air conditioning</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Balcony</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Private bathroom</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Kitchen/kitchenette</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Private pool</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Bath</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Refrigerator</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">TV</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Washing machine</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Shower</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities1"
+                value="Air conditioning">
+              <label class="form-check-label" for="PropertyType1">
+                Air conditioning
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities2" value="Balcony">
+              <label class="form-check-label" for="Roomfacilities2">
+                Balcony
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities3"
+                value="Private bathroom">
+              <label class="form-check-label" for="Roomfacilities3">
+                Private bathroom
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities4"
+                value="Kitchen/kitchenette">
+              <label class="form-check-label" for="Roomfacilities4">
+                Kitchen/kitchenette
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities5"
+                value="Private pool">
+              <label class="form-check-label" for="Roomfacilities5">
+                Private pool
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities6" value="Bath">
+              <label class="form-check-label" for="Roomfacilities6">
+                Bath
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities7"
+                value="Refrigerator">
+              <label class="form-check-label" for="Roomfacilities7">
+                Refrigerator
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities8" value="TV">
+              <label class="form-check-label" for="Roomfacilities8">
+                TV
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities9"
+                value="Washing machine">
+              <label class="form-check-label" for="Roomfacilities9">
+                Washing machine
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Roomfacilities" id="Roomfacilities10" value="Shower">
+              <label class="form-check-label" for="Roomfacilities10">
+                Shower
+              </label>
+            </div>
             <h5 class="mt-3">Property rating</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">3 stars</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">3.5 stars</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">4 stars</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">4.5 stars</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Unrated</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating1" value="3 stars">
+              <label class="form-check-label" for="Propertyrating1">
+                3 stars
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating2" value="3.5 stars">
+              <label class="form-check-label" for="Propertyrating2">
+                3.5 stars
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating3" value="4 stars">
+              <label class="form-check-label" for="Propertyrating3">
+                4 stars
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating4" value="4.5 stars">
+              <label class="form-check-label" for="Propertyrating4">
+                4.5 stars
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Propertyrating" id="Propertyrating5" value="Unrated">
+              <label class="form-check-label" for="Propertyrating5">
+                Unrated
+              </label>
+            </div>
             <h5 class="mt-3">Reservation policy</h5>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Book without credit card</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">No prepayment</label>
-          </div>
-          <div class="form-check">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Reservationpolicy" id="Reservationpolicy1"
+                value="Book without credit card">
+              <label class="form-check-label" for="Reservationpolicy1">
+                Book without credit card
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Reservationpolicy" id="Reservationpolicy2"
+                value="No prepayment">
+              <label class="form-check-label" for="Reservationpolicy2">
+                No prepayment
+              </label>
+            </div>
             <h5 class="mt-3">Distance from centre of
               Tiruvannāmalai</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="centreofTiruvannāmalai" id="centreofTiruvannāmalai1"
+                value="Less than 3 km">
+              <label class="form-check-label" for="centreofTiruvannāmalai1">
+                Less than 3 km
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="centreofTiruvannāmalai" id="centreofTiruvannāmalai2"
+                value="Less than 5 km">
+              <label class="form-check-label" for="centreofTiruvannāmalai2">
+                Less than 5 km
+              </label>
+            </div>
+            <!-- Add more filters as needed -->
           </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter3">
-            <label class="form-check-label" for="filter3">Less than 3 km</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input filter-checkbox-colour" type="checkbox" value="" id="filter4">
-            <label class="form-check-label" for="filter4">Less than 5 km</label>
-          </div>
-          <!-- Add more filters as needed -->
+          <!-- Content for the first column (hidden on mobile and tablet) -->
         </div>
-
-        <!-- Right side card section -->
-        <div class="col-md-9 mb-4">
-          <div class="col-lg-12">
-            <div class="card shadow-0 border rounded-3 shadow-sm mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (7) 1.jpg"
-                          class="w-100" /></a>
-                      <a href="#!">
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+        <div class="col-12 col-lg-9 ">
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="card shadow-0 border rounded-3 shadow-sm mb-2">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                      <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                        <a href="../single-hotel-page/index.html">
+                          <img src="./hotel images/Screenshot (7) 1.jpg" class="w-100" />
+                        </a>
+                        <a href="#!">
+                          <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-5 col-lg-6">
+                      <h5>Ramana Towers</h5>
+                      <div class="mt-1 mb-0 text-muted small">
+                        <div class="textright">
+                          <i class="fa-solid fa-location-dot" style="color: red;"></i>
+                          <span>Opp to Ramana ashram</span><br>
+                          <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
                         </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5>Ramana Towers</h5>
-                    <div class="mt-1 mb-0 text-muted small ms-1">
-                      <div class="textright">
-                        <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                        <span>Opp to Ramana ashram</span><br>
-                        <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
                       </div>
-                    </div>
-                    <div class="mb-2 text-muted small ms-1">
-                      <i class="fa-solid fa-check" style="color: red;"></i>
-                      <span>24-room service</span>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-1 ms-1">
-                      <span class=" pe-2 text-secondary"><s>₹2699</s></span>
-                      <h4 class="mb-1 me-1">₹1874</h4>
-                    </div>
-                    <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
-                    <button class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;"
-                      type="button">See availability</button>
-                  </div>
-                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
-                    <div class="d-flex justify-content-end ">
-                      <div class="align-items-end">
-                        <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br> <span
-                            class="" style="font-size: 12px; color: gray;">480 review</span></h4>
+                      <div class="mb-2 text-muted small">
+                        <i class="fa-solid fa-check" style="color: red;"></i>
+                        <span>24-room service</span>
                       </div>
-                      <div class="right rounded-1">
-                        <div style="font-size:15px;"><b>5.2</b></div>
+                      <div class="d-flex flex-row align-items-center mb-1">
+                        <span class="pe-2 text-secondary"><s>₹2699</s></span>
+                        <h4 class="mb-1 me-1">₹1874</h4>
+                      </div>
+                      <p style="font-size: 15px;">+ ₹468 TAXES & FEES</p>
+                      <button class="btn text-light btn-sm" style="width: 126px; background-color: red;"
+                        type="button">See availability</button>
+                    </div>
+                    <div class="col-12 col-md-3 col-lg-3 border-sm-start-none">
+                      <div class="d-flex justify-content-end">
+                        <div class="align-items-end">
+                          <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br>
+                            <span class="" style="font-size: 12px; color: gray;">480 review</span>
+                          </h4>
+                        </div>
+                        <div class="right rounded-1">
+                          <div style="font-size:15px;"><b>5.2</b></div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card shadow-0 border rounded-3 shadow-sm mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (8) 1.jpg"
-                          class="w-100" /></a>
-                      <a href="#!">
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+            <div class="col-12">
+              <div class="card shadow-0 border rounded-3 shadow-sm mb-2">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                      <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                        <a href="../single-hotel-page/index.html">
+                          <img src="./hotel images/Screenshot (7) 1.jpg" class="w-100" />
+                        </a>
+                        <a href="#!">
+                          <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-5 col-lg-6">
+                      <h5>Ramana Towers</h5>
+                      <div class="mt-1 mb-0 text-muted small">
+                        <div class="textright">
+                          <i class="fa-solid fa-location-dot" style="color: red;"></i>
+                          <span>Opp to Ramana ashram</span><br>
+                          <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
                         </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5>Ramana Towers</h5>
-                    <div class="mt-1 mb-0 text-muted small ms-1">
-                      <div class="textright">
-                        <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                        <span>Opp to Ramana ashram</span><br>
-                        <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
                       </div>
-                    </div>
-                    <div class="mb-2 text-muted small ms-1">
-                      <i class="fa-solid fa-check" style="color: red;"></i>
-                      <span>24-room service</span>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-1 ms-1">
-                      <span class=" pe-2 text-secondary"><s>₹2699</s></span>
-                      <h4 class="mb-1 me-1">₹1874</h4>
-                    </div>
-                    <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
-                    <button class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;"
-                      type="button">See availability</button>
-                  </div>
-                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
-                    <div class="d-flex justify-content-end ">
-                      <div class="align-items-end">
-                        <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br> <span
-                            class="" style="font-size: 12px; color: gray;">480 review</span></h4>
+                      <div class="mb-2 text-muted small">
+                        <i class="fa-solid fa-check" style="color: red;"></i>
+                        <span>24-room service</span>
                       </div>
-                      <div class="right rounded-1">
-                        <div style="font-size:15px;"><b>5.2</b></div>
+                      <div class="d-flex flex-row align-items-center mb-1">
+                        <span class="pe-2 text-secondary"><s>₹2699</s></span>
+                        <h4 class="mb-1 me-1">₹1874</h4>
+                      </div>
+                      <p style="font-size: 15px;">+ ₹468 TAXES & FEES</p>
+                      <button class="btn text-light btn-sm" style="width: 126px; background-color: red;"
+                        type="button">See availability</button>
+                    </div>
+                    <div class="col-12 col-md-3 col-lg-3 border-sm-start-none">
+                      <div class="d-flex justify-content-end">
+                        <div class="align-items-end">
+                          <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br>
+                            <span class="" style="font-size: 12px; color: gray;">480 review</span>
+                          </h4>
+                        </div>
+                        <div class="right rounded-1">
+                          <div style="font-size:15px;"><b>5.2</b></div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card shadow-0 border rounded-3 shadow-sm mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (10) 1.jpg"
-                          class="w-100" /></a>
-                      <a href="#!">
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5>Ramana Towers</h5>
-                    <div class="mt-1 mb-0 text-muted small ms-1">
-                      <div class="textright">
-                        <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                        <span>Opp to Ramana ashram</span><br>
-                        <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
-                      </div>
-                    </div>
-                    <div class="mb-2 text-muted small ms-1">
-                      <i class="fa-solid fa-check" style="color: red;"></i>
-                      <span>24-room service</span>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-1 ms-1">
-                      <span class=" pe-2 text-secondary"><s>₹2699</s></span>
-                      <h4 class="mb-1 me-1">₹1874</h4>
-                    </div>
-                    <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
-                    <button class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;"
-                      type="button">See availability</button>
-                  </div>
-                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
-                    <div class="d-flex justify-content-end ">
-                      <div class="align-items-end">
-                        <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br> <span
-                            class="" style="font-size: 12px; color: gray;">480 review</span></h4>
-                      </div>
-                      <div class="right rounded-1">
-                        <div style="font-size:15px;"><b>5.2</b></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card shadow-0 border rounded-3 shadow-sm mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (11) 1.jpg"
-                          class="w-100" /></a>
-                      <a href="#!">
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5>Ramana Towers</h5>
-                    <div class="mt-1 mb-0 text-muted small ms-1">
-                      <div class="textright">
-                        <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                        <span>Opp to Ramana ashram</span><br>
-                        <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
-                      </div>
-                    </div>
-                    <div class="mb-2 text-muted small ms-1">
-                      <i class="fa-solid fa-check" style="color: red;"></i>
-                      <span>24-room service</span>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-1 ms-1">
-                      <span class=" pe-2 text-secondary"><s>₹2699</s></span>
-                      <h4 class="mb-1 me-1">₹1874</h4>
-                    </div>
-                    <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
-                    <button class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;"
-                      type="button">See availability</button>
-                  </div>
-                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
-                    <div class="d-flex justify-content-end ">
-                      <div class="align-items-end">
-                        <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br> <span
-                            class="" style="font-size: 12px; color: gray;">480 review</span></h4>
-                      </div>
-                      <div class="right rounded-1">
-                        <div style="font-size:15px;"><b>5.2</b></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card shadow-0 border rounded-3 shadow-sm mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (12) 1.jpg"
-                          class="w-100" /></a>
-                      <a href="#!">
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5>Ramana Towers</h5>
-                    <div class="mt-1 mb-0 text-muted small ms-1">
-                      <div class="textright">
-                        <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                        <span>Opp to Ramana ashram</span><br>
-                        <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
-                      </div>
-                    </div>
-                    <div class="mb-2 text-muted small ms-1">
-                      <i class="fa-solid fa-check" style="color: red;"></i>
-                      <span>24-room service</span>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-1 ms-1">
-                      <span class=" pe-2 text-secondary"><s>₹2699</s></span>
-                      <h4 class="mb-1 me-1">₹1874</h4>
-                    </div>
-                    <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
-                    <button class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;"
-                      type="button">See availability</button>
-                  </div>
-                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
-                    <div class="d-flex justify-content-end ">
-                      <div class="align-items-end">
-                        <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br> <span
-                            class="" style="font-size: 12px; color: gray;">480 review</span></h4>
-                      </div>
-                      <div class="right rounded-1">
-                        <div style="font-size:15px;"><b>5.2</b></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card shadow-0 border rounded-3 shadow-sm mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (13) 1.jpg"
-                          class="w-100" /></a>
-                      <a href="#!">
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5>Ramana Towers</h5>
-                    <div class="mt-1 mb-0 text-muted small ms-1">
-                      <div class="textright">
-                        <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                        <span>Opp to Ramana ashram</span><br>
-                        <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
-                      </div>
-                    </div>
-                    <div class="mb-2 text-muted small ms-1">
-                      <i class="fa-solid fa-check" style="color: red;"></i>
-                      <span>24-room service</span>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-1 ms-1">
-                      <span class=" pe-2 text-secondary"><s>₹2699</s></span>
-                      <h4 class="mb-1 me-1">₹1874</h4>
-                    </div>
-                    <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
-                    <button class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;"
-                      type="button">See availability</button>
-                  </div>
-                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
-                    <div class="d-flex justify-content-end ">
-                      <div class="align-items-end">
-                        <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br> <span
-                            class="" style="font-size: 12px; color: gray;">480 review</span></h4>
-                      </div>
-                      <div class="right rounded-1">
-                        <div style="font-size:15px;"><b>5.2</b></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card shadow-0 border rounded-3 shadow-sm mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (14) 1.jpg"
-                          class="w-100" /></a>
-                      <a href="#!">
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5>Ramana Towers</h5>
-                    <div class="mt-1 mb-0 text-muted small ms-1">
-                      <div class="textright">
-                        <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                        <span>Opp to Ramana ashram</span><br>
-                        <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
-                      </div>
-                    </div>
-                    <div class="mb-2 text-muted small ms-1">
-                      <i class="fa-solid fa-check" style="color: red;"></i>
-                      <span>24-room service</span>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-1 ms-1">
-                      <span class=" pe-2 text-secondary"><s>₹2699</s></span>
-                      <h4 class="mb-1 me-1">₹1874</h4>
-                    </div>
-                    <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
-                    <button class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;"
-                      type="button">See availability</button>
-                  </div>
-                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
-                    <div class="d-flex justify-content-end ">
-                      <div class="align-items-end">
-                        <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br> <span
-                            class="" style="font-size: 12px; color: gray;">480 review</span></h4>
-                      </div>
-                      <div class="right rounded-1">
-                        <div style="font-size:15px;"><b>5.2</b></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card shadow-0 border rounded-3 shadow-sm mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                      <a href="../single-hotel-page/index.html"><img src="./hotel images/Screenshot (16) 1.jpg"
-                          class="w-100" /></a>
-                      <a href="#!">
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5>Ramana Towers</h5>
-                    <div class="mt-1 mb-0 text-muted small ms-1">
-                      <div class="textright">
-                        <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                        <span>Opp to Ramana ashram</span><br>
-                        <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
-                      </div>
-                    </div>
-                    <div class="mb-2 text-muted small ms-1">
-                      <i class="fa-solid fa-check" style="color: red;"></i>
-                      <span>24-room service</span>
-                    </div>
-                    <div class="d-flex flex-row align-items-center mb-1 ms-1">
-                      <span class=" pe-2 text-secondary"><s>₹2699</s></span>
-                      <h4 class="mb-1 me-1">₹1874</h4>
-                    </div>
-                    <p style="font-size: 15px;" class="ms-1">+ ₹468 TAXES & FEES</p>
-                    <button class="btn text-light ms-1 btn-sm" style="width: 126px; background-color: red;"
-                      type="button">See availability</button>
-                  </div>
-                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none">
-                    <div class="d-flex justify-content-end ">
-                      <div class="align-items-end">
-                        <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br> <span
-                            class="" style="font-size: 12px; color: gray;">480 review</span></h4>
-                      </div>
-                      <div class="right rounded-1">
-                        <div style="font-size:15px;"><b>5.2</b></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- add more cards  -->
+            <!-- Add more cards here -->
           </div>
         </div>
-        <!-- Right side card section end -->
       </div>
     </div>
+    <!-- main card and map section end  -->
   </main>
   <!-- footer section start  -->
   <footer class="footer pt-4">
