@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 <head>
   <script src="../assets/js/color-modes.js"></script>
@@ -67,16 +67,12 @@
 
         <hr>
         <p class="text-center" style="font-size: 12px; font-weight: 400;">By signing in or creating an account, you agree with our <a href="#" class="text-danger">Terms & conditions</a> and <a href="#" class="text-danger">privacy statement</a>.</p>
-
-       
       </form>
     </main>
- 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
     import { getDatabase } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signInWithEmailAndPassword, signOut   } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-
     const firebaseConfig = {
       apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
       authDomain: "y-spot-e84ca.firebaseapp.com",
@@ -94,7 +90,6 @@
     const provider = new GoogleAuthProvider();
     const emailInp = document.getElementById("floatingInput");
     const passwordInp = document.getElementById("floatingPassword");
-    // const forgotpassword = document.getElementById("forgotpassword");
     const signInButton = document.getElementById("signInButton");
     const emailSignInButton = document.getElementById("emailSignInButton");
     const signOutButton = document.getElementById("signOutButton");
@@ -190,12 +185,10 @@
       event.preventDefault();  // Prevent the default button behavior
       emailSignIn();
     });
-
     signOutButton.addEventListener('click', (event) => {
       event.preventDefault();  // Prevent the default button behavior
       userSignOut();
     });
-
   </script>
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
