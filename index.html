@@ -25,7 +25,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="assets/index-asset/script.js">
 
-</script>  
+</script>   
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -72,37 +72,67 @@
     };
 </script>
 <!-- firebase script end -->
+<style>
+  .navbar-nav {
+    flex-wrap: nowrap;
+  }
+
+  .navbar-nav.scrollable {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .navbar-nav.scrollable .nav-item {
+    display: inline-block;
+  }
+</style>
+<style>
+  div.scrollmenu {
+background-color: #333;
+overflow: auto;
+white-space: nowrap;
+}
+
+div.scrollmenu a {
+display: inline-block;
+color: white;
+text-align: center;
+padding: 14px;
+text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+background-color: #f50e0e;
+}
+</style>
 </head>
 <body>
-  <header style="background-color:  rgb(237, 26, 37);">
-    <nav class=" container navbar navbar-expand-lg navbar-light" style="background-color:  rgb(237, 26, 37);">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html" style="margin-left: 100px;">
-          <img src="assets/img/Frame 223.png" alt="" class="d-inline-block align-text-top">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-          </ul>
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="login/signup.html"><button type="button"
-                  class="btn btn-light text-danger"><b>Register</b></button></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="signOutButton" href="login/index.html">
-                  <button type="button" class="btn btn-light text-danger"><b>Sign In</b></button>
-              </a>
-          </li>
-          </ul>
+  <header>
+    <!-- First navigation bar: Registration and Sign In buttons -->
+    <nav class="navbar" style="background-color: #FF1717;">
+      <div class="container">
+        <div class="row w-100">
+          <!-- First column -->
+          <div class=" col-md-4 col-lg-4"></div>
+          <!-- Second column -->
+          <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-center align-items-center">
+            <a class="navbar-brand" href="../index.html">
+              <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+            </a>
+          </div>
+          <!-- Third column -->
+          <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
+            <a class="nav-link" href="../login/index.html">
+              <button type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Sign in</b>
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </nav>
-   
     <!-- <div class="container ">
       <button class="btn btn-danger text-center ms-5  " id="signOutButton">Sign Out</button>
       <div id="message">
