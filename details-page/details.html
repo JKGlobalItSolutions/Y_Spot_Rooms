@@ -29,6 +29,40 @@
   <!-- Flatpickr CSS CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <!-- Custom CSS -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+      authDomain: "y-spot-e84ca.firebaseapp.com",
+      databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+      projectId: "y-spot-e84ca",
+      storageBucket: "y-spot-e84ca.appspot.com",
+      messagingSenderId: "783996806068",
+      appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+      measurementId: "G-TSH2JVYJHR"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+  
+    window.onload = () => {
+      const userDetails = document.getElementById("userDetails");
+      const registerButton = document.getElementById("registerButton");
+  
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          userDetails.style.display = "block";
+          registerButton.style.display = "none";
+          document.getElementById("userName").textContent = user.displayName || "User";
+        } else {
+          userDetails.style.display = "none";
+          registerButton.style.display = "block";
+        }
+      });
+    };
+  </script>
   <style>
     .navbar-nav {
       flex-wrap: nowrap;
@@ -63,9 +97,13 @@
           <!-- Third column -->
           <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
             <a class="nav-link" href="../login/index.html">
-              <button type="button" class="btn btn-light text-danger"
+              <button id="registerButton" type="button" class="btn btn-light text-danger"
                 style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                <b>Sign in</b>
+                <b>Register</b>
+              </button>
+              <button id="userDetails" style="display: none;" type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b id="userName"></b>
               </button>
             </a>
           </div>
