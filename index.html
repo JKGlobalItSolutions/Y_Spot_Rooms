@@ -57,24 +57,31 @@ div.scrollmenu a:hover {
       <div class="container">
         <div class="row w-100">
           <!-- First column -->
-          <div class="col-md-4 col-lg-4"></div>
+          <div class=" col-lg-4 "></div>
           <!-- Second column -->
-          <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-center align-items-center">
+          <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
             <a class="navbar-brand" href="./index.html">
               <img src="./assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
             </a>
           </div>
           <!-- Third column -->
-          <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
-            <a class="nav-link" href="./login/index.html" id="registerLink">
+          <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
+            <a class="nav-link" href="./login/signup.html" id="registerLink">
               <button id="registerButton" type="button" class="btn btn-light text-danger"
                 style="height: 30px; display: flex; align-items: center; justify-content: center;">
                 <b>Register</b>
               </button>
             </a>
-            <span class="d-flex align-items-center " id="userDetails" style="display: none;">
+            <a class="nav-link" href="./login/index.html" id="loginLink">
+              <button id="loginButton" type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Login</b>
+              </button>
+            </a>
+            <div style="display: none;" id="userDetailsContainer">
               <li class="nav-item dropdown list-unstyled">
-                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img src="https://via.placeholder.com/30" class="rounded-circle profile-icon" alt="Profile Icon">
                   <span class="username text-light" id="userName"></span>
                 </a>
@@ -82,8 +89,9 @@ div.scrollmenu a:hover {
                   <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
                 </div>
               </li>
-            </span>
+            </div>
           </div>
+    
         </div>
       </div>
     </nav>
@@ -93,6 +101,7 @@ div.scrollmenu a:hover {
         width: 30px;
         height: 30px;
       }
+    
       .username {
         margin-left: 10px;
       }
@@ -117,27 +126,31 @@ div.scrollmenu a:hover {
       const auth = getAuth();
     
       window.onload = () => {
-        const userDetails = document.getElementById("userDetails");
+        const userDetailsContainer = document.getElementById("userDetailsContainer");
         const registerLink = document.getElementById("registerLink");
+        const loginLink = document.getElementById("loginLink");
     
         onAuthStateChanged(auth, (user) => {
           if (user) {
-            userDetails.style.display = "block";
+            userDetailsContainer.style.display = "block";
             registerLink.style.display = "none";
+            loginLink.style.display = "none";
             document.getElementById("userName").textContent = user.displayName || "User";
           } else {
-            userDetails.style.display = "none";
+            userDetailsContainer.style.display = "none";
             registerLink.style.display = "block";
+            loginLink.style.display = "block";
           }
         });
       };
     
-      document.getElementById('logoutButton').addEventListener('click', function() {
+      document.getElementById('logoutButton').addEventListener('click', function () {
         signOut(auth).then(() => {
           alert('Logged out successfully');
-          // Hide user details and show register link
-          document.getElementById("userDetails").style.display = "none";
+          // Hide user details and show register and login links
+          document.getElementById("userDetailsContainer").style.display = "none";
           document.getElementById("registerLink").style.display = "block";
+          document.getElementById("loginLink").style.display = "block";
           // Redirect to login page or home page after logout
           window.location.href = './login/index.html';
         }).catch((error) => {
@@ -146,6 +159,8 @@ div.scrollmenu a:hover {
         });
       });
     </script>
+    
+    
     
     
     
