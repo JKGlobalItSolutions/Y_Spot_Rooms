@@ -201,19 +201,19 @@ div.scrollmenu a:hover {
      <!-- hero section search form start -->
      <div class="container custom-container rounded" id="move2" style="background-color: #1C1B1F; width: 100%;">
       <div class="container">
-        <form>
+        <form action="/details-page/details.html" method="get" >
           <div class="row justify-content-center rounded-3">
             <!-- Destination -->
             <div class="form-group col-lg-3 col-md-6 col-sm-12">
-              <input type="text" class="form-control" id="location" placeholder="Enter destination" required>
+              <input type="text" class="form-control" id="location" name="location" placeholder="Enter destination" required>
             </div>
             <!-- Check-in and Check-out Dates -->
             <div class="form-group col-lg-4 col-md-6 col-sm-12">
-              <input type="text" class="form-control" id="dates" placeholder="Check-in - Check-out" required>
+              <input type="text" class="form-control" id="dates" name="dates" placeholder="Check-in - Check-out" required>
             </div>
             <!-- Combined Input Box for Adults, Children, and Rooms -->
             <div class="form-group col-lg-3 col-md-6 col-sm-12">
-              <input type="text" class="form-control" id="guests" placeholder="Adults, Children & Rooms" required>
+              <input type="text" class="form-control" id="guests" name="guests" placeholder="Adults, Children & Rooms" required>
               <div class="dropdown-menu p-3" id="guestsDropdown" aria-labelledby="guestsDropdown"
                 style="display: none;">
                 <div class="form-group">
@@ -256,8 +256,7 @@ div.scrollmenu a:hover {
             </div>
             <!-- Search Button -->
             <div class="form-group col-lg-2 col-md-6 col-sm-12">
-              <button type="button" class="btn text-light" id="search" style="background-color: #FF1717;"
-                onclick="window.location.href='./details-page/details.html'">Search</button>
+              <button type="submit" class="btn text-light" id="search" style="background-color: #FF1717;">Search</button>
             </div>
           </div>
         </form>
