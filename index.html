@@ -66,15 +66,15 @@ div.scrollmenu a:hover {
           </div>
           <!-- Third column -->
           <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
-            <a class="nav-link" href="./login/index.html">
+            <a class="nav-link" href="./login/index.html" id="registerLink">
               <button id="registerButton" type="button" class="btn btn-light text-danger"
                 style="height: 30px; display: flex; align-items: center; justify-content: center;">
                 <b>Register</b>
               </button>
             </a>
-            <span class="d-flex align-items-center">
+            <span class="d-flex align-items-center " id="userDetails" style="display: none;">
               <li class="nav-item dropdown list-unstyled">
-                <a id="userDetails" style="display: none;" class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img src="https://via.placeholder.com/30" class="rounded-circle profile-icon" alt="Profile Icon">
                   <span class="username text-light" id="userName"></span>
                 </a>
@@ -118,16 +118,16 @@ div.scrollmenu a:hover {
     
       window.onload = () => {
         const userDetails = document.getElementById("userDetails");
-        const registerButton = document.getElementById("registerButton");
+        const registerLink = document.getElementById("registerLink");
     
         onAuthStateChanged(auth, (user) => {
           if (user) {
             userDetails.style.display = "block";
-            registerButton.style.display = "none";
+            registerLink.style.display = "none";
             document.getElementById("userName").textContent = user.displayName || "User";
           } else {
             userDetails.style.display = "none";
-            registerButton.style.display = "block";
+            registerLink.style.display = "block";
           }
         });
       };
@@ -135,6 +135,9 @@ div.scrollmenu a:hover {
       document.getElementById('logoutButton').addEventListener('click', function() {
         signOut(auth).then(() => {
           alert('Logged out successfully');
+          // Hide user details and show register link
+          document.getElementById("userDetails").style.display = "none";
+          document.getElementById("registerLink").style.display = "block";
           // Redirect to login page or home page after logout
           window.location.href = './login/index.html';
         }).catch((error) => {
@@ -143,6 +146,8 @@ div.scrollmenu a:hover {
         });
       });
     </script>
+    
+    
     
     <!-- Second navigation bar: centered content -->
     <div class="scrollmenu text-center" style="background-color:#FF1717;">
