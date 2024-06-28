@@ -30,44 +30,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- firebase script start -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
-    authDomain: "y-spot-e84ca.firebaseapp.com",
-    databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
-    projectId: "y-spot-e84ca",
-    storageBucket: "y-spot-e84ca.appspot.com",
-    messagingSenderId: "783996806068",
-    appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
-    measurementId: "G-TSH2JVYJHR"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth();
-
-  window.onload = () => {
-    const userDetails = document.getElementById("userDetails");
-    const registerButton = document.getElementById("registerButton");
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        userDetails.style.display = "block";
-        registerButton.style.display = "none";
-        document.getElementById("userName").textContent = user.displayName || "User";
-      } else {
-        userDetails.style.display = "none";
-        registerButton.style.display = "block";
-      }
-    });
-  };
-  document.getElementById('logoutButton').addEventListener('click', function() {
-        // Add your logout functionality here
-        alert('Logging out...');
-    });
-</script>
 <style>
   div.scrollmenu {
   background-color: #333;
@@ -93,53 +55,95 @@ div.scrollmenu a:hover {
     <!-- First navigation bar: Registration and Sign In buttons -->
     <nav class="navbar" style="background-color: #FF1717;">
       <div class="container">
-          <div class="row w-100">
-              <!-- First column -->
-              <div class="col-md-4 col-lg-4"></div>
-              <!-- Second column -->
-              <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-center align-items-center">
-                  <a class="navbar-brand" href="./index.html">
-                      <img src="./assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
-                  </a>
-              </div>
-              <!-- Third column -->
-              <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
-                  <a class="nav-link" href="./login/index.html">
-                      <button id="registerButton" type="button" class="btn btn-light text-danger"
-                          style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                          <b>Register</b>
-                      </button>
-                  </a>
-                  <span class="d-flex align-items-center">
-                      <li class="nav-item dropdown list-unstyled">
-                          <a id="userDetails" style="display: none;" class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <img src="https://via.placeholder.com/30" class="rounded-circle profile-icon" alt="Profile Icon">
-                              <span class="username text-light" id="userName"></span>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
-                              <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
-                          </div>
-                      </li>
-                  </span>
-              </div>
+        <div class="row w-100">
+          <!-- First column -->
+          <div class="col-md-4 col-lg-4"></div>
+          <!-- Second column -->
+          <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-center align-items-center">
+            <a class="navbar-brand" href="./index.html">
+              <img src="./assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+            </a>
           </div>
+          <!-- Third column -->
+          <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
+            <a class="nav-link" href="./login/index.html">
+              <button id="registerButton" type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Register</b>
+              </button>
+            </a>
+            <span class="d-flex align-items-center">
+              <li class="nav-item dropdown list-unstyled">
+                <a id="userDetails" style="display: none;" class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="https://via.placeholder.com/30" class="rounded-circle profile-icon" alt="Profile Icon">
+                  <span class="username text-light" id="userName"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                  <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
+                </div>
+              </li>
+            </span>
+          </div>
+        </div>
       </div>
-  </nav>
-  <style>
-    .profile-icon {
+    </nav>
+    
+    <style>
+      .profile-icon {
         width: 30px;
         height: 30px;
-    }
-    .username {
+      }
+      .username {
         margin-left: 10px;
-    }
-</style>
-<script>
-    document.getElementById('logoutButton').addEventListener('click', function() {
-        // Add your logout functionality here
-        alert('Logging out...');
-    });
-</script>
+      }
+    </style>
+    
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    
+      const firebaseConfig = {
+        apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+        authDomain: "y-spot-e84ca.firebaseapp.com",
+        databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+        projectId: "y-spot-e84ca",
+        storageBucket: "y-spot-e84ca.appspot.com",
+        messagingSenderId: "783996806068",
+        appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+        measurementId: "G-TSH2JVYJHR"
+      };
+    
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+    
+      window.onload = () => {
+        const userDetails = document.getElementById("userDetails");
+        const registerButton = document.getElementById("registerButton");
+    
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            userDetails.style.display = "block";
+            registerButton.style.display = "none";
+            document.getElementById("userName").textContent = user.displayName || "User";
+          } else {
+            userDetails.style.display = "none";
+            registerButton.style.display = "block";
+          }
+        });
+      };
+    
+      document.getElementById('logoutButton').addEventListener('click', function() {
+        signOut(auth).then(() => {
+          alert('Logged out successfully');
+          // Redirect to login page or home page after logout
+          window.location.href = './login/index.html';
+        }).catch((error) => {
+          console.error('Error logging out: ', error);
+          alert('Error logging out. Please try again.');
+        });
+      });
+    </script>
+    
     <!-- Second navigation bar: centered content -->
     <div class="scrollmenu text-center" style="background-color:#FF1717;">
       <a href="#home"><button type="button" class="btn text-light border rounded-pill active">
