@@ -51,6 +51,16 @@
         </div>
 
         <button class="btn text-light w-100 py-2" type="button" id="signUpButton" style="background-color: #FF1717; height: 50px;">Sign Up</button>
+        <div class="d-flex justify-content-center mt-4" style="gap: 10px;">
+          <div class="container text-center" style="gap: 10px;">
+            <div class="media-options">
+              <a id="signInButton" href="#" class="google bg-light border p-2 rounded pb-3 px-2 pe-4 text-dark" style="text-decoration: none;">
+                <b><img src="../assets/img/google logo.png" height="40px" alt="" class="google-img">Login with Google</b>
+              </a>
+              
+            </div>
+          </div>
+        </div>
 
         <p class="text-center mt-3">Already have an account? <a href="./index.html" class="text-danger">Sign In</a></p>
 
@@ -63,7 +73,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
     import { getDatabase } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
@@ -79,11 +89,12 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     const db = getDatabase();
-
+    const googleProvider = new GoogleAuthProvider();
     const nameInp = document.getElementById("floatingName");
     const emailInp = document.getElementById("floatingInput");
     const passwordInp = document.getElementById("floatingPassword");
     const signUpButton = document.getElementById("signUpButton");
+    const signInButton = document.getElementById("signInButton");
 
     const validateEmail = (email) => {
       const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -133,11 +144,29 @@
         alert("Error signing up with email and password. Please try again.");
       }
     };
+
     signUpButton.addEventListener('click', (event) => {
       event.preventDefault();  // Prevent the default button behavior
       userSignUp();
     });
-  </script>
+
+    const googleSignIn = async () => {
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        console.log("User signed in with Google:", user);
+        window.location.href = "../index.html"; // Redirect to index page after sign-in
+      } catch (error) {
+        console.error("Error signing in with Google:", error);
+        alert("Error signing in with Google. Please try again.");
+      }
+    };
+    signInButton.addEventListener('click', (event) => {
+      event.preventDefault();  // Prevent the default link behavior
+      googleSignIn();
+    });
+</script>
+
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -98,12 +98,10 @@
     const userEmail = document.getElementById("userEmail");
     signOutButton.style.display = "none";
     message.style.display = "none";
-
     const validateEmail = (email) => {
       const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
       return re.test(email);
     };
-
     const validateForm = () => {
       const email = emailInp.value;
       const password = passwordInp.value;
@@ -116,16 +114,12 @@
         alert("Please enter a valid email address.");
         valid = false;
       }
-
       if (!password) {
         alert("Password is required.");
         valid = false;
       }
-
       return valid;
     };
-
-
     const userSignIn = async () => {
       signInWithPopup(auth, provider)
         .then((result) => {
@@ -137,7 +131,6 @@
           console.error(errorCode, errorMessage);
         });
     };
-
     const emailSignIn = async () => {
       if (!validateForm()) return; // Validate form before signing in
 
@@ -154,7 +147,6 @@
         alert("Error signing in with email and password. Please check your credentials and try again.");
       }
     };
-
     const userSignOut = async () => {
       try {
         await signOut(auth);
@@ -163,7 +155,6 @@
         console.error("Error signing out:", error);
       }
     };
-
     onAuthStateChanged(auth, (user) => {
       if (user) {
         signOutButton.style.display = "block";
@@ -175,12 +166,10 @@
         message.style.display = "none";
       }
     });
-
     signInButton.addEventListener('click', (event) => {
       event.preventDefault();  // Prevent the default link behavior
       userSignIn();
     });
-
     emailSignInButton.addEventListener('click', (event) => {
       event.preventDefault();  // Prevent the default button behavior
       emailSignIn();
@@ -190,7 +179,6 @@
       userSignOut();
     });
   </script>
-
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

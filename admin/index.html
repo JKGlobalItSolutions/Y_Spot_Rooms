@@ -234,7 +234,7 @@
                                             <div class="row mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="col-lg-5">
                                                     <label class="labels"><b>Submit your Hotel documents</b></label>
-                                                    <input id="hoteldocument"  type="file" class="form-control" placeholder="Submit your Hotel documents">
+                                                    <input id="hoteldocument" type="file" class="form-control" placeholder="Submit your Hotel documents">
                                                 </div>
                                                 
                                                         <div class="text-center col-lg-5 mt-4">
@@ -255,89 +255,103 @@
             </div>
             <!-- End of Main Content -->
             <!-- firebase script starts -->
-            <script>
-                // Your web app's Firebase configuration
-                const firebaseConfig = {
-                    apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
-                    authDomain: "y-spot-e84ca.firebaseapp.com",
-                    databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
-                    projectId: "y-spot-e84ca",
-                    storageBucket: "y-spot-e84ca.appspot.com",
-                    messagingSenderId: "783996806068",
-                    appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
-                    measurementId: "G-TSH2JVYJHR"
-                };
-            
-                // Initialize Firebase
-                firebase.initializeApp(firebaseConfig);
-                var db = firebase.firestore();
-            
-                // Form submission handler
-                document.getElementById('saveChangesBtn').addEventListener('click', function (e) {
-                    e.preventDefault();
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+        authDomain: "y-spot-e84ca.firebaseapp.com",
+        databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+        projectId: "y-spot-e84ca",
+        storageBucket: "y-spot-e84ca.appspot.com",
+        messagingSenderId: "783996806068",
+        appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+        measurementId: "G-TSH2JVYJHR"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    var storage = firebase.storage();
 
-                    // var image = document.getElementById('image').value;
-                    var name = document.getElementById('name').value;
-                    var hotelname = document.getElementById('hotelname').value;
-                    var hotelwebsite = document.getElementById('hotelwebsite').value;
-                    var email = document.getElementById('email').value;
-                    var mobilenumber = document.getElementById('mobilenumber').value;
-                    var location = document.getElementById('location').value;
-                    var hoteldocument = document.getElementById('hoteldocument').value;
-                    db.collection("admin profile").add({
-                        // Image:image,
-                        Name: name,
-                        HotelName:hotelname,
-                        HotelWebsite:hotelwebsite,
-                        Email: email,
-                        Mobilenumber: mobilenumber,
-                        Location: location,
-                        HotelDocument: hoteldocument
-                    })
-                    .then((docRef) => {
-                        console.log("Document written with ID: ", docRef.id);
-                        alert("User added successfully!");
-                    })
-                    .catch((error) => {
-                        console.error("Error adding document: ", error);
-                        alert("Error adding user. Please try again.");
-                    });
-                });
-                hoteldocument.onchange = (event) => {
-            const file = event.target.files[0];
-            const storageRef = storage.ref('uploads/' + file.name);
-            const uploadTask = storageRef.put(file);
+    // Form submission handler
+    document.getElementById('saveChangesBtn').addEventListener('click', function (e) {
+        e.preventDefault();
+
+        var name = document.getElementById('name').value;
+        var hotelname = document.getElementById('hotelname').value;
+        var hotelwebsite = document.getElementById('hotelwebsite').value;
+        var email = document.getElementById('email').value;
+        var mobilenumber = document.getElementById('mobilenumber').value;
+        var location = document.getElementById('location').value;
+        
+        var fileInput = document.getElementById('hoteldocument');
+        var file = fileInput.files[0];
+        
+        if (file) {
+            var storageRef = storage.ref('uploads/' + file.name);
+            var uploadTask = storageRef.put(file);
 
             uploadTask.on('state_changed',
                 function progress(snapshot) {
-                    const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    progressBar.value = percentage;
+                    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + percentage + '% done');
                 },
                 function error(err) {
                     console.error('Upload failed:', err);
                 },
                 function complete() {
                     uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                        const fileData = {
-                            name: file.name,
-                            url: downloadURL,
-                            uploadTime: new Date().toISOString()
-                        };
-
-                        // Save file metadata to the database
-                        database.ref('files/' + file.name).set(fileData)
-                            .then(() => {
-                                console.log('File metadata saved to database successfully.');
-                            })
-                            .catch((error) => {
-                                console.error('Error saving file metadata:', error);  
-                                
-                            });
+                        db.collection("admin profile").add({
+                            Name: name,
+                            HotelName: hotelname,
+                            HotelWebsite: hotelwebsite,
+                            Email: email,
+                            Mobilenumber: mobilenumber,
+                            Location: location,
+                            HotelDocument: downloadURL
+                        })
+                        .then((docRef) => {
+                            console.log("Document written with ID: ", docRef.id);
+                            alert("User added successfully!");
+                        })
+                        .catch((error) => {
+                            console.error("Error adding document: ", error);
+                            alert("Error adding user. Please try again.");
+                        });
                     });
                 }
             );
-        };
-            </script> 
+        } else {
+            alert("Please select a document to upload.");
+        }
+    });
+
+    document.getElementById('hoteldocument').addEventListener('change', function(event) {
+        var file = event.target.files[0];
+        if (file) {
+            var storageRef = storage.ref('uploads/' + file.name);
+            var uploadTask = storageRef.put(file);
+
+            uploadTask.on('state_changed',
+                function progress(snapshot) {
+                    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + percentage + '% done');
+                },
+                function error(err) {
+                    console.error('Upload failed:', err);
+                },
+                function complete() {
+                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                    });
+                }
+            );
+        }
+    });
+</script> 
             <!-- firebase script end -->
 <!-- firebase storage script start -->
 
