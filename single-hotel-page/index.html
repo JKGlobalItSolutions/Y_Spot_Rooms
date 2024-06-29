@@ -19,7 +19,21 @@
         <link href="sign-in.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-  
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const location = urlParams.get('location');
+            const dates = urlParams.get('dates');
+            const guests = urlParams.get('guests');
+      
+            document.getElementById('location').value = location;
+            document.getElementById('dates').value = dates;
+            document.getElementById('guests').value = guests;
+      
+            const redirectLink = document.getElementById('redirectLink');
+            redirectLink.href = `../reservation-page/reservation.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
+          });
+        </script>
 
   </head>
 
@@ -243,7 +257,7 @@
         <p class=" pe-2 text-secondary ms-1" ><s>₹5,500</s></p>
         <h4 class="mb-1 me-1 ms-1">₹4,125</h4>
         <p class="pt-1">+₹ 495 taxes and charges</p>
-        <a href="../reservation page/reservation.html"><button class="btn text-light ms-1 btn-sm ms-1 mb-3" style="width: 100px; background-color: red;" type="button">Book Now</button></a>
+        <a href="../reservation-page/reservation.html" id="redirectLink"><button class="btn text-light ms-1 btn-sm ms-1 mb-3" style="width: 100px; background-color: red;" type="button">Book Now</button></a>
       </div>
   </div>
 </div>

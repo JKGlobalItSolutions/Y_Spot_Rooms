@@ -201,19 +201,19 @@ div.scrollmenu a:hover {
      <!-- hero section search form start -->
      <div class="container custom-container rounded" id="move2" style="background-color: #1C1B1F; width: 100%;">
       <div class="container">
-        <form>
+        <form action="/details-page/details.html" method="get" >
           <div class="row justify-content-center rounded-3">
             <!-- Destination -->
             <div class="form-group col-lg-3 col-md-6 col-sm-12">
-              <input type="text" class="form-control" id="location" placeholder="Enter destination" required>
+              <input type="text" class="form-control" id="location" name="location" placeholder="Enter destination" required>
             </div>
             <!-- Check-in and Check-out Dates -->
             <div class="form-group col-lg-4 col-md-6 col-sm-12">
-              <input type="text" class="form-control" id="dates" placeholder="Check-in - Check-out" required>
+              <input type="text" class="form-control" id="dates" name="dates" placeholder="Check-in - Check-out" required>
             </div>
             <!-- Combined Input Box for Adults, Children, and Rooms -->
             <div class="form-group col-lg-3 col-md-6 col-sm-12">
-              <input type="text" class="form-control" id="guests" placeholder="Adults, Children & Rooms" required>
+              <input type="text" class="form-control" id="guests" name="guests" placeholder="Adults, Children & Rooms" required>
               <div class="dropdown-menu p-3" id="guestsDropdown" aria-labelledby="guestsDropdown"
                 style="display: none;">
                 <div class="form-group">
@@ -256,8 +256,7 @@ div.scrollmenu a:hover {
             </div>
             <!-- Search Button -->
             <div class="form-group col-lg-2 col-md-6 col-sm-12">
-              <button type="button" class="btn text-light" id="search" style="background-color: #FF1717;"
-                onclick="window.location.href='./details-page/details.html'">Search</button>
+              <button type="submit" class="btn text-light" id="search" style="background-color: #FF1717;">Search</button>
             </div>
           </div>
         </form>
@@ -285,20 +284,18 @@ div.scrollmenu a:hover {
       <p class="text-dark">Promotions, deals, and special offers for you</p>
       <div class="row row-cols-1 row-cols-md-2 g-4 pb-3">
         <div class="col">
-          <div class="card">
-            <div class="row g-0">
-              <div class="col-md-4 text-center rounded-3">
-                <img src="./assets/img/offer index/Rectangle 387 (2).png" style="height: 200px;"
-                  class="rounded-start img-fluid p-3" alt="...">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4 justify-content-center align-items-center">
+                <img src="./assets/img/offer index/Rectangle 387 (2).png" class="card-img" height="100%" alt="...">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">We have Family-Special Theme Park
                     Packages for You....</h5>
                   <p class="card-text">Book with us & enjoy limitless fun this summer.</p>
-                  <p class="card-text"><button type="button" class="btn text-white"
+                  <button type="button" class="btn text-white"
                       style="background-color:  rgb(237, 26, 37);">Explore Now</button>
-                  </p>
                 </div>
               </div>
             </div>
@@ -449,10 +446,10 @@ div.scrollmenu a:hover {
         </div>
         <!-- discover your property type end -->
         <!-- Why Book Hotels with Y.Spot.com? start -->
-        <h1 class="text-center pt-3">Why Book Hotels with Y.Spot.com?</h1>
+        <h1 class="text-center pt-3">Why Book Hotels with YSpot.app?</h1>
         <div class="container my-5">
           <div class="row justify-content-center align-items-stretch">
-            <div class="col-md-3 pb-4">
+            <div class="col-12 col-lg-3 col-md-6 pb-4">
               <div class="card text-center border-danger align-items-stretch">
                 <img src="assets/img/index page icons footer/Frame 402.jpg" alt="Profile Image" class="card-img-circle">
                 <div class="card-body">
@@ -461,7 +458,7 @@ div.scrollmenu a:hover {
                 </div>
               </div>
             </div>
-            <div class="col-md-3 pb-4">
+            <div class="col-12 col-lg-3 col-md-6 pb-4">
               <div class="card text-center border-danger align-items-stretch">
                 <img src="assets/img/index page icons footer/Frame 403.jpg" alt="Profile Image" class="card-img-circle">
                 <div class="card-body">
@@ -470,7 +467,7 @@ div.scrollmenu a:hover {
                 </div>
               </div>
             </div>
-            <div class="col-md-3 pb-4">
+            <div class="col-12 col-lg-3 col-md-6 pb-4">
               <div class="card text-center border-danger align-items-stretch">
                 <img src="assets/img/index page icons footer/Frame 404.jpg" alt="Profile Image" class="card-img-circle">
                 <div class="card-body">
@@ -479,7 +476,7 @@ div.scrollmenu a:hover {
                 </div>
               </div>
             </div>
-            <div class="col-md-3 pb-4">
+            <div class="col-12 col-lg-3 col-md-6 pb-4">
               <div class="card text-center border-danger align-items-stretch">
                 <img src="assets/img/index page icons footer/Frame 405.jpg" alt="Profile Image" class="card-img-circle">
                 <div class="card-body">
