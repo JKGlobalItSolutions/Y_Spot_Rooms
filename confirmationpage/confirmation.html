@@ -19,9 +19,42 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="./confirmation.css">
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const urlParams = new URLSearchParams(window.location.search);
+              const location = urlParams.get('location');
+              const dates = urlParams.get('dates');
+              const guests = urlParams.get('guests');
+        
+              document.getElementById('location').value = location;
+              document.getElementById('dates').value = dates;
+              document.getElementById('guests').value = guests;
+        
+              const redirectLink = document.getElementById('redirectLink');
+              redirectLink.href = `../confirmationpage/confirmation.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
+            });
+          </script>
     </head>
 
     <body>
+        <div class="container mt-5" style="display: none;">
+            <h2>Room Booking Details</h2>
+            <form>
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location" value="" readonly>
+              </div>
+              <div class="form-group">
+                <label for="dates">Dates</label>
+                <input type="text" class="form-control" id="dates" name="dates" value="" readonly>
+              </div>
+              <div class="form-group">
+                <label for="guests">Guests</label>
+                <input type="text" class="form-control" id="guests" name="guests" value="" readonly>
+              </div>
+            </form>
+            
+        </div>
         <header>
             <!-- place navbar here -->
                 <!-- Nav bar starts -->

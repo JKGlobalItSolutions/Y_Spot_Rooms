@@ -27,13 +27,13 @@
       document.getElementById('guests').value = guests;
 
       const redirectLink = document.getElementById('redirectLink');
-      redirectLink.href = `../index.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
+      redirectLink.href = `../confirmationpage/confirmation.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
     });
   </script>
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container mt-5" style="display: none;">
         <h2>Room Booking Details</h2>
         <form>
           <div class="form-group">
