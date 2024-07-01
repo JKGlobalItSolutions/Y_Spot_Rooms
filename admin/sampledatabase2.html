@@ -1,0 +1,73 @@
+<!-- Include Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-storage.js"></script>
+
+<script>
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+    authDomain: "y-spot-e84ca.firebaseapp.com",
+    databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+    projectId: "y-spot-e84ca",
+    storageBucket: "y-spot-e84ca.appspot.com",
+    messagingSenderId: "783996806068",
+    appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+    measurementId: "G-TSH2JVYJHR"
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const storage = firebase.storage();
+
+  document.getElementById('imageInput').addEventListener('change', function(event) {
+    const image = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('imagePreview').src = e.target.result;
+    }
+    reader.readAsDataURL(image);
+  });
+
+  document.getElementById('saveChangesBtn').addEventListener('click', function() {
+    const name = document.getElementById('name').value;
+    const hotelName = document.getElementById('hotelname').value;
+    const hotelWebsite = document.getElementById('hotelwebsite').value;
+    const email = document.getElementById('email').value;
+    const mobileNumber = document.getElementById('mobilenumber').value;
+    const location = document.getElementById('location').value;
+    const imageInput = document.getElementById('imageInput').files[0];
+    const hotelDocument = document.getElementById('hoteldocument').files[0];
+
+    const userId = firebase.auth().currentUser.uid;
+
+    // Upload Image and Document to Firebase Storage
+    const uploadImage = storage.ref(`images/${userId}/${imageInput.name}`).put(imageInput);
+    const uploadDocument = storage.ref(`documents/${userId}/${hotelDocument.name}`).put(hotelDocument);
+
+    Promise.all([uploadImage, uploadDocument]).then((snapshots) => {
+      return Promise.all([snapshots[0].ref.getDownloadURL(), snapshots[1].ref.getDownloadURL()]);
+    }).then((urls) => {
+      const imageUrl = urls[0];
+      const documentUrl = urls[1];
+
+      // Save user data to Firestore
+      return db.collection('users').doc(userId).set({
+        name: name,
+        hotelName: hotelName,
+        hotelWebsite: hotelWebsite,
+        email: email,
+        mobileNumber: mobileNumber,
+        location: location,
+        imageUrl: imageUrl,
+        documentUrl: documentUrl
+      });
+    }).then(() => {
+      alert('Profile updated successfully!');
+    }).catch((error) => {
+      console.error('Error updating profile: ', error);
+    });
+  });
+</script>

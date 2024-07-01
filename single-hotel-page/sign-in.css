@@ -1,0 +1,358 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.b-example-divider {
+  width: 100%;
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.b-example-vr {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 100vh;
+}
+
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.btn-bd-primary {
+  --bd-violet-bg: #712cf9;
+  --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--bd-violet-bg);
+  --bs-btn-border-color: var(--bd-violet-bg);
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: #6528e0;
+  --bs-btn-hover-border-color: #6528e0;
+  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #5a23c8;
+  --bs-btn-active-border-color: #5a23c8;
+}
+
+.bd-mode-toggle {
+  z-index: 1500;
+}
+
+.bd-mode-toggle .dropdown-menu .active .bi {
+  display: block !important;
+}
+.custom-input {
+  height: 40px;
+}
+.with-line-left::before {
+  content: "";
+  display: inline-block;
+  width: 40px; /* Adjust the width of the line */
+  border-top: 1px solid #696767; /* Adjust the style of the line */
+  margin-right: 2px; /* Adjust the distance between the line and text */
+  padding-bottom: 5px;
+}
+
+.with-line-right::after {
+  content: "";
+  display: inline-block;
+  width: 40px; /* Adjust the width of the line */
+  border-top: 1px solid #696767; /* Adjust the style of the line */
+  margin-left: 2px; /* Adjust the distance between the line and text */
+  padding-bottom: 5px;
+
+}
+.footer {
+  background-color: #001524;
+  color: #ffffff;
+  padding: 10px 0;
+}
+
+.textdec {
+  text-decoration: none;
+}
+
+.horizantal-line {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  margin-top: 10px; /* Adjust as needed */
+}
+
+.footer p {
+  text-align: center;
+  margin-top: 10px; /* Adjust as needed */
+  font-size: 14px; /* Adjust as needed */
+}
+.right {
+  height: 38px;
+  width: 38px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-top: 10px; /* to add space between rows */
+}
+.filter-checkbox-colour{
+  /* background-color: red; */
+  border-color: red;
+}
+
+/* navbar scroll code  */
+
+div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #f50e0e;
+}
+@media (max-width: 768px) {
+  .login-nav {
+    justify-content: center;
+
+  }
+}
+@media (min-width: 768px) {
+  .login-nav {
+    justify-content: end;
+  }
+}
+div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #f50e0e;
+}
+.centered-hr {
+  width: 80%;
+  margin: 0 auto;
+  color: #ff1717;
+  height: 10px;
+
+}
+.range-input {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: red;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: red;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.range-input::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: red;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+}
+
+.slider-value {
+  margin-left: 10px;
+  font-weight: bold;
+}
+.highlight-box {
+  background-color: #D9D9D9;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 2px 8px;
+  margin-top: 5px;
+}
+
+
+/* nearby properties start */
+#hotel{
+  border-radius: 4px;
+background: #FFF;
+box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+
+}
+#towers{
+  color: #FF1717;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.room{
+  color: #ee0000;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;  
+}
+#discount{
+  color: rgba(0, 0, 0, 0.50);
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+#discount1{
+  color: #000;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+#book{
+  display: inline-flex;
+padding: 8px 24px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 4px;
+background: #FF1717;
+border: none;
+}
+/* nearby properties start */
+.carousel-container {
+  display: flex;
+  overflow-x: hidden; /* Hide horizontal overflow */
+}
+.carousel-button {
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+.carousel-button.prev {
+  left: 10px;
+}
+.carousel-button.next {
+  right: 10px;
+}
+.card {
+  min-width: 250px;
+  margin: 0 10px;
+}
+/* nearby properties end  */
+
+/* price section offer arrow style start  */
+.discount-banner {
+  position: relative;
+  background-color: red;
+  color: white;
+  width: 104px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  clip-path: polygon(0% 0%, 70% 0%, 85% 50%, 70% 100%, 0% 100%, 10% 50%);
+}
+/* price section offer arrow style end */

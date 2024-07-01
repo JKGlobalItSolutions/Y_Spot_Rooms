@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Y-Spot Admin</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
+ 
+    <!-- Firebase SDK -->
+   
+</head>
+<script>
+     const firebaseConfig = {
+                    apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+                    authDomain: "y-spot-e84ca.firebaseapp.com",
+                    databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+                    projectId: "y-spot-e84ca",
+                    storageBucket: "y-spot-e84ca.appspot.com",
+                    messagingSenderId: "783996806068",
+                    appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+                    measurementId: "G-TSH2JVYJHR"
+                };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>const storage = firebase.storage();
+    const progressBar = document.getElementById('progressbar')
+    const btn_fileUpload = document.getElementById('btn_fileUpload')
+    
+    
+    btn_fileUpload.onchange =(event)=>{
+        var file = event.target.files[0];
+        var ref = storage.ref('upload/'+file.name);
+        var task = ref.put(file);
+    
+        task.on('state_changed',
+            function progress (snapshot){
+                var percentage  = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
+                progress.value=percentage;
+    
+            },
+            function error (err){
+    
+            }, 
+            function complete(){
+    
+            }
+        )
+    }</script>
+
+<progress value="0" max="100" id="progressBar"></progress>
+<input type="file" id="btn_fileUpload"></input>
+
+</body>
+</html>

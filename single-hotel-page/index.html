@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Y-spot</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link href="sign-in.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const location = urlParams.get('location');
+      const dates = urlParams.get('dates');
+      const guests = urlParams.get('guests');
+
+      document.getElementById('location').value = location;
+      document.getElementById('dates').value = dates;
+      document.getElementById('guests').value = guests;
+
+      const redirectLink = document.getElementById('redirectLink');
+      redirectLink.href = `../reservation-page/reservation.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
+    });
+  </script>
+
+</head>
+
+<body>
+  <header>
+    <!-- First navigation bar: Registration and Sign In buttons -->
+    <nav class="navbar" style="background-color: #FF1717;">
+      <div class="container">
+        <div class="row w-100">
+          <!-- First column -->
+          <div class=" col-md-4 col-lg-4"></div>
+          <!-- Second column -->
+          <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-center align-items-center">
+            <a class="navbar-brand" href="../index.html">
+              <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+            </a>
+          </div>
+          <!-- Third column -->
+          <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
+            <a class="nav-link" href="../login/index.html">
+              <button type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Sign in</b>
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Second navigation bar: centered content -->
+    <div class="scrollmenu text-center" style="background-color:#FF1717;">
+      <a href="#home"><button type="button" class="btn text-light border rounded-pill active">
+          <i class="fa-solid fa-bed p-2"></i>Stays
+        </button></a>
+      <a href="#news"><button type="button" class="btn text-light rounded-pill">
+          <i class="fa-solid fa-bus p-2"></i> Bus
+        </button></a>
+      <a href="#contact"><button type="button" class="btn text-light rounded-pill">
+          <i class="fa-solid fa-earth-europe p-2"></i> Flight+Hotel
+        </button></a>
+      <a href="#about"><button type="button" class="btn text-light rounded-pill">
+          <i class="fa-solid fa-car p-2"></i> Car Rental
+        </button></a>
+      <a href="#about"><button type="button" class="btn text-light rounded-pill">
+          <i class="fa-solid fa-blog p-2"></i> Blogs
+        </button></a>
+      <a href="#about"><button type="button" class="btn text-light rounded-pill">
+          <i class="fa-solid fa-blog p-2"></i> View Cart
+        </button></a>
+      <a href="#about"><button type="button" class="btn text-light rounded-pill">
+          <i class="fa-solid fa-blog p-2"></i> About Us
+        </button></a>
+    </div>
+  </header>
+  <main>
+    <!-- brudcrum start -->
+    <div class="header-brudcrum container py-3">
+      <nav
+        style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+        aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item text-danger" style="list-style: none;">
+            <a href="../index.html" style="text-decoration: none; " class="text-danger"><b>Home</b></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page"><b>Tamil Nadu</b></li>
+          <li class="breadcrumb-item active" aria-current="page"><b>Tiruvannamalai</b></li>
+        </ol>
+      </nav>
+    </div>
+    <!-- brudcrum end -->
+    <!-- hotel gallery page start  -->
+    <div class="container">
+      <div class="gallery-hotel border container shadow-sm rounded-3">
+        <div class="row">
+          <div class="col-lg-8 col-md-6 col-sm-6 pb-6">
+            <h4 class="text-danger p-1"><b>Ponmozhi Residency</b></h4>
+            <h5 class="p-1" style="opacity: 60%;">
+              <i class="fa-solid fa-location-dot px-1"></i>Vengikkal Road PANMOZHI RESIDENCY, 606604 Tiruvannamalai,
+              India
+            </h5>
+            <img src="image/image 3 (1).jpg" class="img-fluid rounded ms-1" alt="...">
+            <div class="d-flex justify-content-between mt-4">
+              <div class="col-md-4">
+                <div class="image-container">
+                  <img src="image/image 1.jpg" class="img-fluid  rounded-3 m-1 px-1" alt="Image 1">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="image-container">
+                  <img src="image/image 2.jpg" class="img-fluid  rounded-3 m-1 px-1" alt="Image 1">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="image-container">
+                  <img src="image/image 4.jpg" class="img-fluid  rounded-3 m-1 px-1" alt="Image 1">
+                </div>
+              </div>
+            </div>
+            <p class="mt-4" style="font-size: 18px;"><b>PONMOZHI RESIDENCY</b> offers accommodations in Tiruvannamalai.
+              This five-star hotel provides a 24-hour front desk, an ATM, and complimentary WiFi. Rooms have a balcony
+              with views of the garden.</p>
+            <p class="mt-4" style="font-size: 18px;">The hotel's rooms have air conditioning, a desk, a balcony with a
+              mountain view, a private bathroom, a flat-screen TV, bed linen, and towels. At Ponmozhi Residency, each
+              room has a seating space.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="right-review border shadow-sm rounded-3 m-3 pb-2">
+              <!-- rating section start  -->
+              <div class="d-flex justify-content-start mt-2 ms-3 mb-1">
+                <div class="right rounded-1">
+                  <div style="font-size: 15px;"><b>6.2</b></div>
+                </div>
+                <div class="align-items-start">
+                  <h4 class="text-danger pt-2 ps-1 me-2 text-start" style="font-size: 16px;">Good <br> <span class=""
+                      style="font-size: 12px; color: gray;">371 review</span></h4>
+                </div>
+              </div>
+              <hr>
+              <!-- rating section end  -->
+              <div class="container">
+                <h6>See what guests loved the most:</h6>
+                <p>“Support from the Management , Rooms are clean, decent and nearby to the bus stand... It's very close
+                  to Anna Arch which is at 2km before the final Girivalam”</p>
+                <div class="d-flex align-items-center justify-content-start">
+                  <h5 style="width: 30px; height: 30px;" class="bg-primary text-center text-light rounded-circle">P</h5>
+                  <p class="px-2 pt-1">&nbsp;Poovarasan</p>
+                </div>
+                <hr class="centered-hr">
+                <p>Excellent setting, hospitality, very excellent human beings helped me a lot on pournami, really
+                  supportive, nice air conditioning, a good motel to be recommended for pilgrimages students.</p>
+                <div class="d-flex align-items-center justify-content-start">
+                  <h5 style="width: 30px; height: 30px;" class="bg-warning text-center text-light rounded-circle">M</h5>
+                  <p class="px-2 pt-1">&nbsp;Manikandan</p>
+                </div>
+                <hr class="centered-hr">
+                <p>Nice and tidy room.
+                  Friendly and excellent service</p>
+                <div class="d-flex align-items-center justify-content-start">
+                  <h5 style="width: 30px; height: 30px;" class="bg-success text-center text-light rounded-circle">S</h5>
+                  <p class="px-2 pt-1">&nbsp;Selvaganapathi</p>
+                </div>
+                <hr class="centered-hr">
+                <h6>Accommodation Rating</h6>
+                <div class="container mt-5">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="d-flex justify-content-between">
+                        <p>Staff members</p>
+                        <span id="rangeValue" class="slider-value">7.2</span>
+                      </div>
+                      <div class="range-container">
+                        <input type="range" id="rangeInput" class="range-input rounded" min="0" max="10" value="7.2"
+                          disabled>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <p>Luxury</p>
+                        <span id="rangeValue" class="slider-value">6.8</span>
+                      </div>
+                      <div class="range-container">
+                        <input type="range" id="rangeInput" class="range-input rounded" min="0" max="10" value="6.8"
+                          disabled>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <p>Fair price</p>
+                        <span id="rangeValue" class="slider-value">8.4</span>
+                      </div>
+                      <div class="range-container">
+                        <input type="range" id="rangeInput" class="range-input rounded" min="0" max="10" value="8.4"
+                          disabled>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <p>Location</p>
+                        <span id="rangeValue" class="slider-value">8.0</span>
+                      </div>
+                      <div class="range-container">
+                        <input type="range" id="rangeInput" class="range-input rounded" min="0" max="10" value="8.0"
+                          disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Room type and price start  -->
+      <div class="roomtype-price border container shadow-sm rounded-3 mt-4">
+        <div class="row d-flex justify-content-evenly">
+          <div class="d-flex justify-content-around">
+          </div>
+          <div class="col-lg-3">
+            <h5 class="pt-4 ms-1 text-center" style="color: #FF1717;">Room Type</h5>
+            <h5 class="pt-1 ms-1 text-center">Classic Room</h5>
+            <div class="image-container text-center">
+              <img src="image/room type/image 5.jpg" class="img-fluid  rounded-3 m-1 px-1" alt="Image 1">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <h1>&nbsp;</h1>
+            <h5 class="pt-1 ms-1 text-center">Most popular facilities</h5>
+            <div class="d-flex justify-content-center align-items-center">
+              <img src="image/mostpopularfacilites/Frame 78.jpg" alt="" class="img-fluid p-2">
+              <img src="image/mostpopularfacilites/desktop_windows.jpg" alt="" class="img-fluid p-2">
+              <img src="image/mostpopularfacilites/local_dining.jpg" alt="" class="img-fluid p-2">
+              <img src="image/mostpopularfacilites/Ac unit.jpg" alt="" class="img-fluid p-2">
+              <img src="image/mostpopularfacilites/fitness_center.jpg" alt="" class="img-fluid p-2">
+            </div>
+            <h5 class="mt-4 ms-4 text-start">Room type</h5>
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="d-flex  align-items-center">
+                <img src="image/roomtype images/Frame 504.jpg" alt="" class="img-fluid p-1">
+                <p class="pt-3">1 Bedroom <br>1 Bathroom</p>
+              </div>
+              <div class="d-flex  align-items-start">
+                <img src="image/roomtype images/accessibility.jpg" alt="" class="img-fluid p-1 pt-2">
+                <p class="pt-3">2 guests</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <h1>&nbsp;</h1>
+          </div>
+          <div class="col-lg-3 ps-4">
+            <h5 class="pt-4 me-1 ms-1" style="color: #FF1717;">Price</h5>
+            <div class="discount-banner">30% OFF</div>
+            <p class=" pe-2 text-secondary ms-1"><s>₹5,500</s></p>
+            <h4 class="mb-1 me-1 ms-1">₹4,125</h4>
+            <p class="pt-1">+₹ 495 taxes and charges</p>
+            <a href="../reservation-page/reservation.html" id="redirectLink"><button
+                class="btn text-light ms-1 btn-sm ms-1 mb-3" style="width: 100px; background-color: red;"
+                type="button">Book Now</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-5" style="display: none;">
+        <h2>Room Booking Details</h2>
+        <form>
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" value="" readonly>
+          </div>
+          <div class="form-group">
+            <label for="dates">Dates</label>
+            <input type="text" class="form-control" id="dates" name="dates" value="" readonly>
+          </div>
+          <div class="form-group">
+            <label for="guests">Guests</label>
+            <input type="text" class="form-control" id="guests" name="guests" value="" readonly>
+          </div>
+        </form>
+        <a href="#" id="redirectLink" class="btn btn-secondary mt-3">Go to Third Test Page</a>
+      </div>
+      <!-- Room type and price end  -->
+      <div class="change-dates-and-gusts">
+      </div>
+      <!-- Amenities at Ponmozhi Residency start  -->
+      <div class="Amenities-Ponmozhi-Residency">
+        <h5 class="py-3">Amenities at Ponmozhi Residency</h5>
+        <div class="row ms-1">
+          <div class="col-lg-3 col-md-6 col-sm-12 p-1 ">
+            <img src="image/facilities image/beenhere.jpg" alt="">24-hour Room Service
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 p-1 ">
+            <img src="image/facilities image/beenhere.jpg" alt="">Laundry and Dry Cleaning
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 p-1 ">
+            <img src="image/facilities image/beenhere.jpg" alt="">Power Supply Backup
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 p-1 ">
+            <img src="image/facilities image/beenhere.jpg" alt="">Cleaning Service
+          </div>
+        </div>
+      </div>
+      <!-- Amenities at Ponmozhi Residency end  -->
+      <!-- location start  -->
+      <div class="container mt-4">
+        <div class="roomtype-price border shadow-sm rounded-3 p-3">
+          <div class="row">
+            <div class="col-lg-6 mb-3 mb-lg-0">
+              <h5>Location</h5>
+              <p>Vengikkal Road PANMOZHI RESIDENCY, 606604 Tiruvannamalai, India</p>
+              <div class="ratio ratio-16x9">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62385.73472960047!2d79.02805262585525!3d12.240937612750832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bacc0852cd3d6cd%3A0x74002b16e5bac856!2sTiruvannamalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1716632708064!5m2!1sen!2sin"
+                  style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <p><img src="image/location section image/assistant_direction.jpg" alt="" class="img-fluid"> Iconic
+                    Places</p>
+                  <ul>
+                    <li>Arunachaleswara Temple</li>
+                    <p>2.0Km</p>
+                    <div class="highlight-box text-dark"><b>Spiritual Sites</b></div>
+                    <li>Ramana Ashram</li>
+                    <p>2.0Km</p>
+                    <div class="highlight-box text-dark"><b>Spiritual Sites</b></div>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <p><img src="image/location section image/commute.jpg" alt="" class="img-fluid"> Iconic Places</p>
+                  <ul>
+                    <li>Tiruvannamalai railway station</li>
+                    <p>1.7Km</p>
+                    <div class="highlight-box text-dark"><b>Railway</b></div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- location end  -->
+      <!-- question section start  -->
+      <div class="question-section mt-3">
+        <h5>Travelers frequently asked questions.</h5>
+        <div class="row">
+          <div class="col-lg-6 col-md-12   my-3">
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">How can I change my account details?
+            </p>
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">How do I search for available rooms?
+            </p>
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">Can I filter search results by
+              price, rating, or amenities?</p>
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">How do I check the availability of a
+              room for specific dates?</p>
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">What information is required to make
+              a booking?</p>
+          </div>
+          <div class="col-lg-6 col-md-12 my-3">
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">Can I book multiple rooms at once?
+            </p>
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">Is my payment information secure?
+            </p>
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">What is the cancellation policy?</p>
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">Can I request additional amenities
+              like a crib or extra bed?</p>
+            <p><img src="image/question section img/not_listed_location.jpg" alt="">Is there 24/7 support available?</p>
+          </div>
+        </div>
+      </div>
+      <!-- question section  end -->
+      <!-- hotel gallery page end -->
+      <!-- Near by properties in Tiruvannamalai start -->
+      <h5>Nearby properties in Tiruvannamalai</h5>
+      <div class="position-relative">
+        <button class="carousel-button prev" onclick="scrollCarousel(-1)">&#10094;</button>
+        <div class="carousel-container" id="carouselContainer">
+          <!-- Hotel cards -->
+          <div class="card text-center">
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+              <img class="card-img-top mt-5" style="width: 150px; height: 150px;"
+                src="./image/tiruvannamalai near hotel/Screenshot (11) 1.jpg" alt="Hotel 1">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mt-4 text-danger">Ramana Towers</h5>
+              <div class="d-flex justify-content-center align-items-center mb-1">
+                <span class="pe-2 text-secondary"><s>₹2699</s></span>
+                <h4 class="mb-1">₹1874</h4>
+              </div>
+              <h6 class="room mb-3">1 room per night</h6>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+          <!-- Repeat hotel cards as needed -->
+          <div class="card text-center">
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+              <img class="card-img-top mt-5" style="width: 150px; height: 150px;"
+                src="./image/tiruvannamalai near hotel/Screenshot (3) 1 (1).jpg" alt="Hotel 1">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mt-4 text-danger">MPS Saai Residency</h5>
+              <div class="d-flex justify-content-center align-items-center mb-1">
+                <span class="pe-2 text-secondary"><s>₹5999</s></span>
+                <h4 class="mb-1">₹4271</h4>
+              </div>
+              <h6 class="room mb-3">1 room per night</h6>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+          <!-- Add more cards here... -->
+          <div class="card text-center">
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+              <img class="card-img-top mt-5" style="width: 150px; height: 150px;"
+                src="./image/tiruvannamalai near hotel/Screenshot (7) 1.jpg" alt="Hotel 1">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mt-4 text-danger ">Arunachala Houses</h5>
+              <div class="d-flex justify-content-center align-items-center mb-1">
+                <span class="pe-2 text-secondary"><s>₹3443</s></span>
+                <h4 class="mb-1">₹2788</h4>
+              </div>
+              <h6 class="room mb-3">1 room per night</h6>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+          <!-- Add more cards here... -->
+          <div class="card text-center">
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+              <img class="card-img-top mt-5 " style="width: 150px; height: 150px;"
+                src="./image/tiruvannamalai near hotel/Screenshot (8) 1.jpg" alt="Hotel 1">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mt-4 text-danger">Royal Mini Hall</h5>
+              <div class="d-flex justify-content-center align-items-center mb-1">
+                <span class="pe-2 text-secondary"><s>₹4235</s></span>
+                <h4 class="mb-1">₹2700</h4>
+              </div>
+              <h6 class="room mb-3">1 room per night</h6>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+          <!-- Add more cards here... -->
+          <div class="card text-center">
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+              <img class="card-img-top mt-5" style="width: 150px; height: 150px;"
+                src="./image/tiruvannamalai near hotel/Screenshot (11) 1.jpg" alt="Hotel 1">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mt-4 text-danger">Ramana Towers</h5>
+              <div class="d-flex justify-content-center align-items-center mb-1">
+                <span class="pe-2 text-secondary"><s>₹2699</s></span>
+                <h4 class="mb-1">₹1874</h4>
+              </div>
+              <h6 class="room mb-3">1 room per night</h6>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+          <!-- Repeat hotel cards as needed -->
+          <div class="card text-center">
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+              <img class="card-img-top mt-5" style="width: 150px; height: 150px;"
+                src="./image/tiruvannamalai near hotel/Screenshot (3) 1 (1).jpg" alt="Hotel 1">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mt-4 text-danger">MPS Saai Residency</h5>
+              <div class="d-flex justify-content-center align-items-center mb-1">
+                <span class="pe-2 text-secondary"><s>₹5999</s></span>
+                <h4 class="mb-1">₹4271</h4>
+              </div>
+              <h6 class="room mb-3">1 room per night</h6>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+          <!-- Add more cards here... -->
+          <div class="card text-center">
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+              <img class="card-img-top mt-5" style="width: 150px; height: 150px;"
+                src="./image/tiruvannamalai near hotel/Screenshot (7) 1.jpg" alt="Hotel 1">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mt-4 text-danger ">Arunachala Houses</h5>
+              <div class="d-flex justify-content-center align-items-center mb-1">
+                <span class="pe-2 text-secondary"><s>₹3443</s></span>
+                <h4 class="mb-1">₹2788</h4>
+              </div>
+              <h6 class="room mb-3">1 room per night</h6>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+          <!-- Add more cards here... -->
+          <div class="card text-center">
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+              <img class="card-img-top mt-5 " style="width: 150px; height: 150px;"
+                src="./image/tiruvannamalai near hotel/Screenshot (8) 1.jpg" alt="Hotel 1">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mt-4 text-danger">Royal Mini Hall</h5>
+              <div class="d-flex justify-content-center align-items-center mb-1">
+                <span class="pe-2 text-secondary"><s>₹4235</s></span>
+                <h4 class="mb-1">₹2700</h4>
+              </div>
+              <h6 class="room mb-3">1 room per night</h6>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+          <!-- Add more cards here... -->
+        </div>
+        <button class="carousel-button next" onclick="scrollCarousel(1)">&#10095;</button>
+      </div>
+      <!-- Near by properties in Tiruvannamalai end -->
+    </div>
+
+  </main>
+  <footer class="footer pt-5 pt-5" style="margin-top: 40px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <h6><b>Help</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">FAQ</a></li>
+            <li><a href="#" class="text-white textdec small-link">Privacy policy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Cookies privacy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Terms of use</a></li>
+            <li><a href="#" class="text-white textdec small-link">Help centre</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Get the App</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">IOS app</a></li>
+            <li><a href="#" class="text-white textdec small-link">Android app</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Company</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">About Us</a></li>
+            <li><a href="#" class="text-white textdec small-link">Blog</a></li>
+            <li><a href="#" class="text-white textdec small-link">Careers</a></li>
+            <li><a href="#" class="text-white textdec small-link">PointMAX</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Destination</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">Cities</a></li>
+            <li><a href="#" class="text-white textdec small-link">Spiritual places </a></li>
+            <li><a href="#" class="text-white textdec small-link">Hill Stations</a></li>
+            <li><a href="#" class="text-white textdec small-link">Solo Travel places</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Social Networks</b></h6>
+          <ul class="list-unstyled d-flex p-2">
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 406.png" alt="Facebook"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 407.png" alt="Twitter"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 408.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 410.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 409.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="horizantal-line">
+    </div>
+    <h6 class="text-end mx-5 pt-3">&copy; 2023 Y.SPOT Rooms pvt .ltd.</h6>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
