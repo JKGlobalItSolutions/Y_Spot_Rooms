@@ -17,22 +17,93 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="./confirmation.css">
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+            import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+        
+            const firebaseConfig = {
+              apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+              authDomain: "y-spot-e84ca.firebaseapp.com",
+              databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+              projectId: "y-spot-e84ca",
+              storageBucket: "y-spot-e84ca.appspot.com",
+              messagingSenderId: "783996806068",
+              appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+              measurementId: "G-TSH2JVYJHR"
+            };
+        
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth();
+        
+            window.onload = () => {
+              const userDetails = document.getElementById("userDetails");
+              const registerButton = document.getElementById("registerButton");
+        
+              onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  userDetails.style.display = "block";
+                  registerButton.style.display = "none";
+                  document.getElementById("userName").textContent = user.displayName || "User";
+                } else {
+                  userDetails.style.display = "none";
+                  registerButton.style.display = "block";
+                }
+              });
+            };
+          </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+            fetch('../includes/confiremationheader.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('included-confiremationheader').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching content:', error));
+            fetch('../includes/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('included-footer').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching content:', error));
+          });
+          </script>
     </head>
 
     <body>
         <header>
-            <!-- place navbar here -->
-            <!-- Nav bar starts -->
-            <nav class="navbar" style="background-color: #FF1717; height: 100px;">
-                <div class="container container-fluid d-flex flex-column">
-                    <div class="d-flex justify-content-center w-100 flex-grow-1 align-items-center">
-                        <a class="navbar-brand" href="../index.html">
-                            <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
-                        </a>
-                    </div>
-                </div>
-            </nav>
+            <!-- First navigation bar: Registration and Sign In buttons -->
+<nav class="navbar" style="background-color: #FF1717;">
+    <div class="container">
+      <div class="row w-100">
+        <!-- First column -->
+        <div class=" col-md-4 col-lg-4"></div>
+        <!-- Second column -->
+        <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-center align-items-center">
+          <a class="navbar-brand" href="../index.html">
+            <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+          </a>
+        </div>
+        <!-- Third column -->
+        <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
+          <a class="nav-link" href="../login/index.html">
+            <button id="registerButton" type="button" class="btn btn-light text-danger"
+              style="height: 30px; display: flex; align-items: center; justify-content: center;">
+              <b>Register</b>
+            </button>
+            <button id="userDetails" style="display: none;" type="button" class="btn btn-light text-danger"
+              style="height: 30px; display: flex; align-items: center; justify-content: center;">
+              <b id="userName"></b>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+    <div class="" id="included-confiremationheader"></div>
         </header>
         <main>
            <!--  confirmation page start -->
