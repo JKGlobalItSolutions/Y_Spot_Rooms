@@ -95,62 +95,36 @@
       display: inline-block;
     }
   </style>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const fetchContent = async (url) => {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.text();
+    };
+
+    const loadContent = async () => {
+      try {
+        const [headerData, footerData] = await Promise.all([
+          fetchContent('../includes/insideheader.html'),
+          fetchContent('../includes/insidefooter.html')
+        ]);
+
+        document.getElementById('included-insideheader').innerHTML = headerData;
+        document.getElementById('included-insidefooter').innerHTML = footerData;
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
+    };
+
+    loadContent();
+  });
+</script>
 </head>
 
 <body>
-  <header>
-    <!-- First navigation bar: Registration and Sign In buttons -->
-    <nav class="navbar" style="background-color: #FF1717;">
-      <div class="container">
-        <div class="row w-100">
-          <!-- First column -->
-          <div class=" col-md-4 col-lg-4"></div>
-          <!-- Second column -->
-          <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-center align-items-center">
-            <a class="navbar-brand" href="../index.html">
-              <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
-            </a>
-          </div>
-          <!-- Third column -->
-          <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
-            <a class="nav-link" href="../login/index.html">
-              <button id="registerButton" type="button" class="btn btn-light text-danger"
-                style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                <b>Register</b>
-              </button>
-              <button id="userDetails" style="display: none;" type="button" class="btn btn-light text-danger"
-                style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                <b id="userName"></b>
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <!-- Second navigation bar: centered content -->
-    <div class="scrollmenu text-center" style="background-color:#FF1717;">
-      <a href="#home"><button type="button" class="btn text-light border rounded-pill active">
-          <i class="fa-solid fa-bed p-2"></i>Stays
-        </button></a>
-      <a href="#news"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-bus p-2"></i> Bus
-        </button></a>
-      <a href="#contact"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-earth-europe p-2"></i> Flight+Hotel
-        </button></a>
-      <a href="#about"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-car p-2"></i> Car Rental
-        </button></a>
-      <a href="#about"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-blog p-2"></i> Blogs
-        </button></a>
-      <a href="#about"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-blog p-2"></i> View Cart
-        </button></a>
-      <a href="#about"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-blog p-2"></i> About Us
-        </button></a>
-    </div>
+  <header id="included-insideheader">
+    
   </header>
   <main>
 
@@ -1119,65 +1093,8 @@
     <!-- main card and map section end  -->
   </main>
   <!-- footer section start  -->
-  <footer class="footer pt-4">
-    <div class="container">
-      <div class="row">
-        <div class="col-md">
-          <h6><b>Help</b></h6>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white textdec small-link">FAQ</a></li>
-            <li><a href="#" class="text-white textdec small-link">Privacy policy</a></li>
-            <li><a href="#" class="text-white textdec small-link">Cookies privacy</a></li>
-            <li><a href="#" class="text-white textdec small-link">Terms of use</a></li>
-            <li><a href="#" class="text-white textdec small-link">Help centre</a></li>
-          </ul>
-        </div>
-        <div class="col-md">
-          <h6><b>Get the App</b></h6>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white textdec small-link">IOS app</a></li>
-            <li><a href="#" class="text-white textdec small-link">Android app</a></li>
-          </ul>
-        </div>
-        <div class="col-md">
-          <h6><b>Company</b></h6>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white textdec small-link">About Us</a></li>
-            <li><a href="#" class="text-white textdec small-link">Blog</a></li>
-            <li><a href="#" class="text-white textdec small-link">Careers</a></li>
-            <li><a href="#" class="text-white textdec small-link">PointMAX</a></li>
-          </ul>
-        </div>
-        <div class="col-md">
-          <h6><b>Destination</b></h6>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white textdec small-link">Cities</a></li>
-            <li><a href="#" class="text-white textdec small-link">Spiritual places </a></li>
-            <li><a href="#" class="text-white textdec small-link">Hill Stations</a></li>
-            <li><a href="#" class="text-white textdec small-link">Solo Travel places</a></li>
-          </ul>
-        </div>
-        <div class="col-md">
-          <h6><b>Social Networks</b></h6>
-          <ul class="list-unstyled d-flex p-2">
-            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 406.png" alt="Facebook"
-                  class="rounded-pill"></a></li>
-            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 407.png" alt="Twitter"
-                  class="rounded-pill"></a></li>
-            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 408.png" alt="Instagram"
-                  class="rounded-pill"></a></li>
-            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 410.png" alt="Instagram"
-                  class="rounded-pill"></a></li>
-            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 409.png" alt="Instagram"
-                  class="rounded-pill"></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="horizantal-line">
+  <footer class="footer pt-4" id="included-insidefooter">
 
-    </div>
-    <h6 class="text-end mx-5 pt-3">&copy; 2023 Y.SPOT Rooms pvt .ltd.</h6>
   </footer>
 
   <script>

@@ -10,7 +10,6 @@
         />
         <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
 
-
         <!-- Bootstrap CSS v5.2.1 -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -18,56 +17,93 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="./confirmation.css">
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+            import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+        
+            const firebaseConfig = {
+              apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+              authDomain: "y-spot-e84ca.firebaseapp.com",
+              databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+              projectId: "y-spot-e84ca",
+              storageBucket: "y-spot-e84ca.appspot.com",
+              messagingSenderId: "783996806068",
+              appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+              measurementId: "G-TSH2JVYJHR"
+            };
+        
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth();
+        
+            window.onload = () => {
+              const userDetails = document.getElementById("userDetails");
+              const registerButton = document.getElementById("registerButton");
+        
+              onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  userDetails.style.display = "block";
+                  registerButton.style.display = "none";
+                  document.getElementById("userName").textContent = user.displayName || "User";
+                } else {
+                  userDetails.style.display = "none";
+                  registerButton.style.display = "block";
+                }
+              });
+            };
+          </script>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              const urlParams = new URLSearchParams(window.location.search);
-              const location = urlParams.get('location');
-              const dates = urlParams.get('dates');
-              const guests = urlParams.get('guests');
-        
-              document.getElementById('location').value = location;
-              document.getElementById('dates').value = dates;
-              document.getElementById('guests').value = guests;
-        
-              const redirectLink = document.getElementById('redirectLink');
-              redirectLink.href = `../confirmationpage/confirmation.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
-            });
+            document.addEventListener("DOMContentLoaded", function() {
+            fetch('../includes/confiremationheader.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('included-confiremationheader').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching content:', error));
+            fetch('../includes/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('included-footer').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching content:', error));
+          });
           </script>
     </head>
 
     <body>
-        <div class="container mt-5" style="display: none;">
-            <h2>Room Booking Details</h2>
-            <form>
-              <div class="form-group">
-                <label for="location">Location</label>
-                <input type="text" class="form-control" id="location" name="location" value="" readonly>
-              </div>
-              <div class="form-group">
-                <label for="dates">Dates</label>
-                <input type="text" class="form-control" id="dates" name="dates" value="" readonly>
-              </div>
-              <div class="form-group">
-                <label for="guests">Guests</label>
-                <input type="text" class="form-control" id="guests" name="guests" value="" readonly>
-              </div>
-            </form>
-            
-        </div>
         <header>
-            <!-- place navbar here -->
-                <!-- Nav bar starts -->
-                <nav class="navbar" style="background-color: #FF1717; height: 100px;">
-                   <div class="container container-fluid d-flex flex-column">
-                      
-                       <div class="d-flex justify-content-center w-100 flex-grow-1 align-items-center">
-                           <a class="navbar-brand" href="../index.html">
-                               <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
-                           </a>
-                       </div>
-                   </div>
-               </nav>
+            <!-- First navigation bar: Registration and Sign In buttons -->
+<nav class="navbar" style="background-color: #FF1717;">
+    <div class="container">
+      <div class="row w-100">
+        <!-- First column -->
+        <div class=" col-md-4 col-lg-4"></div>
+        <!-- Second column -->
+        <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-center align-items-center">
+          <a class="navbar-brand" href="../index.html">
+            <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+          </a>
+        </div>
+        <!-- Third column -->
+        <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
+          <a class="nav-link" href="../login/index.html">
+            <button id="registerButton" type="button" class="btn btn-light text-danger"
+              style="height: 30px; display: flex; align-items: center; justify-content: center;">
+              <b>Register</b>
+            </button>
+            <button id="userDetails" style="display: none;" type="button" class="btn btn-light text-danger"
+              style="height: 30px; display: flex; align-items: center; justify-content: center;">
+              <b id="userName"></b>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+    <div class="" id="included-confiremationheader"></div>
         </header>
         <main>
            <!--  confirmation page start -->
@@ -89,28 +125,24 @@
                                 <div class="col-lg-8">
                                     <div class="ms-4 ps-3">
                                         <br>
-                                        <h6 id="one">Entire Stay Duration</h6>
-                                        <p class="night">1 night</p>
+                                        <h6 id="stayDuration">Entire Stay Duration</h6>
+                                        <p class="night" id="night">1 night</p>
                                     </div>
                                     <!-- check-in checkout start -->
                                     <div class="row justify-content-between ms-4 pt-1">
                                         <div class="col-lg-6 col-md-6">
-                                            <p>Check In <br> <b>Mon, 27 May, 2024</b> <br> <span>12 am</span></p>
-                                        </div>
-                                        <div class="col-lg-6 col-md-4">
-                                            <p>Check Out <br> <b>Mon, 27 May, 2024</b> <br> <span>12 am</span></p>
+                                            <p>Dates <br> <b id="checkinDate"></b> <br> </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ps-4 pb-3 col-lg-4 flex-shrink-0 bd-highlight  text-center" >
-                                    <img  class=" rounded-2 image-fluid" src="./image/image 3.jpg" alt="" style="width: 150px; height: 150px;">
+                                <div class="ps-4 pb-3 col-lg-4 flex-shrink-0 bd-highlight text-center">
+                                    <img class="rounded-2 image-fluid" src="./image/image 3.jpg" alt="" style="width: 150px; height: 150px;">
                                 </div>
                             </div>
-                            
-                             <!-- checkin checkout end -->
-                             <!-- prize and rate start -->
+                             <!-- check-in checkout end -->
+                             <!-- price and rate start -->
                              <div class="container">
-                                <div class="m-3 ps-2  ">
+                                <div class="m-3 ps-2">
                                     <p class="price">Price</p>
                                     <div class="d-flex pb-3 align-items-center justify-content-center">
                                         <div id="goods" class="flex-grow-1"><b>Goods & services tax is excluded.</b></div>
@@ -118,8 +150,7 @@
                                     </div>
                                 </div>
                              </div>
-                            
-                             <!-- prize and rate start -->
+                             <!-- price and rate end -->
                         </div>
                     </div>
                 </div>
@@ -129,23 +160,30 @@
                     <button id="home" type="button" class="btn btn-danger btn-sm" style="height: 45px; width: 180px; font-size: 20px;">Back To Home</button>
                 </a>
             </div>
-            
-               <!--  confirmation page end -->
+            <!--  confirmation page end -->
         </main>
         <footer>
             <!-- place footer here -->
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const location = urlParams.get('location');
+                const dates = urlParams.get('dates');
+                const guests = urlParams.get('guests');
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
+                // Update elements with the parsed data
+                document.getElementById('stayDuration').textContent = `Entire Stay Duration: ${dates}`;
+                document.getElementById('night').textContent = `Guests: ${guests}`;
+
+                // Split dates to check-in and check-out dates (assuming the dates are in "Check-in - Check-out" format)
+                const [checkin, checkout] = dates.split(' - ');
+                document.getElementById('checkinDate').textContent = checkin;
+                document.getElementById('checkoutDate').textContent = checkout;
+            });
+        </script>
     </body>
 </html>

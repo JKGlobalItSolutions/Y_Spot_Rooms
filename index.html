@@ -48,141 +48,142 @@ div.scrollmenu a:hover {
   background-color: #f50e0e;
 }
 </style>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+    authDomain: "y-spot-e84ca.firebaseapp.com",
+    databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+    projectId: "y-spot-e84ca",
+    storageBucket: "y-spot-e84ca.appspot.com",
+    messagingSenderId: "783996806068",
+    appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+    measurementId: "G-TSH2JVYJHR"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+
+  window.onload = () => {
+    const userDetailsContainer = document.getElementById("userDetailsContainer");
+    const registerLink = document.getElementById("registerLink");
+    const loginLink = document.getElementById("loginLink");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        userDetailsContainer.style.display = "block";
+        registerLink.style.display = "none";
+        loginLink.style.display = "none";
+        document.getElementById("userName").textContent = user.displayName || "User";
+      } else {
+        userDetailsContainer.style.display = "none";
+        registerLink.style.display = "block";
+        loginLink.style.display = "block";
+      }
+    });
+  };
+
+  document.getElementById('logoutButton').addEventListener('click', function () {
+    signOut(auth).then(() => {
+      alert('Logged out successfully');
+      // Hide user details and show register and login links
+      document.getElementById("userDetailsContainer").style.display = "none";
+      document.getElementById("registerLink").style.display = "block";
+      document.getElementById("loginLink").style.display = "block";
+      // Redirect to login page or home page after logout
+      window.location.href = './login/index.html';
+    }).catch((error) => {
+      console.error('Error logging out: ', error);
+      alert('Error logging out. Please try again.');
+    });
+  });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const fetchContent = async (url) => {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.text();
+      };
+  
+      const loadContent = async () => {
+        try {
+          const [headerData, footerData] = await Promise.all([
+            fetchContent('includes/header.html'),
+            fetchContent('includes/footer.html')
+          ]);
+  
+          document.getElementById('included-header').innerHTML = headerData;
+          document.getElementById('included-footer').innerHTML = footerData;
+        } catch (error) {
+          console.error('Error fetching content:', error);
+        }
+      };
+  
+      loadContent();
+    });
+  </script>
 </head>
 <body>
   <header>
     <!-- First navigation bar: Registration and Sign In buttons -->
-    <nav class="navbar" style="background-color: #FF1717;">
-      <div class="container">
-        <div class="row w-100">
-          <!-- First column -->
-          <div class=" col-lg-4 "></div>
-          <!-- Second column -->
-          <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
-            <a class="navbar-brand" href="./index.html">
-              <img src="./assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
-            </a>
-          </div>
-          <!-- Third column -->
-          <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
-            <a class="nav-link" href="./login/signup.html" id="registerLink">
-              <button id="registerButton" type="button" class="btn btn-light text-danger"
-                style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                <b>Register</b>
-              </button>
-            </a>
-            <a class="nav-link" href="./login/index.html" id="loginLink">
-              <button id="loginButton" type="button" class="btn btn-light text-danger"
-                style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                <b>Login</b>
-              </button>
-            </a>
-            <div style="display: none;" id="userDetailsContainer">
-              <li class="nav-item dropdown list-unstyled">
-                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img src="https://via.placeholder.com/30" class="rounded-circle profile-icon" alt="Profile Icon">
-                  <span class="username text-light" id="userName"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
-                  <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
-                </div>
-              </li>
-            </div>
-          </div>
-    
+<nav class="navbar" style="background-color: #FF1717;">
+    <div class="container">
+      <div class="row w-100">
+        <!-- First column -->
+        <div class=" col-lg-4 "></div>
+        <!-- Second column -->
+        <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
+          <a class="navbar-brand" href="./index.html">
+            <img src="./assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+          </a>
         </div>
+        <!-- Third column -->
+        <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
+          <a class="nav-link" href="./login/signup.html" id="registerLink">
+            <button id="registerButton" type="button" class="btn btn-light text-danger"
+              style="height: 30px; display: flex; align-items: center; justify-content: center;">
+              <b>Register</b>
+            </button>
+          </a>
+          <a class="nav-link" href="./login/index.html" id="loginLink">
+            <button id="loginButton" type="button" class="btn btn-light text-danger"
+              style="height: 30px; display: flex; align-items: center; justify-content: center;">
+              <b>Login</b>
+            </button>
+          </a>
+          <div style="display: none;" id="userDetailsContainer">
+            <li class="nav-item dropdown list-unstyled">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="https://via.placeholder.com/30" class="rounded-circle profile-icon" alt="Profile Icon">
+                <span class="username text-light" id="userName"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
+              </div>
+            </li>
+          </div>
+        </div>
+  
       </div>
-    </nav>
-    
-    <style>
-      .profile-icon {
-        width: 30px;
-        height: 30px;
-      }
-    
-      .username {
-        margin-left: 10px;
-      }
-    </style>
-    
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-    
-      const firebaseConfig = {
-        apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
-        authDomain: "y-spot-e84ca.firebaseapp.com",
-        databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
-        projectId: "y-spot-e84ca",
-        storageBucket: "y-spot-e84ca.appspot.com",
-        messagingSenderId: "783996806068",
-        appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
-        measurementId: "G-TSH2JVYJHR"
-      };
-    
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth();
-    
-      window.onload = () => {
-        const userDetailsContainer = document.getElementById("userDetailsContainer");
-        const registerLink = document.getElementById("registerLink");
-        const loginLink = document.getElementById("loginLink");
-    
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            userDetailsContainer.style.display = "block";
-            registerLink.style.display = "none";
-            loginLink.style.display = "none";
-            document.getElementById("userName").textContent = user.displayName || "User";
-          } else {
-            userDetailsContainer.style.display = "none";
-            registerLink.style.display = "block";
-            loginLink.style.display = "block";
-          }
-        });
-      };
-    
-      document.getElementById('logoutButton').addEventListener('click', function () {
-        signOut(auth).then(() => {
-          alert('Logged out successfully');
-          // Hide user details and show register and login links
-          document.getElementById("userDetailsContainer").style.display = "none";
-          document.getElementById("registerLink").style.display = "block";
-          document.getElementById("loginLink").style.display = "block";
-          // Redirect to login page or home page after logout
-          window.location.href = './login/index.html';
-        }).catch((error) => {
-          console.error('Error logging out: ', error);
-          alert('Error logging out. Please try again.');
-        });
-      });
-    </script>
-    
-    <!-- Second navigation bar: centered content -->
-    <div class="scrollmenu text-center" style="background-color:#FF1717;">
-      <a href="#home"><button type="button" class="btn text-light border rounded-pill active">
-          <i class="fa-solid fa-bed p-2"></i>Stays
-        </button></a>
-      <a href="#news"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-bus p-2"></i> Bus
-        </button></a>
-      <a href="#contact"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-earth-europe p-2"></i> Flight+Hotel
-        </button></a>
-      <a href="#about"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-car p-2"></i> Car Rental
-        </button></a>
-      <a href="#about"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-blog p-2"></i> Blogs
-        </button></a>
-      <a href="#about"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-blog p-2"></i> View Cart
-        </button></a>
-      <a href="#about"><button type="button" class="btn text-light rounded-pill">
-          <i class="fa-solid fa-blog p-2"></i> About Us
-        </button></a>
     </div>
+  </nav>
+  
+  <style>
+    .profile-icon {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .username {
+      margin-left: 10px;
+    }
+  </style>
+    <div class="" id="included-header"></div>
+
   </header>
   <main>
     <div class="p-5 mb-4 bg-body-tertiary" style="background-image: url(./assets/img/Rectangle\ 377.jpg); background-repeat: no-repeat; background-size: cover; background-color: rgb(237, 26, 37);">
