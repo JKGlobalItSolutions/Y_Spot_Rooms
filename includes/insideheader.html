@@ -1,47 +1,67 @@
 <!-- First navigation bar: Registration and Sign In buttons -->
-<nav class="navbar" style="background-color: #FF1717;">
-    <div class="container">
-      <div class="row w-100">
-        <!-- First column -->
-        <div class=" col-md-4 col-lg-4"></div>
-        <!-- Second column -->
-        <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-center align-items-center">
-          <a class="navbar-brand" href="../index.html">
-            <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
-          </a>
-        </div>
-        <!-- Third column -->
-        <div class="col-7 col-md-4 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
-          <a class="nav-link" href="../login/index.html">
-            <button id="registerButton" type="button" class="btn btn-light text-danger"
-              style="height: 30px; display: flex; align-items: center; justify-content: center;">
-              <b>Register</b>
-            </button>
-            <button id="userDetails" style="display: none;" type="button" class="btn btn-light text-danger"
-              style="height: 30px; display: flex; align-items: center; justify-content: center;">
-              <b id="userName"></b>
-            </button>
-          </a>
-        </div>
+<nav class="navbar navbar-expand topbarstatic-top" style="background-color: #FF1717;">
+  <!-- First column -->
+  <div class="container">
+    <div class="row w-100">
+      <div class="col-lg-4"></div>
+      <!-- Second column -->
+      <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
+        <a class="navbar-brand" href="../index.html">
+          <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+        </a>
+      </div>
+      <!-- Third column -->
+      <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-end align-items-center mt-2 mt-md-0">
+        <a class="nav-link" href="./login/signup.html" id="registerLink">
+          <button id="registerButton" type="button" class="btn btn-light text-danger"
+            style="height: 30px; display: flex; align-items: center; justify-content: center;">
+            <b>Register</b>
+          </button>
+        </a>
+        <a class="nav-link" href="./login/index.html" id="loginLink">
+          <button id="loginButton" type="button" class="btn btn-light text-danger"
+            style="height: 30px; display: flex; align-items: center; justify-content: center;">
+            <b>Login</b>
+          </button>
+        </a>
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+          <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+          <!-- Nav Item - User Information -->
+          <li class="nav-item dropdown no-arrow" style="display: none;" id="userDetailsContainer">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 text-light " id="userName"><b></b></span>
+              <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="#">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                Profile
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" id="logoutButton">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
   <!-- Second navigation bar: centered content -->
   <div class="scrollmenu text-center" style="background-color:#FF1717;">
     <a href="#home"><button type="button" class="btn text-light border rounded-pill active">
         <i class="fa-solid fa-bed p-2"></i>Stays
       </button></a>
     <a href="#news"><button type="button" class="btn text-light rounded-pill">
-        <i class="fa-solid fa-bus p-2"></i> Bus
+        <i class="fa-solid fa-bus p-2"></i> Tours & Travels
       </button></a>
     <a href="#contact"><button type="button" class="btn text-light rounded-pill">
-        <i class="fa-solid fa-earth-europe p-2"></i> Flight+Hotel
-      </button></a>
-    <a href="#about"><button type="button" class="btn text-light rounded-pill">
-        <i class="fa-solid fa-car p-2"></i> Car Rental
-      </button></a>
-    <a href="#about"><button type="button" class="btn text-light rounded-pill">
-        <i class="fa-solid fa-blog p-2"></i> Blogs
+        <i class="fa-solid fa-earth-europe p-2"></i>  Hotel
       </button></a>
     <a href="#about"><button type="button" class="btn text-light rounded-pill">
         <i class="fa-solid fa-blog p-2"></i> View Cart
