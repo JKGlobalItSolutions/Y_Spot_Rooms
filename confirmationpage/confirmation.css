@@ -43,7 +43,7 @@ line-height: normal;
 background: #FF1717;
 }
 
-<style>
+
   div.scrollmenu {
   background-color: #333;
   overflow: auto;
@@ -61,4 +61,3 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
   background-color: #f50e0e;
 }
-</style>
