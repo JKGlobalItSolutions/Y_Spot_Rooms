@@ -249,6 +249,33 @@
             });
           </script>
         <!-- javascript logout function and username fetch function end  -->
-
+            <!-- back to top button start  -->
+   <button id="backToTop" class="btn" style="background-color: #ff0000;"><i class="fa-solid fa-arrow-up text-light"></i></button>
+   <style>
+    #backToTop {
+      position: fixed;
+      bottom: 90px;
+      right: 40px;
+      display: none;
+      z-index: 100;
+    }
+  </style>
+   <script>
+     // Function to show or hide the button based on scroll position
+     window.onscroll = function() {
+       const backToTopButton = document.getElementById('backToTop');
+       if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+         backToTopButton.style.display = "block";
+       } else {
+         backToTopButton.style.display = "none";
+       }
+     };
+ 
+     // Function to smoothly scroll to the top
+     document.getElementById('backToTop').addEventListener('click', function() {
+       window.scrollTo({ top: 0, behavior: 'smooth' });
+     });
+   </script>
+ <!-- back to top button end -->
     </body>
 </html>
