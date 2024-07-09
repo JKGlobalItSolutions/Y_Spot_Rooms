@@ -43,7 +43,7 @@
         <div class="form-floating">
           <input type="password" class="form-control rounded-2 border-danger" id="floatingPassword" placeholder="Password" />
           <label id="passwordInp" for="floatingPassword" style="opacity: 30%;">Enter Your Password</label>
-          <a href="./forgotpassword.html" id="forgotpassword"  class="text-primary " style="text-decoration: none; cursor: pointer;">Forgot password?</a>
+          <a href="./forgotpassword.html" id="forgotpassword" class="text-primary" style="text-decoration: none; cursor: pointer;">Forgot password?</a>
         </div><br>
         <button class="btn text-light w-100 py-2" type="button" id="emailSignInButton" style="background-color: #FF1717; height: 50px;">Sign In</button>
         <a href="./signup.html"><button class="btn text-light w-100 py-2 mt-2" type="button" id="emailSignInButton" style="background-color: #FF1717; height: 50px;">Sign up</button></a>
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <div class="container " style="display: none;">
+        <div class="container" style="display: none;">
           <button class="btn btn-danger text-center" id="signOutButton">Sign Out</button>
           <div id="message">
             <p>You have signed in as <span id="userName"></span> with the email <span id="userEmail"></span></p>
@@ -72,7 +72,8 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
     import { getDatabase } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signInWithEmailAndPassword, signOut   } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
       authDomain: "y-spot-e84ca.firebaseapp.com",
@@ -96,12 +97,15 @@
     const message = document.getElementById("message");
     const userName = document.getElementById("userName");
     const userEmail = document.getElementById("userEmail");
+
     signOutButton.style.display = "none";
     message.style.display = "none";
+
     const validateEmail = (email) => {
       const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
       return re.test(email);
     };
+
     const validateForm = () => {
       const email = emailInp.value;
       const password = passwordInp.value;
@@ -114,23 +118,38 @@
         alert("Please enter a valid email address.");
         valid = false;
       }
+
       if (!password) {
         alert("Password is required.");
         valid = false;
       }
+
       return valid;
     };
+
     const userSignIn = async () => {
       signInWithPopup(auth, provider)
         .then((result) => {
           const user = result.user;
+          // Fetching user details
+          const displayName = user.displayName;
+          const email = user.email;
+          const photoURL = user.photoURL;
+
+          // Display user details
+          userName.textContent = displayName;
+          userEmail.textContent = email;
+          console.log('User details:', { displayName, email, photoURL });
+
           window.location.href = "../index.html"; // Redirect to index page after sign-in
-        }).catch((error) => {
+        })
+        .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.error(errorCode, errorMessage);
         });
     };
+
     const emailSignIn = async () => {
       if (!validateForm()) return; // Validate form before signing in
 
@@ -147,6 +166,7 @@
         alert("Error signing in with email and password. Please check your credentials and try again.");
       }
     };
+
     const userSignOut = async () => {
       try {
         await signOut(auth);
@@ -155,6 +175,7 @@
         console.error("Error signing out:", error);
       }
     };
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         signOutButton.style.display = "block";
@@ -166,14 +187,17 @@
         message.style.display = "none";
       }
     });
+
     signInButton.addEventListener('click', (event) => {
       event.preventDefault();  // Prevent the default link behavior
       userSignIn();
     });
+
     emailSignInButton.addEventListener('click', (event) => {
       event.preventDefault();  // Prevent the default button behavior
       emailSignIn();
     });
+
     signOutButton.addEventListener('click', (event) => {
       event.preventDefault();  // Prevent the default button behavior
       userSignOut();
@@ -181,4 +205,6 @@
   </script>
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+
 </html>
