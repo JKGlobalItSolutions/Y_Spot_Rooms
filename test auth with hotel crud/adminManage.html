@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Management</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Firebase Configuration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    import { getFirestore, collection, addDoc, doc, updateDoc, setDoc, getDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
+      authDomain: "testcrud-103a3.firebaseapp.com",
+      databaseURL: "https://testcrud-103a3-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "testcrud-103a3",
+      storageBucket: "testcrud-103a3.appspot.com",
+      messagingSenderId: "387302339276",
+      appId: "1:387302339276:web:e6c88525a1d80f9d154869",
+      measurementId: "G-ZR3EB3CD3Z"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestore = getFirestore(app);
+
+    let currentUserEmail = '';
+    let hotelExists = false;
+    let currentHotelId = '';
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUserEmail = user.email;
+        document.getElementById('adminEmail').value = currentUserEmail;
+        loadHotel();
+        loadAdminProfile();
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+
+    const loadHotel = async () => {
+      const q = query(collection(firestore, 'hotels'), where('adminEmail', '==', currentUserEmail));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        hotelExists = true;
+        querySnapshot.forEach((doc) => {
+          const hotel = doc.data();
+          currentHotelId = doc.id;
+          document.getElementById('hotelName').value = hotel.hotelName;
+          document.getElementById('hotelAddress').value = hotel.address;
+          document.getElementById('hotelNumberOfRooms').value = hotel.numberOfRooms;
+        });
+        document.getElementById('addHotelForm').style.display = 'none';
+        document.getElementById('hotelDetailsForm').style.display = 'block';
+      } else {
+        hotelExists = false;
+        document.getElementById('addHotelForm').style.display = 'block';
+        document.getElementById('hotelDetailsForm').style.display = 'none';
+      }
+    };
+
+    const loadAdminProfile = async () => {
+      const docRef = doc(firestore, 'adminProfiles', currentUserEmail);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const adminProfile = docSnap.data();
+        document.getElementById('adminName').value = adminProfile.name;
+        document.getElementById('adminPhone').value = adminProfile.phone;
+        document.getElementById('adminProfileForm').style.display = 'block';
+      } else {
+        document.getElementById('adminProfileForm').style.display = 'block';
+      }
+    };
+
+    document.getElementById('addHotelForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (hotelExists) {
+        alert("You already have a hotel. You can't add another one.");
+        return;
+      }
+
+      const adminName = document.getElementById('adminName').value;
+      const adminEmail = document.getElementById('adminEmail').value;
+      const adminPhone = document.getElementById('adminPhone').value;
+
+      const hotelName = document.getElementById('newHotelName').value;
+      const hotelAddress = document.getElementById('newHotelAddress').value;
+      const hotelNumberOfRooms = document.getElementById('newHotelNumberOfRooms').value;
+
+      await addDoc(collection(firestore, 'hotels'), {
+        adminEmail: currentUserEmail,
+        hotelName: hotelName,
+        address: hotelAddress,
+        numberOfRooms: hotelNumberOfRooms
+      });
+
+      await setDoc(doc(firestore, 'adminProfiles', currentUserEmail), {
+        name: adminName,
+        email: adminEmail,
+        phone: adminPhone
+      });
+
+      hotelExists = true;
+      loadHotel();
+      loadAdminProfile();
+    });
+
+    document.getElementById('hotelDetailsForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const hotelName = document.getElementById('hotelName').value;
+      const hotelAddress = document.getElementById('hotelAddress').value;
+      const hotelNumberOfRooms = document.getElementById('hotelNumberOfRooms').value;
+
+      const hotelDocRef = doc(firestore, 'hotels', currentHotelId);
+
+      const updatedData = {
+        hotelName: hotelName,
+        address: hotelAddress,
+        numberOfRooms: hotelNumberOfRooms
+      };
+
+      await updateDoc(hotelDocRef, updatedData);
+      loadHotel();
+    });
+
+    document.getElementById('adminProfileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const adminName = document.getElementById('adminName').value;
+      const adminPhone = document.getElementById('adminPhone').value;
+
+      const adminProfileDocRef = doc(firestore, 'adminProfiles', currentUserEmail);
+
+      const updatedProfileData = {
+        name: adminName,
+        phone: adminPhone
+      };
+
+      await updateDoc(adminProfileDocRef, updatedProfileData);
+      loadAdminProfile();
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await signOut(auth);
+      window.location.href = 'index.html';
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Management</h1>
+    <button id="logoutBtn" class="btn btn-danger">Logout</button>
+    <hr>
+    <div id="adminProfileForm" style="display: none;">
+      <h2>Admin Profile</h2>
+      <form>
+        <div class="form-group">
+          <label for="adminName">Admin Name</label>
+          <input type="text" id="adminName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="adminEmail">Admin Email</label>
+          <input type="email" id="adminEmail" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+          <label for="adminPhone">Admin Phone</label>
+          <input type="tel" id="adminPhone" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+      </form>
+    </div>
+    <hr>
+    <div id="addHotelForm">
+      <h2>Add New Hotel</h2>
+      <form>
+        <div class="form-group">
+          <label for="newHotelName">Hotel Name</label>
+          <input type="text" id="newHotelName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="newHotelAddress">Hotel Address</label>
+          <input type="text" id="newHotelAddress" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="newHotelNumberOfRooms">Number of Rooms</label>
+          <input type="number" id="newHotelNumberOfRooms" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Hotel</button>
+      </form>
+    </div>
+    <div id="hotelDetailsForm" style="display: none;">
+      <h2>Edit Hotel Details</h2>
+      <form>
+        <div class="form-group">
+          <label for="hotelName">Hotel Name</label>
+          <input type="text" id="hotelName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="hotelAddress">Hotel Address</label>
+          <input type="text" id="hotelAddress" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="hotelNumberOfRooms">Number of Rooms</label>
+          <input type="number" id="hotelNumberOfRooms" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Hotel</button>
+      </form>
+    </div>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
