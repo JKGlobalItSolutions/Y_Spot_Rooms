@@ -2,570 +2,583 @@
 <html lang="en">
 
 <head>
-    <title>Y-spot</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
+  <title>Y-spot</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="sign-in.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-      <!-- include javascript function start  -->
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          const fetchContent = async (url) => {
-            const response = await fetch(url);
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.text();
-          };
-      
-          const loadContent = async () => {
-            try {
-              const [headerData, footerData] = await Promise.all([
-                fetchContent('../includes/confiremationheader.html'),
-                fetchContent('../includes/insidefooter.html')
-              ]);
-      
-              document.getElementById('included-confiremationheader').innerHTML = headerData;
-              document.getElementById('included-insidefooter').innerHTML = footerData;
-            } catch (error) {
-              console.error('Error fetching content:', error);
-            }
-          };
-      
-          loadContent();
-        });
-      </script>
-      <!-- include javascript function end -->
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="sign-in.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- include javascript function start  -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const fetchContent = async (url) => {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.text();
+      };
+
+      const loadContent = async () => {
+        try {
+          const [headerData, footerData] = await Promise.all([
+            fetchContent('../includes/confiremationheader.html'),
+            fetchContent('../includes/insidefooter.html')
+          ]);
+
+          document.getElementById('included-confiremationheader').innerHTML = headerData;
+          document.getElementById('included-insidefooter').innerHTML = footerData;
+        } catch (error) {
+          console.error('Error fetching content:', error);
+        }
+      };
+
+      loadContent();
+    });
+  </script>
+  <!-- include javascript function end -->
 </head>
 
 <body>
-    <div class="container mt-5" style="display: none;">
-        <h2>Room Booking Details</h2>
-        <form>
-          <div class="form-group">
-            <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" name="location" value="" readonly>
-          </div>
-          <div class="form-group">
-            <label for="dates">Dates</label>
-            <input type="text" class="form-control" id="dates" name="dates" value="" readonly>
-          </div>
-          <div class="form-group">
-            <label for="guests">Guests</label>
-            <input type="text" class="form-control" id="guests" name="guests" value="" readonly>
-          </div>
-        </form>
-        
-    </div>
-    <header>
-      <nav class="navbar navbar-expand topbarstatic-top" style="background-color: #FF1717;">
-          <!-- First column -->
-          <div class="container">
-              <div class="row w-100">
-                  <div class="col-lg-4"></div>
-                  <!-- Second column -->
-                  <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
-                      <a class="navbar-brand" href="../index.html">
-                          <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
-                      </a>
-                  </div>
-                  <!-- Third column -->
-                  <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-center align-items-center mt-2">
-                      <a class="nav-link px-2" href="../login/signup.html" id="registerLink">
-                          <button id="registerButton" type="button" class="btn btn-light text-danger"
-                              style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                              <b>Register</b>
-                          </button>
-                      </a>
-                      <a class="nav-link px-2" href="../login/index.html" id="loginLink">
-                          <button id="loginButton" type="button" class="btn btn-light text-danger"
-                              style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                              <b>Login</b>
-                          </button>
-                      </a>
-                      <!-- Topbar Navbar -->
-                      <ul class="navbar-nav ml-auto">
-                          <!-- Nav Item - User Information -->
-                           
-                          <li class="nav-item dropdown no-arrow" id="userDetailsContainer" style="display: none;">
-                            
-                              <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                                  aria-haspopup="true" aria-expanded="false">
-                                  <img id="userPhoto" alt="Profile Picture" style="display: none; width: 30px; height: 30px; border-radius: 50%;">
-  
-                                  <span class="mr-2 d-none d-lg-inline text-gray-600 text-light" id="userName"></span>
-                              </a>
-                              <!-- Dropdown - User Information -->
-                              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in mx-auto" aria-labelledby="userDropdown">
-                                  <a class="dropdown-item" href="#">
-                                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                      Profile
-                                  </a>
-                                  <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" id="logoutButton">
-                                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                      Logout
-                                  </a>
-                              </div>
-                          </li>
-                      </ul>
-                      <style>
-                          @media (max-width: 1080.98px) {
-                              #userName {
-                                  display: inline !important;
-                              }
-                          }
-                      </style>
-                  </div>
-              </div>
-          </div>
-      </nav>
-      <div class="" id="included-confiremationheader"></div>
-    </header>
-    <main>
-        <div class="container">
-            <!-- first hotel details section start  -->
-            <h5 class="my-3"><b>Check your Reservation</b></h5>
-            <div class="row">
-                <!-- hotel details left side start  -->
-                <div class="col-lg-8 col-md-12 pb-3">
-                    <div class="border container shadow-sm rounded-3">
-                        <!-- flex start  -->
-                        <div class="d-flex align-items-center">
-                            <!-- flex left side start  -->
-                            <div class="p-2 w-100 bd-highlight ">
-                                <h5 class="mt-3 text-danger"><b>Ponmozhi Residency</b></h5>
-                                <h6 class="" style="opacity: 70%;">
-                                    <i class="fa-solid fa-location-dot px-1"></i>Vengikkal Road PANMOZHI RESIDENCY,
-                                    606604
-                                    Tiruvannamalai, India
-                                </h6>
-                                <div class="d-flex justify-content-start mt-2  mb-1">
-                                    <div class="right rounded-1">
-                                        <div style="font-size: 15px;"><b>6.2</b></div>
-                                    </div>
-                                    <div class="align-items-start">
-                                        <h4 class="text-danger pt-2 ps-1 me-2 text-start" style="font-size: 16px;">Good
-                                            <br>
-                                            <span class="" style="font-size: 12px; color: gray;">371 review</span>
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- flex left side end  -->
-                            <!-- flex right side start  -->
-                            <div class="p-2 flex-shrink-0 bd-highlight">
-                                <img src="image/image 3 (1).jpg" alt="">
-                            </div>
-                            <!-- flex right side end  -->
-                        </div>
-                        <!-- flex end  -->
-                        <div class="border container shadow-sm rounded-3 mb-3">
-                            <div class="container">
-                                <div class="row justify-content-center pt-2">
-                                    <div class="col-lg-3 col-md-6">
-                                        <p>check In <br> <b>Mon, 27 May, 2024</b> <br> <span>12 am</span></p>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <p>check out <br> <b>Tue, 28 May, 2024</b> <br> <span>12 am</span></p>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <p>Guests <br> <b>2 Guests | 1rom</b> <br> <span>1 Night</span></p>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <h6 class="text-danger pt-4"><b>Explore Inclusions</b></h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- total cost overview start  -->
-                        <div class="total-cost-overview">
-                            <h5 class="text-danger ps-2"><b>Total Cost Overview</b></h5>
-                            <div class="d-flex bd-highlight">
-                                <div class="p-1 w-100 bd-highlight">Standard Price ( 1 room x 1 night )</div>
-                                <div class="p-1 flex-shrink-1 bd-highlight">₹ 5,500</div>
-                            </div>
-                            <div class="d-flex bd-highlight">
-                                <div class="p-1 w-100 bd-highlight">Total Discount</div>
-                                <div class="p-1 flex-shrink-0 bd-highlight text-danger">-₹ 1,375</div>
-                            </div>
-                            <hr class=" text-danger bold">
-                            <div class="d-flex bd-highlight">
-                                <div class="p-1 w-100 bd-highlight">Price After Reduction</div>
-                                <div class="p-1 flex-shrink-1 bd-highlight">₹ 4,125</div>
-                            </div>
-                            <div class="d-flex bd-highlight">
-                                <div class="p-1 w-100 bd-highlight">Tax and charges</div>
-                                <div class="p-1 flex-shrink-0 bd-highlight">₹ 495</div>
-                            </div>
-                            <hr class=" text-danger bold">
-                            <div class="d-flex bd-highlight pb-3 pt-2">
-                                <div class="p-2 w-100 bd-highlight"><b>Amount payable</b></div>
-                                <div class="p-2 flex-shrink-0 bd-highlight">₹ 4,620</div>
-                            </div>
-                        </div>
-                        <!-- total cost overview end  -->
-                    </div>
-                </div>
-                <!-- hotel details left side end  -->
-                <!-- hotel coupen details right side start  -->
-                <div class="col-lg-4 col-md-12">
-                    <div class="border container shadow-sm rounded-3">
-                        <h6 class="mt-3 "><b>Coupon Codes</b></h6>
-                        <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-                            <div class="col-1 red-radio">
-                                <input type="radio" class="text-danger">
-                            </div>
-                            <div class="col-8">
-                                <p style="font-size: 12px;"><b>Summer vacation</b><br>Congratulations on choosing this
-                                    Homestay! Discount of INR 214 has been applied for your Vacation</p>
-                            </div>
-                            <div class="col-3">
-                                <p class="text-danger"><b>₹214</b></p>
-                            </div>
-                        </div>
-                        <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-                            <div class="col-1 red-radio">
-                                <input type="radio" class="text-danger">
-                            </div>
-                            <div class="col-8">
-                                <p style="font-size: 11px;"><b class="text-danger">GETSETGO</b><br>You Saved ₹663</p>
-                            </div>
-                            <div class="col-3">
-                                <p class="text-danger"><b>-₹663</b></p>
-                            </div>
-                        </div>
-                        <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-                            <div class="col-1 red-radio">
-                                <input type="radio" class="text-danger">
-                            </div>
-                            <div class="col-8">
-                                <p style="font-size: 12px;"><b>HOMESTAYS</b><br>Get INR 213 Off</p>
-                            </div>
-                            <div class="col-3">
-                                <p class="text-danger"><b>₹213</b></p>
-                            </div>
-                        </div>
-                        <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-                            <div class="col-1 red-radio">
-                                <input type="radio" class="text-danger">
-                            </div>
-                            <div class="col-8">
-                                <p style="font-size: 12px;"><b class="text-danger">YSPOT <span
-                                            class="text-dark">BESTBUY</span></b><br>Get INR 174 Off</p>
-                            </div>
-                            <div class="col-3">
-                                <p class="text-danger"><b>₹174</b></p>
-                            </div>
-                        </div>
-                        <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-                            <div class="col-1 red-radio">
-                                <input type="radio" class="text-danger">
-                            </div>
-                            <div class="col-8">
-                                <p style="font-size: 12px;"><b class="text-danger">YSPOT <span
-                                            class="text-dark">BIGSAVER</span></b><br>Use Y.SPOTBIGSAVER to get a
-                                    Discount of INR 146 off</p>
-                            </div>
-                            <div class="col-3">
-                                <p class="text-danger"><b>₹146</b></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- hotel coupen details right side end  -->
-            </div>
-            <!-- first hotel details section end  -->
-            <!-- guest details section start  -->
-            <div class="border container shadow-sm rounded-3">
-                <h5 class="p-2">GUEST DETAILS</h5>
-                <hr style="margin: 1%;">
-                <form>
-                    <div class="row mb-3">
-                        <div class="col-lg-4 mb-3 col-md-4">
-                            <label for="firstName" class="form-label">First name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control border-danger" id="firstName" placeholder="Enter your First name*">
-                        </div>
-                        <div class="col-lg-4 mb-3 col-md-4 even-align">
-                            <label for="lastName" class="form-label">Last name<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control border-danger" id="lastName" placeholder="Enter your Last name">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-lg-4  col-md-4">
-                            <label for="email" class="form-label">Email address<span class="text-danger">*</span></label>
-                            <input type="email" class="form-control border-danger" id="email" placeholder="Enter your Email address">
-                            <p style="opacity: 50%;" class="mt-1">The confirmation email is sent to this address.</p>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-lg-4 mb-3 col-md-4">
-                            <label for="address" class="form-label">Address<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control border-danger" id="address" placeholder="Enter your Address">
-                        </div>
-                        <div class="col-lg-4 mb-3 col-md-4 even-align">
-                            <label for="city" class="form-label">City<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control border-danger" id="city" placeholder="Enter your City">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-lg-4 mb-3 col-md-4">
-                            <label for="pincode" class="form-label">Pin Code<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control border-danger" id="pincode" placeholder="Enter your Pin Code*">
-                        </div>
-                        <div class="col-lg-4 mb-3 col-md-4 even-align">
-                            <label for="country" class="form-label">Country/region<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control border-danger" id="country" placeholder="Enter your Country/region">
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-lg-4 col-md-4">
-                            <label for="mobileNumber" class="form-label">Mobile number<span class="text-danger">*</span></label>
-                            <input type="tel" class="form-control border-danger" id="mobileNumber" placeholder="Enter your Mobile number">
-                            <p style="opacity: 50%;" class="mt-1">So the accommodation can reach you</p>
-                        </div>
-                    </div>
-                    <div class="row"><a href="" class="form-label text-danger" style="text-decoration: none; margin-bottom: 20px;"><b>+Add Guest</b></a></div>
-                </form>
-            </div>
-            <!-- guest details section end  -->
-            <!-- payment method start  -->   
-            <h5 class="my-3">Payment Method</h5>
-            <div class="border container shadow-sm rounded-3 mb-3">
-                <div class="total-cost-overview">
-                    <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <a id="redirectLink" href="#" ><img class="px-1" src="image/payment method icons/stars.jpg" alt="" style="width: 45px; height: 40px;"></a>
-                        <div class="p-1 w-100 bd-highlight"><a href="../confirmationpage/confirmation.html" class="text-dark" style="text-decoration: none;"><b style="font-size: 16px;">Reservation</b> <br>Pay when you
-                            check-in</a></div>
-                        <div class="p-3 flex-shrink-1 bd-highlight "> <img src="../confirmationpage/confirmation.html" alt="">
-                        </div>
-                        <div class="p-3 flex-shrink-1 bd-highlight "> <a href="../confirmationpage/confirmation.html"><img src="./image/arrow_forward_ios.jpg" alt=""></a>
-                        </div>
-                    </div>
-                    <hr class=" text-danger bold" style="margin: 1%;">
-                    <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/image 6.jpg" alt="" style="width: 45px; height: 40px;">
-                        <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">UPI options</b> <br>Pay directly
-                            from your Bank Account</div>
-                        <div
-                        class="col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
-                        <b class="p-1">Available Soon</b>
-                        </div>
-                        <div class="p-3 flex-shrink-1 bd-highlight "> <img src="./image/arrow_forward_ios.jpg" alt="">
-                        </div>
-                    </div>
-                    <hr class=" text-danger bold" style="margin: 1%;">
-                    <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/credit_card.jpg" alt="" style="width: 45px; height: 40px;">
-                        <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Credit/Debit Card </b>
-                            <br>PVisa, Mastercard, Amex, Rupau and more
-                        </div>
-                        <div
-                        class="col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
-                        <b class="p-1">Available Soon</b>
-                        </div>
-                        <div class="p-3 flex-shrink-1 bd-highlight "> <img src="./image/arrow_forward_ios.jpg" alt="">
-                        </div>
-                    </div>
-                    <hr class=" text-danger bold" style="margin: 1%;">
-                    <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/account_balance.jpg" alt="" style="width: 45px; height: 40px;">
-                        <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Net Banking</b> <br>All Major
-                            Banks Available</div>
-                        <div
-                        class="col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
-                        <b class="p-1">Available Soon</b>
-                        </div>    
-                        <div class="p-3 flex-shrink-1 bd-highlight "> <img src="./image/arrow_forward_ios.jpg" alt="">
-                        </div>
-                    </div>
-                    <hr class=" text-danger bold" style="margin: 1%;">
-                    <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/account_balance_wallet.jpg" alt="" style="width: 45px; height: 40px;">
-                        <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Mobile Wallets</b>
-                            <br>AmazonPay, Mobikwik, Payzapp
-                        </div>
-                        <div
-                            class=" col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
-                            <b class="p-1">Available Soon</b>
-                        </div>
-                        <div class="p-3 flex-shrink-1 bd-highlight "> <img src="./image/arrow_forward_ios.jpg" alt="">
-                        </div>
-                    </div>
-                    <hr class=" text-danger bold" style="margin: 1%;">
-                    <div class="d-flex bd-highlight justify-content-center align-items-center">
-                        <img class="px-1" src="image/payment method icons/Frame 623.jpg" alt="" style="width: 45px; height: 40px;">
-                        <div class="p-1 w-100 bd-highlight">
-                            <b style="font-size: 16px;">EMI</b> <br>Credit/Debit Card EMI available
-                        </div>
-                        <div
-                            class="me-3 col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
-                            <b class="p-1">Available Soon</b>
-                        </div>
-                        <div class="px-2 flex-shrink-1 bd-highlight d-flex justify-content-center align-items-center">
-                            <img src="./image/arrow_forward_ios.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- payment method end  -->
-        </div>
-    </main>
-    <footer class="footer pt-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md">
-                    <h6><b>Help</b></h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white textdec small-link">FAQ</a></li>
-                        <li><a href="#" class="text-white textdec small-link">Privacy policy</a></li>
-                        <li><a href="#" class="text-white textdec small-link">Cookies privacy</a></li>
-                        <li><a href="#" class="text-white textdec small-link">Terms of use</a></li>
-                        <li><a href="#" class="text-white textdec small-link">Help centre</a></li>
-                    </ul>
-                </div>
-                <div class="col-md">
-                    <h6><b>Get the App</b></h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white textdec small-link">IOS app</a></li>
-                        <li><a href="#" class="text-white textdec small-link">Android app</a></li>
-                    </ul>
-                </div>
-                <div class="col-md">
-                    <h6><b>Company</b></h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white textdec small-link">About Us</a></li>
-                        <li><a href="#" class="text-white textdec small-link">Blog</a></li>
-                        <li><a href="#" class="text-white textdec small-link">Careers</a></li>
-                        <li><a href="#" class="text-white textdec small-link">PointMAX</a></li>
-                    </ul>
-                </div>
-                <div class="col-md">
-                    <h6><b>Destination</b></h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white textdec small-link">Cities</a></li>
-                        <li><a href="#" class="text-white textdec small-link">Spiritual places </a></li>
-                        <li><a href="#" class="text-white textdec small-link">Hill Stations</a></li>
-                        <li><a href="#" class="text-white textdec small-link">Solo Travel places</a></li>
-                    </ul>
-                </div>
-                <div class="col-md">
-                    <h6><b>Social Networks</b></h6>
-                    <ul class="list-unstyled d-flex p-2">
-                        <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 406.png" alt="Facebook"
-                                    class="rounded-pill"></a></li>
-                        <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 407.png" alt="Twitter"
-                                    class="rounded-pill"></a></li>
-                        <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 408.png"
-                                    alt="Instagram" class="rounded-pill"></a></li>
-                        <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 410.png"
-                                    alt="Instagram" class="rounded-pill"></a></li>
-                        <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 409.png"
-                                    alt="Instagram" class="rounded-pill"></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="horizantal-line">
-        </div>
-        <h6 class="text-end mx-5 pt-3">&copy; 2023 Y.SPOT Rooms pvt .ltd.</h6>
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+  <div class="container mt-5" style="display: none;">
+    <h2>Room Booking Details</h2>
+    <form>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" id="location" name="location" value="" readonly>
+      </div>
+      <div class="form-group">
+        <label for="dates">Dates</label>
+        <input type="text" class="form-control" id="dates" name="dates" value="" readonly>
+      </div>
+      <div class="form-group">
+        <label for="guests">Guests</label>
+        <input type="text" class="form-control" id="guests" name="guests" value="" readonly>
+      </div>
+    </form>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- javascript logout fuction and form data get function are start  -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const urlParams = new URLSearchParams(window.location.search);
-          const location = urlParams.get('location');
-          const dates = urlParams.get('dates');
-          const guests = urlParams.get('guests');
-    
-          document.getElementById('location').value = location;
-          document.getElementById('dates').value = dates;
-          document.getElementById('guests').value = guests;
-    
-          const redirectLink = document.getElementById('redirectLink');
-          redirectLink.href = `../confirmationpage/confirmation.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
-        });
-      </script>
-         <script type="module">
-          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-          import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-      
-          const firebaseConfig = {
-              apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
-              authDomain: "y-spot-e84ca.firebaseapp.com",
-              databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
-              projectId: "y-spot-e84ca",
-              storageBucket: "y-spot-e84ca.appspot.com",
-              messagingSenderId: "783996806068",
-              appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
-              measurementId: "G-TSH2JVYJHR"
-          };
-      
-          const app = initializeApp(firebaseConfig);
-          const auth = getAuth();
-      
-          window.onload = () => {
-              const userDetailsContainer = document.getElementById("userDetailsContainer");
-              const registerLink = document.getElementById("registerLink");
-              const loginLink = document.getElementById("loginLink");
-              const userName = document.getElementById("userName");
-              const userPhoto = document.getElementById("userPhoto");
-      
-              onAuthStateChanged(auth, (user) => {
-                  if (user) {
-                      userDetailsContainer.style.display = "block";
-                      registerLink.style.display = "none";
-                      loginLink.style.display = "none";
-                      userName.textContent = user.displayName || "User";
-                      if (user.photoURL) {
-                          userPhoto.src = user.photoURL;
-                          userPhoto.style.display = "inline-block";
-                      } else {
-                          userPhoto.style.display = "none";
-                      }
-                  } else {
-                      userDetailsContainer.style.display = "none";
-                      registerLink.style.display = "block";
-                      loginLink.style.display = "block";
-                  }
-              });
-          };
-      
-          document.getElementById('logoutButton').addEventListener('click', function () {
-              signOut(auth).then(() => {
-                  alert('Logged out successfully');
-                  document.getElementById("userDetailsContainer").style.display = "none";
-                  document.getElementById("registerLink").style.display = "block";
-                  document.getElementById("loginLink").style.display = "block";
-                  window.location.href = '../index.html';
-              }).catch((error) => {
-                  console.error('Error logging out: ', error);
-                  alert('Error logging out. Please try again.');
-              });
-          });
-      </script>
-    <!-- javascript logout fuction and form data get function are end -->
-       <!-- back to top button start  -->
-   <button id="backToTop" class="btn" style="background-color: #ff0000;"><i class="fa-solid fa-arrow-up text-light"></i></button>
-   <style>
+  </div>
+  <header>
+    <nav class="navbar navbar-expand topbarstatic-top" style="background-color: #FF1717;">
+      <!-- First column -->
+      <div class="container">
+        <div class="row w-100">
+          <div class="col-lg-4"></div>
+          <!-- Second column -->
+          <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
+            <a class="navbar-brand" href="../index.html">
+              <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+            </a>
+          </div>
+          <!-- Third column -->
+          <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-center align-items-center mt-2">
+            <a class="nav-link px-2" href="../login/signup.html" id="registerLink">
+              <button id="registerButton" type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Register</b>
+              </button>
+            </a>
+            <a class="nav-link px-2" href="../login/index.html" id="loginLink">
+              <button id="loginButton" type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Login</b>
+              </button>
+            </a>
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - User Information -->
+
+              <li class="nav-item dropdown no-arrow" id="userDetailsContainer" style="display: none;">
+
+                <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img id="userPhoto" alt="Profile Picture"
+                    style="display: none; width: 30px; height: 30px; border-radius: 50%;">
+
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 text-light" id="userName"></span>
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in mx-auto"
+                  aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" id="logoutButton">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <style>
+              @media (max-width: 1080.98px) {
+                #userName {
+                  display: inline !important;
+                }
+              }
+            </style>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="" id="included-confiremationheader"></div>
+  </header>
+  <main>
+    <div class="container">
+      <!-- first hotel details section start  -->
+      <h5 class="my-3"><b>Check your Reservation</b></h5>
+      <div class="row">
+        <!-- hotel details left side start  -->
+        <div class="col-lg-8 col-md-12 pb-3">
+          <div class="border container shadow-sm rounded-3">
+            <!-- flex start  -->
+            <div class="d-flex align-items-center">
+              <!-- flex left side start  -->
+              <div class="p-2 w-100 bd-highlight ">
+                <h5 class="mt-3 text-danger"><b>Ponmozhi Residency</b></h5>
+                <h6 class="" style="opacity: 70%;">
+                  <i class="fa-solid fa-location-dot px-1"></i>Vengikkal Road PANMOZHI RESIDENCY,
+                  606604
+                  Tiruvannamalai, India
+                </h6>
+                <div class="d-flex justify-content-start mt-2  mb-1">
+                  <div class="right rounded-1">
+                    <div style="font-size: 15px;"><b>6.2</b></div>
+                  </div>
+                  <div class="align-items-start">
+                    <h4 class="text-danger pt-2 ps-1 me-2 text-start" style="font-size: 16px;">Good
+                      <br>
+                      <span class="" style="font-size: 12px; color: gray;">371 review</span>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <!-- flex left side end  -->
+              <!-- flex right side start  -->
+              <div class="p-2 flex-shrink-0 bd-highlight">
+                <img src="image/image 3 (1).jpg" alt="">
+              </div>
+              <!-- flex right side end  -->
+            </div>
+            <!-- flex end  -->
+            <div class="border container shadow-sm rounded-3 mb-3">
+              <div class="container">
+                <div class="row justify-content-center pt-2">
+                  <div class="col-lg-3 col-md-6">
+                    <p>check In <br> <b>Mon, 27 May, 2024</b> <br> <span>12 am</span></p>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <p>check out <br> <b>Tue, 28 May, 2024</b> <br> <span>12 am</span></p>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <p>Guests <br> <b>2 Guests | 1rom</b> <br> <span>1 Night</span></p>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <h6 class="text-danger pt-4"><b>Explore Inclusions</b></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- total cost overview start  -->
+            <div class="total-cost-overview">
+              <h5 class="text-danger ps-2"><b>Total Cost Overview</b></h5>
+              <div class="d-flex bd-highlight">
+                <div class="p-1 w-100 bd-highlight">Standard Price ( 1 room x 1 night )</div>
+                <div class="p-1 flex-shrink-1 bd-highlight">₹ 5,500</div>
+              </div>
+              <div class="d-flex bd-highlight">
+                <div class="p-1 w-100 bd-highlight">Total Discount</div>
+                <div class="p-1 flex-shrink-0 bd-highlight text-danger">-₹ 1,375</div>
+              </div>
+              <hr class=" text-danger bold">
+              <div class="d-flex bd-highlight">
+                <div class="p-1 w-100 bd-highlight">Price After Reduction</div>
+                <div class="p-1 flex-shrink-1 bd-highlight">₹ 4,125</div>
+              </div>
+              <div class="d-flex bd-highlight">
+                <div class="p-1 w-100 bd-highlight">Tax and charges</div>
+                <div class="p-1 flex-shrink-0 bd-highlight">₹ 495</div>
+              </div>
+              <hr class=" text-danger bold">
+              <div class="d-flex bd-highlight pb-3 pt-2">
+                <div class="p-2 w-100 bd-highlight"><b>Amount payable</b></div>
+                <div class="p-2 flex-shrink-0 bd-highlight">₹ 4,620</div>
+              </div>
+            </div>
+            <!-- total cost overview end  -->
+          </div>
+        </div>
+        <!-- hotel details left side end  -->
+        <!-- hotel coupen details right side start  -->
+        <div class="col-lg-4 col-md-12">
+          <div class="border container shadow-sm rounded-3">
+            <h6 class="mt-3 "><b>Coupon Codes</b></h6>
+            <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
+              </div>
+              <div class="col-8">
+                <p style="font-size: 12px;"><b>Summer vacation</b><br>Congratulations on choosing this
+                  Homestay! Discount of INR 214 has been applied for your Vacation</p>
+              </div>
+              <div class="col-3">
+                <p class="text-danger"><b>₹214</b></p>
+              </div>
+            </div>
+            <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
+              </div>
+              <div class="col-8">
+                <p style="font-size: 11px;"><b class="text-danger">GETSETGO</b><br>You Saved ₹663</p>
+              </div>
+              <div class="col-3">
+                <p class="text-danger"><b>-₹663</b></p>
+              </div>
+            </div>
+            <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
+              </div>
+              <div class="col-8">
+                <p style="font-size: 12px;"><b>HOMESTAYS</b><br>Get INR 213 Off</p>
+              </div>
+              <div class="col-3">
+                <p class="text-danger"><b>₹213</b></p>
+              </div>
+            </div>
+            <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
+              </div>
+              <div class="col-8">
+                <p style="font-size: 12px;"><b class="text-danger">YSPOT <span
+                      class="text-dark">BESTBUY</span></b><br>Get INR 174 Off</p>
+              </div>
+              <div class="col-3">
+                <p class="text-danger"><b>₹174</b></p>
+              </div>
+            </div>
+            <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
+              </div>
+              <div class="col-8">
+                <p style="font-size: 12px;"><b class="text-danger">YSPOT <span
+                      class="text-dark">BIGSAVER</span></b><br>Use Y.SPOTBIGSAVER to get a
+                  Discount of INR 146 off</p>
+              </div>
+              <div class="col-3">
+                <p class="text-danger"><b>₹146</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- hotel coupen details right side end  -->
+      </div>
+      <!-- first hotel details section end  -->
+      <!-- guest details section start  -->
+      <div class="border container shadow-sm rounded-3">
+        <h5 class="p-2">GUEST DETAILS</h5>
+        <hr style="margin: 1%;">
+        <form>
+          <div class="row mb-3">
+            <div class="col-lg-4 mb-3 col-md-4">
+              <label for="firstName" class="form-label">First name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control border-danger" id="firstName" placeholder="Enter your First name*">
+            </div>
+            <div class="col-lg-4 mb-3 col-md-4 even-align">
+              <label for="lastName" class="form-label">Last name<span class="text-danger">*</span></label>
+              <input type="text" class="form-control border-danger" id="lastName" placeholder="Enter your Last name">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-lg-4  col-md-4">
+              <label for="email" class="form-label">Email address<span class="text-danger">*</span></label>
+              <input type="email" class="form-control border-danger" id="email" placeholder="Enter your Email address">
+              <p style="opacity: 50%;" class="mt-1">The confirmation email is sent to this address.</p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-lg-4 mb-3 col-md-4">
+              <label for="address" class="form-label">Address<span class="text-danger">*</span></label>
+              <input type="text" class="form-control border-danger" id="address" placeholder="Enter your Address">
+            </div>
+            <div class="col-lg-4 mb-3 col-md-4 even-align">
+              <label for="city" class="form-label">City<span class="text-danger">*</span></label>
+              <input type="text" class="form-control border-danger" id="city" placeholder="Enter your City">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-lg-4 mb-3 col-md-4">
+              <label for="pincode" class="form-label">Pin Code<span class="text-danger">*</span></label>
+              <input type="text" class="form-control border-danger" id="pincode" placeholder="Enter your Pin Code*">
+            </div>
+            <div class="col-lg-4 mb-3 col-md-4 even-align">
+              <label for="country" class="form-label">Country/region<span class="text-danger">*</span></label>
+              <input type="text" class="form-control border-danger" id="country"
+                placeholder="Enter your Country/region">
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-lg-4 col-md-4">
+              <label for="mobileNumber" class="form-label">Mobile number<span class="text-danger">*</span></label>
+              <input type="tel" class="form-control border-danger" id="mobileNumber"
+                placeholder="Enter your Mobile number">
+              <p style="opacity: 50%;" class="mt-1">So the accommodation can reach you</p>
+            </div>
+          </div>
+          <div class="row"><a href="" class="form-label text-danger"
+              style="text-decoration: none; margin-bottom: 20px;"><b>+Add Guest</b></a></div>
+        </form>
+      </div>
+      <!-- guest details section end  -->
+      <!-- payment method start  -->
+      <h5 class="my-3">Payment Method</h5>
+      <div class="border container shadow-sm rounded-3 mb-3">
+        <div class="total-cost-overview">
+          <div class="d-flex bd-highlight justify-content-center align-items-center">
+            <a id="redirectLink" href="#"><img class="px-1" src="image/payment method icons/stars.jpg" alt=""
+                style="width: 45px; height: 40px;"></a>
+            <div class="p-1 w-100 bd-highlight"><a href="../confirmationpage/confirmation.html" class="text-dark"
+                style="text-decoration: none;"><b style="font-size: 16px;">Reservation</b> <br>Pay when you
+                check-in</a></div>
+            <div class="p-3 flex-shrink-1 bd-highlight ">
+              <img src="../confirmationpage/confirmation.html" alt="">
+            </div>
+            <div class="p-3 flex-shrink-1 bd-highlight "> <a href="../confirmationpage/confirmation.html">
+                <img src="./image/arrow_forward_ios.jpg" alt=""></a>
+            </div>
+          </div>
+          <hr class=" text-danger bold" style="margin: 1%;">
+          <div class="d-flex bd-highlight justify-content-center align-items-center">
+            <img class="px-1" src="image/payment method icons/image 6.jpg" alt="" style="width: 45px; height: 40px;">
+            <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">UPI options</b> <br>Pay directly
+              from your Bank Account</div>
+            <div
+              class="col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
+              <b class="p-1">Available Soon</b>
+            </div>
+            <div class="p-3 flex-shrink-1 bd-highlight "> <img src="./image/arrow_forward_ios.jpg" alt="">
+            </div>
+          </div>
+          <hr class=" text-danger bold" style="margin: 1%;">
+          <div class="d-flex bd-highlight justify-content-center align-items-center">
+            <img class="px-1" src="image/payment method icons/credit_card.jpg" alt=""
+              style="width: 45px; height: 40px;">
+            <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Credit/Debit Card </b>
+              <br>PVisa, Mastercard, Amex, Rupau and more
+            </div>
+            <div
+              class="col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
+              <b class="p-1">Available Soon</b>
+            </div>
+            <div class="p-3 flex-shrink-1 bd-highlight "> <img src="./image/arrow_forward_ios.jpg" alt="">
+            </div>
+          </div>
+          <hr class=" text-danger bold" style="margin: 1%;">
+          <div class="d-flex bd-highlight justify-content-center align-items-center">
+            <img class="px-1" src="image/payment method icons/account_balance.jpg" alt=""
+              style="width: 45px; height: 40px;">
+            <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Net Banking</b> <br>All Major
+              Banks Available</div>
+            <div
+              class="col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
+              <b class="p-1">Available Soon</b>
+            </div>
+            <div class="p-3 flex-shrink-1 bd-highlight "> <img src="./image/arrow_forward_ios.jpg" alt="">
+            </div>
+          </div>
+          <hr class=" text-danger bold" style="margin: 1%;">
+          <div class="d-flex bd-highlight justify-content-center align-items-center">
+            <img class="px-1" src="image/payment method icons/account_balance_wallet.jpg" alt=""
+              style="width: 45px; height: 40px;">
+            <div class="p-1 w-100 bd-highlight"><b style="font-size: 16px;">Mobile Wallets</b>
+              <br>AmazonPay, Mobikwik, Payzapp
+            </div>
+            <div
+              class=" col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
+              <b class="p-1">Available Soon</b>
+            </div>
+            <div class="p-3 flex-shrink-1 bd-highlight "> <img src="./image/arrow_forward_ios.jpg" alt="">
+            </div>
+          </div>
+          <hr class=" text-danger bold" style="margin: 1%;">
+          <div class="d-flex bd-highlight justify-content-center align-items-center">
+            <img class="px-1" src="image/payment method icons/Frame 623.jpg" alt="" style="width: 45px; height: 40px;">
+            <div class="p-1 w-100 bd-highlight">
+              <b style="font-size: 16px;">EMI</b> <br>Credit/Debit Card EMI available
+            </div>
+            <div
+              class="me-3 col-lg-12 col-md-12 rounded-1 bg-danger text-light text-center single-line available-soon-sticker">
+              <b class="p-1">Available Soon</b>
+            </div>
+            <div class="px-2 flex-shrink-1 bd-highlight d-flex justify-content-center align-items-center">
+              <img src="./image/arrow_forward_ios.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- payment method end  -->
+    </div>
+  </main>
+  <footer class="footer pt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <h6><b>Help</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">FAQ</a></li>
+            <li><a href="#" class="text-white textdec small-link">Privacy policy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Cookies privacy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Terms of use</a></li>
+            <li><a href="#" class="text-white textdec small-link">Help centre</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Get the App</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">IOS app</a></li>
+            <li><a href="#" class="text-white textdec small-link">Android app</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Company</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">About Us</a></li>
+            <li><a href="#" class="text-white textdec small-link">Blog</a></li>
+            <li><a href="#" class="text-white textdec small-link">Careers</a></li>
+            <li><a href="#" class="text-white textdec small-link">PointMAX</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Destination</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">Cities</a></li>
+            <li><a href="#" class="text-white textdec small-link">Spiritual places </a></li>
+            <li><a href="#" class="text-white textdec small-link">Hill Stations</a></li>
+            <li><a href="#" class="text-white textdec small-link">Solo Travel places</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Social Networks</b></h6>
+          <ul class="list-unstyled d-flex p-2">
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 406.png" alt="Facebook"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 407.png" alt="Twitter"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 408.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 410.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="../assets/img/footer social meadia icons/Frame 409.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="horizantal-line">
+    </div>
+    <h6 class="text-end mx-5 pt-3">&copy; 2023 Y.SPOT Rooms pvt .ltd.</h6>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- javascript logout fuction and form data get function are start  -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const location = urlParams.get('location');
+      const dates = urlParams.get('dates');
+      const guests = urlParams.get('guests');
+
+      document.getElementById('location').value = location;
+      document.getElementById('dates').value = dates;
+      document.getElementById('guests').value = guests;
+
+      const redirectLink = document.getElementById('redirectLink');
+      redirectLink.href = `../confirmationpage/confirmation.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
+    });
+  </script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+      authDomain: "y-spot-e84ca.firebaseapp.com",
+      databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+      projectId: "y-spot-e84ca",
+      storageBucket: "y-spot-e84ca.appspot.com",
+      messagingSenderId: "783996806068",
+      appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+      measurementId: "G-TSH2JVYJHR"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    window.onload = () => {
+      const userDetailsContainer = document.getElementById("userDetailsContainer");
+      const registerLink = document.getElementById("registerLink");
+      const loginLink = document.getElementById("loginLink");
+      const userName = document.getElementById("userName");
+      const userPhoto = document.getElementById("userPhoto");
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          userDetailsContainer.style.display = "block";
+          registerLink.style.display = "none";
+          loginLink.style.display = "none";
+          userName.textContent = user.displayName || "User";
+          if (user.photoURL) {
+            userPhoto.src = user.photoURL;
+            userPhoto.style.display = "inline-block";
+          } else {
+            userPhoto.style.display = "none";
+          }
+        } else {
+          userDetailsContainer.style.display = "none";
+          registerLink.style.display = "block";
+          loginLink.style.display = "block";
+        }
+      });
+    };
+
+    document.getElementById('logoutButton').addEventListener('click', function () {
+      signOut(auth).then(() => {
+        alert('Logged out successfully');
+        document.getElementById("userDetailsContainer").style.display = "none";
+        document.getElementById("registerLink").style.display = "block";
+        document.getElementById("loginLink").style.display = "block";
+        window.location.href = '../index.html';
+      }).catch((error) => {
+        console.error('Error logging out: ', error);
+        alert('Error logging out. Please try again.');
+      });
+    });
+  </script>
+  <!-- javascript logout fuction and form data get function are end -->
+  <!-- back to top button start  -->
+  <button id="backToTop" class="btn" style="background-color: #ff0000;"><i
+      class="fa-solid fa-arrow-up text-light"></i></button>
+  <style>
     #backToTop {
       position: fixed;
       bottom: 90px;
@@ -574,23 +587,23 @@
       z-index: 100;
     }
   </style>
-   <script>
-     // Function to show or hide the button based on scroll position
-     window.onscroll = function() {
-       const backToTopButton = document.getElementById('backToTop');
-       if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-         backToTopButton.style.display = "block";
-       } else {
-         backToTopButton.style.display = "none";
-       }
-     };
- 
-     // Function to smoothly scroll to the top
-     document.getElementById('backToTop').addEventListener('click', function() {
-       window.scrollTo({ top: 0, behavior: 'smooth' });
-     });
-   </script>
- <!-- back to top button end -->
+  <script>
+    // Function to show or hide the button based on scroll position
+    window.onscroll = function () {
+      const backToTopButton = document.getElementById('backToTop');
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    };
+
+    // Function to smoothly scroll to the top
+    document.getElementById('backToTop').addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+  <!-- back to top button end -->
 </body>
 
 </html>

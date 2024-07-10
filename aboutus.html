@@ -117,43 +117,44 @@
           <div class="col-lg-4"></div>
           <!-- Second column -->
           <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
-            <a class="navbar-brand" href="../index.html">
-              <img src="./assets/index-asset/Frame 223.png"  alt="" class="d-inline-block align-top">
+            <a class="navbar-brand" href="index.html">
+              <img src="assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
             </a>
           </div>
           <!-- Third column -->
-          <div class="col-12 col-md-7 col-lg-4 d-flex  justify-content-center align-items-center mt-2">
-            <div class="d-flex justify-content-center align-items-center mx-auto ps-4 ms-2">
-              <a class="nav-link" href="/login/signup.html" id="registerLink">
-                <button id="registerButton" type="button" class="btn btn-light text-danger"
-                  style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                  <b>Register</b>
-                </button>
-              </a>
-              <a class="nav-link" href="/login/index.html" id="loginLink">
-                <button id="loginButton" type="button" class="btn btn-light text-danger"
-                  style="height: 30px; display: flex; align-items: center; justify-content: center;">
-                  <b>Login</b>
-                </button>
-              </a>
-            </div>
+          <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-center align-items-center mt-2">
+            <a class="nav-link px-2" href="../login/signup.html" id="registerLink">
+              <button id="registerButton" type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Register</b>
+              </button>
+            </a>
+            <a class="nav-link px-2" href="../login/index.html" id="loginLink">
+              <button id="loginButton" type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Login</b>
+              </button>
+            </a>
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
               <!-- Nav Item - User Information -->
-              <li class="nav-item dropdown no-arrow" id="userDetailsContainer">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+              <li class="nav-item dropdown no-arrow" id="userDetailsContainer" style="display: none;">
+                <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img id="userPhoto" alt="Profile Picture"
+                    style="display: none; width: 30px; height: 30px; border-radius: 50%;">
+
                   <span class="mr-2 d-none d-lg-inline text-gray-600 text-light" id="userName"></span>
-                  <i class="fa-solid fa-user p-2 text-white fw-bold"></i>
                 </a>
                 <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in mx-auto"
+                  aria-labelledby="userDropdown">
                   <a class="dropdown-item" href="#">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" id="logoutButton">
+                  <a class="dropdown-item" href="./index.html" data-toggle="modal" data-target="#logoutModal" id="logoutButton">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                   </a>
@@ -171,7 +172,7 @@
         </div>
       </div>
     </nav>
-    <div class="" id="included-aboutusheader"></div>
+    <div class="" id="included-confiremationheader"></div>
   </header>
     <main>
         
@@ -275,13 +276,21 @@
       const userDetailsContainer = document.getElementById("userDetailsContainer");
       const registerLink = document.getElementById("registerLink");
       const loginLink = document.getElementById("loginLink");
+      const userName = document.getElementById("userName");
+      const userPhoto = document.getElementById("userPhoto");
 
       onAuthStateChanged(auth, (user) => {
         if (user) {
           userDetailsContainer.style.display = "block";
           registerLink.style.display = "none";
           loginLink.style.display = "none";
-          document.getElementById("userName").textContent = user.displayName || "User";
+          userName.textContent = user.displayName || "User";
+          if (user.photoURL) {
+            userPhoto.src = user.photoURL;
+            userPhoto.style.display = "inline-block";
+          } else {
+            userPhoto.style.display = "none";
+          }
         } else {
           userDetailsContainer.style.display = "none";
           registerLink.style.display = "block";
@@ -293,12 +302,10 @@
     document.getElementById('logoutButton').addEventListener('click', function () {
       signOut(auth).then(() => {
         alert('Logged out successfully');
-        // Hide user details and show register and login links
         document.getElementById("userDetailsContainer").style.display = "none";
         document.getElementById("registerLink").style.display = "block";
         document.getElementById("loginLink").style.display = "block";
-        // Redirect to login page or home page after logout
-        window.location.href = './login/index.html';
+        window.location.href = '../index.html';
       }).catch((error) => {
         console.error('Error logging out: ', error);
         alert('Error logging out. Please try again.');
@@ -326,7 +333,6 @@
           console.error('Error fetching content:', error);
         }
       };
-
       loadContent();
     });
   </script>
