@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Booking</title>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <form id="bookingForm">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location"><br><br>
+        <label for="dateRange">Check-in and Check-out Dates:</label>
+        <input type="text" id="dateRange" name="dateRange"><br><br>
+        <label for="rooms">Number of Rooms:</label>
+        <input type="number" id="rooms" name="rooms"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize Flatpickr for date range
+        var dateRangePicker = flatpickr("#dateRange", {
+            mode: "range",
+            dateFormat: "d, F, Y" // Format as "date, month, year"
+        });
+
+        // Retrieve data from sessionStorage and set it in the form
+        document.addEventListener('DOMContentLoaded', function() {
+            var location = sessionStorage.getItem('location');
+            var checkin = sessionStorage.getItem('checkin');
+            var checkout = sessionStorage.getItem('checkout');
+            var rooms = sessionStorage.getItem('rooms');
+
+            if (location) {
+                document.getElementById('location').value = location;
+            }
+            if (checkin && checkout) {
+                dateRangePicker.setDate([checkin, checkout]);
+            }
+            if (rooms) {
+                document.getElementById('rooms').value = rooms;
+            }
+        });
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            var location = document.getElementById('location').value;
+            var dateRange = document.getElementById('dateRange').value.split(" to ");
+            var checkin = dateRange[0];
+            var checkout = dateRange[1];
+            var rooms = document.getElementById('rooms').value;
+
+            // Store data in sessionStorage
+            sessionStorage.setItem('location', location);
+            sessionStorage.setItem('checkin', checkin);
+            sessionStorage.setItem('checkout', checkout);
+            sessionStorage.setItem('rooms', rooms);
+
+            window.location.href = "details.html";
+        });
+    </script>
+</body>
+</html>

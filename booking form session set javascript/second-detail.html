@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Booking Details</title>
+</head>
+<body>
+    <h2>Second  Booking Details</h2>
+    <p>Location: <span id="displayLocation"></span></p>
+    <p>Check-in Date: <span id="displayCheckin"></span></p>
+    <p>Check-out Date: <span id="displayCheckout"></span></p>
+    <p>Number of Rooms: <span id="displayRooms"></span></p>
+
+    <script>
+        // Retrieve data from sessionStorage
+        document.getElementById('displayLocation').textContent = sessionStorage.getItem('location');
+        document.getElementById('displayCheckin').textContent = sessionStorage.getItem('checkin');
+        document.getElementById('displayCheckout').textContent = sessionStorage.getItem('checkout');
+        document.getElementById('displayRooms').textContent = sessionStorage.getItem('rooms');
+    </script>
+</body>
+</html>
