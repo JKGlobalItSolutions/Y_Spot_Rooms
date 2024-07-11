@@ -501,21 +501,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!-- javascript logout fuction and form data get function are start  -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const location = urlParams.get('location');
-      const dates = urlParams.get('dates');
-      const guests = urlParams.get('guests');
-
-      document.getElementById('location').value = location;
-      document.getElementById('dates').value = dates;
-      document.getElementById('guests').value = guests;
-
-      const redirectLink = document.getElementById('redirectLink');
-      redirectLink.href = `../confirmationpage/confirmation.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
-    });
-  </script>
+  
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
