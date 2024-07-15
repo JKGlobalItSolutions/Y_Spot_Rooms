@@ -207,3 +207,58 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
   background-color: #f50e0e;
 }
+.navbar-nav {
+  flex-wrap: nowrap;
+}
+
+.navbar-nav.scrollable {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+
+.navbar-nav.scrollable .nav-item {
+  display: inline-block;
+}
+
+.form-check-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid red;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  box-shadow: 0 0 0 0;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.form-check-input:checked {
+  background-color: red;
+  border-color: red;
+}
+
+.form-check-input:checked::before {
+  color: white;
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 5px rgb(8, 8, 8);
+}
+
+.form-check-label {
+  margin-left: 5px;
+  cursor: pointer;
+}

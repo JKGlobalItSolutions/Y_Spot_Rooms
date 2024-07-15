@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <script src="./assets/js/color-modes.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.122.0">
+  <title>Y-spot</title>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/jumbotron/">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+  <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/index-asset/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="assets/index-asset/script.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- firebase script start -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize Flatpickr for date selection
+        flatpickr("#dates", {
+            dateFormat: "Y-m-d",
+            mode: "range"
+        });
+    
+        // Toggle guests dropdown visibility
+        document.getElementById('guests').addEventListener('click', function () {
+            var dropdown = document.getElementById('guestsDropdown');
+            if (dropdown.style.display === "none") {
+                dropdown.style.display = "block";
+                this.readOnly = true;
+            } else {
+                dropdown.style.display = "none";
+                this.readOnly = false;
+            }
+        });
+    
+        // Add event listeners for incrementing and decrementing adults, children, and rooms
+        document.getElementById('adults-plus').addEventListener('click', function() {
+            incrementValue('adults');
+        });
+    
+        document.getElementById('adults-minus').addEventListener('click', function() {
+            decrementValue('adults');
+        });
+    
+        document.getElementById('children-plus').addEventListener('click', function() {
+            incrementValue('children');
+        });
+    
+        document.getElementById('children-minus').addEventListener('click', function() {
+            decrementValue('children');
+        });
+    
+        document.getElementById('rooms-plus').addEventListener('click', function() {
+            incrementValue('rooms');
+        });
+    
+        document.getElementById('rooms-minus').addEventListener('click', function() {
+            decrementValue('rooms');
+        });
+    
+        // Done button to close the dropdown
+        document.getElementById('guests-done').addEventListener('click', function() {
+            document.getElementById('guestsDropdown').style.display = "none";
+            document.getElementById('guests').readOnly = false;
+        });
+    });
+    
+    // Function to increment the input value
+    function incrementValue(inputId) {
+        var input = document.getElementById(inputId);
+        var currentValue = parseInt(input.value);
+        input.value = currentValue + 1;
+        updateGuests();
+    }
+    
+    // Function to decrement the input value with a minimum of 0
+    function decrementValue(inputId) {
+        var input = document.getElementById(inputId);
+        var currentValue = parseInt(input.value);
+        if (currentValue > 0) {
+            input.value = currentValue - 1;
+            updateGuests();
+        }
+    }
+    
+    // Function to update the "Adults, Children & Rooms" input
+    function updateGuests() {
+        var adults = document.getElementById('adults').value;
+        var children = document.getElementById('children').value;
+        var rooms = document.getElementById('rooms').value;
+        var guests = "Adults: " + adults + ", Children: " + children + ", Rooms: " + rooms;
+        document.getElementById('guests').value = guests;
+    }
+    </script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand topbarstatic-top" style="background-color: #FF1717;">
+      <!-- First column -->
+      <div class="container">
+        <div class="row w-100">
+          <div class="col-lg-4"></div>
+          <!-- Second column -->
+          <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
+            <a class="navbar-brand" href="index.html">
+              <img src="assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+            </a>
+          </div>
+          <!-- Third column -->
+          <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-center align-items-center mt-2">
+            <a class="nav-link px-2" href="../login/signup.html" id="registerLink">
+              <button id="registerButton" type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Register</b>
+              </button>
+            </a>
+            <a class="nav-link px-2" href="../login/index.html" id="loginLink">
+              <button id="loginButton" type="button" class="btn btn-light text-danger"
+                style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                <b>Login</b>
+              </button>
+            </a>
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow" id="userDetailsContainer" style="display: none;">
+                <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img id="userPhoto" alt="Profile Picture"
+                    style="display: none; width: 30px; height: 30px; border-radius: 50%;">
+
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 text-light" id="userName"></span>
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in mx-auto"
+                  aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="./index.html" data-toggle="modal" data-target="#logoutModal" id="logoutButton">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <style>
+              @media (max-width: 1080.98px) {
+                #userName {
+                  display: inline !important;
+                }
+              }
+            </style>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="" id="included-confiremationheader"></div>
+  </header>
+    <main>        
+    </main>
+  <footer class="footer pt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <h6><b>Help</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">FAQ</a></li>
+            <li><a href="#" class="text-white textdec small-link">Privacy policy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Cookies privacy</a></li>
+            <li><a href="#" class="text-white textdec small-link">Terms of use</a></li>
+            <li><a href="#" class="text-white textdec small-link">Help centre</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Get the App</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">IOS app</a></li>
+            <li><a href="#" class="text-white textdec small-link">Android app</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Company</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">About Us</a></li>
+            <li><a href="#" class="text-white textdec small-link">Blog</a></li>
+            <li><a href="#" class="text-white textdec small-link">Careers</a></li>
+            <li><a href="#" class="text-white textdec small-link">PointMAX</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Destination</b></h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white textdec small-link">Cities</a></li>
+            <li><a href="#" class="text-white textdec small-link">Spiritual places </a></li>
+            <li><a href="#" class="text-white textdec small-link">Hill Stations</a></li>
+            <li><a href="#" class="text-white textdec small-link">Solo Travel places</a></li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h6><b>Social Networks</b></h6>
+          <ul class="list-unstyled d-flex p-2">
+            <li><a href="#"><img src="assets/img/footer social meadia icons/Frame 406.png" alt="Facebook"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="assets/img/footer social meadia icons/Frame 407.png" alt="Twitter"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="assets/img/footer social meadia icons/Frame 408.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="assets/img/footer social meadia icons/Frame 410.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+            <li><a href="#"><img src="assets/img/footer social meadia icons/Frame 409.png" alt="Instagram"
+                  class="rounded-pill"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="horizantal-line">
+
+    </div>
+    <h6 class="text-end mx-5 pt-3">&copy; 2023 Y.SPOT Rooms pvt .ltd.</h6>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+    integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+    async></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min"></script>
+  <script src="/assets/index-asset/script.js"></script>
+
+  <!-- Your HTML code for the form -->
+
+  <!-- Include Flatpickr JavaScript -->
+
+  <!-- index page script for navbar section  start  -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+      authDomain: "y-spot-e84ca.firebaseapp.com",
+      databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+      projectId: "y-spot-e84ca",
+      storageBucket: "y-spot-e84ca.appspot.com",
+      messagingSenderId: "783996806068",
+      appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+      measurementId: "G-TSH2JVYJHR"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    window.onload = () => {
+      const userDetailsContainer = document.getElementById("userDetailsContainer");
+      const registerLink = document.getElementById("registerLink");
+      const loginLink = document.getElementById("loginLink");
+      const userName = document.getElementById("userName");
+      const userPhoto = document.getElementById("userPhoto");
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          userDetailsContainer.style.display = "block";
+          registerLink.style.display = "none";
+          loginLink.style.display = "none";
+          userName.textContent = user.displayName || "User";
+          if (user.photoURL) {
+            userPhoto.src = user.photoURL;
+            userPhoto.style.display = "inline-block";
+          } else {
+            userPhoto.style.display = "none";
+          }
+        } else {
+          userDetailsContainer.style.display = "none";
+          registerLink.style.display = "block";
+          loginLink.style.display = "block";
+        }
+      });
+    };
+
+    document.getElementById('logoutButton').addEventListener('click', function () {
+      signOut(auth).then(() => {
+        alert('Logged out successfully');
+        document.getElementById("userDetailsContainer").style.display = "none";
+        document.getElementById("registerLink").style.display = "block";
+        document.getElementById("loginLink").style.display = "block";
+        window.location.href = '../index.html';
+      }).catch((error) => {
+        console.error('Error logging out: ', error);
+        alert('Error logging out. Please try again.');
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const fetchContent = async (url) => {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.text();
+      };
+
+      const loadContent = async () => {
+        try {
+          const [headerData, footerData] = await Promise.all([
+            fetchContent('includes/aboutusheader.html'),
+            fetchContent('includes/footer.html')
+          ]);
+
+          document.getElementById('included-aboutusheader').innerHTML = headerData;
+          document.getElementById('included-footer').innerHTML = footerData;
+        } catch (error) {
+          console.error('Error fetching content:', error);
+        }
+      };
+      loadContent();
+    });
+  </script>
+  <!-- index page script for navbar section  end  -->
+    <!-- back to top button start  -->
+    <button id="backToTop" class="btn" style="background-color: #ff0000;"><i class="fa-solid fa-arrow-up text-light"></i></button>
+    <style>
+      #backToTop {
+        position: fixed;
+        bottom: 90px;
+        right: 40px;
+        display: none;
+        z-index: 100;
+      }
+    </style>
+    <script>
+      // Function to show or hide the button based on scroll position
+      window.onscroll = function() {
+        const backToTopButton = document.getElementById('backToTop');
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+          backToTopButton.style.display = "block";
+        } else {
+          backToTopButton.style.display = "none";
+        }
+      };
+  
+      // Function to smoothly scroll to the top
+      document.getElementById('backToTop').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
+  <!-- back to top button end -->
+</body>
+
+</html>

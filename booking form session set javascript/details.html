@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Details</title>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="container custom-container rounded" id="move1" style="background-color: #f4f2fa; width: 100%;">
+      <div class="container">
+        <h2>Booking Details</h2>
+        <form id="updateForm">
+            <div class="row justify-content-center rounded-3">
+                <!-- Location -->
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                    <label for="location">Location:</label>
+                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter destination" required>
+                </div>
+                <!-- Check-in and Check-out Dates -->
+                <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                    <label for="dateRange">Check-in and Check-out Dates:</label>
+                    <input type="text" class="form-control" id="dateRange" name="dateRange" placeholder="Check-in - Check-out" required>
+                </div>
+                <!-- Combined Input Box for Adults, Children, and Rooms -->
+                <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                    <label for="guests">Guests and Rooms:</label>
+                    <input type="text" class="form-control" id="guests" name="guests" placeholder="Adults, Children & Rooms" required>
+                    <div class="dropdown-menu p-3" id="guestsDropdown" aria-labelledby="guestsDropdown" style="display: none;">
+                        <div class="form-group">
+                            <label for="adults">Adults</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary btn-minus" type="button" id="adults-minus">-</button>
+                                </div>
+                                <input type="number" class="form-control" id="adults" min="0" value="0" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-plus" type="button" id="adults-plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="children">Children</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary btn-minus" type="button" id="children-minus">-</button>
+                                </div>
+                                <input type="number" class="form-control" id="children" min="0" value="0" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-plus" type="button" id="children-plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rooms">Rooms</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary btn-minus" type="button" id="rooms-minus">-</button>
+                                </div>
+                                <input type="number" class="form-control" id="rooms" min="1" value="1" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-plus" type="button" id="rooms-plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Update Button -->
+                <div class="form-group col-lg-2 col-md-6 col-sm-12">
+                    <button type="submit" class="btn text-light" id="update" style="background-color: #FF1717;">Update</button>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize Flatpickr for date range
+        flatpickr("#dateRange", {
+            mode: "range",
+            dateFormat: "d, m, Y", // Format as "day, month, year"
+            defaultDate: [sessionStorage.getItem('checkin'), sessionStorage.getItem('checkout')]
+        });
+
+        // Retrieve data from sessionStorage and set it in the form
+        document.getElementById('location').value = sessionStorage.getItem('location');
+        // Combine adults, children, and rooms into a single string for the guests input field
+        document.getElementById('guests').value = `${sessionStorage.getItem('adults')} Adults, ${sessionStorage.getItem('children')} Children, ${sessionStorage.getItem('rooms')} Rooms`;
+
+        // Update sessionStorage on form submit
+        document.getElementById('updateForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get updated form data
+            var location = document.getElementById('location').value;
+            var dateRange = document.getElementById('dateRange').value.split(" to ");
+            var checkin = dateRange[0];
+            var checkout = dateRange[1];
+            var guests = document.getElementById('guests').value.split(", ");
+            var adults = guests[0].split(" ")[0];
+            var children = guests[1].split(" ")[0];
+            var rooms = guests[2].split(" ")[0];
+
+            // Store updated data in sessionStorage
+            sessionStorage.setItem('location', location);
+            sessionStorage.setItem('checkin', checkin);
+            sessionStorage.setItem('checkout', checkout);
+            sessionStorage.setItem('adults', adults);
+            sessionStorage.setItem('children', children);
+            sessionStorage.setItem('rooms', rooms);
+
+            // Redirect to the details page
+            window.location.href = "details.html";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Profile Management</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Firebase Configuration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
+      authDomain: "testcrud-103a3.firebaseapp.com",
+      databaseURL: "https://testcrud-103a3-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "testcrud-103a3",
+      storageBucket: "testcrud-103a3.appspot.com",
+      messagingSenderId: "387302339276",
+      appId: "1:387302339276:web:e6c88525a1d80f9d154869",
+      measurementId: "G-ZR3EB3CD3Z"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestore = getFirestore(app);
+
+    let currentUserEmail = '';
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUserEmail = user.email;
+        document.getElementById('adminEmail').value = currentUserEmail;
+        loadAdminProfile();
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+
+    const loadAdminProfile = async () => {
+      const docRef = doc(firestore, 'adminProfiles', currentUserEmail);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const adminProfile = docSnap.data();
+        document.getElementById('adminName').value = adminProfile.name;
+        document.getElementById('adminPhone').value = adminProfile.phone;
+      }
+    };
+
+    document.getElementById('adminProfileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const adminName = document.getElementById('adminName').value;
+      const adminPhone = document.getElementById('adminPhone').value;
+
+      const adminProfileDocRef = doc(firestore, 'adminProfiles', currentUserEmail);
+
+      const updatedProfileData = {
+        name: adminName,
+        phone: adminPhone
+      };
+
+      await updateDoc(adminProfileDocRef, updatedProfileData);
+      loadAdminProfile();
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await signOut(auth);
+      window.location.href = 'index.html';
+    });
+
+    document.getElementById('hotelDetailsBtn').addEventListener('click', () => {
+      window.location.href = 'hotelDetails.html';
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Profile Management</h1>
+    <button id="logoutBtn" class="btn btn-danger">Logout</button>
+    <hr>
+    <div id="adminProfileForm">
+      <h2>Admin Profile</h2>
+      <form>
+        <div class="form-group">
+          <label for="adminName">Admin Name</label>
+          <input type="text" id="adminName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="adminEmail">Admin Email</label>
+          <input type="email" id="adminEmail" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+          <label for="adminPhone">Admin Phone</label>
+          <input type="tel" id="adminPhone" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+      </form>
+    </div>
+    <hr>
+    <button id="hotelDetailsBtn" class="btn btn-secondary">Hotel Details</button>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

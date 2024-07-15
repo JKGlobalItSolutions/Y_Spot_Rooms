@@ -64,6 +64,8 @@
     </form>
 
   </div>
+ 
+
   <header>
     <nav class="navbar navbar-expand topbarstatic-top" style="background-color: #FF1717;">
       <!-- First column -->
@@ -172,68 +174,28 @@
             <div class="border container shadow-sm rounded-3 mb-3">
               <div class="container">
                 <div class="row justify-content-center pt-2">
-                  <div class="col-lg-3 col-md-6">
-                    <p>Check In <br> <b id="displayCheckin"></b> <br></p>
+                  <div class="col-lg-3 col-md-6" id="displayCheckin">
+                    <p >check In <br> <b>Mon, 27 May, 2024</b> <br> <span>12 am</span></p>
+                  </div>
+                  <div class="col-lg-3 col-md-6" id="displayCheckout">
+                    <p >check out <br> <b>Tue, 28 May, 2024</b> <br> <span>12 am</span></p>
                   </div>
                   <div class="col-lg-3 col-md-6">
-                    <p>Check Out <br> <b id="displayCheckout"></b> <br></p>
+                    <p >Guests <br> <b>2 Guests | 1room</b> <br> <span>1 Night</span></p>
                   </div>
-                  <div class="col-lg-3 col-md-6  ">
-                    <ul>
-                      <li>Adults: <b id="displayadults"></b></li>
-                      <li>Children: <b id="displayChildren"></b></li>
-                      <li>Rooms: <b id="displayRooms"></b></li>
-                     <li >Duration: <b id="night"></b></li>
-                  </ul>
-                  </div>
-                  
                   <div class="col-lg-3 col-md-6">
-                    <p></p>
                     <h6 class="text-danger pt-4"><b>Explore Inclusions</b></h6>
                   </div>
                 </div>
               </div>
             </div>
-            <script>
-
-              // Retrieve data from sessionStorage
-              document.getElementById('displayadults').textContent = sessionStorage.getItem('adults');
-              document.getElementById('displayChildren').textContent = sessionStorage.getItem('children');
-              document.getElementById('displayCheckin').textContent = sessionStorage.getItem('checkin');
-              document.getElementById('displayCheckout').textContent = sessionStorage.getItem('checkout');
-              document.getElementById('displayRooms').textContent = sessionStorage.getItem('rooms');
-              document.getElementById('displaydiscountedRate').textContent = sessionStorage.getItem('discountedRate');
-              document.getElementById('displaydtotalRate').textContent = sessionStorage.getItem('totalRate');
-          </script>
-          <script>
-            // Function to calculate the number of nights between two dates
-            function calculateNights(checkin, checkout) {
-                const checkinDate = new Date(checkin);
-                const checkoutDate = new Date(checkout);
-                const timeDiff = checkoutDate - checkinDate;
-                const nightDiff = timeDiff / (1000 * 60 * 60 * 24); // Convert milliseconds to days
-                return nightDiff;
-            }
-        
-            // Retrieve data from sessionStorage
-            const checkin = sessionStorage.getItem('checkin');
-            const checkout = sessionStorage.getItem('checkout');
-        
-            // Display check-in and check-out dates
-            document.getElementById('displayCheckin').textContent = checkin;
-            document.getElementById('displayCheckout').textContent = checkout;
-        
-            // Calculate and display the entire stay duration
-            const nights = calculateNights(checkin, checkout);
-            // document.getElementById('stayDuration').textContent = `Entire Stay Duration: ${nights} night${nights > 1 ? 's' : ''}`;
-            document.getElementById('night').textContent = `${nights} night${nights > 1 ? 's' : ''}`;
-        </script>
+          
             <!-- total cost overview start  -->
             <div class="total-cost-overview">
               <h5 class="text-danger ps-2"><b>Total Cost Overview</b></h5>
               <div class="d-flex bd-highlight">
                 <div class="p-1 w-100 bd-highlight">Standard Price ( 1 room x 1 night )</div>
-                <div class="p-1 flex-shrink-1 bd-highlight" id="displaydiscountedRate">₹ 5,500</div>
+                <div class="p-1 flex-shrink-1 bd-highlight">₹ 5,500</div>
               </div>
               <div class="d-flex bd-highlight">
                 <div class="p-1 w-100 bd-highlight">Total Discount</div>
@@ -242,7 +204,7 @@
               <hr class=" text-danger bold">
               <div class="d-flex bd-highlight">
                 <div class="p-1 w-100 bd-highlight">Price After Reduction</div>
-                <div class="p-1 flex-shrink-1 bd-highlight" >₹ 4,125</div>
+                <div class="p-1 flex-shrink-1 bd-highlight">₹ 4,125</div>
               </div>
               <div class="d-flex bd-highlight">
                 <div class="p-1 w-100 bd-highlight">Tax and charges</div>
@@ -251,7 +213,7 @@
               <hr class=" text-danger bold">
               <div class="d-flex bd-highlight pb-3 pt-2">
                 <div class="p-2 w-100 bd-highlight"><b>Amount payable</b></div>
-                <div class="p-2 flex-shrink-0 bd-highlight" id="displaydtotalRate"></div>
+                <div class="p-2 flex-shrink-0 bd-highlight">₹ 4,620</div>
               </div>
             </div>
             <!-- total cost overview end  -->
@@ -263,8 +225,8 @@
           <div class="border container shadow-sm rounded-3">
             <h6 class="mt-3 "><b>Coupon Codes</b></h6>
             <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-              <div class="col-1 red-checkbox">
-                <input type="checkbox" class="text-danger">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
               </div>
               <div class="col-8">
                 <p style="font-size: 12px;"><b>Summer vacation</b><br>Congratulations on choosing this
@@ -275,8 +237,8 @@
               </div>
             </div>
             <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-              <div class="col-1 red-checkbox">
-                <input type="checkbox" class="text-danger">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
               </div>
               <div class="col-8">
                 <p style="font-size: 11px;"><b class="text-danger">GETSETGO</b><br>You Saved ₹663</p>
@@ -286,8 +248,8 @@
               </div>
             </div>
             <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-              <div class="col-1 red-checkbox">
-                <input type="checkbox" class="text-danger">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
               </div>
               <div class="col-8">
                 <p style="font-size: 12px;"><b>HOMESTAYS</b><br>Get INR 213 Off</p>
@@ -297,8 +259,8 @@
               </div>
             </div>
             <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-              <div class="col-1 red-checkbox">
-                <input type="checkbox" class="text-danger">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
               </div>
               <div class="col-8">
                 <p style="font-size: 12px;"><b class="text-danger">YSPOT <span
@@ -309,8 +271,8 @@
               </div>
             </div>
             <div class="row m-1 dotted-border p-2 mb-3 rounded-1">
-              <div class="col-1 red-checkbox">
-                <input type="checkbox" class="text-danger">
+              <div class="col-1 red-radio">
+                <input type="radio" class="text-danger">
               </div>
               <div class="col-8">
                 <p style="font-size: 12px;"><b class="text-danger">YSPOT <span
@@ -631,6 +593,7 @@
     });
   </script>
   <!-- back to top button end -->
+    
 </body>
 
 </html>

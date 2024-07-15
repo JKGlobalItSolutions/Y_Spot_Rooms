@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Booking</title>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        .dropdown-menu {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container custom-container rounded" id="move2" style="background-color: #e2dfec; width: 100%;">
+        <div class="container">
+            <form id="bookingForm">
+                <div class="row justify-content-center rounded-3">
+                    <!-- Destination -->
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Enter destination" required>
+                    </div>
+                    <!-- Check-in and Check-out Dates -->
+                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                        <input type="text" class="form-control" id="dateRange" name="dates" placeholder="Check-in - Check-out" required>
+                    </div>
+                    <!-- Combined Input Box for Adults, Children, and Rooms -->
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                        <input type="text" class="form-control" id="guests" name="guests" placeholder="Adults, Children & Rooms" required readonly>
+                        <div class="dropdown-menu p-3" id="guestsDropdown">
+                            <div class="form-group">
+                                <label for="adults">Adults</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary btn-minus" type="button" id="adults-minus">-</button>
+                                    </div>
+                                    <input type="number" class="form-control" id="adults" min="0" value="0" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-plus" type="button" id="adults-plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="children">Children</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary btn-minus" type="button" id="children-minus">-</button>
+                                    </div>
+                                    <input type="number" class="form-control" id="children" min="0" value="0" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-plus" type="button" id="children-plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rooms">Rooms</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary btn-minus" type="button" id="rooms-minus">-</button>
+                                    </div>
+                                    <input type="number" class="form-control" id="rooms" min="1" value="1" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-plus" type="button" id="rooms-plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Done Button -->
+                            <button class="btn btn-primary mt-3" id="guests-done" type="button">Done</button>
+                        </div>
+                    </div>
+                    <!-- Search Button -->
+                    <div class="form-group col-lg-2 col-md-6 col-sm-12">
+                        <button type="submit" class="btn text-light" id="search" style="background-color: #FF1717;">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize Flatpickr for date range
+        var dateRangePicker = flatpickr("#dateRange", {
+            mode: "range",
+            dateFormat: "d, F, Y" // Format as "date, month, year"
+        });
+
+        // Retrieve data from sessionStorage and set it in the form
+        document.addEventListener('DOMContentLoaded', function() {
+            var location = sessionStorage.getItem('location');
+            var checkin = sessionStorage.getItem('checkin');
+            var checkout = sessionStorage.getItem('checkout');
+            var adults = sessionStorage.getItem('adults');
+            var children = sessionStorage.getItem('children');
+            var rooms = sessionStorage.getItem('rooms');
+
+            if (location) {
+                document.getElementById('location').value = location;
+            }
+            if (checkin && checkout) {
+                dateRangePicker.setDate([checkin, checkout]);
+            }
+            if (adults) {
+                document.getElementById('adults').value = adults;
+            }
+            if (children) {
+                document.getElementById('children').value = children;
+            }
+            if (rooms) {
+                document.getElementById('rooms').value = rooms;
+            }
+        });
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            var location = document.getElementById('location').value;
+            var dateRange = document.getElementById('dateRange').value.split(" to ");
+            var checkin = dateRange[0];
+            var checkout = dateRange[1];
+            var adults = document.getElementById('adults').value;
+            var children = document.getElementById('children').value;
+            var rooms = document.getElementById('rooms').value;
+
+            // Store data in sessionStorage
+            sessionStorage.setItem('location', location);
+            sessionStorage.setItem('checkin', checkin);
+            sessionStorage.setItem('checkout', checkout);
+            sessionStorage.setItem('adults', adults);
+            sessionStorage.setItem('children', children);
+            sessionStorage.setItem('rooms', rooms);
+
+            window.location.href = "details.html";
+        });
+
+        // Toggle dropdown menu for guests input
+        document.getElementById('guests').addEventListener('click', function() {
+            var dropdown = document.getElementById('guestsDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Update guests input field and hide dropdown when done
+        document.getElementById('guests-done').addEventListener('click', function() {
+            var adults = document.getElementById('adults').value;
+            var children = document.getElementById('children').value;
+            var rooms = document.getElementById('rooms').value;
+            document.getElementById('guests').value = `${adults} Adults, ${children} Children, ${rooms} Rooms`;
+            document.getElementById('guestsDropdown').style.display = 'none';
+        });
+
+        // Helper functions to increment/decrement numbers
+        function increment(inputId) {
+            var input = document.getElementById(inputId);
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decrement(inputId) {
+            var input = document.getElementById(inputId);
+            if (parseInt(input.value) > 0) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        // Add event listeners for plus/minus buttons
+        document.getElementById('adults-plus').addEventListener('click', function() {
+            increment('adults');
+        });
+        document.getElementById('adults-minus').addEventListener('click', function() {
+            decrement('adults');
+        });
+        document.getElementById('children-plus').addEventListener('click', function() {
+            increment('children');
+        });
+        document.getElementById('children-minus').addEventListener('click', function() {
+            decrement('children');
+        });
+        document.getElementById('rooms-plus').addEventListener('click', function() {
+            increment('rooms');
+        });
+        document.getElementById('rooms-minus').addEventListener('click', function() {
+            decrement('rooms');
+        });
+    </script>
+</body>
+</html>
