@@ -184,7 +184,7 @@
               </script>
                 <!-- Begin Page Content -->
                 <form id="hotel-details-form">
-                    <div class="container-fluid">
+                    <div class="container-fluid" >
                         <div class="border shadow-sm rounded-3 p-3">
                             <div class="rounded bg-white mb-2">
                                 <div class="text-center mt-2">
@@ -216,7 +216,7 @@
                                         <div class="p-1 py-1">
                                             <div class="row mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="col-lg-5">
-                                                    <label class="labels"><b>Choose options</b></label>
+                                                    <label class="labels"><b>Accommodation Facilities</b></label>
                                                     <select id="options" class="form-control">
                                                         <option value="" disabled selected>Select your options</option>
                                                         <option value="WiFi">WiFi</option>
@@ -235,7 +235,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div >
                 </form>
             
                 <script>
@@ -309,8 +309,8 @@ const storage = firebase.storage();
                             const selectedOption = document.createElement('div');
                             selectedOption.className = 'selected-option';
                             selectedOption.innerHTML = `
-                                <span>${option}</span>
-                                <button type="button" onclick="removeSelectedOption('${option}')">&times;</button>
+                                <span class="m-1">${option}</span>
+                                <button type="button" onclick="removeSelectedOption('${option}')" class="m-1  text-white border-0  rounded" style="background-color:#FF0000">&times;</button>
                             `;
                             selectedContainer.appendChild(selectedOption);
                         });
@@ -352,7 +352,7 @@ const storage = firebase.storage();
             
                                         const deleteButton = document.createElement('a');
                                         deleteButton.href = '#';
-                                        deleteButton.className = 'btn btn-danger danger-button';
+                                        deleteButton.className = 'btn btn-danger danger-button ';
                                         deleteButton.innerText = 'Delete';
                                         deleteButton.onclick = function() {
                                             deleteImage(user, index);
@@ -446,6 +446,7 @@ const storage = firebase.storage();
                                     console.log("Images uploaded and URLs saved to Firestore successfully!");
                                     alert("Images uploaded and URLs saved successfully!");
                                     loadHotelDetails(user); // Refresh the hotel details after saving
+                                    window.location.reload(); // Reload the page after a successful update
                                 }).catch((error) => {
                                     console.log("Error updating image URLs: ", error);
                                     alert("Error updating image URLs: " + error.message);
