@@ -191,7 +191,165 @@
         </div>
     </div>
     
-   
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize Flatpickr for date selection
+        var dateRangePicker = flatpickr("#dates", {
+            mode: "range",
+            dateFormat: "d, F Y",
+            minDate: "today", // Disable past dates
+            defaultDate: [new Date(), new Date()], // Default check-in and check-out to today
+            onClose: function(selectedDates) {
+                if (selectedDates.length === 2) {
+                    sessionStorage.setItem('checkin', selectedDates[0].toLocaleDateString());
+                    sessionStorage.setItem('checkout', selectedDates[1].toLocaleDateString());
+                }
+            }
+        });
+
+        // Retrieve data from sessionStorage and set it in the form
+        var location = sessionStorage.getItem('location') || 'Tiruvannamalai';
+        var checkin = sessionStorage.getItem('checkin');
+        var checkout = sessionStorage.getItem('checkout');
+        var adults = sessionStorage.getItem('adults') || 1;
+        var children = sessionStorage.getItem('children') || 0;
+        var rooms = sessionStorage.getItem('rooms') || 1;
+
+        document.getElementById('location').value = location;
+        if (checkin && checkout) {
+            dateRangePicker.setDate([new Date(checkin), new Date(checkout)]);
+        } else {
+            dateRangePicker.setDate([new Date(), new Date()]);
+        }
+        document.getElementById('adults').value = adults;
+        document.getElementById('children').value = children;
+        document.getElementById('rooms').value = rooms;
+        updateGuests();
+        updateButtonsState();
+
+        // Toggle guests dropdown visibility
+        document.getElementById('guests').addEventListener('click', function(event) {
+            var dropdown = document.getElementById('guestsDropdown');
+            dropdown.classList.toggle('show');
+            event.stopPropagation();
+        });
+
+        // Close dropdown if clicking outside
+        document.addEventListener('click', function(event) {
+            var dropdown = document.getElementById('guestsDropdown');
+            if (!event.target.closest('#guestsDropdown') && !event.target.closest('#guests')) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Add event listeners for incrementing and decrementing adults, children, and rooms
+        document.getElementById('adults-plus').addEventListener('click', function() { incrementValue('adults', 30); });
+        document.getElementById('adults-minus').addEventListener('click', function() { decrementValue('adults', 1); });
+        document.getElementById('children-plus').addEventListener('click', function() { incrementValue('children', 10); });
+        document.getElementById('children-minus').addEventListener('click', function() { decrementValue('children', 0); });
+        document.getElementById('rooms-plus').addEventListener('click', function() { incrementValue('rooms', 30); });
+        document.getElementById('rooms-minus').addEventListener('click', function() { decrementValue('rooms', 1); });
+
+        // Done button to close the dropdown
+        document.getElementById('guests-done').addEventListener('click', function() {
+            document.getElementById('guestsDropdown').classList.remove('show');
+            updateGuests();
+        });
+
+        // Function to increment the input value
+        function incrementValue(inputId, maxValue) {
+            var input = document.getElementById(inputId);
+            var currentValue = parseInt(input.value);
+            if (currentValue < maxValue) {
+                input.value = currentValue + 1;
+                updateGuests();
+                updateButtonsState();
+            }
+        }
+
+        // Function to decrement the input value with a minimum value
+        function decrementValue(inputId, minValue) {
+            var input = document.getElementById(inputId);
+            var currentValue = parseInt(input.value);
+            if (currentValue > minValue) {
+                input.value = currentValue - 1;
+                updateGuests();
+                updateButtonsState();
+            }
+        }
+
+        // Function to update the "Adults, Children & Rooms" input
+        function updateGuests() {
+            var adults = document.getElementById('adults').value;
+            var children = document.getElementById('children').value;
+            var rooms = document.getElementById('rooms').value;
+            var guests = `${adults} Adults, ${children} Children, ${rooms} Rooms`;
+            document.getElementById('guests').value = guests;
+
+            // Save updated values to sessionStorage
+            sessionStorage.setItem('adults', adults);
+            sessionStorage.setItem('children', children);
+            sessionStorage.setItem('rooms', rooms);
+        }
+
+        // Function to update the plus and minus buttons state
+        function updateButtonsState() {
+            var adults = parseInt(document.getElementById('adults').value);
+            var children = parseInt(document.getElementById('children').value);
+            var rooms = parseInt(document.getElementById('rooms').value);
+
+            updateButtonState('adults-plus', 'adults-minus', adults, 30);
+            updateButtonState('children-plus', 'children-minus', children, 10);
+            updateButtonState('rooms-plus', 'rooms-minus', rooms, 30);
+        }
+
+        function updateButtonState(plusId, minusId, value, maxValue) {
+            var plusButton = document.getElementById(plusId);
+            var minusButton = document.getElementById(minusId);
+
+            plusButton.style.backgroundColor = value >= maxValue ? 'gray' : 'red';
+            plusButton.style.color = 'white';
+
+            // Set initial color and background color for minus button
+            minusButton.style.backgroundColor = value > 1 ? 'red' : 'gray';
+            minusButton.style.color = 'white';
+        }
+
+        // Submit event for booking form
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            var location = document.getElementById('location').value;
+            var dateRange = document.getElementById('dates').value;
+            var adults = document.getElementById('adults').value;
+            var children = document.getElementById('children').value;
+            var rooms = document.getElementById('rooms').value;
+
+            // Split date range into check-in and check-out dates
+            var dateParts = dateRange.split(" to ");
+            var checkin = dateParts[0];
+            var checkout = dateParts[1];
+
+            // Save data to sessionStorage
+            sessionStorage.setItem('location', location);
+            sessionStorage.setItem('checkin', checkin);
+            sessionStorage.setItem('checkout', checkout);
+            sessionStorage.setItem('adults', adults);
+            sessionStorage.setItem('children', children);
+            sessionStorage.setItem('rooms', rooms);
+
+            // Redirect to the details page
+            window.location.href = './details-page/details.html';
+        });
+
+        // Prevent manual input in the guest inputs
+        ['adults', 'children', 'rooms'].forEach(id => {
+            document.getElementById(id).readOnly = true;
+        });
+    });
+</script>
     
     <!-- brudcrum start -->
     <div class="container py-3" style="border: none;">
@@ -977,250 +1135,115 @@
         </div>
         <div class="col-12 col-lg-9 ">
           <div class="row mb-4">
-              <div class="col-12">
-                  <div class="card shadow-0 border rounded-3 shadow-sm mb-2">
-                      <div class="card-body">
-                          <div class="row">
-                              <div class="col-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
-                                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                      <a href="../single-hotel-page/index.html" id="redirectLink">
-                                          <img src="./hotel images/Screenshot (7) 1.jpg" class="w-100" />
-                                      </a>
-                                      <a href="#!">
-                                          <div class="hover-overlay">
-                                              <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                          </div>
-                                      </a>
-                                  </div>
-                              </div>
-                              <div class="col-12 col-md-5 col-lg-6">
-                                  <h5>Ramana Towers</h5>
-                                  <div class="mt-1 mb-0 text-muted small">
-                                      <div class="textright">
-                                          <i class="fa-solid fa-location-dot" style="color: red;"></i>
-                                          <span>Opp to Ramana ashram</span><br>
-                                          <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
-                                      </div>
-                                  </div>
-                                  <div class="mb-2 text-muted small">
-                                      <i class="fa-solid fa-check" style="color: red;"></i>
-                                      <span>24-room service</span>
-                                  </div>
-                                  <div class="d-flex flex-row align-items-center mb-1">
-                                      <span class="pe-2 text-secondary"><s>₹2699</s></span>
-                                      <h4 class="mb-1 me-1">₹1874</h4>
-                                  </div>
-                                  <p style="font-size: 15px;">+ ₹468 TAXES & FEES</p>
-                                  <button class="btn text-light btn-sm" style="width: 126px; background-color: red;" type="button">See availability</button>
-                              </div>
-                              <div class="col-12 col-md-3 col-lg-3 border-sm-start-none">
-                                  <div class="d-flex justify-content-end">
-                                      <div class="align-items-end">
-                                          <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br>
-                                              <span class="" style="font-size: 12px; color: gray;">480 review</span>
-                                          </h4>
-                                      </div>
-                                      <div class="right rounded-1">
-                                          <div style="font-size:15px;"><b>5.2</b></div>
-                                      </div>
-                                  </div>
-                              </div>
+            <div class="col-12">
+              <div class="card shadow-0 border rounded-3 shadow-sm mb-2">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                      <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                        <a href="../single-hotel-page/index.html" id="redirectLink">
+                          <img src="./hotel images/Screenshot (7) 1.jpg" class="w-100" />
+                        </a>
+                        <a href="#!">
+                          <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
                           </div>
+                        </a>
                       </div>
+                    </div>
+                    <div class="col-12 col-md-5 col-lg-6">
+                      <h5>Ramana Towers</h5>
+                      <div class="mt-1 mb-0 text-muted small">
+                        <div class="textright">
+                          <i class="fa-solid fa-location-dot" style="color: red;"></i>
+                          <span>Opp to Ramana ashram</span><br>
+                          <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
+                        </div>
+                      </div>
+                      <div class="mb-2 text-muted small">
+                        <i class="fa-solid fa-check" style="color: red;"></i>
+                        <span>24-room service</span>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-1">
+                        <span class="pe-2 text-secondary"><s>₹2699</s></span>
+                        <h4 class="mb-1 me-1">₹1874</h4>
+                      </div>
+                      <p style="font-size: 15px;">+ ₹468 TAXES & FEES</p>
+                      <button class="btn text-light btn-sm" style="width: 126px; background-color: red;"
+                        type="button">See availability</button>
+                    </div>
+                    <div class="col-12 col-md-3 col-lg-3 border-sm-start-none">
+                      <div class="d-flex justify-content-end">
+                        <div class="align-items-end">
+                          <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br>
+                            <span class="" style="font-size: 12px; color: gray;">480 review</span>
+                          </h4>
+                        </div>
+                        <div class="right rounded-1">
+                          <div style="font-size:15px;"><b>5.2</b></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </div>
               </div>
-              <!-- Add more cards here -->
+            </div>
+            <div class="col-12">
+              <div class="card shadow-0 border rounded-3 shadow-sm mb-2">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                      <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                        <a href="../single-hotel-page/index.html">
+                          <img src="./hotel images/Screenshot (7) 1.jpg" class="w-100" />
+                        </a>
+                        <a href="#!">
+                          <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-5 col-lg-6">
+                      <h5>Ramana Towers</h5>
+                      <div class="mt-1 mb-0 text-muted small">
+                        <div class="textright">
+                          <i class="fa-solid fa-location-dot" style="color: red;"></i>
+                          <span>Opp to Ramana ashram</span><br>
+                          <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
+                        </div>
+                      </div>
+                      <div class="mb-2 text-muted small">
+                        <i class="fa-solid fa-check" style="color: red;"></i>
+                        <span>24-room service</span>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-1">
+                        <span class="pe-2 text-secondary"><s>₹2699</s></span>
+                        <h4 class="mb-1 me-1">₹1874</h4>
+                      </div>
+                      <p style="font-size: 15px;">+ ₹468 TAXES & FEES</p>
+                      <button class="btn text-light btn-sm" style="width: 126px; background-color: red;"
+                        type="button">See availability</button>
+                    </div>
+                    <div class="col-12 col-md-3 col-lg-3 border-sm-start-none">
+                      <div class="d-flex justify-content-end">
+                        <div class="align-items-end">
+                          <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br>
+                            <span class="" style="font-size: 12px; color: gray;">480 review</span>
+                          </h4>
+                        </div>
+                        <div class="right rounded-1">
+                          <div style="font-size:15px;"><b>5.2</b></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Add more cards here -->
           </div>
-      </div>
-      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Initialize Flatpickr for date selection
-            var dateRangePicker = flatpickr("#dates", {
-                mode: "range",
-                dateFormat: "d, F Y",
-                minDate: "today", // Disable past dates
-                defaultDate: [new Date(), new Date()], // Default check-in and check-out to today
-                onClose: function(selectedDates) {
-                    if (selectedDates.length === 2) {
-                        sessionStorage.setItem('checkin', selectedDates[0].toLocaleDateString());
-                        sessionStorage.setItem('checkout', selectedDates[1].toLocaleDateString());
-                    }
-                }
-            });
-    
-            // Retrieve data from sessionStorage and set it in the form
-            var location = sessionStorage.getItem('location') || 'Tiruvannamalai';
-            var checkin = sessionStorage.getItem('checkin');
-            var checkout = sessionStorage.getItem('checkout');
-            var adults = sessionStorage.getItem('adults') || 1;
-            var children = sessionStorage.getItem('children') || 0;
-            var rooms = sessionStorage.getItem('rooms') || 1;
-    
-            document.getElementById('location').value = location;
-            if (checkin && checkout) {
-                dateRangePicker.setDate([new Date(checkin), new Date(checkout)]);
-            } else {
-                dateRangePicker.setDate([new Date(), new Date()]);
-            }
-            document.getElementById('adults').value = adults;
-            document.getElementById('children').value = children;
-            document.getElementById('rooms').value = rooms;
-            updateGuests();
-            updateButtonsState();
-    
-            // Toggle guests dropdown visibility
-            document.getElementById('guests').addEventListener('click', function(event) {
-                var dropdown = document.getElementById('guestsDropdown');
-                dropdown.classList.toggle('show');
-                event.stopPropagation();
-            });
-    
-            // Close dropdown if clicking outside
-            document.addEventListener('click', function(event) {
-                var dropdown = document.getElementById('guestsDropdown');
-                if (!event.target.closest('#guestsDropdown') && !event.target.closest('#guests')) {
-                    dropdown.classList.remove('show');
-                }
-            });
-    
-            // Add event listeners for incrementing and decrementing adults, children, and rooms
-            document.getElementById('adults-plus').addEventListener('click', function() { incrementValue('adults', 30); });
-            document.getElementById('adults-minus').addEventListener('click', function() { decrementValue('adults', 1); });
-            document.getElementById('children-plus').addEventListener('click', function() { incrementValue('children', 10); });
-            document.getElementById('children-minus').addEventListener('click', function() { decrementValue('children', 0); });
-            document.getElementById('rooms-plus').addEventListener('click', function() { incrementValue('rooms', 30); });
-            document.getElementById('rooms-minus').addEventListener('click', function() { decrementValue('rooms', 1); });
-    
-            // Done button to close the dropdown
-            document.getElementById('guests-done').addEventListener('click', function() {
-                document.getElementById('guestsDropdown').classList.remove('show');
-                updateGuests();
-            });
-    
-            // Function to increment the input value
-            function incrementValue(inputId, maxValue) {
-                var input = document.getElementById(inputId);
-                var currentValue = parseInt(input.value);
-                if (currentValue < maxValue) {
-                    input.value = currentValue + 1;
-                    updateGuests();
-                    updateButtonsState();
-                    updateRates();
-                }
-            }
-    
-            // Function to decrement the input value with a minimum value
-            function decrementValue(inputId, minValue) {
-                var input = document.getElementById(inputId);
-                var currentValue = parseInt(input.value);
-                if (currentValue > minValue) {
-                    input.value = currentValue - 1;
-                    updateGuests();
-                    updateButtonsState();
-                    updateRates();
-                }
-            }
-    
-            // Function to update the "Adults, Children & Rooms" input
-            function updateGuests() {
-                var adults = document.getElementById('adults').value;
-                var children = document.getElementById('children').value;
-                var rooms = document.getElementById('rooms').value;
-                var guests = `${adults} Adults, ${children} Children, ${rooms} Rooms`;
-                document.getElementById('guests').value = guests;
-    
-                // Save updated values to sessionStorage
-                sessionStorage.setItem('adults', adults);
-                sessionStorage.setItem('children', children);
-                sessionStorage.setItem('rooms', rooms);
-            }
-    
-            // Function to update the plus and minus buttons state
-            function updateButtonsState() {
-                var adults = parseInt(document.getElementById('adults').value);
-                var children = parseInt(document.getElementById('children').value);
-                var rooms = parseInt(document.getElementById('rooms').value);
-    
-                updateButtonState('adults-plus', 'adults-minus', adults, 30);
-                updateButtonState('children-plus', 'children-minus', children, 10);
-                updateButtonState('rooms-plus', 'rooms-minus', rooms, 30);
-            }
-    
-            function updateButtonState(plusId, minusId, value, maxValue) {
-                var plusButton = document.getElementById(plusId);
-                var minusButton = document.getElementById(minusId);
-    
-                plusButton.style.backgroundColor = value >= maxValue ? 'gray' : 'red';
-                plusButton.style.color = 'white';
-    
-                // Set initial color and background color for minus button
-                minusButton.style.backgroundColor = value > 1 ? 'red' : 'gray';
-                minusButton.style.color = 'white';
-            }
-    
-            // Function to update the rates dynamically
-            function updateRates() {
-                var baseRate = 2699;
-                var discountRate = 1874;
-                var extraAdultRate = 300;
-                var extraRoomRate = 500;
-                var extraChildRate = 200;
-    
-                var adults = parseInt(document.getElementById('adults').value);
-                var children = parseInt(document.getElementById('children').value);
-                var rooms = parseInt(document.getElementById('rooms').value);
-    
-                var totalExtraAdultRate = (adults - 1) * extraAdultRate;
-                var totalExtraChildRate = children * extraChildRate;
-                var totalExtraRoomRate = (rooms - 1) * extraRoomRate;
-    
-                var newBaseRate = baseRate + totalExtraAdultRate + totalExtraChildRate + totalExtraRoomRate;
-                var newDiscountRate = discountRate + totalExtraAdultRate + totalExtraChildRate + totalExtraRoomRate;
-    
-                document.querySelector(".pe-2.text-secondary s").textContent = `₹${newBaseRate}`;
-                document.querySelector(".mb-1.me-1").textContent = `₹${newDiscountRate}`;
-            }
-    
-            // Submit event for booking form
-            document.getElementById('bookingForm').addEventListener('submit', function(e) {
-                e.preventDefault(); // Prevent the default form submission
-    
-                // Get form data
-                var location = document.getElementById('location').value;
-                var dateRange = document.getElementById('dates').value;
-                var adults = document.getElementById('adults').value;
-                var children = document.getElementById('children').value;
-                var rooms = document.getElementById('rooms').value;
-    
-                // Split date range into check-in and check-out dates
-                var dateParts = dateRange.split(" to ");
-                var checkin = dateParts[0];
-                var checkout = dateParts[1];
-    
-                // Save data to sessionStorage
-                sessionStorage.setItem('location', location);
-                sessionStorage.setItem('checkin', checkin);
-                sessionStorage.setItem('checkout', checkout);
-                sessionStorage.setItem('adults', adults);
-                sessionStorage.setItem('children', children);
-                sessionStorage.setItem('rooms', rooms);
-    
-                // Redirect to the details page
-                window.location.href = './details-page/details.html';
-            });
-    
-            // Prevent manual input in the guest inputs
-            ['adults', 'children', 'rooms'].forEach(id => {
-                document.getElementById(id).readOnly = true;
-            });
-    
-            // Initial rate update
-            updateRates();
-        });
-    </script>
-    
-    
+        </div>
       </div>
     </div>
     <!-- main card and map section end  -->

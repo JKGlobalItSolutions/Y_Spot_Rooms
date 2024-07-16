@@ -626,21 +626,7 @@
 </script>
 
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const location = urlParams.get('location');
-      const dates = urlParams.get('dates');
-      const guests = urlParams.get('guests');
 
-      document.getElementById('location').value = location;
-      document.getElementById('dates').value = dates;
-      document.getElementById('guests').value = guests;
-
-      const redirectLink = document.getElementById('redirectLink');
-      redirectLink.href = `../reservation-page/reservation.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
-    });
-  </script>
   <!-- javascript function for username fetch and logout function and form data get function end   -->
     <!-- back to top button start  -->
     <button id="backToTop" class="btn" style="background-color: #ff0000;"><i class="fa-solid fa-arrow-up text-light"></i></button>

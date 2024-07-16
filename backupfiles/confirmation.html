@@ -1,3 +1,4 @@
+<!-- confirmation.html  start-->
 <!doctype html>
 <html lang="en">
     <head>
@@ -153,7 +154,6 @@
                                     <img class="rounded-2 image-fluid" src="./image/image 3.jpg" alt="" style="width: 150px; height: 150px;">
                                 </div>
                             </div>
-                            
                              <!-- check-in checkout end -->
                              <!-- price and rate start -->
                              <div class="container">
@@ -275,29 +275,12 @@
    </script>
  <!-- back to top button end -->
  <script>
-    // Function to calculate the number of nights between two dates
-    function calculateNights(checkin, checkout) {
-        const checkinDate = new Date(checkin);
-        const checkoutDate = new Date(checkout);
-        const timeDiff = checkoutDate - checkinDate;
-        const nightDiff = timeDiff / (1000 * 60 * 60 * 24); // Convert milliseconds to days
-        return nightDiff;
-    }
-
     // Retrieve data from sessionStorage
-    const checkin = sessionStorage.getItem('checkin');
-    const checkout = sessionStorage.getItem('checkout');
-
-    // Display check-in and check-out dates
-    document.getElementById('displayCheckin').textContent = checkin;
-    document.getElementById('displayCheckout').textContent = checkout;
-
-    // Calculate and display the entire stay duration
-    const nights = calculateNights(checkin, checkout);
-    // document.getElementById('stayDuration').textContent = `Entire Stay Duration: ${nights} night${nights > 1 ? 's' : ''}`;
-    document.getElementById('night').textContent = `${nights} night${nights > 1 ? 's' : ''}`;
+    // document.getElementById('displayLocation').textContent = sessionStorage.getItem('location');
+    document.getElementById('displayCheckin').textContent = sessionStorage.getItem('checkin');
+    document.getElementById('displayCheckout').textContent = sessionStorage.getItem('checkout');
+    // document.getElementById('displayRooms').textContent = sessionStorage.getItem('rooms');
 </script>
-
     </body>
 </html>
 <!-- <!DOCTYPE html>
@@ -327,8 +310,4 @@
                                             <p>checkinDate <br> <b id="displayCheckout"></b> <br> </p>
                                             <p>Rooms <br> <b id="displayRooms"></b> <br> </p> -->
 
-
-
-
-
-                                          
+<!-- confirmation.html  end-->
