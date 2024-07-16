@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+    <meta name="generator" content="Hugo 0.122.0" />
+    <title>Y-spot</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/" />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png" />
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="sign-in.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/index-asset/style.css">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Flatpickr CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Add any custom styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand topbarstatic-top" style="background-color: #FF1717;">
+            <!-- First column -->
+            <div class="container">
+                <div class="row w-100">
+                    <div class="col-lg-4"></div>
+                    <!-- Second column -->
+                    <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
+                        <a class="navbar-brand" href="../index.html">
+                            <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+                        </a>
+                    </div>
+                    <!-- Third column -->
+                    <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-center align-items-center mt-2">
+                        <div class="d-flex justify-content-center align-items-center mx-auto ps-4 ms-2">
+                            <a class="nav-link" href="../login/signup.html" id="registerLink">
+                                <button id="registerButton" type="button" class="btn btn-light text-danger"
+                                    style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                                    <b>Register</b>
+                                </button>
+                            </a>
+                            <a class="nav-link" href="../login/index.html" id="loginLink">
+                                <button id="loginButton" type="button" class="btn btn-light text-danger"
+                                    style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                                    <b>Login</b>
+                                </button>
+                            </a>
+                        </div>
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow" id="userDetailsContainer">
+                                <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <img src="" id="userPhoto" alt="User Photo" class="rounded-circle"
+                                        style="width: 30px; height: 30px; display: none;">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 text-light"
+                                        id="userName"></span>
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in "
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="../index.html" data-toggle="modal"
+                                        data-target="#logoutModal" id="logoutButton">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <style>
+                            @media (max-width: 1080.98px) {
+                                #userName {
+                                    display: inline !important;
+                                }
+                            }
+                        </style>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="" id="included-confiremationheader"></div>
+    </header>
+    <main>
+        <!-- hero section search form end -->
+        <div class="container custom-container rounded mt-4" id="move2" style="background-color: #1C1B1F;">
+            <div class="container">
+                <form id="bookingForm">
+                    <div class="row justify-content-center rounded-3">
+                        <!-- Destination -->
+                        <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                            <input type="text" class="form-control" id="location" name="location"
+                                placeholder="Enter destination" required>
+                        </div>
+                        <!-- Check-in and Check-out Dates -->
+                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                            <input type="text" class="form-control" id="dates" name="dates"
+                                placeholder="Check-in - Check-out" required>
+                        </div>
+                        <!-- Combined Input Box for Adults, Children, and Rooms -->
+                        <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                            <input type="text" class="form-control" id="guests" name="guests"
+                                placeholder="Adults, Children & Rooms" required readonly>
+                            <div class="dropdown-menu p-3" id="guestsDropdown" aria-labelledby="guestsDropdown">
+                                <div class="form-group">
+                                    <label for="adults">Adults</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary btn-minus" type="button"
+                                                id="adults-minus">-</button>
+                                        </div>
+                                        <input type="number" class="form-control" id="adults" min="0" value="0"
+                                            required>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary btn-plus" type="button"
+                                                id="adults-plus">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="children">Children</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary btn-minus" type="button"
+                                                id="children-minus">-</button>
+                                        </div>
+                                        <input type="number" class="form-control" id="children" min="0" value="0"
+                                            required>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary btn-plus" type="button"
+                                                id="children-plus">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rooms">Rooms</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary btn-minus" type="button"
+                                                id="rooms-minus">-</button>
+                                        </div>
+                                        <input type="number" class="form-control" id="rooms" min="1" value="1"
+                                            required>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary btn-plus" type="button"
+                                                id="rooms-plus">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Done Button -->
+                                <button class="btn btn-primary mt-3" id="guests-done" type="button">Done</button>
+                            </div>
+                        </div>
+                        <!-- Search Button -->
+                        <div class="form-group col-lg-2 col-md-6 col-sm-12">
+                            <button type="submit" class="btn text-light" id="search"
+                                style="background-color: #FF1717;">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- main card and map section start  -->
+        <div class="container">
+            <div class="row" id="hotel-cards-container">
+                <!-- Hotel cards will be dynamically added here -->
+            </div>
+        </div>
+        <!-- /container -->
+    </main>
+    <footer class="text-center text-lg-start bg-light text-muted ">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" style="background-color: #FF1717;">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block" style="color: white;">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset" style="color: white;">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset" style="color: white;">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset" style="color: white;">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset" style="color: white;">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset" style="color: white;">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset" style="color: white;">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold">Y-Spot</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: white;">
+                        <p>Our application will allow our Users to gain access to a database of the best rooms
+                            and accommodations available in Nyeri and book rooms online.</p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold">Products</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: white;">
+                        <p>
+                            <a href="#!" class="text-reset">Bootstrap</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Tutorials</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Blog</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Books</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold">Useful links</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: white;">
+                        <p>
+                            <a href="#!" class="text-reset">Pricing</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Settings</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Orders</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Product</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold">Contact</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: white;">
+                        <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+                        <p><i class="fas fa-envelope me-3"></i> info@example.com</p>
+                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+    </footer>
+    <!-- Core JavaScript Files -->
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/index-asset/js/jquery.min.js"></script>
+    <script src="../assets/index-asset/js/main.js"></script>
+    <script src="../assets/index-asset/js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize Flatpickr
+        flatpickr("#dates", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            onChange: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length > 1) {
+                    const startDate = selectedDates[0].toISOString().split('T')[0];
+                    const endDate = selectedDates[1].toISOString().split('T')[0];
+                    document.getElementById('dates').value = `${startDate} - ${endDate}`;
+                }
+            }
+        });
+
+        // Script for managing guests dropdown
+        const guestsDropdown = document.getElementById('guestsDropdown');
+        const guestsButton = document.getElementById('guests');
+        const guestsDoneButton = document.getElementById('guests-done');
+        const adultsInput = document.getElementById('adults');
+        const childrenInput = document.getElementById('children');
+        const roomsInput = document.getElementById('rooms');
+
+        guestsButton.addEventListener('focus', function () {
+            guestsDropdown.classList.add('show');
+        });
+
+        guestsDoneButton.addEventListener('click', function () {
+            guestsDropdown.classList.remove('show');
+            guestsButton.value = `${adultsInput.value} Adults, ${childrenInput.value} Children, ${roomsInput.value} Rooms`;
+        });
+
+        // Increment and decrement buttons for guests input
+        const guestsInputs = [adultsInput, childrenInput, roomsInput];
+
+        guestsInputs.forEach(input => {
+            const plusButton = input.parentElement.querySelector('.btn-plus');
+            const minusButton = input.parentElement.querySelector('.btn-minus');
+
+            plusButton.addEventListener('click', function () {
+                input.stepUp();
+            });
+
+            minusButton.addEventListener('click', function () {
+                if (parseInt(input.value) > parseInt(input.min)) {
+                    input.stepDown();
+                }
+            });
+        });
+
+        // Firebase configuration
+        const firebaseConfig = {
+      apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+      authDomain: "y-spot-e84ca.firebaseapp.com",
+      databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+      projectId: "y-spot-e84ca",
+      storageBucket: "y-spot-e84ca.appspot.com",
+      messagingSenderId: "783996806068",
+      appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+      measurementId: "G-TSH2JVYJHR"
+    };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Firestore database reference
+        const db = firebase.firestore();
+
+        // Function to render hotel cards
+        function renderHotelCards(hotels) {
+            const hotelCardsContainer = document.getElementById('hotel-cards-container');
+            hotelCardsContainer.innerHTML = ''; // Clear previous content
+
+            hotels.forEach(hotel => {
+                const card = `
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card">
+                            <img src="${hotel.image}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${hotel.name}</h5>
+                                <p class="card-text">${hotel.description}</p>
+                                <a href="${hotel.website}" class="btn btn-primary">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                hotelCardsContainer.innerHTML += card;
+            });
+        }
+
+        // Fetch hotels data from Firestore
+        function fetchHotels() {
+            db.collection('hotels').get()
+                .then((querySnapshot) => {
+                    const hotels = [];
+                    querySnapshot.forEach((doc) => {
+                        hotels.push(doc.data());
+                    });
+                    renderHotelCards(hotels);
+                })
+                .catch((error) => {
+                    console.error("Error fetching hotels: ", error);
+                });
+        }
+
+        // Trigger fetching hotels data on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchHotels();
+        });
+
+        // Handle form submission
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const location = document.getElementById('location').value;
+            const dates = document.getElementById('dates').value;
+            const guests = document.getElementById('guests').value;
+            alert(`Searching for hotels in ${location} from ${dates} for ${guests}`);
+            // Here you can add additional logic for search functionality
+        });
+
+    </script>
+</body>
+</html>
