@@ -105,7 +105,6 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
 
@@ -113,10 +112,13 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-light  d-md-none rounded-circle mr-3" style="background-color: #ff1717; color: #fff;">
+                    <button id="sidebarToggleTop" class="btn btn-light  d-md-none rounded-circle mr-2"
+                        style="background-color: #ff1717; color: #fff;">
                         <i class="fa fa-bars"></i>
                     </button>
-
+                    <div class=" p-1 rounded d-md-none" style="background-color: #ff1717;">
+                        <img src="img/logo.png" alt="">
+                    </div>
                     <!-- Topbar Search -->
                     <!-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -133,7 +135,6 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
 
                         <!-- Nav Item - User Information -->
@@ -141,8 +142,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mannager</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -156,125 +156,110 @@
                                     Settings
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                <button class="dropdown-item" id="logout-button">
+                                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                  Logout
+                              </button>
                             </div>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
-
+                <script>
+                      document.getElementById('logout-button').addEventListener('click', function() {
+                      firebase.auth().signOut().then(() => {
+                          window.location.href = 'index.html';  // Redirect to login page after logout
+                      }).catch((error) => {
+                          console.error('Error signing out:', error);
+                      });
+                       });
+                </script>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-
-                    <div class="border  shadow-sm rounded ">
-
-                        <div class=" rounded bg-white mb-2 pb-3">
-                            <div class="pending-payment">
-                                <h5 class="p-2 " style="color: #ff1717;"><b>Pending</b></h5>
-                                <div class="row border rounded m-2 shadow-sm">
-                                    <div class="col-12 d-flex justify-content-around m-4">
-                                        <div class="">
-                                            <h5>Guest</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Date of reservation</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Contact detail</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Outstanding amount</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row border rounded m-2 shadow-sm">
-                                    <div class="col-12 d-flex justify-content-around m-4">
-                                        <div class="">
-                                            <h5>Guest</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Date of reservation</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Contact detail</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Outstanding amount</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                    </div>
-                                </div>  
+                  <div class="border shadow-sm rounded-3 p-3">
+                    <div class="rounded bg-white mb-2">
+                      <form id="admin-profile-form">
+                        <div class="text-center mt-2">
+                          <div class="">
+                            <input type="file" id="profileImage" accept="image/*" style="display: none;">
+                            <div class="preview-container">
+                              <h4 class="mt-2" style="color: #ff1717;" id="image"><b>Click to choose an image</b></h4>
+                              <img id="profileImagePreview" style="border-radius: 50%; height: 150px; width: 150px;" src="https://via.placeholder.com/150" alt="Profile Image Preview">
                             </div>
-                            <h5 class="p-2 " style="color: #000;"><b>Completed</b></h5>
-                            <div class="Completed-payment" style="opacity: 40%;">
-                                <div class="row border rounded m-2 shadow-sm " >
-                                    <div class="col-12 d-flex justify-content-around m-4">
-                                        <div class="">
-                                            <h5>Guest</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Date of reservation</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Contact detail</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Outstanding amount</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row border rounded m-2 shadow-sm">
-                                    <div class="col-12 d-flex justify-content-around m-4">
-                                        <div class="">
-                                            <h5>Guest</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Date of reservation</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Contact detail</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                        <div class="">
-                                            <h5>Outstanding amount</h5>
-                                            <h3>*******</h3>
-                                        </div>
-                                    </div>
-                                </div>  
-                            </div>
+                          </div>
                         </div>
-
+                        <div class="row justify-content-center d-flex align-items-center">
+                          <div class="col-md-12">
+                            <div class="p-1 py-1">
+                              <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                <div class="col-lg-5">
+                                  <label class="labels"><b>Full Name</b></label>
+                                  <input id="userName" type="text" class="form-control" placeholder="Full Name" value="">
+                                </div>
+                                <div class="col-lg-5">
+                                  <label class="labels"><b>Hotel Name</b></label>
+                                  <input id="hotelName" type="text" class="form-control" placeholder="Hotel Name" value="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row justify-content-center d-flex align-items-center">
+                          <div class="col-md-12">
+                            <div class="p-1 py-1">
+                              <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                <div class="col-lg-5">
+                                  <label class="labels"><b>Hotel Website</b></label>
+                                  <input id="hotelWebsite" type="text" class="form-control" placeholder="Hotel Website" value="">
+                                </div>
+                                <div class="col-lg-5">
+                                  <label class="labels"><b>Email address</b></label>
+                                  <input id="email" type="text" class="form-control" placeholder="Email address" value="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row justify-content-center d-flex align-items-center">
+                          <div class="col-md-12">
+                            <div class="p-1 py-1">
+                              <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                <div class="col-lg-5">
+                                  <label class="labels"><b>Mobile number</b></label>
+                                  <input id="mobileNumber" type="text" class="form-control" placeholder="Mobile number" value="">
+                                </div>
+                                <div class="col-lg-5">
+                                  <label class="labels"><b>Location</b></label>
+                                  <input id="address" type="text" class="form-control" placeholder="Location" value="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row justify-content-center d-flex align-items-center">
+                          <div class="col-md-12">
+                            <div class="p-1 py-1">
+                              <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                <div class="col-lg-5">
+                                  <label class="labels"><b>Submit your Hotel documents</b></label>
+                                  <input id="hotelDocuments" type="file" class="form-control" placeholder="Submit your Hotel documents">
+                                  <ul id="documentsList" class="list-unstyled mt-2"></ul>
+                                </div>
+                                <div class="text-center col-lg-5 mt-4">
+                                  <label class="labels">&nbsp;</label>
+                                  <button id="saveChangesBtn" style="background-color: #ff1717; color: #fff;" class="btn profile-button" type="submit">Save Changes</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
                     </div>
-
-                    <style>
-                        
-                    </style>
-
+                  </div>
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
-
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -284,7 +269,6 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
