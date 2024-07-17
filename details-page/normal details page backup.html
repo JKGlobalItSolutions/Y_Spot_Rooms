@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <script src="../assets/js/color-modes.js"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+  <meta name="generator" content="Hugo 0.122.0" />
+  <title>Y-spot</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
+
+
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="sign-in.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../assets/index-asset/style.css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Flatpickr CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- Custom CSS -->
+ <!-- javascript page header and footer section include script start  -->
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const fetchContent = async (url) => {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.text();
+    };
+
+    const loadContent = async () => {
+      try {
+        const [headerData, footerData] = await Promise.all([
+          fetchContent('../includes/confiremationheader.html'),
+          fetchContent('../includes/insidefooter.html')
+        ]);
+
+        document.getElementById('included-confiremationheader').innerHTML = headerData;
+        document.getElementById('included-insidefooter').innerHTML = footerData;
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
+    };
+
+    loadContent();
+  });
+</script>
+ <!-- javascript page header and footer section include script end  -->
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand topbarstatic-top" style="background-color: #FF1717;">
+      <!-- First column -->
+      <div class="container">
+        <div class="row w-100">
+          <div class="col-lg-4"></div>
+          <!-- Second column -->
+          <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
+            <a class="navbar-brand" href="../index.html">
+              <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+            </a>
+          </div>
+          <!-- Third column -->
+          <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-center align-items-center mt-2">
+            <div class="d-flex justify-content-center align-items-center mx-auto ps-4 ms-2">
+              <a class="nav-link" href="../login/signup.html" id="registerLink">
+                <button id="registerButton" type="button" class="btn btn-light text-danger"
+                  style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                  <b>Register</b>
+                </button>
+              </a>
+              <a class="nav-link" href="../login/index.html" id="loginLink">
+                <button id="loginButton" type="button" class="btn btn-light text-danger"
+                  style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                  <b>Login</b>
+                </button>
+              </a>
+            </div>
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow" id="userDetailsContainer">
+                <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img src="" id="userPhoto" alt="User Photo" class="rounded-circle" style="width: 30px; height: 30px; display: none;">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 text-light" id="userName"></span>
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="../index.html" data-toggle="modal" data-target="#logoutModal" id="logoutButton">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <style>
+              @media (max-width: 1080.98px) {
+                #userName {
+                  display: inline !important;
+                }
+              }
+            </style>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="" id="included-confiremationheader"></div>
+  </header>
+  <main>
+    
+    <!-- hero section search form end -->   
+      <div class="container custom-container rounded mt-4" id="move2" style="background-color: #1C1B1F;">
+        <div class="container">
+            <form id="bookingForm">
+                <div class="row justify-content-center rounded-3">
+                    <!-- Destination -->
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Enter destination" required>
+                    </div>
+                    <!-- Check-in and Check-out Dates -->
+                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                        <input type="text" class="form-control" id="dates" name="dates" placeholder="Check-in - Check-out" required>
+                    </div>
+                    <!-- Combined Input Box for Adults, Children, and Rooms -->
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12">
+                        <input type="text" class="form-control" id="guests" name="guests" placeholder="Adults, Children & Rooms" required readonly>
+                        <div class="dropdown-menu p-3" id="guestsDropdown" aria-labelledby="guestsDropdown">
+                            <div class="form-group">
+                                <label for="adults">Adults</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary btn-minus" type="button" id="adults-minus">-</button>
+                                    </div>
+                                    <input type="number" class="form-control" id="adults" min="0" value="0" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-plus" type="button" id="adults-plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="children">Children</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary btn-minus" type="button" id="children-minus">-</button>
+                                    </div>
+                                    <input type="number" class="form-control" id="children" min="0" value="0" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-plus" type="button" id="children-plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rooms">Rooms</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary btn-minus" type="button" id="rooms-minus">-</button>
+                                    </div>
+                                    <input type="number" class="form-control" id="rooms" min="1" value="1" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-plus" type="button" id="rooms-plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Done Button -->
+                            <button class="btn btn-primary mt-3" id="guests-done" type="button">Done</button>
+                        </div>
+                    </div>
+                    <!-- Search Button -->
+                    <div class="form-group col-lg-2 col-md-6 col-sm-12">
+                        <button type="submit" class="btn text-light" id="search" style="background-color: #FF1717;">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+   
+    
+    <!-- brudcrum start -->
+    <div class="container py-3" style="border: none;">
+      <div class="row">
+        <div class="col-8">
+          <nav aria-label="breadcrumb">
+            <ol style="list-style: none; padding: 0; margin: 0;">
+              <li class=" " style="display: inline;">
+                <a href="../index.html" style="text-decoration: none; color: red;"><b>Home</b></a>
+              </li>
+              <li class="" style="display: inline;">
+                <span style="color: black; margin: 0 5px; font-weight: bold;">&gt;</span>
+                <span style="color: #100f10;"><b>Tamil Nadu</b></span>
+              </li>
+              <li style="display: inline;">
+                <span style="color: black; margin: 0 5px; font-weight: bold;">&gt;</span>
+                <span style="color: #100f10;"><b>Tiruvannamalai</b></span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-4 text-center d-lg-none">
+          <button class="text-light bg-danger p-2 px-4 rounded me-1" style="border: none;" data-toggle="modal"
+            data-target="#filterModal">Fillter</button>
+        </div>
+        <div class="modal fade" id="filterModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Select Filters</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form>
+                  <h5 class="mt-3">Recommended for you</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended1"
+                      value="Air conditioning">
+                    <label class="form-check-label" for="Recommended1">
+                      Air conditioning
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended2"
+                      value="Breakfast included">
+                    <label class="form-check-label" for="Recommended2">
+                      Breakfast included
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended3"
+                      value="Parking">
+                    <label class="form-check-label" for="Recommended3">
+                      Parking
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended4"
+                      value="Swimming Pool">
+                    <label class="form-check-label" for="Recommended4">
+                      Swimming Pool
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended5"
+                      value="Balcony">
+                    <label class="form-check-label" for="Recommended5">
+                      Balcony
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended6"
+                      value="Free cancellation">
+                    <label class="form-check-label" for="Recommended6">
+                      Free cancellation
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Price per night</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Price" id="Price1" value="₹ 0 - ₹ 2000">
+                    <label class="form-check-label" for="Price1">
+                      ₹ 0 - ₹ 2000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Price" id="Price2" value="₹ 2000 - ₹ 3000">
+                    <label class="form-check-label" for="Price2">
+                      ₹ 2000 - ₹ 3000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Price" id="Price3" value="₹ 3000 - ₹ 6000">
+                    <label class="form-check-label" for="Price3">
+                      ₹ 3000 - ₹ 6000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Price" id="Price4" value="₹ 6000 - ₹ 9000">
+                    <label class="form-check-label" for="Price4">
+                      ₹ 6000 - ₹ 9000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Price" id="Price5" value="₹ 9000 - ₹ 12000">
+                    <label class="form-check-label" for="Price5">
+                      ₹ 9000 - ₹ 12000
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Price" id="Price6" value="₹ 12000 - ₹ 15000">
+                    <label class="form-check-label" for="Price6">
+                      ₹ 12000 - ₹ 15000
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Meals</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Meals" id="Meals1" value="Self catering">
+                    <label class="form-check-label" for="Meals1">
+                      Self catering
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Meals" id="Meals2" value="Breakfast included">
+                    <label class="form-check-label" for="Meals2">
+                      Breakfast included
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Facilities</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities1"
+                      value="Fitness centre">
+                    <label class="form-check-label" for="Facilities1">
+                      Fitness centre
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities2" value="Parking">
+                    <label class="form-check-label" for="Facilities2">
+                      Parking
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities3" value="Free WiFi">
+                    <label class="form-check-label" for="Facilities3">
+                      Free WiFi
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities4"
+                      value="Non-smoking rooms">
+                    <label class="form-check-label" for="Facilities4">
+                      Non-smoking rooms
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities5"
+                      value="Family rooms">
+                    <label class="form-check-label" for="Facilities5">
+                      Family rooms
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities6"
+                      value="Swimming Pool">
+                    <label class="form-check-label" for="Facilities6">
+                      Swimming Pool
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Property Type</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType1"
+                      value="Homestays">
+                    <label class="form-check-label" for="PropertyType1">
+                      Homestays
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType2"
+                      value="Entire homes & apartments">
+                    <label class="form-check-label" for="PropertyType2">
+                      Entire homes & apartments
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType3"
+                      value="Apartments">
+                    <label class="form-check-label" for="PropertyType3">
+                      Apartments
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType4" value="Hotels">
+                    <label class="form-check-label" for="PropertyType4">
+                      Hotels
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType5" value="Villas">
+                    <label class="form-check-label" for="PropertyType5">
+                      Villas
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType6" value="Lodges">
+                    <label class="form-check-label" for="PropertyType6">
+                      Lodges
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Bed preference</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Bedpreference" id="Bedpreference1"
+                      value="Twin beds">
+                    <label class="form-check-label" for="PropertyType1">
+                      Twin beds
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Bedpreference" id="Bedpreference2"
+                      value="Double bed">
+                    <label class="form-check-label" for="Bedpreference2">
+                      Double bed
+                    </label>
+                  </div>
+                  <h5 class="mt-3">User Rating</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="UserRating" id="UserRating1"
+                      value="Excellent: 4.2+">
+                    <label class="form-check-label" for="UserRating1">
+                      Excellent: 4.2+
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="UserRating" id="UserRating2"
+                      value="Very Good: 3.5+">
+                    <label class="form-check-label" for="UserRating2">
+                      Very Good: 3.5+
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="UserRating" id="UserRating3" value="Good: 3+">
+                    <label class="form-check-label" for="UserRating3">
+                      Good: 3+
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Room Views</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="RoomViews" id="RoomViews1" value="City View">
+                    <label class="form-check-label" for="RoomViews1">
+                      City View
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="RoomViews" id="RoomViews2" value="Garden View">
+                    <label class="form-check-label" for="RoomViews2">
+                      Garden View
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="RoomViews" id="RoomViews3" value="Mountain View">
+                    <label class="form-check-label" for="RoomViews3">
+                      Mountain View
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Room facilities</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities1"
+                      value="Air conditioning">
+                    <label class="form-check-label" for="PropertyType1">
+                      Air conditioning
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities2"
+                      value="Balcony">
+                    <label class="form-check-label" for="Roomfacilities2">
+                      Balcony
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities3"
+                      value="Private bathroom">
+                    <label class="form-check-label" for="Roomfacilities3">
+                      Private bathroom
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities4"
+                      value="Kitchen/kitchenette">
+                    <label class="form-check-label" for="Roomfacilities4">
+                      Kitchen/kitchenette
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities5"
+                      value="Private pool">
+                    <label class="form-check-label" for="Roomfacilities5">
+                      Private pool
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities6"
+                      value="Bath">
+                    <label class="form-check-label" for="Roomfacilities6">
+                      Bath
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities7"
+                      value="Refrigerator">
+                    <label class="form-check-label" for="Roomfacilities7">
+                      Refrigerator
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities8" value="TV">
+                    <label class="form-check-label" for="Roomfacilities8">
+                      TV
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities9"
+                      value="Washing machine">
+                    <label class="form-check-label" for="Roomfacilities9">
+                      Washing machine
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities10"
+                      value="Shower">
+                    <label class="form-check-label" for="Roomfacilities10">
+                      Shower
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Property rating</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating1"
+                      value="3 stars">
+                    <label class="form-check-label" for="Propertyrating1">
+                      3 stars
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating2"
+                      value="3.5 stars">
+                    <label class="form-check-label" for="Propertyrating2">
+                      3.5 stars
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating3"
+                      value="4 stars">
+                    <label class="form-check-label" for="Propertyrating3">
+                      4 stars
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating4"
+                      value="4.5 stars">
+                    <label class="form-check-label" for="Propertyrating4">
+                      4.5 stars
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating5"
+                      value="Unrated">
+                    <label class="form-check-label" for="Propertyrating5">
+                      Unrated
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Reservation policy</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Reservationpolicy" id="Reservationpolicy1"
+                      value="Book without credit card">
+                    <label class="form-check-label" for="Reservationpolicy1">
+                      Book without credit card
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Reservationpolicy" id="Reservationpolicy2"
+                      value="No prepayment">
+                    <label class="form-check-label" for="Reservationpolicy2">
+                      No prepayment
+                    </label>
+                  </div>
+                  <h5 class="mt-3">Distance from centre of
+                    Tiruvannāmalai</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="centreofTiruvannāmalai"
+                      id="centreofTiruvannāmalai1" value="Less than 3 km">
+                    <label class="form-check-label" for="centreofTiruvannāmalai1">
+                      Less than 3 km
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="centreofTiruvannāmalai"
+                      id="centreofTiruvannāmalai2" value="Less than 5 km">
+                    <label class="form-check-label" for="centreofTiruvannāmalai2">
+                      Less than 5 km
+                    </label>
+                  </div>
+                </form>
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Apply Filter</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- brudcrum end -->
+
+    <!-- main card and map section start  -->
+    <div class="container">
+      <div class="row">
+        <div class="col-3 d-none d-lg-block">
+          <!-- Content for the first column (hidden on mobile and tablet) -->
+          <div class="card-body text-center">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62385.734729707045!2d79.02805286493!3d12.240937612299705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bacc0852cd3d6cd%3A0x74002b16e5bac856!2sTiruvannamalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1716285118842!5m2!1sen!2sin"
+              class=" mx-auto" width="210" height="160" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="col-lg-12 d-none d-lg-block">
+            <div class="form-check">
+              <h4 class="mb-3 ">Select Filters</h4>
+              <h5 class="mt-3">Recommended for you</h5>
+            </div>
+            <h5 class="mt-3">Recommended for you</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended1"
+                value="Air conditioning">
+              <label class="form-check-label" for="Recommended1">
+                Air conditioning
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended2"
+                value="Breakfast included">
+              <label class="form-check-label" for="Recommended2">
+                Breakfast included
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended3" value="Parking">
+              <label class="form-check-label" for="Recommended3">
+                Parking
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended4" value="Swimming Pool">
+              <label class="form-check-label" for="Recommended4">
+                Swimming Pool
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended5" value="Balcony">
+              <label class="form-check-label" for="Recommended5">
+                Balcony
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Recommended" id="Recommended6"
+                value="Free cancellation">
+              <label class="form-check-label" for="Recommended6">
+                Free cancellation
+              </label>
+            </div>
+            <h5 class="mt-3">Price per night</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Price" id="Price1" value="₹ 0 - ₹ 2000">
+              <label class="form-check-label" for="Price1">
+                ₹ 0 - ₹ 2000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Price" id="Price2" value="₹ 2000 - ₹ 3000">
+              <label class="form-check-label" for="Price2">
+                ₹ 2000 - ₹ 3000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Price" id="Price3" value="₹ 3000 - ₹ 6000">
+              <label class="form-check-label" for="Price3">
+                ₹ 3000 - ₹ 6000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Price" id="Price4" value="₹ 6000 - ₹ 9000">
+              <label class="form-check-label" for="Price4">
+                ₹ 6000 - ₹ 9000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Price" id="Price5" value="₹ 9000 - ₹ 12000">
+              <label class="form-check-label" for="Price5">
+                ₹ 9000 - ₹ 12000
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Price" id="Price6" value="₹ 12000 - ₹ 15000">
+              <label class="form-check-label" for="Price6">
+                ₹ 12000 - ₹ 15000
+              </label>
+            </div>
+            <h5 class="mt-3">Meals</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Meals" id="Meals1" value="Self catering">
+              <label class="form-check-label" for="Meals1">
+                Self catering
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Meals" id="Meals2" value="Breakfast included">
+              <label class="form-check-label" for="Meals2">
+                Breakfast included
+              </label>
+            </div>
+            <h5 class="mt-3">Facilities</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities1" value="Fitness centre">
+              <label class="form-check-label" for="Facilities1">
+                Fitness centre
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities2" value="Parking">
+              <label class="form-check-label" for="Facilities2">
+                Parking
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities3" value="Free WiFi">
+              <label class="form-check-label" for="Facilities3">
+                Free WiFi
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities4" value="Non-smoking rooms">
+              <label class="form-check-label" for="Facilities4">
+                Non-smoking rooms
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities5" value="Family rooms">
+              <label class="form-check-label" for="Facilities5">
+                Family rooms
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Facilities" id="Facilities6" value="Swimming Pool">
+              <label class="form-check-label" for="Facilities6">
+                Swimming Pool
+              </label>
+            </div>
+            <h5 class="mt-3">Property Type</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType1" value="Homestays">
+              <label class="form-check-label" for="PropertyType1">
+                Homestays
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType2"
+                value="Entire homes & apartments">
+              <label class="form-check-label" for="PropertyType2">
+                Entire homes & apartments
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType3" value="Apartments">
+              <label class="form-check-label" for="PropertyType3">
+                Apartments
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType4" value="Hotels">
+              <label class="form-check-label" for="PropertyType4">
+                Hotels
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType5" value="Villas">
+              <label class="form-check-label" for="PropertyType5">
+                Villas
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="PropertyType" id="PropertyType6" value="Lodges">
+              <label class="form-check-label" for="PropertyType6">
+                Lodges
+              </label>
+            </div>
+            <h5 class="mt-3">Bed preference</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Bedpreference" id="Bedpreference1" value="Twin beds">
+              <label class="form-check-label" for="PropertyType1">
+                Twin beds
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Bedpreference" id="Bedpreference2" value="Double bed">
+              <label class="form-check-label" for="Bedpreference2">
+                Double bed
+              </label>
+            </div>
+            <h5 class="mt-3">User Rating</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="UserRating" id="UserRating1" value="Excellent: 4.2+">
+              <label class="form-check-label" for="UserRating1">
+                Excellent: 4.2+
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="UserRating" id="UserRating2" value="Very Good: 3.5+">
+              <label class="form-check-label" for="UserRating2">
+                Very Good: 3.5+
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="UserRating" id="UserRating3" value="Good: 3+">
+              <label class="form-check-label" for="UserRating3">
+                Good: 3+
+              </label>
+            </div>
+            <h5 class="mt-3">Room Views</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="RoomViews" id="RoomViews1" value="City View">
+              <label class="form-check-label" for="RoomViews1">
+                City View
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="RoomViews" id="RoomViews2" value="Garden View">
+              <label class="form-check-label" for="RoomViews2">
+                Garden View
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="RoomViews" id="RoomViews3" value="Mountain View">
+              <label class="form-check-label" for="RoomViews3">
+                Mountain View
+              </label>
+            </div>
+            <h5 class="mt-3">Room facilities</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities1"
+                value="Air conditioning">
+              <label class="form-check-label" for="PropertyType1">
+                Air conditioning
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities2" value="Balcony">
+              <label class="form-check-label" for="Roomfacilities2">
+                Balcony
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities3"
+                value="Private bathroom">
+              <label class="form-check-label" for="Roomfacilities3">
+                Private bathroom
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities4"
+                value="Kitchen/kitchenette">
+              <label class="form-check-label" for="Roomfacilities4">
+                Kitchen/kitchenette
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities5"
+                value="Private pool">
+              <label class="form-check-label" for="Roomfacilities5">
+                Private pool
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities6" value="Bath">
+              <label class="form-check-label" for="Roomfacilities6">
+                Bath
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities7"
+                value="Refrigerator">
+              <label class="form-check-label" for="Roomfacilities7">
+                Refrigerator
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities8" value="TV">
+              <label class="form-check-label" for="Roomfacilities8">
+                TV
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities9"
+                value="Washing machine">
+              <label class="form-check-label" for="Roomfacilities9">
+                Washing machine
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Roomfacilities" id="Roomfacilities10" value="Shower">
+              <label class="form-check-label" for="Roomfacilities10">
+                Shower
+              </label>
+            </div>
+            <h5 class="mt-3">Property rating</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating1" value="3 stars">
+              <label class="form-check-label" for="Propertyrating1">
+                3 stars
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating2" value="3.5 stars">
+              <label class="form-check-label" for="Propertyrating2">
+                3.5 stars
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating3" value="4 stars">
+              <label class="form-check-label" for="Propertyrating3">
+                4 stars
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating4" value="4.5 stars">
+              <label class="form-check-label" for="Propertyrating4">
+                4.5 stars
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Propertyrating" id="Propertyrating5" value="Unrated">
+              <label class="form-check-label" for="Propertyrating5">
+                Unrated
+              </label>
+            </div>
+            <h5 class="mt-3">Reservation policy</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Reservationpolicy" id="Reservationpolicy1"
+                value="Book without credit card">
+              <label class="form-check-label" for="Reservationpolicy1">
+                Book without credit card
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="Reservationpolicy" id="Reservationpolicy2"
+                value="No prepayment">
+              <label class="form-check-label" for="Reservationpolicy2">
+                No prepayment
+              </label>
+            </div>
+            <h5 class="mt-3">Distance from centre of
+              Tiruvannāmalai</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="centreofTiruvannāmalai" id="centreofTiruvannāmalai1"
+                value="Less than 3 km">
+              <label class="form-check-label" for="centreofTiruvannāmalai1">
+                Less than 3 km
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="centreofTiruvannāmalai" id="centreofTiruvannāmalai2"
+                value="Less than 5 km">
+              <label class="form-check-label" for="centreofTiruvannāmalai2">
+                Less than 5 km
+              </label>
+            </div>
+            <!-- Add more filters as needed -->
+          </div>
+          <!-- Content for the first column (hidden on mobile and tablet) -->
+        </div>
+        <div class="col-12 col-lg-9 ">
+          <div class="row mb-4">
+              <div class="col-12">
+                  <div class="card shadow-0 border rounded-3 shadow-sm mb-2">
+                      <div class="card-body">
+                          <div class="row">
+                              <div class="col-12 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                      <a href="../single-hotel-page/index.html" id="redirectLink">
+                                          <img src="./hotel images/Screenshot (7) 1.jpg" class="w-100" />
+                                      </a>
+                                      <a href="#!">
+                                          <div class="hover-overlay">
+                                              <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                                          </div>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="col-12 col-md-5 col-lg-6">
+                                  <h5>Ramana Towers</h5>
+                                  <div class="mt-1 mb-0 text-muted small">
+                                      <div class="textright">
+                                          <i class="fa-solid fa-location-dot" style="color: red;"></i>
+                                          <span>Opp to Ramana ashram</span><br>
+                                          <span class="ms-3">1.5 km drive to Arunachaleswara Temple</span>
+                                      </div>
+                                  </div>
+                                  <div class="mb-2 text-muted small">
+                                      <i class="fa-solid fa-check" style="color: red;"></i>
+                                      <span>24-room service</span>
+                                  </div>
+                                  <div class="d-flex flex-row align-items-center mb-1">
+                                      <span class="pe-2 text-secondary"><s>₹2699</s></span>
+                                      <h4 class="mb-1 me-1">₹1874</h4>
+                                  </div>
+                                  <p style="font-size: 15px;">+ ₹468 TAXES & FEES</p>
+                                  <button class="btn text-light btn-sm" style="width: 126px; background-color: red;" type="button">See availability</button>
+                              </div>
+                              <div class="col-12 col-md-3 col-lg-3 border-sm-start-none">
+                                  <div class="d-flex justify-content-end">
+                                      <div class="align-items-end">
+                                          <h4 class="text-danger mt-2 ps-4 me-2 text-end" style="font-size: 16px;">Good <br>
+                                              <span class="" style="font-size: 12px; color: gray;">480 review</span>
+                                          </h4>
+                                      </div>
+                                      <div class="right rounded-1">
+                                          <div style="font-size:15px;"><b>5.2</b></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Add more cards here -->
+          </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize Flatpickr for date selection
+            var dateRangePicker = flatpickr("#dates", {
+                mode: "range",
+                dateFormat: "d, F Y",
+                minDate: "today", // Disable past dates
+                defaultDate: [new Date(), new Date()], // Default check-in and check-out to today
+                onClose: function(selectedDates) {
+                    if (selectedDates.length === 2) {
+                        sessionStorage.setItem('checkin', selectedDates[0].toLocaleDateString());
+                        sessionStorage.setItem('checkout', selectedDates[1].toLocaleDateString());
+                    }
+                }
+            });
+    
+            // Retrieve data from sessionStorage and set it in the form
+            var location = sessionStorage.getItem('location') || 'Tiruvannamalai';
+            var checkin = sessionStorage.getItem('checkin');
+            var checkout = sessionStorage.getItem('checkout');
+            var adults = sessionStorage.getItem('adults') || 1;
+            var children = sessionStorage.getItem('children') || 0;
+            var rooms = sessionStorage.getItem('rooms') || 1;
+    
+            document.getElementById('location').value = location;
+            if (checkin && checkout) {
+                dateRangePicker.setDate([new Date(checkin), new Date(checkout)]);
+            } else {
+                dateRangePicker.setDate([new Date(), new Date()]);
+            }
+            document.getElementById('adults').value = adults;
+            document.getElementById('children').value = children;
+            document.getElementById('rooms').value = rooms;
+            updateGuests();
+            updateButtonsState();
+    
+            // Toggle guests dropdown visibility
+            document.getElementById('guests').addEventListener('click', function(event) {
+                var dropdown = document.getElementById('guestsDropdown');
+                dropdown.classList.toggle('show');
+                event.stopPropagation();
+            });
+    
+            // Close dropdown if clicking outside
+            document.addEventListener('click', function(event) {
+                var dropdown = document.getElementById('guestsDropdown');
+                if (!event.target.closest('#guestsDropdown') && !event.target.closest('#guests')) {
+                    dropdown.classList.remove('show');
+                }
+            });
+    
+            // Add event listeners for incrementing and decrementing adults, children, and rooms
+            document.getElementById('adults-plus').addEventListener('click', function() { incrementValue('adults', 30); });
+            document.getElementById('adults-minus').addEventListener('click', function() { decrementValue('adults', 1); });
+            document.getElementById('children-plus').addEventListener('click', function() { incrementValue('children', 10); });
+            document.getElementById('children-minus').addEventListener('click', function() { decrementValue('children', 0); });
+            document.getElementById('rooms-plus').addEventListener('click', function() { incrementValue('rooms', 30); });
+            document.getElementById('rooms-minus').addEventListener('click', function() { decrementValue('rooms', 1); });
+    
+            // Done button to close the dropdown
+            document.getElementById('guests-done').addEventListener('click', function() {
+                document.getElementById('guestsDropdown').classList.remove('show');
+                updateGuests();
+            });
+    
+            // Function to increment the input value
+            function incrementValue(inputId, maxValue) {
+                var input = document.getElementById(inputId);
+                var currentValue = parseInt(input.value);
+                if (currentValue < maxValue) {
+                    input.value = currentValue + 1;
+                    updateGuests();
+                    updateButtonsState();
+                    updateRates();
+                }
+            }
+    
+            // Function to decrement the input value with a minimum value
+            function decrementValue(inputId, minValue) {
+                var input = document.getElementById(inputId);
+                var currentValue = parseInt(input.value);
+                if (currentValue > minValue) {
+                    input.value = currentValue - 1;
+                    updateGuests();
+                    updateButtonsState();
+                    updateRates();
+                }
+            }
+    
+            // Function to update the "Adults, Children & Rooms" input
+            function updateGuests() {
+                var adults = document.getElementById('adults').value;
+                var children = document.getElementById('children').value;
+                var rooms = document.getElementById('rooms').value;
+                var guests = `${adults} Adults, ${children} Children, ${rooms} Rooms`;
+                document.getElementById('guests').value = guests;
+    
+                // Save updated values to sessionStorage
+                sessionStorage.setItem('adults', adults);
+                sessionStorage.setItem('children', children);
+                sessionStorage.setItem('rooms', rooms);
+            }
+    
+            // Function to update the plus and minus buttons state
+            function updateButtonsState() {
+                var adults = parseInt(document.getElementById('adults').value);
+                var children = parseInt(document.getElementById('children').value);
+                var rooms = parseInt(document.getElementById('rooms').value);
+    
+                updateButtonState('adults-plus', 'adults-minus', adults, 30);
+                updateButtonState('children-plus', 'children-minus', children, 10);
+                updateButtonState('rooms-plus', 'rooms-minus', rooms, 30);
+            }
+    
+            function updateButtonState(plusId, minusId, value, maxValue) {
+                var plusButton = document.getElementById(plusId);
+                var minusButton = document.getElementById(minusId);
+    
+                plusButton.style.backgroundColor = value >= maxValue ? 'gray' : 'red';
+                plusButton.style.color = 'white';
+    
+                // Set initial color and background color for minus button
+                minusButton.style.backgroundColor = value > 1 ? 'red' : 'gray';
+                minusButton.style.color = 'white';
+            }
+    
+            // Function to update the rates dynamically
+            function updateRates() {
+                var baseRate = 2699;
+                var discountRate = 1874;
+                var extraAdultRate = 300;
+                var extraRoomRate = 500;
+                var extraChildRate = 200;
+    
+                var adults = parseInt(document.getElementById('adults').value);
+                var children = parseInt(document.getElementById('children').value);
+                var rooms = parseInt(document.getElementById('rooms').value);
+    
+                var totalExtraAdultRate = (adults - 1) * extraAdultRate;
+                var totalExtraChildRate = children * extraChildRate;
+                var totalExtraRoomRate = (rooms - 1) * extraRoomRate;
+    
+                var newBaseRate = baseRate + totalExtraAdultRate + totalExtraChildRate + totalExtraRoomRate;
+                var newDiscountRate = discountRate + totalExtraAdultRate + totalExtraChildRate + totalExtraRoomRate;
+    
+                document.querySelector(".pe-2.text-secondary s").textContent = `₹${newBaseRate}`;
+                document.querySelector(".mb-1.me-1").textContent = `₹${newDiscountRate}`;
+            }
+    
+            // Submit event for booking form
+            document.getElementById('bookingForm').addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+    
+                // Get form data
+                var location = document.getElementById('location').value;
+                var dateRange = document.getElementById('dates').value;
+                var adults = document.getElementById('adults').value;
+                var children = document.getElementById('children').value;
+                var rooms = document.getElementById('rooms').value;
+    
+                // Split date range into check-in and check-out dates
+                var dateParts = dateRange.split(" to ");
+                var checkin = dateParts[0];
+                var checkout = dateParts[1];
+    
+                // Save data to sessionStorage
+                sessionStorage.setItem('location', location);
+                sessionStorage.setItem('checkin', checkin);
+                sessionStorage.setItem('checkout', checkout);
+                sessionStorage.setItem('adults', adults);
+                sessionStorage.setItem('children', children);
+                sessionStorage.setItem('rooms', rooms);
+    
+                // Redirect to the details page
+                window.location.href = './details-page/details.html';
+            });
+    
+            // Prevent manual input in the guest inputs
+            ['adults', 'children', 'rooms'].forEach(id => {
+                document.getElementById(id).readOnly = true;
+            });
+    
+            // Initial rate update
+            updateRates();
+        });
+    </script>
+    
+    
+      </div>
+    </div>
+    <!-- main card and map section end  -->
+  </main>
+  <!-- footer section start  -->
+  <footer class="footer pt-4" id="included-insidefooter">
+
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+      authDomain: "y-spot-e84ca.firebaseapp.com",
+      databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+      projectId: "y-spot-e84ca",
+      storageBucket: "y-spot-e84ca.appspot.com",
+      messagingSenderId: "783996806068",
+      appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+      measurementId: "G-TSH2JVYJHR"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+  
+    window.onload = () => {
+      const userDetailsContainer = document.getElementById("userDetailsContainer");
+      const registerLink = document.getElementById("registerLink");
+      const loginLink = document.getElementById("loginLink");
+      const userName = document.getElementById("userName");
+      const userPhoto = document.getElementById("userPhoto");
+  
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          userDetailsContainer.style.display = "block";
+          registerLink.style.display = "none";
+          loginLink.style.display = "none";
+          userName.textContent = user.displayName || "User";
+          if (user.photoURL) {
+            userPhoto.src = user.photoURL;
+            userPhoto.style.display = "inline-block";
+          } else {
+            userPhoto.style.display = "none";
+          }
+        } else {
+          userDetailsContainer.style.display = "none";
+          registerLink.style.display = "block";
+          loginLink.style.display = "block";
+        }
+      });
+    };
+  
+    document.getElementById('logoutButton').addEventListener('click', function () {
+      signOut(auth).then(() => {
+        alert('Logged out successfully');
+        document.getElementById("userDetailsContainer").style.display = "none";
+        document.getElementById("registerLink").style.display = "block";
+        document.getElementById("loginLink").style.display = "block";
+        window.location.href = '../login/index.html';
+      }).catch((error) => {
+        console.error('Error logging out: ', error);
+        alert('Error logging out. Please try again.');
+      });
+    });
+
+
+  </script>
+  <!-- Flatpickr JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- footer section end  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Flatpickr JS CDN -->
+
+  <script src="script.js"></script>
+  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+    integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+    async></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min"></script>
+
+  <!-- Your HTML code for the form -->
+     <!-- form get javascript element start  -->
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const location = urlParams.get('location');
+      const dates = urlParams.get('dates');
+      const guests = urlParams.get('guests');
+
+      document.getElementById('location').value = location;
+      document.getElementById('dates').value = dates;
+      document.getElementById('guests').value = guests;
+
+      const redirectLink = document.getElementById('redirectLink');
+      redirectLink.href = `../single-hotel-page/index.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&guests=${encodeURIComponent(guests)}`;
+    });
+  </script> -->
+  <!-- form get javascript element end  -->
+  <!-- user name fetch and logout javascript function start  -->
+ 
+  
+  <!-- user name fetch and logout javascript function end  -->
+     <!-- back to top button start  -->
+     <button id="backToTop" class="btn" style="background-color: #ff0000;"><i class="fa-solid fa-arrow-up text-light"></i></button>
+     <style>
+      #backToTop {
+        position: fixed;
+        bottom: 90px;
+        right: 40px;
+        display: none;
+        z-index: 100;
+      }
+    </style>
+     <script>
+       // Function to show or hide the button based on scroll position
+       window.onscroll = function() {
+         const backToTopButton = document.getElementById('backToTop');
+         if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+           backToTopButton.style.display = "block";
+         } else {
+           backToTopButton.style.display = "none";
+         }
+       };
+   
+       // Function to smoothly scroll to the top
+       document.getElementById('backToTop').addEventListener('click', function() {
+         window.scrollTo({ top: 0, behavior: 'smooth' });
+       });
+     </script>
+   <!-- back to top button end -->
+</body>
+
+</html>
