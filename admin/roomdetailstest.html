@@ -159,6 +159,7 @@
                     const form = document.getElementById('room-details-form');
                     form.addEventListener('submit', async (event) => {
                         event.preventDefault();
+
                         const roomType = document.getElementById('roomType').value;
                         const bedType = document.getElementById('bedType').value;
                         const roomId = document.getElementById('roomId').value;
@@ -170,38 +171,48 @@
                         const discount = document.getElementById('discount').value;
                         const availability = document.getElementById('availability').checked;
 
-                        // Upload room images to Firebase Storage and get download URLs
                         const roomImages = document.getElementById('roomImages').files;
                         const imageUrls = [];
 
-                        for (const file of roomImages) {
-                            const storageRef = storage.ref(`rooms/${hotelId}/${roomId}/${file.name}`);
-                            const snapshot = await storageRef.put(file);
-                            const downloadURL = await snapshot.ref.getDownloadURL();
-                            imageUrls.push(downloadURL);
-                        }
+                        try {
+                            for (const file of roomImages) {
+                                const storageRef = storage.ref(`rooms/${hotelId}/${roomId}/${file.name}`);
+                                const snapshot = await storageRef.put(file);
+                                const downloadURL = await snapshot.ref.getDownloadURL();
+                                imageUrls.push(downloadURL);
+                            }
 
-                        // Add room details to Firestore
-                        db.collection('hotels').doc(hotelId).collection('rooms').doc(roomId).set({
-                            roomType,
-                            bedType,
-                            roomId,
-                            totalRooms,
-                            roomPrice,
-                            perAdultPrice,
-                            perChildPrice,
-                            discount,
-                            availability,
-                            facilities: Array.from(selectedFacilities),
-                            images: imageUrls
-                        }).then(() => {
-                            alert('Room details saved successfully!');
+                            const roomRef = db.collection('hotels').doc(hotelId).collection('rooms').doc(roomId);
+
+                            const roomData = {
+                                roomType,
+                                bedType,
+                                roomId,
+                                totalRooms,
+                                roomPrice,
+                                perAdultPrice,
+                                perChildPrice,
+                                discount,
+                                availability,
+                                facilities: Array.from(selectedFacilities),
+                                images: imageUrls
+                            };
+
+                            const roomDoc = await roomRef.get();
+                            if (roomDoc.exists) {
+                                await roomRef.update(roomData);
+                                alert('Room details updated successfully!');
+                            } else {
+                                await roomRef.set(roomData);
+                                alert('Room details saved successfully!');
+                            }
+
                             form.reset();
                             selectedFacilities.clear();
                             updateSelectedFacilitiesContainer();
-                        }).catch((error) => {
+                        } catch (error) {
                             console.error('Error adding room details: ', error);
-                        });
+                        }
                     });
 
                     const imageInput = document.getElementById('roomImages');
@@ -234,8 +245,6 @@
         <!-- End of Footer -->
     </div>
     <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
