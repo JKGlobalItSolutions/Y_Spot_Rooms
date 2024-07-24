@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,11 +22,78 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .image-container {
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .danger-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+
+        .toggle-btn {
+            position: relative;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-btn input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: red;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <!-- <script src="firebase-config.js"></script> Include the config file -->
 </head>
 
 <body id="page-top">
-
-    <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -116,7 +182,7 @@
                     <button id="sidebarToggleTop" class="btn btn-light  d-md-none rounded-circle mr-2" style="background-color: #ff1717; color: #fff;">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <div class=" p-1 rounded d-md-none" style="background-color: #ff1717;">
+                    <div class=" bg-dark p-1 rounded d-md-none">
                         <img src="img/logo.png" alt="">
                     </div>
 
@@ -159,10 +225,10 @@
                                     Settings
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <button class="dropdown-item" id="logout-button">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
-                                </a>
+                                </button>
                             </div>
                         </li>
 
@@ -170,65 +236,68 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
+                <script>
+                    document.getElementById('logout-button').addEventListener('click', function() {
+                    firebase.auth().signOut().then(() => {
+                        window.location.href = './Login/login.html';  // Redirect to login page after logout
+                    }).catch((error) => {
+                        console.error('Error signing out:', error);
+                    });
+                     });
+              </script>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-
                     <div class="border p-4 shadow-sm rounded-3 ">
-
                         <div class=" rounded bg-white mb-2">
-                            <form action="" class="row">
-                                <div class="col-lg-4">
-                                    <div class="text-center mt-2">
-                                        <div class="">
-                                            <!-- <h1>Image Upload and Preview</h1> -->
-                                            <input type="file" id="imageInput" accept="image/*" style="display: none;">
-                                            <div class="preview-container">
-                                                <h4 class="mt-2" style="color: #ff1717;"><b>Room Image</b></h4>
-                                                <img id="imagePreview" style="border-radius: 10PX; height: 150px; width: 150px;"   src="" alt="Room Image">
+                            <form id="room-details-form">
+                                <div class="row">
+                                    <div class="col-lg-4  col-md-12">
+                                        <div class="text-start  mt-2">
+                                            <h4 style="color: #ff0000;"><b>Room Images:</b></h4>
+                
+                                            <div class="form-group">
+                                                <div class="row mt-3" id="roomImagesPreview"></div>
+                                                <input type="file" class="form-control-file" id="roomImages" accept="image/*" multiple>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-12">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="roomType">Room Type:</label>
+                                                    <input type="text" class="form-control" id="roomType" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="roomNumber">Room Number:</label>
+                                                    <input type="text" class="form-control" id="roomNumber" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="roomPrice">Room Price:</label>
+                                                    <input type="number" class="form-control" id="roomPrice" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="bedType">Bed Type:</label>
+                                                    <input type="text" class="form-control" id="bedType" required>
+                                                </div>
+                                            </div>
+                                            <div class=" col-md-12">
+                                                <div class="row">
+                                                    <div class="form-group col-lg-6 col-md-12 text-center mt-3">
+                                                        <label for="availability">Availability:</label>
+                                                        <label class="toggle-btn">
+                                                            <input type="checkbox" id="availability">
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-12 text-center mt-3"><button type="submit" class="btn text-light" style="background-color: #ff0000;">Save</button></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-8">
-                                    <div class="row justify-content-center d-flex align-items-center">
-                                        <div class="col-md-12 ">
-                                            <div class="p-1 py-1 ">
-                                                <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                    <div class="col-lg-6"><label class="labels"><b>Room type</b></label><input type="text" class="form-control" placeholder="Room type" value=""></div>
-                                                    <div class="col-lg-6"><label class="labels"><b>Room number</b></label><input type="text" class="form-control" value="" placeholder="Room number"></div>
-                                                </div>
-                                                
-                                                <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center d-flex align-items-center">
-                                        <div class="col-md-12 ">
-                                            <div class="p-1 py-1 ">
-                                                <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                    <div class="col-lg-4"><label class="labels"><b>Price</b></label><input type="text" class="form-control" placeholder="Price" value=""></div>
-                                                    <div class="col-lg-4"><label class="labels"><b>Bed type</b></label><input type="text" class="form-control" value="" placeholder="Bed type"></div>
-                                                    <div class="col-lg-3 align-items-center m-1">
-                                                        <input  type="checkbox" checked data-toggle="toggle" data-on="Active" data-off="Inactive" data-onstyle="danger" data-offstyle="secondary ">
-                                                    </div>
-                                                </div>
-                                                
-                                                <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center d-flex align-items-end">
-                                        <div class="col-md-12 ">
-                                            <div class="p-1 py-1 ">
-                                                <div class="row mt-2 d-flex align-items-end justify-content-end">
-                                                    <div class=" text-center col-lg-5 mt-4"><label class="labels">&nbsp;</label><button style="background-color: #fff; color: #ff1717; border-color: #ff1717;" class="btn profile-button" type="button" ><b>Edit</b></button></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                         
                             </form>
                         </div>
                     </div>
@@ -300,6 +369,175 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    
+    <script>
+        // firebase-config.js
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
+            authDomain: "testcrud-103a3.firebaseapp.com",
+            databaseURL: "https://testcrud-103a3-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "testcrud-103a3",
+            storageBucket: "testcrud-103a3.appspot.com",
+            messagingSenderId: "387302339276",
+            appId: "1:387302339276:web:e6c88525a1d80f9d154869",
+            measurementId: "G-ZR3EB3CD3Z"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        // Load room details
+        function loadRoomDetails(user) {
+            db.collection('rooms').doc(user.uid).get().then((doc) => {
+                if (doc.exists) {
+                    const roomData = doc.data();
+                    document.getElementById('roomType').value = roomData.roomType || "Sample Room Type";
+                    document.getElementById('roomNumber').value = roomData.roomNumber || "Sample Room Number";
+                    document.getElementById('roomPrice').value = roomData.roomPrice || 100;
+                    document.getElementById('bedType').value = roomData.bedType || "Sample Bed Type";
+                    document.getElementById('availability').checked = roomData.availability || false;
+
+                    const imagePreviewContainer = document.getElementById('roomImagesPreview');
+                    imagePreviewContainer.innerHTML = '';
+
+                    // Display existing room images in grid
+                    if (roomData.roomImages && roomData.roomImages.length > 0) {
+                        roomData.roomImages.forEach((imageURL, index) => {
+                            const colDiv = document.createElement('div');
+                            colDiv.className = 'col-md-6';
+
+                            const imageContainer = document.createElement('div');
+                            imageContainer.className = 'image-container';
+                            const image = document.createElement('img');
+                            image.src = imageURL;
+                            image.alt = 'Room Image';
+                            image.className = 'img-thumbnail';
+                            image.style.width = '100%';
+                            image.style.height = '10rem';
+                            imageContainer.appendChild(image);
+
+                            const deleteButton = document.createElement('a');
+                            deleteButton.href = '#';
+                            deleteButton.className = 'btn btn-danger danger-button';
+                            deleteButton.innerText = 'Delete';
+                            deleteButton.onclick = function () {
+                                deleteImage(user, index);
+                                return false; // Prevent default link behavior
+                            };
+
+                            imageContainer.appendChild(deleteButton);
+                            colDiv.appendChild(imageContainer);
+                            imagePreviewContainer.appendChild(colDiv);
+                        });
+                    }
+                } else {
+                    // Fill with default sample text if no room data exists
+                    document.getElementById('roomType').value = "Sample Room Type";
+                    document.getElementById('roomNumber').value = "Sample Room Number";
+                    document.getElementById('roomPrice').value = 100;
+                    document.getElementById('bedType').value = "Sample Bed Type";
+                    document.getElementById('availability').checked = false;
+                }
+            }).catch((error) => {
+                console.log('Error getting document:', error);
+            });
+        }
+
+        // Redirect to login if not authenticated
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                loadRoomDetails(user);
+            } else {
+                window.location.href = '/login/login.html';
+            }
+        });
+
+        document.getElementById('room-details-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const roomType = document.getElementById('roomType').value;
+            const roomNumber = document.getElementById('roomNumber').value;
+            const roomPrice = document.getElementById('roomPrice').value;
+            const bedType = document.getElementById('bedType').value;
+            const availability = document.getElementById('availability').checked;
+            const user = firebase.auth().currentUser;
+
+            const roomData = {
+                roomType,
+                roomNumber,
+                roomPrice: parseFloat(roomPrice),
+                bedType,
+                availability
+            };
+
+            const roomImagesInput = document.getElementById('roomImages');
+            const imageFiles = roomImagesInput.files;
+            const storageRef = storage.ref(`room-images/${user.uid}`);
+
+            // Step 1: Fetch existing room images
+            db.collection('rooms').doc(user.uid).get().then(doc => {
+                if (doc.exists) {
+                    const existingRoomData = doc.data();
+                    roomData.roomImages = existingRoomData.roomImages || [];
+                } else {
+                    roomData.roomImages = [];
+                }
+
+                // Step 2: Upload new images
+                const uploadPromises = [];
+                for (let i = 0; i < imageFiles.length; i++) {
+                    const imageFile = imageFiles[i];
+                    const imageRef = storageRef.child(imageFile.name);
+                    uploadPromises.push(imageRef.put(imageFile));
+                }
+
+                return Promise.all(uploadPromises);
+            }).then(snapshots => {
+                // Step 3: Get download URLs for the new images
+                const downloadURLPromises = snapshots.map(snapshot => snapshot.ref.getDownloadURL());
+                return Promise.all(downloadURLPromises);
+            }).then(downloadURLs => {
+                // Step 4: Merge existing images with new images
+                roomData.roomImages = roomData.roomImages.concat(downloadURLs);
+
+                // Step 5: Update Firestore document
+                return db.collection('rooms').doc(user.uid).set(roomData);
+            }).then(() => {
+                alert('Room details saved successfully');
+                window.location.reload();
+            }).catch(error => {
+                console.error('Error saving room details:', error);
+                alert('Failed to save room details');
+            });
+        });
+
+        function deleteImage(user, index) {
+            db.collection('rooms').doc(user.uid).get().then((doc) => {
+                if (doc.exists) {
+                    const roomData = doc.data();
+                    const imageURL = roomData.roomImages[index];
+                    const imageRef = storage.refFromURL(imageURL);
+
+                    imageRef.delete().then(() => {
+                        roomData.roomImages.splice(index, 1);
+                        db.collection('rooms').doc(user.uid).update({ roomImages: roomData.roomImages });
+                        loadRoomDetails(user);
+                    }).catch((error) => {
+                        console.error('Error deleting image:', error);
+                    });
+                }
+            }).catch((error) => {
+                console.error('Error getting room data:', error);
+            });
+        }
+
+        document.getElementById('back-button').addEventListener('click', function () {
+            window.location.href = 'admin_dashboard.html';
+        });
+    </script>
 </body>
 
 </html>

@@ -46,7 +46,7 @@
             <!-- Divider -->
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active " >
+            <li class="nav-item active ">
                 <a class="nav-link  " href="index.html">
                     <i class=""><img src="img/sidbar icons/person.png" alt=""></i>
                     <span>User Profile</span></a>
@@ -87,7 +87,7 @@
                     <span>Room Status</span></a>
             </li>
 
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -116,7 +116,8 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-light  d-md-none rounded-circle mr-2" style="background-color: #ff1717; color: #fff;">
+                    <button id="sidebarToggleTop" class="btn btn-light  d-md-none rounded-circle mr-2"
+                        style="background-color: #ff1717; color: #fff;">
                         <i class="fa fa-bars"></i>
                     </button>
                     <div class=" p-1 rounded d-md-none" style="background-color: #ff1717;">
@@ -147,8 +148,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mannager</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -174,29 +174,34 @@
                 </nav>
                 <!-- End of Topbar -->
                 <script>
-                    document.getElementById('logout-button').addEventListener('click', function() {
-                    firebase.auth().signOut().then(() => {
-                        window.location.href = './login/login.html';  // Redirect to login page after logout
-                    }).catch((error) => {
-                        console.error('Error signing out:', error);
+                    document.getElementById('logout-button').addEventListener('click', function () {
+                        firebase.auth().signOut().then(() => {
+                            window.location.href = './login/login.html';  // Redirect to login page after logout
+                        }).catch((error) => {
+                            console.error('Error signing out:', error);
+                        });
                     });
-                     });
-              </script>
+                </script>
                 <!-- Begin Page Content -->
                 <form id="hotel-details-form">
-                    <div class="container-fluid" >
+                    <div class="container-fluid">
                         <div class="border shadow-sm rounded-3 p-3">
                             <div class="rounded bg-white mb-2">
                                 <div class="text-center mt-2">
                                     <input type="file" id="hotelImages" accept="image/*" multiple>
                                 </div>
-                                <div class="container row mt-3 d-flex align-items-center justify-content-evenly" id="hotelImagesPreview"></div>
+                                <div class="container row mt-3 d-flex align-items-center justify-content-evenly"
+                                    id="hotelImagesPreview"></div>
                                 <div class="row justify-content-center d-flex align-items-center">
                                     <div class="col-md-12">
                                         <div class="p-1 py-1">
                                             <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Hotel Name</b></label><input type="text" class="form-control" id="hotelName" placeholder="Hotel Name" required></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Hotel Address</b></label><input type="text" class="form-control" id="hotelAddress" placeholder="Hotel Address" required></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Hotel
+                                                            Name</b></label><input type="text" class="form-control"
+                                                        id="hotelName" placeholder="Hotel Name" required></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Hotel
+                                                            Address</b></label><input type="text" class="form-control"
+                                                        id="hotelAddress" placeholder="Hotel Address" required></div>
                                             </div>
                                         </div>
                                     </div>
@@ -205,8 +210,12 @@
                                     <div class="col-md-12">
                                         <div class="p-1 py-1">
                                             <div class="row mt-2 d-flex align-items-center justify-content-center">
-                                                <div class="col-lg-5"><label class="labels"><b>Number of Rooms</b></label><input type="number" class="form-control" id="numRooms" placeholder="Number of Rooms" required></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Room Price</b></label><input type="number" class="form-control" id="roomPrice" placeholder="Room Price" required></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Number of
+                                                            Rooms</b></label><input type="number" class="form-control"
+                                                        id="numRooms" placeholder="Number of Rooms" required></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Room
+                                                            Price</b></label><input type="number" class="form-control"
+                                                        id="roomPrice" placeholder="Room Price" required></div>
                                             </div>
                                         </div>
                                     </div>
@@ -228,72 +237,74 @@
                                                     </select>
                                                     <div id="selected-container" class="d-flex flex-wrap mb-3"></div>
                                                 </div>
-                                                <div class="col-lg-5 mt-4"><label class="labels">&nbsp;</label><button style="background-color: #ff1717; color: #fff;" class="btn profile-button" type="submit">Save</button></div>
+                                                <div class="col-lg-5 mt-4"><label class="labels">&nbsp;</label><button
+                                                        style="background-color: #ff1717; color: #fff;"
+                                                        class="btn profile-button" type="submit">Save</button></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div >
+                    </div>
                 </form>
-            
+
                 <script>
                     // firebase-config.js
-// Your Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
-    authDomain: "testcrud-103a3.firebaseapp.com",
-    databaseURL: "https://testcrud-103a3-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "testcrud-103a3",
-    storageBucket: "testcrud-103a3.appspot.com",
-    messagingSenderId: "387302339276",
-    appId: "1:387302339276:web:e6c88525a1d80f9d154869",
-    measurementId: "G-ZR3EB3CD3Z"
-  };
+                    // Your Firebase configuration
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
+                        authDomain: "testcrud-103a3.firebaseapp.com",
+                        databaseURL: "https://testcrud-103a3-default-rtdb.asia-southeast1.firebasedatabase.app",
+                        projectId: "testcrud-103a3",
+                        storageBucket: "testcrud-103a3.appspot.com",
+                        messagingSenderId: "387302339276",
+                        appId: "1:387302339276:web:e6c88525a1d80f9d154869",
+                        measurementId: "G-ZR3EB3CD3Z"
+                    };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const storage = firebase.storage();
+                    // Initialize Firebase
+                    firebase.initializeApp(firebaseConfig);
+                    const db = firebase.firestore();
+                    const storage = firebase.storage();
 
-        // Handle select options
-        const selectElement = document.getElementById('options');
-        const selectedContainer = document.getElementById('selected-container');
-        const selectedOptions = new Set();
+                    // Handle select options
+                    const selectElement = document.getElementById('options');
+                    const selectedContainer = document.getElementById('selected-container');
+                    const selectedOptions = new Set();
 
-        firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          // Retrieve admin profile details from Firestore
-          db.collection('adminProfiles').doc(user.uid).get().then((doc) => {
-            if (doc.exists) {
-              const adminData = doc.data();
-              document.getElementById('userName').value = adminData.userName || "Sample User Name";
-              document.getElementById('hotelName').value = adminData.hotelName || "Sample Hotel Name";
-              document.getElementById('hotelWebsite').value = adminData.hotelWebsite || "https://samplehotelwebsite.com";
-              document.getElementById('email').value = adminData.email || user.email;
-              document.getElementById('mobileNumber').value = adminData.mobileNumber || "000-000-0000";
-              document.getElementById('address').value = adminData.address || "Sample Address";
-              document.getElementById('profileImagePreview').src = adminData.profileImage || "https://via.placeholder.com/150";
-              loadAllDocuments(user.uid);
-            } else {
-              // Fill with default sample text if no profile data exists
-              document.getElementById('userName').value = "Sample User Name";
-              document.getElementById('hotelName').value = "Sample Hotel Name";
-              document.getElementById('hotelWebsite').value = "https://samplehotelwebsite.com";
-              document.getElementById('email').value = user.email;
-              document.getElementById('mobileNumber').value = "000-000-0000";
-              document.getElementById('address').value = "Sample Address";
-              document.getElementById('profileImagePreview').src = "https://via.placeholder.com/150";
-            }
-          }).catch((error) => {
-            console.log('Error getting document:', error);
-          });
-        } else {
-          window.location.href = './login/login.html';
-        }
-      });
-    
+                    firebase.auth().onAuthStateChanged((user) => {
+                        if (user) {
+                            // Retrieve admin profile details from Firestore
+                            db.collection('adminProfiles').doc(user.uid).get().then((doc) => {
+                                if (doc.exists) {
+                                    const adminData = doc.data();
+                                    document.getElementById('userName').value = adminData.userName || "Sample User Name";
+                                    document.getElementById('hotelName').value = adminData.hotelName || "Sample Hotel Name";
+                                    document.getElementById('hotelWebsite').value = adminData.hotelWebsite || "https://samplehotelwebsite.com";
+                                    document.getElementById('email').value = adminData.email || user.email;
+                                    document.getElementById('mobileNumber').value = adminData.mobileNumber || "000-000-0000";
+                                    document.getElementById('address').value = adminData.address || "Sample Address";
+                                    document.getElementById('profileImagePreview').src = adminData.profileImage || "https://via.placeholder.com/150";
+                                    loadAllDocuments(user.uid);
+                                } else {
+                                    // Fill with default sample text if no profile data exists
+                                    document.getElementById('userName').value = "Sample User Name";
+                                    document.getElementById('hotelName').value = "Sample Hotel Name";
+                                    document.getElementById('hotelWebsite').value = "https://samplehotelwebsite.com";
+                                    document.getElementById('email').value = user.email;
+                                    document.getElementById('mobileNumber').value = "000-000-0000";
+                                    document.getElementById('address').value = "Sample Address";
+                                    document.getElementById('profileImagePreview').src = "https://via.placeholder.com/150";
+                                }
+                            }).catch((error) => {
+                                console.log('Error getting document:', error);
+                            });
+                        } else {
+                            window.location.href = './login/login.html';
+                        }
+                    });
+
 
                     selectElement.addEventListener('change', (event) => {
                         const selectedValue = event.target.value;
@@ -302,7 +313,7 @@ const storage = firebase.storage();
                             updateSelectedContainer();
                         }
                     });
-            
+
                     function updateSelectedContainer() {
                         selectedContainer.innerHTML = '';
                         selectedOptions.forEach(option => {
@@ -315,12 +326,12 @@ const storage = firebase.storage();
                             selectedContainer.appendChild(selectedOption);
                         });
                     }
-            
-                    window.removeSelectedOption = function(option) {
+
+                    window.removeSelectedOption = function (option) {
                         selectedOptions.delete(option);
                         updateSelectedContainer();
                     };
-            
+
                     // Load hotel details
                     function loadHotelDetails(user) {
                         db.collection('hotels').doc(user.uid).get().then((doc) => {
@@ -330,16 +341,16 @@ const storage = firebase.storage();
                                 document.getElementById('hotelAddress').value = hotelData.hotelAddress || "Sample Hotel Address";
                                 document.getElementById('roomPrice').value = hotelData.roomPrice || 100;
                                 document.getElementById('numRooms').value = hotelData.numRooms || 10;
-            
+
                                 const imagePreviewContainer = document.getElementById('hotelImagesPreview');
                                 imagePreviewContainer.innerHTML = '';
-            
+
                                 // Display existing hotel images in grid
                                 if (hotelData.hotelImages && hotelData.hotelImages.length > 0) {
                                     hotelData.hotelImages.forEach((imageURL, index) => {
                                         const colDiv = document.createElement('div');
                                         colDiv.className = 'col-md-2';
-            
+
                                         const imageContainer = document.createElement('div');
                                         imageContainer.className = 'image-container';
                                         const image = document.createElement('img');
@@ -349,22 +360,22 @@ const storage = firebase.storage();
                                         image.style.width = '100%';
                                         image.style.height = 'auto';
                                         imageContainer.appendChild(image);
-            
+
                                         const deleteButton = document.createElement('a');
                                         deleteButton.href = '#';
                                         deleteButton.className = 'btn btn-danger danger-button ';
                                         deleteButton.innerText = 'Delete';
-                                        deleteButton.onclick = function() {
+                                        deleteButton.onclick = function () {
                                             deleteImage(user, index);
                                             return false; // Prevent default link behavior
                                         };
-            
+
                                         imageContainer.appendChild(deleteButton);
                                         colDiv.appendChild(imageContainer);
                                         imagePreviewContainer.appendChild(colDiv);
                                     });
                                 }
-            
+
                                 // Load amenities (renamed to accommodation details)
                                 if (hotelData.accommodationDetails && hotelData.accommodationDetails.length > 0) {
                                     hotelData.accommodationDetails.forEach(detail => {
@@ -383,11 +394,11 @@ const storage = firebase.storage();
                             console.log("Error getting hotel details: ", error);
                         });
                     }
-            
+
                     firebase.auth().onAuthStateChanged((user) => {
                         if (user) {
                             loadHotelDetails(user);
-            
+
                             // Add event listener to form submission
                             document.getElementById('hotel-details-form').addEventListener('submit', (event) => {
                                 event.preventDefault();
@@ -395,7 +406,7 @@ const storage = firebase.storage();
                                 const hotelAddress = document.getElementById('hotelAddress').value;
                                 const numRooms = document.getElementById('numRooms').value;
                                 const roomPrice = document.getElementById('roomPrice').value;
-            
+
                                 db.collection('hotels').doc(user.uid).set({
                                     hotelName: hotelName,
                                     hotelAddress: hotelAddress,
@@ -415,20 +426,20 @@ const storage = firebase.storage();
                             console.log("User is not signed in");
                         }
                     });
-            
+
                     // Upload hotel images to Firebase Storage
                     function uploadHotelImages(user) {
                         const fileInput = document.getElementById('hotelImages');
                         const files = fileInput.files;
                         const imageUrls = [];
                         let uploadPromises = [];
-            
+
                         if (files.length > 0) {
                             for (let i = 0; i < files.length; i++) {
                                 const file = files[i];
                                 const storageRef = firebase.storage().ref();
                                 const fileRef = storageRef.child(`hotelImages/${user.uid}/${file.name}`);
-            
+
                                 const uploadTask = fileRef.put(file);
                                 uploadPromises.push(
                                     uploadTask.then(() => {
@@ -438,7 +449,7 @@ const storage = firebase.storage();
                                     })
                                 );
                             }
-            
+
                             Promise.all(uploadPromises).then(() => {
                                 db.collection('hotels').doc(user.uid).update({
                                     hotelImages: firebase.firestore.FieldValue.arrayUnion(...imageUrls)
@@ -457,19 +468,19 @@ const storage = firebase.storage();
                             });
                         }
                     }
-            
+
                     // Delete image from Firebase Storage
                     function deleteImage(user, index) {
                         db.collection('hotels').doc(user.uid).get().then((doc) => {
                             if (doc.exists) {
                                 const hotelData = doc.data();
                                 const imageUrlToDelete = hotelData.hotelImages[index];
-            
+
                                 if (imageUrlToDelete) {
                                     const storageRef = firebase.storage().refFromURL(imageUrlToDelete);
                                     storageRef.delete().then(() => {
                                         console.log("Image deleted from Firebase Storage");
-            
+
                                         const updatedHotelImages = hotelData.hotelImages.filter((_, i) => i !== index);
                                         db.collection('hotels').doc(user.uid).update({
                                             hotelImages: updatedHotelImages
@@ -492,7 +503,7 @@ const storage = firebase.storage();
                             alert("Error getting hotel details: " + error.message);
                         });
                     }
-            
+
                     // Back button click event
                     document.getElementById('back-button').addEventListener('click', () => {
                         window.location.href = 'dashboard.html';
