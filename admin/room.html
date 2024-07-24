@@ -389,7 +389,9 @@
 
         // Load room details
         function loadRoomDetails(user) {
-            db.collection('rooms').doc(user.uid).get().then((doc) => {
+            const hotelId = user.uid; // Assuming user.uid is the hotel ID
+
+            db.collection('hotels').doc(hotelId).collection('rooms').doc(user.uid).get().then((doc) => {
                 if (doc.exists) {
                     const roomData = doc.data();
                     document.getElementById('roomType').value = roomData.roomType || "Sample Room Type";
@@ -449,7 +451,7 @@
             if (user) {
                 loadRoomDetails(user);
             } else {
-                window.location.href = '/login/login.html';
+                window.location.href = 'login.html';
             }
         });
 
@@ -462,6 +464,7 @@
             const bedType = document.getElementById('bedType').value;
             const availability = document.getElementById('availability').checked;
             const user = firebase.auth().currentUser;
+            const hotelId = user.uid; // Assuming user.uid is the hotel ID
 
             const roomData = {
                 roomType,
@@ -473,10 +476,10 @@
 
             const roomImagesInput = document.getElementById('roomImages');
             const imageFiles = roomImagesInput.files;
-            const storageRef = storage.ref(`room-images/${user.uid}`);
+            const storageRef = storage.ref(`hotel-images/${hotelId}`);
 
             // Step 1: Fetch existing room images
-            db.collection('rooms').doc(user.uid).get().then(doc => {
+            db.collection('hotels').doc(hotelId).collection('rooms').doc(user.uid).get().then(doc => {
                 if (doc.exists) {
                     const existingRoomData = doc.data();
                     roomData.roomImages = existingRoomData.roomImages || [];
@@ -502,7 +505,7 @@
                 roomData.roomImages = roomData.roomImages.concat(downloadURLs);
 
                 // Step 5: Update Firestore document
-                return db.collection('rooms').doc(user.uid).set(roomData);
+                return db.collection('hotels').doc(hotelId).collection('rooms').doc(user.uid).set(roomData);
             }).then(() => {
                 alert('Room details saved successfully');
                 window.location.reload();
@@ -513,7 +516,8 @@
         });
 
         function deleteImage(user, index) {
-            db.collection('rooms').doc(user.uid).get().then((doc) => {
+            const hotelId = user.uid; // Assuming user.uid is the hotel ID
+            db.collection('hotels').doc(hotelId).collection('rooms').doc(user.uid).get().then((doc) => {
                 if (doc.exists) {
                     const roomData = doc.data();
                     const imageURL = roomData.roomImages[index];
@@ -521,7 +525,7 @@
 
                     imageRef.delete().then(() => {
                         roomData.roomImages.splice(index, 1);
-                        db.collection('rooms').doc(user.uid).update({ roomImages: roomData.roomImages });
+                        db.collection('hotels').doc(hotelId).collection('rooms').doc(user.uid).update({ roomImages: roomData.roomImages });
                         loadRoomDetails(user);
                     }).catch((error) => {
                         console.error('Error deleting image:', error);
