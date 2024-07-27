@@ -1,0 +1,216 @@
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/3.8.2/minified.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+    // Initialize Flatpickr for date selection
+    var dateRangePicker = flatpickr("#dates", {
+        mode: "range",
+        dateFormat: "d, F Y",
+        minDate: "today",
+        defaultDate: [new Date(), new Date()],
+        maxDate: new Date().fp_incr(14 * 30),
+        onClose: function(selectedDates) {
+            if (selectedDates.length === 2) {
+                var diffTime = Math.abs(selectedDates[1] - selectedDates[0]);
+                var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                if (diffDays > 45) {
+                    alert("45 nights is the maximum limit");
+                    dateRangePicker.clear();
+                } else {
+                    sessionStorage.setItem('checkin', selectedDates[0].toLocaleDateString());
+                    sessionStorage.setItem('checkout', selectedDates[1].toLocaleDateString());
+                }
+            }
+        }
+    });
+
+    // Add location suggestions
+    var locationInput = document.getElementById('location');
+    var locationSuggestions = ["Tiruvanamalai, Tamil Nadu, India"];
+    var suggestionBox = document.createElement('div');
+    suggestionBox.classList.add('suggestion-box');
+    locationInput.parentNode.appendChild(suggestionBox);
+
+    locationInput.addEventListener('input', function() {
+        var query = locationInput.value.toLowerCase();
+        suggestionBox.innerHTML = '';
+        if (query.length > 0) {
+            locationSuggestions.forEach(function(suggestion) {
+                if (suggestion.toLowerCase().includes(query)) {
+                    var suggestionItem = document.createElement('div');
+                    suggestionItem.classList.add('suggestion-item');
+                    suggestionItem.textContent = suggestion;
+                    suggestionItem.style.color = 'white';
+                    suggestionItem.addEventListener('click', function() {
+                        locationInput.value = suggestion;
+                        suggestionBox.innerHTML = '';
+                    });
+                    suggestionBox.appendChild(suggestionItem);
+                }
+            });
+        }
+    });
+
+    // Retrieve data from sessionStorage and set it in the form
+    var location = sessionStorage.getItem('location') || 'Tiruvanamalai, Tamil Nadu, India';
+    var checkin = sessionStorage.getItem('checkin');
+    var checkout = sessionStorage.getItem('checkout');
+    var adults = sessionStorage.getItem('adults') || 1;
+    var children = sessionStorage.getItem('children') || 0;
+    var rooms = sessionStorage.getItem('rooms') || 1;
+
+    document.getElementById('location').value = location;
+    if (checkin && checkout) {
+        dateRangePicker.setDate([new Date(checkin), new Date(checkout)]);
+    } else {
+        dateRangePicker.setDate([new Date(), new Date()]);
+    }
+    document.getElementById('adults').value = adults;
+    document.getElementById('children').value = children;
+    document.getElementById('rooms').value = rooms;
+    updateGuests();
+    updateButtonsState();
+
+    // Toggle guests dropdown visibility
+    document.getElementById('guests').addEventListener('click', function(event) {
+        var dropdown = document.getElementById('guestsDropdown');
+        dropdown.classList.toggle('show');
+        event.stopPropagation();
+    });
+
+    // Close dropdown if clicking outside
+    document.addEventListener('click', function(event) {
+        var dropdown = document.getElementById('guestsDropdown');
+        if (!event.target.closest('#guestsDropdown') && !event.target.closest('#guests')) {
+            dropdown.classList.remove('show');
+        }
+    });
+
+    // Add event listeners for incrementing and decrementing adults, children, and rooms
+    document.getElementById('adults-plus').addEventListener('click', function() { incrementValue('adults', 30); });
+    document.getElementById('adults-minus').addEventListener('click', function() { decrementValue('adults', 1); });
+    document.getElementById('children-plus').addEventListener('click', function() { incrementValue('children', 10); });
+    document.getElementById('children-minus').addEventListener('click', function() { decrementValue('children', 0); });
+    document.getElementById('rooms-plus').addEventListener('click', function() { incrementValue('rooms', 30); });
+    document.getElementById('rooms-minus').addEventListener('click', function() { decrementValue('rooms', 1); });
+
+    // Done button to close the dropdown
+    document.getElementById('guests-done').addEventListener('click', function() {
+        document.getElementById('guestsDropdown').classList.remove('show');
+        updateGuests();
+    });
+
+    // Function to increment the input value
+    function incrementValue(inputId, maxValue) {
+        var input = document.getElementById(inputId);
+        var currentValue = parseInt(input.value);
+        if (currentValue < maxValue) {
+            input.value = currentValue + 1;
+            if (inputId === 'rooms') {
+                var adults = document.getElementById('adults');
+                adults.value = parseInt(adults.value) + 1; // Adjust adults based on rooms
+            }
+            updateGuests();
+            updateButtonsState();
+            updateRates(); // Update rates when value changes
+        }
+    }
+
+    // Function to decrement the input value
+    function decrementValue(inputId, minValue) {
+        var input = document.getElementById(inputId);
+        var currentValue = parseInt(input.value);
+        if (currentValue > minValue) {
+            input.value = currentValue - 1;
+            if (inputId === 'rooms') {
+                var adults = document.getElementById('adults');
+                adults.value = Math.max(parseInt(adults.value) - 1, 0); // Adjust adults based on rooms
+            }
+            updateGuests();
+            updateButtonsState();
+            updateRates(); // Update rates when value changes
+        }
+    }
+
+    // Function to update the guests input box with the selected values
+    function updateGuests() {
+        var adults = parseInt(document.getElementById('adults').value);
+        var children = parseInt(document.getElementById('children').value);
+        var rooms = parseInt(document.getElementById('rooms').value);
+        var guestsInput = document.getElementById('guests');
+        guestsInput.value = `${adults} Adults, ${children} Children, ${rooms} Rooms`;
+
+        // Update session storage
+        sessionStorage.setItem('adults', adults);
+        sessionStorage.setItem('children', children);
+        sessionStorage.setItem('rooms', rooms);
+
+        // Display child age dropdowns based on the number of children
+        var childAgesDiv = document.getElementById('child-ages');
+        var childAgeDropdownsDiv = document.getElementById('child-age-dropdowns');
+        childAgeDropdownsDiv.innerHTML = ''; // Clear existing dropdowns
+        for (var i = 0; i < children; i++) {
+            var dropdownContainer = document.createElement('div');
+            dropdownContainer.classList.add('dropdown-container');
+            var label = document.createElement('label');
+            label.setAttribute('for', `child-age-${i}`);
+            label.textContent = `Child ${i + 1} Age`;
+            var select = document.createElement('select');
+            select.classList.add('form-control', 'child-age-select');
+            select.id = `child-age-${i}`;
+            select.name = `child-age-${i}`;
+            for (var j = 0; j <= 17; j++) {
+                var option = document.createElement('option');
+                option.value = j;
+                option.textContent = j;
+                select.appendChild(option);
+            }
+            dropdownContainer.appendChild(label);
+            dropdownContainer.appendChild(select);
+            childAgeDropdownsDiv.appendChild(dropdownContainer);
+        }
+        childAgesDiv.style.display = children > 0 ? 'block' : 'none';
+    }
+
+    // Function to enable/disable the plus/minus buttons based on the current values
+    function updateButtonsState() {
+        var adults = parseInt(document.getElementById('adults').value);
+        var children = parseInt(document.getElementById('children').value);
+        var rooms = parseInt(document.getElementById('rooms').value);
+
+        document.getElementById('adults-minus').disabled = adults <= 1;
+        document.getElementById('adults-plus').disabled = adults >= 30;
+        document.getElementById('children-minus').disabled = children <= 0;
+        document.getElementById('children-plus').disabled = children >= 10;
+        document.getElementById('rooms-minus').disabled = rooms <= 1;
+        document.getElementById('rooms-plus').disabled = rooms >= 30;
+    }
+
+    // Event listener for form submission
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Retrieve the input values
+        var location = document.getElementById('location').value;
+        var dates = document.getElementById('dates').value;
+        var adults = parseInt(document.getElementById('adults').value);
+        var children = parseInt(document.getElementById('children').value);
+        var rooms = parseInt(document.getElementById('rooms').value);
+        var checkinDate = new Date(sessionStorage.getItem('checkin'));
+        var checkoutDate = new Date(sessionStorage.getItem('checkout'));
+        var timeDiff = Math.abs(checkoutDate - checkinDate);
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); // Calculate the number of nights
+
+        // Calculate total rate (example: base rate of 100 per night per room, add 20 for each child)
+        var baseRate = 100; // Example base rate per night per room
+        var childRate = 20; // Example additional rate per child per night
+        var totalRate = (baseRate + (children * childRate)) * rooms * diffDays;
+
+        // Redirect to the search results page with the updated details
+        var url = `details-page/details.html?location=${encodeURIComponent(location)}&dates=${encodeURIComponent(dates)}&adults=${adults}&children=${children}&rooms=${rooms}&totalRate=${totalRate}`;
+        window.location.href = url;
+    });
+});
+    </script>

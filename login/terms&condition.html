@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="../assets/js/color-modes.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+    <meta name="generator" content="Hugo 0.122.0" />
+    <title>Y-spot</title>
+  
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/" />
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
+  
+  
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="sign-in.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/index-asset/style.css">
+  
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Flatpickr CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Custom CSS -->
+    <!-- javascript page header and footer section include script start  -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const fetchContent = async (url) => {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.text();
+        };
+    
+        const loadContent = async () => {
+            try {
+            const [headerData, footerData] = await Promise.all([
+                fetchContent('../includes/confiremationheader.html'),
+                fetchContent('../includes/insidefooter.html')
+            ]);
+    
+            document.getElementById('included-confiremationheader').innerHTML = headerData;
+            document.getElementById('included-insidefooter').innerHTML = footerData;
+            } catch (error) {
+            console.error('Error fetching content:', error);
+            }
+        };
+    
+        loadContent();
+        });
+    </script>
+    <!-- javascript page header and footer section include script end  -->
+</head>
+<body>
+        <header>
+            <nav class="navbar navbar-expand topbarstatic-top" style="background-color: #FF1717;">
+            <!-- First column -->
+            <div class="container">
+                <div class="row w-100">
+                <div class="col-lg-4"></div>
+                <!-- Second column -->
+                <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
+                    <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/img/Frame 223.png" alt="" class="d-inline-block align-top">
+                    </a>
+                </div>
+                <!-- Third column -->
+                <div class="col-12 col-md-7 col-lg-4 d-flex justify-content-center align-items-center mt-2">
+                    <div class="d-flex justify-content-center align-items-center mx-auto ps-4 ms-2">
+                    <a class="nav-link" href="../login/signup.html" id="registerLink">
+                        <button id="registerButton" type="button" class="btn btn-light text-danger"
+                        style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                        <b>Register</b>
+                        </button>
+                    </a>
+                    <a class="nav-link" href="../login/index.html" id="loginLink">
+                        <button id="loginButton" type="button" class="btn btn-light text-danger"
+                        style="height: 30px; display: flex; align-items: center; justify-content: center;">
+                        <b>Login</b>
+                        </button>
+                    </a>
+                    </div>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow" id="userDetailsContainer">
+                        <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img src="" id="userPhoto" alt="User Photo" class="rounded-circle" style="width: 30px; height: 30px; display: none;">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 text-light" id="userName"></span>
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../index.html" data-toggle="modal" data-target="#logoutModal" id="logoutButton">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                        </div>
+                    </li>
+                    </ul>
+                    <style>
+                    @media (max-width: 1080.98px) {
+                        #userName {
+                        display: inline !important;
+                        }
+                    }
+                    </style>
+                </div>
+                </div>
+            </div>
+            </nav>
+            <div class="" id="included-confiremationheader"></div>
+        </header>
+        <div class="container py-5">
+            <h1 class="text-center mb-4">Terms and Conditions</h1>
+            <p>Welcome to Y-spot. These terms and conditions outline the rules and regulations for the use of Y-spot's Website.</p>
+          
+            <h2>1. Introduction</h2>
+            <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Y-spot if you do not agree to take all of the terms and conditions stated on this page.</p>
+          
+            <h2>2. Intellectual Property Rights</h2>
+            <p>Other than the content you own, under these Terms, Y-spot and/or its licensors own all the intellectual property rights and materials contained in this Website.</p>
+          
+            <h2>3. Restrictions</h2>
+            <p>You are specifically restricted from all of the following: publishing any Website material in any other media; selling, sublicensing and/or otherwise commercializing any Website material; publicly performing and/or showing any Website material; using this Website in any way that is or may be damaging to this Website; using this Website in any way that impacts user access to this Website.</p>
+          
+            <h2>4. Your Content</h2>
+            <p>In these Website Standard Terms and Conditions, "Your Content" shall mean any audio, video text, images or other material you choose to display on this Website. By displaying Your Content, you grant Y-spot a non-exclusive, worldwide irrevocable, sub-licensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.</p>
+          
+            <h2>5. No warranties</h2>
+            <p>This Website is provided "as is," with all faults, and Y-spot express no representations or warranties, of any kind related to this Website or the materials contained on this Website.</p>
+          
+            <h2>6. Limitation of liability</h2>
+            <p>In no event shall Y-spot, nor any of its officers, directors and employees, be held liable for anything arising out of or in any way connected with your use of this Website whether such liability is under contract.</p>
+          
+            <h2>7. Indemnification</h2>
+            <p>You hereby indemnify to the fullest extent Y-spot from and against any and/or all liabilities, costs, demands, causes of action, damages and expenses arising in any way related to your breach of any of the provisions of these Terms.</p>
+          
+            <h2>8. Severability</h2>
+            <p>If any provision of these Terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.</p>
+          
+            <h2>9. Variation of Terms</h2>
+            <p>Y-spot is permitted to revise these Terms at any time as it sees fit, and by using this Website you are expected to review such Terms on a regular basis to ensure you understand all terms and conditions governing use of this Website.</p>
+          
+            <h2>10. Assignment</h2>
+            <p>The Y-spot is allowed to assign, transfer, and subcontract its rights and/or obligations under these Terms without any notification.</p>
+          
+            <h2>11. Entire Agreement</h2>
+            <p>These Terms constitute the entire agreement between Y-spot and you in relation to your use of this Website, and supersede all prior agreements and understandings.</p>
+          
+            <h2>12. Governing Law & Jurisdiction</h2>
+            <p>These Terms will be governed by and interpreted in accordance with the laws of the State, and you submit to the non-exclusive jurisdiction of the state and federal courts located in the State for the resolution of any disputes.</p>
+          </div>
+        <footer class="footer pt-4" id="included-insidefooter">
+        </footer>
+        <!-- login user profile script start  -->
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+            import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+          
+            const firebaseConfig = {
+              apiKey: "AIzaSyCp2e7CNo83HwDx_HAVgY_IDh0_KW2Y0HI",
+              authDomain: "y-spot-e84ca.firebaseapp.com",
+              databaseURL: "https://y-spot-e84ca-default-rtdb.firebaseio.com",
+              projectId: "y-spot-e84ca",
+              storageBucket: "y-spot-e84ca.appspot.com",
+              messagingSenderId: "783996806068",
+              appId: "1:783996806068:web:298ca1ddb4dfb7e758c8e1",
+              measurementId: "G-TSH2JVYJHR"
+            };
+          
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth();
+          
+            window.onload = () => {
+              const userDetailsContainer = document.getElementById("userDetailsContainer");
+              const registerLink = document.getElementById("registerLink");
+              const loginLink = document.getElementById("loginLink");
+              const userName = document.getElementById("userName");
+              const userPhoto = document.getElementById("userPhoto");
+          
+              onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  userDetailsContainer.style.display = "block";
+                  registerLink.style.display = "none";
+                  loginLink.style.display = "none";
+                  userName.textContent = user.displayName || "User";
+                  if (user.photoURL) {
+                    userPhoto.src = user.photoURL;
+                    userPhoto.style.display = "inline-block";
+                  } else {
+                    userPhoto.style.display = "none";
+                  }
+                } else {
+                  userDetailsContainer.style.display = "none";
+                  registerLink.style.display = "block";
+                  loginLink.style.display = "block";
+                }
+              });
+            };
+        
+            document.getElementById('logoutButton').addEventListener('click', function () {
+              signOut(auth).then(() => {
+                alert('Logged out successfully');
+                document.getElementById("userDetailsContainer").style.display = "none";
+                document.getElementById("registerLink").style.display = "block";
+                document.getElementById("loginLink").style.display = "block";
+                window.location.href = '../login/index.html';
+              }).catch((error) => {
+                console.error('Error logging out: ', error);
+                alert('Error logging out. Please try again.');
+              });
+            });
+        </script>
+        <!-- login user profile script end  -->
+          <!-- Flatpickr JS CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <!-- footer section end  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Flatpickr JS CDN -->
+        <script src="script.js"></script>
+        <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+            integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+            async></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min"></script>
+        <!-- back to top button start  -->
+        <button id="backToTop" class="btn" style="background-color: #ff0000;"><i class="fa-solid fa-arrow-up text-light"></i></button>
+        <style>
+        #backToTop {
+            position: fixed;
+            bottom: 90px;
+            right: 40px;
+            display: none;
+            z-index: 100;
+        }
+        </style>
+        <script>
+        // Function to show or hide the button based on scroll position
+        window.onscroll = function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            backToTopButton.style.display = "block";
+            } else {
+            backToTopButton.style.display = "none";
+            }
+        };
+        // Function to smoothly scroll to the top
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        </script>
+        <!-- back to top button end -->
+</body>
+</html>
