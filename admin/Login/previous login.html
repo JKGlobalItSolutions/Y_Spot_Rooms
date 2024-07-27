@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-
+<!-- Coding by CodingLab | www.codinglabweb.com-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yspot Login</title>
+    <title>Yspot Login </title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -42,54 +42,10 @@
                     </div>
                     <div id="error-message" class="mt-2 text-danger"></div>
                 </form>
-
-                <div class="form-link">
-                    <span>List Your Property <a href="#" class="link signup-link">Register Now</a></span>
-                </div>
             </div>
         </div>
-
-        <!-- Signup Form -->
-
-        <div class="form signup">
-            <div class="form-content">
-                <header>Signup</header>
-                <form id="signup-form">
-                    <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" required>
-                    </div>
-        
-                    <div class="field input-field">
-                        <input type="password" id="password" placeholder="Password" class="password" required>
-                        <i class='bx bx-hide eye-icon'></i>
-                    </div>
-        
-                    <div class="field input-field ">
-                        <select name="propertyType" class="input col-12" required>
-                            <option value="" disabled selected>Select Your property type</option>
-                            <option value="Apartment">Apartment</option>
-                            <option value="Homestay">Homestay</option>
-                            <option value="Hotel">Hotel</option>
-                        </select>
-                    </div>
-        
-                    <div class="field button-field">
-                        <button type="submit">Go to Admin Profile</button>
-                    </div>
-                </form>
-                
-                <div class="form-link">
-                    <span>Already have an account? <a href="#" class="link login-link">Login</a></span>
-                </div>
-                <div class="align-item-center col-12">
-                    <h5 style="text-align: center; margin-top: 10px;">* Call Our Admin To Verify Your Property <br> After That We Provide Your AdminId And Password*</h5>
-                </div>
-                <div class="fieldd button-fieldd">
-                    <a href="tel:8148911901" type="button"><button type="submit">Contact Admin</button></a>
-                </div>
-            </div>
-        </div>       
     </section>
+
     <!-- JavaScript -->
     <script src="js/script.js"></script>
     <script>
@@ -108,7 +64,6 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
-
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -135,41 +90,6 @@
                     document.getElementById('error-message').textContent = errorMessage;
                 });
         });
-
-        document.getElementById('signup-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const email = document.querySelector('[name="email"]').value;
-            const password = document.querySelector('[name="password"]').value;
-            const propertyType = document.querySelector('[name="propertyType"]').value;
-
-            if (password !== document.querySelector('[name="Repassword"]').value) {
-                alert('Passwords do not match');
-                return;
-            }
-
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-
-                    // Save user profile to Firestore
-                    db.collection('userProfiles').doc(user.uid).set({
-                        email: user.email,
-                        propertyType: propertyType,
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    }).then(() => {
-                        // Redirect to user dashboard
-                        window.location.href = '../index.html';
-                    }).catch((error) => {
-                        console.error('Error writing user profile: ', error);
-                    });
-                })
-                .catch((error) => {
-                    const errorMessage = error.message;
-                    alert(errorMessage);
-                });
-        });
-
         auth.onAuthStateChanged(user => {
             if (user) {
                 window.location.href = '../index.html';
