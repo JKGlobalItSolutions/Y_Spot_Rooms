@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Y-Spot Admin</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.png">
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class=" mx-3 d-none d-sm-block">
+                    <img src="../img/logo.png" alt="">
+                </div>
+            </a>
+
+            <!-- Divider -->
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active ">
+                <a class="nav-link  " href="index.html">
+                    <i class=""><img src="../img/sidbar icons/person.png" alt=""></i>
+                    <span>User Profile</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link bg-dark m-1" style="border-radius: 10px; width: 90%; " href="#">
+                    <i class=""><img src="../img/sidbar icons/food_bank.png" alt=""></i>
+                    <span>Hotels</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="room.html">
+                    <i class=""><img src="../img/sidbar icons/meeting_room.png" alt=""></i>
+                    <span>Rooms</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="gustdetail.html">
+                    <i class=""><img src="../img/sidbar icons/location_home.png" alt=""></i>
+                    <span>Guest Details</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="payments.html">
+                    <i class=""><img src="../img/sidbar icons/currency_rupee.png" alt=""></i>
+                    <span>Payments</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="orders.html">
+                    <i class=""><img src="../img/sidbar icons/format_list_bulleted.png" alt=""></i>
+                    <span>Orders</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="reviews.html">
+                    <i class=""><img src="../img/sidbar icons/stars.png" alt=""></i>
+                    <span>Reviews</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="roomstatus.html">
+                    <i class=""><img src="../img/sidbar icons/concierge.png" alt=""></i>
+                    <span>Room Status</span></a>
+            </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <!-- <div class="sidebar-card d-none d-lg-flex">
+                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+            </div> -->
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-light  d-md-none rounded-circle mr-2"
+                        style="background-color: #ff1717; color: #fff;">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class=" p-1 rounded d-md-none" style="background-color: #ff1717;">
+                        <img src="../img/logo.png" alt="">
+                    </div>
+
+                    <!-- Topbar Search -->
+                    <!-- <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form> -->
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mannager</span>
+                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-item" id="logout-button">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </button>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <script>
+                    document.getElementById('logout-button').addEventListener('click', function () {
+                        firebase.auth().signOut().then(() => {
+                            window.location.href = './login/login.html';  // Redirect to login page after logout
+                        }).catch((error) => {
+                            console.error('Error signing out:', error);
+                        });
+                    });
+                </script>
+                <!-- Begin Page Content -->
+                <form id="hotel-details-form">
+                    <div class="container-fluid">
+                        <div class="border shadow-sm rounded-3 p-3">
+                            <div class="rounded bg-white mb-2">
+                                <div class="text-center mt-2">
+                                    <input type="file" id="hotelImages" accept="image/*" multiple>
+                                </div>
+                                <div class="container row mt-3 d-flex align-items-center justify-content-evenly"
+                                    id="hotelImagesPreview"></div>
+                                <div class="row justify-content-center d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="p-1 py-1">
+                                            <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                                <div class="col-lg-5"><label class="labels"><b>Hotel
+                                                            Name</b></label><input type="text" class="form-control"
+                                                        id="hotelName" placeholder="Hotel Name" required></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Hotel
+                                                            Address</b></label><input type="text" class="form-control"
+                                                        id="hotelAddress" placeholder="Hotel Address" required></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="p-1 py-1">
+                                            <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                                <div class="col-lg-5"><label class="labels"><b>Number of
+                                                            Rooms</b></label><input type="number" class="form-control"
+                                                        id="numRooms" placeholder="Number of Rooms" required></div>
+                                                <div class="col-lg-5"><label class="labels"><b>Room
+                                                            Price</b></label><input type="number" class="form-control"
+                                                        id="roomPrice" placeholder="Room Price" required></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="p-1 py-1">
+                                            <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                                <div class="col-lg-5">
+                                                    <label class="labels"><b>Accommodation Facilities</b></label>
+                                                    <select id="options" class="form-control">
+                                                        <option value="" disabled selected>Select your options</option>
+                                                        <option value="WiFi">WiFi</option>
+                                                        <option value="Food">Food</option>
+                                                        <option value="Parking">Parking</option>
+                                                        <option value="AC">AC</option>
+                                                        <option value="Water Heater">Water Heater</option>
+                                                        <option value="Restaurant">Restaurant</option>
+                                                    </select>
+                                                    <div id="selected-container" class="d-flex flex-wrap mb-3"></div>
+                                                </div>
+                                                <div class="col-lg-5 mt-4"><label class="labels">&nbsp;</label><button
+                                                        style="background-color: #ff1717; color: #fff;"
+                                                        class="btn profile-button" type="submit">Save</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <script>
+                    // firebase-config.js
+                    // Your Firebase configuration
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
+                        authDomain: "testcrud-103a3.firebaseapp.com",
+                        databaseURL: "https://testcrud-103a3-default-rtdb.asia-southeast1.firebasedatabase.app",
+                        projectId: "testcrud-103a3",
+                        storageBucket: "testcrud-103a3.appspot.com",
+                        messagingSenderId: "387302339276",
+                        appId: "1:387302339276:web:e6c88525a1d80f9d154869",
+                        measurementId: "G-ZR3EB3CD3Z"
+                    };
+
+                    // Initialize Firebase
+                    firebase.initializeApp(firebaseConfig);
+                    const db = firebase.firestore();
+                    const storage = firebase.storage();
+
+                    // Handle select options
+                    const selectElement = document.getElementById('options');
+                    const selectedContainer = document.getElementById('selected-container');
+                    const selectedOptions = new Set();
+
+                    firebase.auth().onAuthStateChanged((user) => {
+                        if (user) {
+                            // Retrieve admin profile details from Firestore
+                            db.collection('adminProfiles').doc(user.uid).get().then((doc) => {
+                                if (doc.exists) {
+                                    const adminData = doc.data();
+                                    document.getElementById('userName').value = adminData.userName || "Sample User Name";
+                                    document.getElementById('hotelName').value = adminData.hotelName || "Sample Hotel Name";
+                                    document.getElementById('hotelWebsite').value = adminData.hotelWebsite || "https://samplehotelwebsite.com";
+                                    document.getElementById('email').value = adminData.email || user.email;
+                                    document.getElementById('mobileNumber').value = adminData.mobileNumber || "000-000-0000";
+                                    document.getElementById('address').value = adminData.address || "Sample Address";
+                                    document.getElementById('profileImagePreview').src = adminData.profileImage || "https://via.placeholder.com/150";
+                                    loadAllDocuments(user.uid);
+                                } else {
+                                    // Fill with default sample text if no profile data exists
+                                    document.getElementById('userName').value = "Sample User Name";
+                                    document.getElementById('hotelName').value = "Sample Hotel Name";
+                                    document.getElementById('hotelWebsite').value = "https://samplehotelwebsite.com";
+                                    document.getElementById('email').value = user.email;
+                                    document.getElementById('mobileNumber').value = "000-000-0000";
+                                    document.getElementById('address').value = "Sample Address";
+                                    document.getElementById('profileImagePreview').src = "https://via.placeholder.com/150";
+                                }
+                            }).catch((error) => {
+                                console.log('Error getting document:', error);
+                            });
+                        } else {
+                            window.location.href = '../Login/login.html';
+                        }
+                    });
+
+
+                    selectElement.addEventListener('change', (event) => {
+                        const selectedValue = event.target.value;
+                        if (selectedValue && !selectedOptions.has(selectedValue)) {
+                            selectedOptions.add(selectedValue);
+                            updateSelectedContainer();
+                        }
+                    });
+
+                    function updateSelectedContainer() {
+                        selectedContainer.innerHTML = '';
+                        selectedOptions.forEach(option => {
+                            const selectedOption = document.createElement('div');
+                            selectedOption.className = 'selected-option';
+                            selectedOption.innerHTML = `
+                                <span class="m-1">${option}</span>
+                                <button type="button" onclick="removeSelectedOption('${option}')" class="m-1  text-white border-0  rounded" style="background-color:#FF0000">&times;</button>
+                            `;
+                            selectedContainer.appendChild(selectedOption);
+                        });
+                    }
+
+                    window.removeSelectedOption = function (option) {
+                        selectedOptions.delete(option);
+                        updateSelectedContainer();
+                    };
+
+                    // Load hotel details
+                    function loadHotelDetails(user) {
+                        db.collection('hotels').doc(user.uid).get().then((doc) => {
+                            if (doc.exists) {
+                                const hotelData = doc.data();
+                                document.getElementById('hotelName').value = hotelData.hotelName || "Sample Hotel Name";
+                                document.getElementById('hotelAddress').value = hotelData.hotelAddress || "Sample Hotel Address";
+                                document.getElementById('roomPrice').value = hotelData.roomPrice || 100;
+                                document.getElementById('numRooms').value = hotelData.numRooms || 10;
+
+                                const imagePreviewContainer = document.getElementById('hotelImagesPreview');
+                                imagePreviewContainer.innerHTML = '';
+
+                                // Display existing hotel images in grid
+                                if (hotelData.hotelImages && hotelData.hotelImages.length > 0) {
+                                    hotelData.hotelImages.forEach((imageURL, index) => {
+                                        const colDiv = document.createElement('div');
+                                        colDiv.className = 'col-md-2';
+
+                                        const imageContainer = document.createElement('div');
+                                        imageContainer.className = 'image-container';
+                                        const image = document.createElement('img');
+                                        image.src = imageURL;
+                                        image.alt = 'Hotel Image';
+                                        image.className = 'img-thumbnail';
+                                        image.style.width = '100%';
+                                        image.style.height = 'auto';
+                                        imageContainer.appendChild(image);
+
+                                        const deleteButton = document.createElement('a');
+                                        deleteButton.href = '#';
+                                        deleteButton.className = 'btn btn-danger danger-button ';
+                                        deleteButton.innerText = 'Delete';
+                                        deleteButton.onclick = function () {
+                                            deleteImage(user, index);
+                                            return false; // Prevent default link behavior
+                                        };
+
+                                        imageContainer.appendChild(deleteButton);
+                                        colDiv.appendChild(imageContainer);
+                                        imagePreviewContainer.appendChild(colDiv);
+                                    });
+                                }
+
+                                // Load amenities (renamed to accommodation details)
+                                if (hotelData.accommodationDetails && hotelData.accommodationDetails.length > 0) {
+                                    hotelData.accommodationDetails.forEach(detail => {
+                                        selectedOptions.add(detail);
+                                    });
+                                    updateSelectedContainer();
+                                }
+                            } else {
+                                // Fill with default sample text if no hotel data exists
+                                document.getElementById('hotelName').value = "Sample Hotel Name";
+                                document.getElementById('hotelAddress').value = "Sample Hotel Address";
+                                document.getElementById('roomPrice').value = 100;
+                                document.getElementById('numRooms').value = 10;
+                            }
+                        }).catch((error) => {
+                            console.log("Error getting hotel details: ", error);
+                        });
+                    }
+
+                    firebase.auth().onAuthStateChanged((user) => {
+                        if (user) {
+                            loadHotelDetails(user);
+
+                            // Add event listener to form submission
+                            document.getElementById('hotel-details-form').addEventListener('submit', (event) => {
+                                event.preventDefault();
+                                const hotelName = document.getElementById('hotelName').value;
+                                const hotelAddress = document.getElementById('hotelAddress').value;
+                                const numRooms = document.getElementById('numRooms').value;
+                                const roomPrice = document.getElementById('roomPrice').value;
+
+                                db.collection('hotels').doc(user.uid).set({
+                                    hotelName: hotelName,
+                                    hotelAddress: hotelAddress,
+                                    numRooms: numRooms,
+                                    roomPrice: roomPrice,
+                                    accommodationDetails: Array.from(selectedOptions)
+                                }, { merge: true }).then(() => {
+                                    console.log("Hotel details saved successfully!");
+                                    alert("Hotel details saved successfully!");
+                                    uploadHotelImages(user);
+                                }).catch((error) => {
+                                    console.log("Error saving hotel details: ", error);
+                                    alert("Error saving hotel details: " + error.message);
+                                });
+                            });
+                        } else {
+                            console.log("User is not signed in");
+                        }
+                    });
+
+                    // Upload hotel images to Firebase Storage
+                    function uploadHotelImages(user) {
+                        const fileInput = document.getElementById('hotelImages');
+                        const files = fileInput.files;
+                        const imageUrls = [];
+                        let uploadPromises = [];
+
+                        if (files.length > 0) {
+                            for (let i = 0; i < files.length; i++) {
+                                const file = files[i];
+                                const storageRef = firebase.storage().ref();
+                                const fileRef = storageRef.child(`hotelImages/${user.uid}/${file.name}`);
+
+                                const uploadTask = fileRef.put(file);
+                                uploadPromises.push(
+                                    uploadTask.then(() => {
+                                        return fileRef.getDownloadURL().then((url) => {
+                                            imageUrls.push(url);
+                                        });
+                                    })
+                                );
+                            }
+
+                            Promise.all(uploadPromises).then(() => {
+                                db.collection('hotels').doc(user.uid).update({
+                                    hotelImages: firebase.firestore.FieldValue.arrayUnion(...imageUrls)
+                                }).then(() => {
+                                    console.log("Images uploaded and URLs saved to Firestore successfully!");
+                                    alert("Images uploaded and URLs saved successfully!");
+                                    loadHotelDetails(user); // Refresh the hotel details after saving
+                                    window.location.reload(); // Reload the page after a successful update
+                                }).catch((error) => {
+                                    console.log("Error updating image URLs: ", error);
+                                    alert("Error updating image URLs: " + error.message);
+                                });
+                            }).catch((error) => {
+                                console.log("Error uploading images: ", error);
+                                alert("Error uploading images: " + error.message);
+                            });
+                        }
+                    }
+
+                    // Delete image from Firebase Storage
+                    function deleteImage(user, index) {
+                        db.collection('hotels').doc(user.uid).get().then((doc) => {
+                            if (doc.exists) {
+                                const hotelData = doc.data();
+                                const imageUrlToDelete = hotelData.hotelImages[index];
+
+                                if (imageUrlToDelete) {
+                                    const storageRef = firebase.storage().refFromURL(imageUrlToDelete);
+                                    storageRef.delete().then(() => {
+                                        console.log("Image deleted from Firebase Storage");
+
+                                        const updatedHotelImages = hotelData.hotelImages.filter((_, i) => i !== index);
+                                        db.collection('hotels').doc(user.uid).update({
+                                            hotelImages: updatedHotelImages
+                                        }).then(() => {
+                                            console.log("Image URL removed from Firestore");
+                                            alert("Image deleted successfully!");
+                                            loadHotelDetails(user); // Refresh the hotel details after deletion
+                                        }).catch((error) => {
+                                            console.log("Error removing image URL from Firestore: ", error);
+                                            alert("Error removing image URL: " + error.message);
+                                        });
+                                    }).catch((error) => {
+                                        console.log("Error deleting image from Firebase Storage: ", error);
+                                        alert("Error deleting image: " + error.message);
+                                    });
+                                }
+                            }
+                        }).catch((error) => {
+                            console.log("Error getting hotel details: ", error);
+                            alert("Error getting hotel details: " + error.message);
+                        });
+                    }
+
+                    // Back button click event
+                    document.getElementById('back-button').addEventListener('click', () => {
+                        window.location.href = 'dashboard.html';
+                    });
+                </script>
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Y.SPOT Rooms pvt ltd. 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+    <script src="../script.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>

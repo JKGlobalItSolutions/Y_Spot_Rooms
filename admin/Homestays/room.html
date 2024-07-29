@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Y-Spot Admin</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.png">
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .image-container {
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .danger-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+
+        .toggle-btn {
+            position: relative;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-btn input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: red;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <!-- <script src="firebase-config.js"></script> Include the config file -->
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class=" mx-3 d-none d-sm-block">
+                    <img src="../img/logo.png" alt="">
+                </div>
+            </a>
+
+            <!-- Divider -->
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active " >
+                <a class="nav-link "  href="index.html">
+                    <i class=""><img src="../img/sidbar icons/person.png" alt=""></i>
+                    <span>User Profile</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link "  href="Hotels.html">
+                    <i class=""><img src="../img/sidbar icons/food_bank.png" alt=""></i>
+                    <span>Hotels</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link bg-dark m-1 " style="border-radius: 10px; width: 90%; " href="#">
+                    <i class=""><img src="../img/sidbar icons/meeting_room.png" alt=""></i>
+                    <span>Rooms</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="gustdetail.html">
+                    <i class=""><img src="../img/sidbar icons/location_home.png" alt=""></i>
+                    <span>Guest Details</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class=""><img src="../img/sidbar icons/currency_rupee.png" alt=""></i>
+                    <span>Payments</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class=""><img src="../img/sidbar icons/format_list_bulleted.png" alt=""></i>
+                    <span>Orders</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class=""><img src="../img/sidbar icons/stars.png" alt=""></i>
+                    <span>Reviews</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class=""><img src="../img/sidbar icons/concierge.png" alt=""></i>
+                    <span>Room Status</span></a>
+            </li>
+
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <!-- <div class="sidebar-card d-none d-lg-flex">
+                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+            </div> -->
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-light  d-md-none rounded-circle mr-2"
+                        style="background-color: #ff1717; color: #fff;">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class=" p-1 rounded d-md-none" style="background-color: #ff1717;">
+                        <img src="../img/logo.png" alt="">
+                    </div>
+
+                    <!-- Topbar Search -->
+                    <!-- <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form> -->
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mannager</span>
+                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-item" id="logout-button">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </button>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <script>
+                    document.getElementById('logout-button').addEventListener('click', function () {
+                        firebase.auth().signOut().then(() => {
+                            window.location.href = '../Login/login.html';  // Redirect to login page after logout
+                        }).catch((error) => {
+                            console.error('Error signing out:', error);
+                        });
+                    });
+                </script>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div id="room-details-container"></div>
+                </div>
+                <!-- /.container-fluid -->
+                <div class="d-flex align-items-right justify-content-end m-3">
+                    <h6><a href="#" id="add-more-btn">+ Add more</a></h6>
+                </div>
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Y.SPOT Rooms pvt ltd. 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+    <script src="../script.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    
+    <script>
+        // firebase-config.js
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
+            authDomain: "testcrud-103a3.firebaseapp.com",
+            databaseURL: "https://testcrud-103a3-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "testcrud-103a3",
+            storageBucket: "testcrud-103a3.appspot.com",
+            messagingSenderId: "387302339276",
+            appId: "1:387302339276:web:e6c88525a1d80f9d154869",
+            measurementId: "G-ZR3EB3CD3Z"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        // Load all room details
+        function loadAllRoomDetails(user) {
+            const hotelId = user.uid; // Assuming user.uid is the hotel ID
+
+            db.collection('hotels').doc(hotelId).collection('rooms').get().then((querySnapshot) => {
+                const roomDetailsContainer = document.getElementById('room-details-container');
+                roomDetailsContainer.innerHTML = ''; // Clear existing content
+
+                querySnapshot.forEach((doc) => {
+                    const roomData = doc.data();
+                    const roomForm = createRoomForm(doc.id, roomData);
+                    roomDetailsContainer.appendChild(roomForm);
+                });
+            }).catch((error) => {
+                console.log('Error getting documents:', error);
+            });
+        }
+
+        function createRoomForm(docId, roomData) {
+            const form = document.createElement('form');
+            form.className = 'room-details-form';
+            form.dataset.roomId = docId || ''; // Set data-room-id attribute to docId or an empty string
+            form.innerHTML = `
+                <div class="border p-4 shadow-sm rounded-3 my-4">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="text-start mt-2">
+                            <h4 style="color: #ff0000;"><b>Room Images:</b></h4>
+                            <div class="form-group">
+                                <div class="row mt-3 roomImagesPreview"></div>
+                                <input type="file" class="form-control-file roomImages" accept="image/*" multiple>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <label for="roomType">Room Type:</label>
+                                    <input type="text" class="form-control roomType" value="${roomData.roomType || ''}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="roomNumber">Room Number:</label>
+                                    <input type="text" class="form-control roomNumber" value="${roomData.roomNumber || ''}" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <label for="roomPrice">Room Price:</label>
+                                    <input type="number" class="form-control roomPrice" value="${roomData.roomPrice || ''}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bedType">Bed Type:</label>
+                                    <input type="text" class="form-control bedType" value="${roomData.bedType || ''}" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 mt-3 align-item-center">
+                                <label for="availability" class="p-2">Availability:</label>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" class="availability" ${roomData.availability ? 'checked' : ''}>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="col-lg-4 col-md-12 text-center mt-3">
+                                <button type="submit" class="btn text-light save-btn" style="background-color: #ff0000;">Save</button>
+                            </div>
+                            <div class="col-lg-4 col-md-12 text-center mt-3">
+                                <button type="button" class="btn btn-danger remove-btn">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            const imagePreviewContainer = form.querySelector('.roomImagesPreview');
+            if (roomData.roomImages && roomData.roomImages.length > 0) {
+                roomData.roomImages.forEach((imageURL, index) => {
+                    const colDiv = document.createElement('div');
+                    colDiv.className = 'col-md-6';
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'image-container';
+                    const image = document.createElement('img');
+                    image.src = imageURL;
+                    image.alt = 'Room Image';
+                    image.className = 'img-thumbnail';
+                    image.style.width = '100%';
+                    image.style.height = '10rem';
+                    imageContainer.appendChild(image);
+
+                    const deleteButton = document.createElement('a');
+                    deleteButton.href = '#';
+                    deleteButton.className = 'btn btn-danger danger-button';
+                    deleteButton.innerText = 'Delete';
+                    deleteButton.onclick = function () {
+                        deleteImage(docId, index);
+                        return false; // Prevent default link behavior
+                    };
+
+                    imageContainer.appendChild(deleteButton);
+                    colDiv.appendChild(imageContainer);
+                    imagePreviewContainer.appendChild(colDiv);
+                });
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                saveRoomDetails(docId, form);
+            });
+
+            form.querySelector('.remove-btn').addEventListener('click', function () {
+                if (confirm('Are you sure you want to delete this room?')) {
+                    deleteRoom(docId);
+                }
+            });
+
+            return form;
+        }
+
+        function saveRoomDetails(docId, form) {
+            const roomType = form.querySelector('.roomType').value;
+            const roomNumber = form.querySelector('.roomNumber').value;
+            const roomPrice = form.querySelector('.roomPrice').value;
+            const bedType = form.querySelector('.bedType').value;
+            const availability = form.querySelector('.availability').checked;
+            const user = firebase.auth().currentUser;
+            const hotelId = user.uid;
+
+            const roomData = {
+                roomType,
+                roomNumber,
+                roomPrice: parseFloat(roomPrice),
+                bedType,
+                availability
+            };
+
+            const roomImagesInput = form.querySelector('.roomImages');
+            const imageFiles = roomImagesInput.files;
+            const storageRef = storage.ref(`hotel-images/${hotelId}`);
+
+            // Step 1: Upload new images
+            const uploadPromises = [];
+            for (let i = 0; i < imageFiles.length; i++) {
+                const imageFile = imageFiles[i];
+                const imageRef = storageRef.child(imageFile.name);
+                uploadPromises.push(imageRef.put(imageFile));
+            }
+
+            Promise.all(uploadPromises).then(snapshots => {
+                // Step 2: Get download URLs for the new images
+                const downloadURLPromises = snapshots.map(snapshot => snapshot.ref.getDownloadURL());
+                return Promise.all(downloadURLPromises);
+            }).then(downloadURLs => {
+                // Step 3: Add new images URLs to roomData, preserving existing ones
+                if (docId) {
+                    // Fetch the existing document to merge images
+                    return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).get().then(doc => {
+                        if (doc.exists) {
+                            const existingData = doc.data();
+                            const existingImages = existingData.roomImages || [];
+                            roomData.roomImages = existingImages.concat(downloadURLs);
+                        } else {
+                            roomData.roomImages = downloadURLs;
+                        }
+                        return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).update(roomData);
+                    });
+                } else {
+                    roomData.roomImages = downloadURLs;
+                    return db.collection('hotels').doc(hotelId).collection('rooms').add(roomData);
+                }
+            }).then(() => {
+                alert('Room details saved successfully');
+                loadAllRoomDetails(user);
+            }).catch(error => {
+                console.error('Error saving room details:', error);
+                alert('Failed to save room details');
+            });
+        }
+
+        function deleteImage(docId, index) {
+            const user = firebase.auth().currentUser;
+            const hotelId = user.uid;
+
+            db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).get().then((doc) => {
+                if (doc.exists) {
+                    const roomData = doc.data();
+                    const imageURL = roomData.roomImages[index];
+                    const imageRef = storage.refFromURL(imageURL);
+
+                    imageRef.delete().then(() => {
+                        roomData.roomImages.splice(index, 1);
+                        return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).update({ roomImages: roomData.roomImages });
+                    }).then(() => {
+                        loadAllRoomDetails(user);
+                    }).catch((error) => {
+                        console.error('Error deleting image:', error);
+                    });
+                }
+            }).catch((error) => {
+                console.error('Error getting room data:', error);
+            });
+        }
+
+        function deleteRoom(docId) {
+            const user = firebase.auth().currentUser;
+            const hotelId = user.uid;
+
+            db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).delete().then(() => {
+                alert('Room deleted successfully');
+                loadAllRoomDetails(user);
+            }).catch(error => {
+                console.error('Error deleting room:', error);
+                alert('Failed to delete room');
+            });
+        }
+
+        // Redirect to login if not authenticated
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                loadAllRoomDetails(user);
+            } else {
+                window.location.href = '../Login/login.html';
+            }
+        });
+
+        document.getElementById('add-more-btn').addEventListener('click', function (event) {
+            event.preventDefault();
+            const roomDetailsContainer = document.getElementById('room-details-container');
+            const newRoomDetailsForm = createRoomForm(null, {});
+
+            roomDetailsContainer.appendChild(newRoomDetailsForm);
+        });
+    </script>
+</body>
+
+</html>

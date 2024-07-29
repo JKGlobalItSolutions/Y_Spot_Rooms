@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yspot Login </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+                
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <section class="container forms">
+        <!-- Signup Form -->
+
+        <div class="form ">
+            <div class="form-content">
+                <header>Signup</header>
+                <form id="signup-form">
+                    <div class="field input-field">
+                        <input type="email" name="email" id="email" placeholder="Email" class="input" required>
+                    </div>
+        
+                    <div class="field input-field">
+                        <input type="password" name="password" id="password" placeholder="Password" class="password" required>
+                        <i class='bx bx-hide eye-icon'></i>
+                    </div>
+        
+                    <div class="field input-field ">
+                        <select name="propertyType" id="propertyType" class="input col-12" required>
+                            <option value="" disabled selected>Select Your property type</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Homestay">Homestay</option>
+                            <option value="Hotel">Hotel</option>
+                        </select>
+                    </div>
+        
+                    <div class="field button-field">
+                        <button type="submit">Go to Admin Profile</button>
+                    </div>
+                </form>
+                
+                <div class="form-link">
+                    <span>Already have an account? <a href="login.html">Login</a></span>
+                </div>
+                <div class="align-item-center col-12">
+                    <h5 style="text-align: center; margin-top: 10px;">* Call Our Admin To Verify Your Property <br> After That We Provide Your AdminId And Password*</h5>
+                </div>
+                <div class="fieldd button-fieldd">
+                    <a href="tel:8148911901" type="button"><button type="submit">Contact Admin</button></a>
+                </div>
+            </div>
+        </div> 
+    </section>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
+            authDomain: "testcrud-103a3.firebaseapp.com",
+            databaseURL: "https://testcrud-103a3-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "testcrud-103a3",
+            storageBucket: "testcrud-103a3.appspot.com",
+            messagingSenderId: "387302339276",
+            appId: "1:387302339276:web:e6c88525a1d80f9d154869",
+            measurementId: "G-ZR3EB3CD3Z"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+
+                    // Save user profile to Firestore
+                    db.collection('adminProfiles').doc(user.uid).set({
+                        email: user.email,
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    }, { merge: true }).then(() => {
+                        // Redirect to admin dashboard
+                        window.location.href = '../index.html';
+                    }).catch((error) => {
+                        console.error('Error writing admin profile: ', error);
+                    });
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    document.getElementById('error-message').textContent = errorMessage;
+                });
+        });
+
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                window.location.href = '../index.html';
+            }
+        });
+    </script>
+</body>
+</html>
