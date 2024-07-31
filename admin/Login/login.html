@@ -46,7 +46,7 @@
                 </form>
 
                 <div class="form-link">
-                    <span>List Your Property <a href="register.html" >Register Now</a></span>
+                    <span>List Your Property <a href="register.html">Register Now</a></span>
                 </div>
             </div>
         </div>
@@ -82,10 +82,10 @@
                     const user = userCredential.user;
 
                     // Fetch user profile from Firestore
-                    db.collection('adminProfiles').doc(user.uid).collection('propertyType').get()
-                        .then((querySnapshot) => {
-                            if (querySnapshot.empty) {
-                                alert('No properties found in your profile. Please register a property.');
+                    db.collection('adminProfiles').doc(user.uid).get()
+                        .then((doc) => {
+                            if (!doc.exists) {
+                                alert('No profile found. Please register a property.');
                                 firebase.auth().signOut().then(() => {
                                     console.log('User logged out successfully');
                                 }).catch((error) => {
@@ -93,19 +93,19 @@
                                 });
                                 // window.location.href = '../register.html';
                             } else {
-                                querySnapshot.forEach((doc) => {
-                                    const propertyType = doc.data().propertyType;
-                                    // Redirect based on propertyType
-                                    if (propertyType === 'Hotels') {
-                                        window.location.href = '../hotels/index.html';
-                                    } else if (propertyType === 'Appartment') {
-                                        window.location.href = '../Appartment/index.html';
-                                    } else if (propertyType === 'Homestays') {
-                                        window.location.href = '../Homestays/index.html';
-                                    } else {
-                                        console.error('Unknown propertyType:', propertyType);
-                                    }
-                                });
+                                const data = doc.data();
+                                const propertyType = data.propertyType;
+
+                                // Redirect based on propertyType
+                                if (propertyType === 'Hotel') {
+                                    window.location.href = '../hotels/index.html';
+                                } else if (propertyType === 'Apartment') {
+                                    window.location.href = '../Appartment/index.html';
+                                } else if (propertyType === 'Homestay') {
+                                    window.location.href = '../Homestays/index.html';
+                                } else {
+                                    console.error('Unknown propertyType:', propertyType);
+                                }
                             }
                         }).catch((error) => {
                             console.error('Error fetching admin profile: ', error);
