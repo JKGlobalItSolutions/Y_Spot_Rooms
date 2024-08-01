@@ -54,7 +54,7 @@
             <li class="nav-item active">
                 <a class="nav-link bg-dark m-1" style="border-radius: 10px; width: 90%; " href="#">
                     <i class=""><img src="../img/sidbar icons/food_bank.png" alt=""></i>
-                    <span>Homestays</span></a>
+                    <span>Hotels</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="room.html">
@@ -213,9 +213,9 @@
                                                 <div class="col-lg-5"><label class="labels"><b>Number of
                                                             Rooms</b></label><input type="number" class="form-control"
                                                         id="numRooms" placeholder="Number of Rooms" required></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Room
-                                                            Price</b></label><input type="number" class="form-control"
-                                                        id="roomPrice" placeholder="Room Price" required></div>
+                                                <div class="col-lg-5"><label class="labels"><b>About
+                                                            </b></label><input type="text" class="form-control"
+                                                        id="About" placeholder="Room Price" required></div>
                                             </div>
                                         </div>
                                     </div>
@@ -334,12 +334,12 @@
 
                     // Load hotel details
                     function loadHotelDetails(user) {
-                        db.collection('Homestays').doc(user.uid).get().then((doc) => {
+                        db.collection('hotels').doc(user.uid).get().then((doc) => {
                             if (doc.exists) {
                                 const hotelData = doc.data();
                                 document.getElementById('hotelName').value = hotelData.hotelName || "Sample Hotel Name";
                                 document.getElementById('hotelAddress').value = hotelData.hotelAddress || "Sample Hotel Address";
-                                document.getElementById('roomPrice').value = hotelData.roomPrice || 100;
+                                document.getElementById('About').value = hotelData.About || "Sample About Content";
                                 document.getElementById('numRooms').value = hotelData.numRooms || 10;
 
                                 const imagePreviewContainer = document.getElementById('hotelImagesPreview');
@@ -387,7 +387,7 @@
                                 // Fill with default sample text if no hotel data exists
                                 document.getElementById('hotelName').value = "Sample Hotel Name";
                                 document.getElementById('hotelAddress').value = "Sample Hotel Address";
-                                document.getElementById('roomPrice').value = 100;
+                                document.getElementById('About').value = "Sample Admin Details";
                                 document.getElementById('numRooms').value = 10;
                             }
                         }).catch((error) => {
@@ -405,13 +405,13 @@
                                 const hotelName = document.getElementById('hotelName').value;
                                 const hotelAddress = document.getElementById('hotelAddress').value;
                                 const numRooms = document.getElementById('numRooms').value;
-                                const roomPrice = document.getElementById('roomPrice').value;
+                                const About = document.getElementById('About').value;
 
-                                db.collection('Homestays').doc(user.uid).set({
+                                db.collection('hotels').doc(user.uid).set({
                                     hotelName: hotelName,
                                     hotelAddress: hotelAddress,
                                     numRooms: numRooms,
-                                    roomPrice: roomPrice,
+                                    About: About,
                                     accommodationDetails: Array.from(selectedOptions)
                                 }, { merge: true }).then(() => {
                                     console.log("Hotel details saved successfully!");
@@ -451,7 +451,7 @@
                             }
 
                             Promise.all(uploadPromises).then(() => {
-                                db.collection('Homestays').doc(user.uid).update({
+                                db.collection('hotels').doc(user.uid).update({
                                     hotelImages: firebase.firestore.FieldValue.arrayUnion(...imageUrls)
                                 }).then(() => {
                                     console.log("Images uploaded and URLs saved to Firestore successfully!");
@@ -471,7 +471,7 @@
 
                     // Delete image from Firebase Storage
                     function deleteImage(user, index) {
-                        db.collection('Homestays').doc(user.uid).get().then((doc) => {
+                        db.collection('hotels').doc(user.uid).get().then((doc) => {
                             if (doc.exists) {
                                 const hotelData = doc.data();
                                 const imageUrlToDelete = hotelData.hotelImages[index];
@@ -482,7 +482,7 @@
                                         console.log("Image deleted from Firebase Storage");
 
                                         const updatedHotelImages = hotelData.hotelImages.filter((_, i) => i !== index);
-                                        db.collection('Homestays').doc(user.uid).update({
+                                        db.collection('hotels').doc(user.uid).update({
                                             hotelImages: updatedHotelImages
                                         }).then(() => {
                                             console.log("Image URL removed from Firestore");

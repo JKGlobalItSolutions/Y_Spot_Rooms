@@ -117,7 +117,7 @@
             <li class="nav-item active">
                 <a class="nav-link "  href="Hotels.html">
                     <i class=""><img src="../img/sidbar icons/food_bank.png" alt=""></i>
-                    <span>Hotels</span></a>
+                    <span>Homestays</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link bg-dark m-1 " style="border-radius: 10px; width: 90%; " href="#">
@@ -320,7 +320,7 @@
         function loadAllRoomDetails(user) {
             const hotelId = user.uid; // Assuming user.uid is the hotel ID
 
-            db.collection('hotels').doc(hotelId).collection('rooms').get().then((querySnapshot) => {
+            db.collection('Homestays').doc(hotelId).collection('rooms').get().then((querySnapshot) => {
                 const roomDetailsContainer = document.getElementById('room-details-container');
                 roomDetailsContainer.innerHTML = ''; // Clear existing content
 
@@ -472,7 +472,7 @@
                 // Step 3: Add new images URLs to roomData, preserving existing ones
                 if (docId) {
                     // Fetch the existing document to merge images
-                    return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).get().then(doc => {
+                    return db.collection('Homestays').doc(hotelId).collection('rooms').doc(docId).get().then(doc => {
                         if (doc.exists) {
                             const existingData = doc.data();
                             const existingImages = existingData.roomImages || [];
@@ -480,11 +480,11 @@
                         } else {
                             roomData.roomImages = downloadURLs;
                         }
-                        return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).update(roomData);
+                        return db.collection('Homestays').doc(hotelId).collection('rooms').doc(docId).update(roomData);
                     });
                 } else {
                     roomData.roomImages = downloadURLs;
-                    return db.collection('hotels').doc(hotelId).collection('rooms').add(roomData);
+                    return db.collection('Homestays').doc(hotelId).collection('rooms').add(roomData);
                 }
             }).then(() => {
                 alert('Room details saved successfully');
@@ -499,7 +499,7 @@
             const user = firebase.auth().currentUser;
             const hotelId = user.uid;
 
-            db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).get().then((doc) => {
+            db.collection('Homestays').doc(hotelId).collection('rooms').doc(docId).get().then((doc) => {
                 if (doc.exists) {
                     const roomData = doc.data();
                     const imageURL = roomData.roomImages[index];
@@ -507,7 +507,7 @@
 
                     imageRef.delete().then(() => {
                         roomData.roomImages.splice(index, 1);
-                        return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).update({ roomImages: roomData.roomImages });
+                        return db.collection('Homestays').doc(hotelId).collection('rooms').doc(docId).update({ roomImages: roomData.roomImages });
                     }).then(() => {
                         loadAllRoomDetails(user);
                     }).catch((error) => {
@@ -523,7 +523,7 @@
             const user = firebase.auth().currentUser;
             const hotelId = user.uid;
 
-            db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).delete().then(() => {
+            db.collection('Homestays').doc(hotelId).collection('rooms').doc(docId).delete().then(() => {
                 alert('Room deleted successfully');
                 loadAllRoomDetails(user);
             }).catch(error => {

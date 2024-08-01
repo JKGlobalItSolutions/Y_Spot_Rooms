@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -18,6 +17,12 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- Toastify JS -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 
 <body>
@@ -81,6 +86,17 @@
                 .then((userCredential) => {
                     const user = userCredential.user;
 
+                    // Display a toast notification for successful login
+                    Toastify({
+                        text: "Login successful!",
+                        duration: 3000, // Duration in milliseconds
+                        close: true, // Show close button
+                        gravity: "top", // Position: 'top' or 'bottom'
+                        position: "center", // Position: 'left', 'center', or 'right'
+                        backgroundColor: "#4CAF50", // Background color for success
+                        stopOnFocus: true, // Stop timer on focus
+                    }).showToast();
+
                     // Fetch user profile from Firestore
                     db.collection('adminProfiles').doc(user.uid).get()
                         .then((doc) => {
@@ -91,7 +107,6 @@
                                 }).catch((error) => {
                                     console.error('Error logging out: ', error);
                                 });
-                                // window.location.href = '../register.html';
                             } else {
                                 const data = doc.data();
                                 const propertyType = data.propertyType;
@@ -112,8 +127,31 @@
                         });
                 })
                 .catch((error) => {
+                    const errorCode = error.code;
                     const errorMessage = error.message;
-                    document.getElementById('error-message').textContent = errorMessage;
+
+                    // Display a toast notification for invalid password
+                    if (errorCode === 'auth/wrong-password') {
+                        Toastify({
+                            text: "Invalid password. Please provide a valid password.",
+                            duration: 3000, // Duration in milliseconds
+                            close: true, // Show close button
+                            gravity: "top", // Position: 'top' or 'bottom'
+                            position: "center", // Position: 'left', 'center', or 'right'
+                            backgroundColor: "#FF0000", // Background color for error
+                            stopOnFocus: true, // Stop timer on focus
+                        }).showToast();
+                    } else {
+                        Toastify({
+                            text: "Invalid password. Please provide a valid password.",
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "center",
+                            backgroundColor: "#FF4040",
+                            stopOnFocus: true,
+                        }).showToast();
+                    }
                 });
         });
 

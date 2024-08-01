@@ -39,7 +39,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="Hotels.html">
                     <i class=""><img src="../img/sidbar icons/food_bank.png" alt=""></i>
-                    <span>Hotels</span></a>
+                    <span>Homestays</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="room.html">
@@ -227,7 +227,19 @@
                                   <input id="hotelDocuments" type="file" class="form-control" placeholder="Submit your Hotel documents">
                                   <ul id="documentsList" class="list-unstyled mt-2"></ul>
                                 </div>
-                                <div class="text-center col-lg-5 mt-4">
+                                <div class="col-lg-5">
+                                  <label class="labels"><b>UPI ID</b></label>
+                                  <input id="upiId" type="text" class="form-control" placeholder="UPI ID" value="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row justify-content-center d-flex align-items-center">
+                          <div class="col-md-12">
+                            <div class="p-1 py-1">
+                              <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                <div class="text-center col-12 mt-4">
                                   <label class="labels">&nbsp;</label>
                                   <button id="saveChangesBtn" style="background-color: #ff1717; color: #fff;" class="btn profile-button" type="submit">Save Changes</button>
                                 </div>
@@ -286,6 +298,7 @@
               document.getElementById('email').value = adminData.email || user.email;
               document.getElementById('mobileNumber').value = adminData.mobileNumber || "000-000-0000";
               document.getElementById('address').value = adminData.address || "Sample Address";
+              document.getElementById('upiId').value = adminData.upiId || "Sample upiId";
               document.getElementById('profileImagePreview').src = adminData.profileImage || "https://via.placeholder.com/150";
               loadAllDocuments(user.uid);
             } else {
@@ -296,6 +309,7 @@
               document.getElementById('email').value = user.email;
               document.getElementById('mobileNumber').value = "000-000-0000";
               document.getElementById('address').value = "Sample Address";
+              document.getElementById('upiId').value =  "Sample upiId";
               document.getElementById('profileImagePreview').src = "https://via.placeholder.com/150";
             }
           }).catch((error) => {
@@ -315,6 +329,7 @@
         const email = document.getElementById('email').value;
         const mobileNumber = document.getElementById('mobileNumber').value;
         const address = document.getElementById('address').value;
+        const upiId = document.getElementById('upiId').value;
         const hotelDocumentsFile = document.getElementById('hotelDocuments').files[0];
     
         const user = firebase.auth().currentUser;
@@ -327,11 +342,11 @@
           storageRef.put(profileImageFile).then(() => {
             storageRef.getDownloadURL().then((url) => {
               profileImageUrl = url;
-              saveProfileData(user.uid, userName, hotelName, hotelWebsite, email, mobileNumber, address, profileImageUrl);
+              saveProfileData(user.uid, userName, hotelName, hotelWebsite, email, mobileNumber, address,upiId, profileImageUrl);
             });
           });
         } else {
-          saveProfileData(user.uid, userName, hotelName, hotelWebsite, email, mobileNumber, address, profileImageUrl);
+          saveProfileData(user.uid, userName, hotelName, hotelWebsite, email, mobileNumber, address,upiId, profileImageUrl);
         }
     
         if (hotelDocumentsFile) {
@@ -342,7 +357,7 @@
         }
       });
     
-      function saveProfileData(uid, userName, hotelName, hotelWebsite, email, mobileNumber, address, profileImageUrl) {
+      function saveProfileData(uid, userName, hotelName, hotelWebsite, email, mobileNumber, address,upiId, profileImageUrl) {
         db.collection('adminProfiles').doc(uid).set({
           userName,
           hotelName,
@@ -350,6 +365,7 @@
           email,
           mobileNumber,
           address,
+          upiId,
           profileImage: profileImageUrl
         }, { merge: true }).then(() => {
           alert('Profile updated successfully!');

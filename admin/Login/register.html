@@ -95,17 +95,23 @@
                     db.collection('adminProfiles').doc(user.uid).get()
                         .then((doc) => {
                             if (doc.exists && doc.data().propertyType) {
-                                // Property type already exists, show message and contact customer care
-                                alert('Property type already exists. Please contact customer care and create another ID.');
+                                // Property type already exists, proceed with redirection
+                                redirectUser(doc.data().propertyType);
                             } else {
-                                // Property type does not exist, insert it
-                                db.collection('adminProfiles').doc(user.uid).set({
-                                    propertyType: propertyType
-                                }, { merge: true }).then(() => {
-                                    redirectUser(propertyType);
-                                }).catch((error) => {
-                                    console.error('Error updating user profile: ', error);
-                                });
+                                // Property type does not exist, insert it in both collections
+                                const updateData = { propertyType: propertyType };
+
+                                // Update both adminProfiles and hotels collections
+                                const adminProfilePromise = db.collection('adminProfiles').doc(user.uid).set(updateData, { merge: true });
+                                const hotelProfilePromise = db.collection('hotels').doc(user.uid).set(updateData, { merge: true });
+
+                                Promise.all([adminProfilePromise, hotelProfilePromise])
+                                    .then(() => {
+                                        redirectUser(propertyType);
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error updating user profiles: ', error);
+                                    });
                             }
                         }).catch((error) => {
                             console.error('Error fetching admin profile: ', error);
