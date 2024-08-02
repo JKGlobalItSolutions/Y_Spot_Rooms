@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rounded Clock Time Picker</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include ClockPicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.css">
+    <!-- Include ClockPicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.js"></script>
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .clockpicker {
+            width: 150px;
+        }
+
+        .form-control {
+            border: 2px solid #007bff;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Input for time selection -->
+    <input type="text" id="timeInput" class="form-control" placeholder="Select Time" readonly>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize ClockPicker with 12-hour format
+            $('#timeInput').clockpicker({
+                autoclose: true,
+                twelvehour: true
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Map Pinning Example with Firebase</title>
+  <title>Map Pinning Example</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     #map {
@@ -42,19 +42,13 @@
   </div>
 </div>
 
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
-
-<!-- jQuery and Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-<!-- Google Maps API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCU7aioviYmdU_r0K5iWc-PR9z3AWYG9gE"></script>
-
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
 <script>
-  // Firebase configuration
+  // Your Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
     authDomain: "testcrud-103a3.firebaseapp.com",
@@ -95,13 +89,10 @@
   }
 
   $('#mapModal').on('shown.bs.modal', function () {
-    if (!map) {
-      initMap();
-    } else {
-      google.maps.event.trigger(map, 'resize');
-      if (marker) {
-        map.setCenter(marker.getPosition());
-      }
+    initMap();
+    google.maps.event.trigger(map, 'resize'); // Trigger resize event
+    if (selectedLatLng) {
+      map.setCenter(selectedLatLng);
     }
   });
 
@@ -110,18 +101,18 @@
       const lat = selectedLatLng.lat();
       const lng = selectedLatLng.lng();
       document.getElementById('locationInput').value = `Lat: ${lat}, Lng: ${lng}`;
+      $('#mapModal').modal('hide');
 
-      // Save to Firestore
+      // Store the selected location in Firestore
       db.collection("location").add({
         latitude: lat,
         longitude: lng
       })
       .then(() => {
-        console.log("Location successfully saved to Firestore!");
-        $('#mapModal').modal('hide');
+        console.log("Location successfully stored!");
       })
       .catch((error) => {
-        console.error("Error saving location to Firestore: ", error);
+        console.error("Error storing location: ", error);
       });
     }
   });

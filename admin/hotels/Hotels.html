@@ -213,9 +213,9 @@
                                                 <div class="col-lg-5"><label class="labels"><b>Number of
                                                             Rooms</b></label><input type="number" class="form-control"
                                                         id="numRooms" placeholder="Number of Rooms" required></div>
-                                                <div class="col-lg-5"><label class="labels"><b>Room
-                                                            Price</b></label><input type="number" class="form-control"
-                                                        id="roomPrice" placeholder="Room Price" required></div>
+                                                <div class="col-lg-5"><label class="labels"><b>About
+                                                        </b></label><input type="text" class="form-control" id="About"
+                                                        placeholder="Room Price" required></div>
                                             </div>
                                         </div>
                                     </div>
@@ -223,7 +223,7 @@
                                 <div class="row justify-content-center d-flex align-items-center">
                                     <div class="col-md-12">
                                         <div class="p-1 py-1">
-                                            <div class="row mt-2 d-flex align-items-center justify-content-center">
+                                            <div class="row mt-2 d-flex  justify-content-center">
                                                 <div class="col-lg-5">
                                                     <label class="labels"><b>Accommodation Facilities</b></label>
                                                     <select id="options" class="form-control">
@@ -237,9 +237,132 @@
                                                     </select>
                                                     <div id="selected-container" class="d-flex flex-wrap mb-3"></div>
                                                 </div>
-                                                <div class="col-lg-5 mt-4"><label class="labels">&nbsp;</label><button
+                                                <div class="col-lg-5"><label class="labels"><b>Map
+                                                </b></label><input type="text" class="form-control" id="#"
+                                                placeholder="Map" ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="py-1">
+                                            <div class="row mt-2 d-flex  justify-content-center">
+                                                <div class="col-lg-5">
+                                                    <div class="border  rounded  p-1 my-2">
+                                                        <p><b>Ploicies & Rules:</b></p>
+                                                        <div class="row justify-content-evenly container">
+                                                            <div class="col-12 col-lg-6 col-md-6">
+                                                                <label class="labels">Parking</label>
+                                                                <select name="" id="Parking" class="form-control">
+                                                                    <option value="" disabled selected>Select your options</option>
+                                                                    <option value="Free Parking">Free Parking</option>
+                                                                    <option value="Paid Parking">Paid Parking</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6 col-md-6">
+                                                                <label class="labels">Internet</label>
+                                                                <select name="" id="Internet" class="form-control">
+                                                                    <option value="" disabled selected>Select your options</option>
+                                                                    <option value="Free Internet">Free Internet</option>
+                                                                    <option value="Paid Internet">Paid Internet</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row justify-content-evenly container">
+                                                            <div class="col-12 col-lg-6 col-md-6">
+                                                                <label class="labels">Check-in Time</label>
+                                                                <select class="form-control " id="CheckinTime" required>
+                                                                    <!-- AM times -->
+                                                                    <option value="1:00 AM">1:00 AM</option>
+                                                                    <option value="2:00 AM">2:00 AM</option>
+                                                                    <option value="3:00 AM">3:00 AM</option>
+                                                                    <option value="4:00 AM">4:00 AM</option>
+                                                                    <option value="5:00 AM">5:00 AM</option>
+                                                                    <option value="6:00 AM">6:00 AM</option>
+                                                                    <option value="7:00 AM">7:00 AM</option>
+                                                                    <option value="8:00 AM">8:00 AM</option>
+                                                                    <option value="9:00 AM">9:00 AM</option>
+                                                                    <option value="10:00 AM">10:00 AM</option>
+                                                                    <option value="11:00 AM">11:00 AM</option>
+                                                                    <option value="12:00 PM">12:00 PM</option>
+                                                                    <!-- PM times -->
+                                                                    <option value="1:00 PM">1:00 PM</option>
+                                                                    <option value="2:00 PM">2:00 PM</option>
+                                                                    <option value="3:00 PM">3:00 PM</option>
+                                                                    <option value="4:00 PM">4:00 PM</option>
+                                                                    <option value="5:00 PM">5:00 PM</option>
+                                                                    <option value="6:00 PM">6:00 PM</option>
+                                                                    <option value="7:00 PM">7:00 PM</option>
+                                                                    <option value="8:00 PM">8:00 PM</option>
+                                                                    <option value="9:00 PM">9:00 PM</option>
+                                                                    <option value="10:00 PM">10:00 PM</option>
+                                                                    <option value="11:00 PM">11:00 PM</option>
+                                                                    <option value="12:00 AM">12:00 AM</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6 col-md-6">
+                                                                <label class="labels">Check-in Time</label>
+                                                                <select style="width: 100%;" class="form-control " id="CheckoutTime" required>
+                                                                    <!-- AM times -->
+                                                                    <option value="1:00 AM">1:00 AM</option>
+                                                                    <option value="2:00 AM">2:00 AM</option>
+                                                                    <option value="3:00 AM">3:00 AM</option>
+                                                                    <option value="4:00 AM">4:00 AM</option>
+                                                                    <option value="5:00 AM">5:00 AM</option>
+                                                                    <option value="6:00 AM">6:00 AM</option>
+                                                                    <option value="7:00 AM">7:00 AM</option>
+                                                                    <option value="8:00 AM">8:00 AM</option>
+                                                                    <option value="9:00 AM">9:00 AM</option>
+                                                                    <option value="10:00 AM">10:00 AM</option>
+                                                                    <option value="11:00 AM">11:00 AM</option>
+                                                                    <option value="12:00 PM">12:00 PM</option>
+                                                                    <!-- PM times -->
+                                                                    <option value="1:00 PM">1:00 PM</option>
+                                                                    <option value="2:00 PM">2:00 PM</option>
+                                                                    <option value="3:00 PM">3:00 PM</option>
+                                                                    <option value="4:00 PM">4:00 PM</option>
+                                                                    <option value="5:00 PM">5:00 PM</option>
+                                                                    <option value="6:00 PM">6:00 PM</option>
+                                                                    <option value="7:00 PM">7:00 PM</option>
+                                                                    <option value="8:00 PM">8:00 PM</option>
+                                                                    <option value="9:00 PM">9:00 PM</option>
+                                                                    <option value="10:00 PM">10:00 PM</option>
+                                                                    <option value="11:00 PM">11:00 PM</option>
+                                                                    <option value="12:00 AM">12:00 AM</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <label class="labels">Aditional Notes</label>
+                                                                <input type="text" class="form-control" id="AdditionalNotes" placeholder="Aditional Notes" required>        
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 ">
+                                                    <div class="border  rounded  p-1 my-2">
+                                                        <p><b>Surrounding Environments:</b></p>
+                                                        <label class="labels">Nearby Iconic Place With Distance</label>
+                                                        <input type="text" class="form-control" id="Nearby Iconic Places" placeholder="Nearby Iconic Place With Distance" required>
+                                                        <label class="labels">Transportation With Distance</label>
+                                                        <input type="text" class="form-control" id="Transportation" placeholder="Transportation With Distance" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="py-1">
+                                            <div class="row mt-2 d-flex align-items-center justify-content-center text-center">
+                                                <div class="col-12 mt-4"><label class="labels">&nbsp;</label>
+                                                    <button
                                                         style="background-color: #ff1717; color: #fff;"
-                                                        class="btn profile-button" type="submit">Save</button></div>
+                                                        class="btn profile-button" type="submit">Save Changes</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -339,7 +462,14 @@
                                 const hotelData = doc.data();
                                 document.getElementById('hotelName').value = hotelData.hotelName || "Sample Hotel Name";
                                 document.getElementById('hotelAddress').value = hotelData.hotelAddress || "Sample Hotel Address";
-                                document.getElementById('roomPrice').value = hotelData.roomPrice || 100;
+                                document.getElementById('About').value = hotelData.About || "Sample About Content";
+                                document.getElementById('Nearby Iconic Places').value = hotelData.Nearby_Iconic_Places || "Sample Nearby Iconic Places";
+                                document.getElementById('Transportation').value = hotelData.Transportation || "Sample Transportation";
+                                document.getElementById('Internet').value = hotelData.Internet || "Sample Internet";
+                                document.getElementById('Parking').value = hotelData.Parking || "Sample Parking";
+                                document.getElementById('CheckinTime').value = hotelData.CheckinTime || "Sample CheckinTime";
+                                document.getElementById('CheckoutTime').value = hotelData.CheckoutTime || "Sample CheckoutTime";
+                                document.getElementById('AdditionalNotes').value = hotelData.AdditionalNotes || "Sample AdditionalNotes";
                                 document.getElementById('numRooms').value = hotelData.numRooms || 10;
 
                                 const imagePreviewContainer = document.getElementById('hotelImagesPreview');
@@ -387,7 +517,14 @@
                                 // Fill with default sample text if no hotel data exists
                                 document.getElementById('hotelName').value = "Sample Hotel Name";
                                 document.getElementById('hotelAddress').value = "Sample Hotel Address";
-                                document.getElementById('roomPrice').value = 100;
+                                document.getElementById('About').value = "Sample Admin Details";
+                                document.getElementById('Nearby Iconic Places').value = "Sample Nearby Iconic Places";
+                                document.getElementById('Transportation').value = "Sample Transportation";
+                                document.getElementById('Internet').value = "Sample Internet";
+                                document.getElementById('Parking').value = "Sample Parking";
+                                document.getElementById('CheckinTime').value = "Sample CheckinTime";
+                                document.getElementById('CheckoutTime').value = "Sample CheckoutTime";
+                                document.getElementById('AdditionalNotes').value = "Sample AdditionalNotes";
                                 document.getElementById('numRooms').value = 10;
                             }
                         }).catch((error) => {
@@ -405,13 +542,27 @@
                                 const hotelName = document.getElementById('hotelName').value;
                                 const hotelAddress = document.getElementById('hotelAddress').value;
                                 const numRooms = document.getElementById('numRooms').value;
-                                const roomPrice = document.getElementById('roomPrice').value;
+                                const About = document.getElementById('About').value;
+                                const IconicPlaces = document.getElementById('Nearby Iconic Places').value;
+                                const Transportation = document.getElementById('Transportation').value;
+                                const Parking = document.getElementById('Parking').value;
+                                const Internet = document.getElementById('Internet').value;
+                                const CheckinTime = document.getElementById('CheckinTime').value;
+                                const CheckoutTime = document.getElementById('CheckoutTime').value;
+                                const AdditionalNotes = document.getElementById('AdditionalNotes').value;
 
                                 db.collection('hotels').doc(user.uid).set({
                                     hotelName: hotelName,
                                     hotelAddress: hotelAddress,
                                     numRooms: numRooms,
-                                    roomPrice: roomPrice,
+                                    About: About,
+                                    Nearby_Iconic_Places: IconicPlaces,
+                                    Transportation: Transportation,
+                                    Internet: Internet,
+                                    Parking: Parking,
+                                    CheckinTime: CheckinTime,
+                                    CheckoutTime: CheckoutTime,
+                                    AdditionalNotes: AdditionalNotes,
                                     accommodationDetails: Array.from(selectedOptions)
                                 }, { merge: true }).then(() => {
                                     console.log("Hotel details saved successfully!");
