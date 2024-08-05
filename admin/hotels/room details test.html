@@ -2,98 +2,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Y-Spot Admin</title>
-    <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.png">
-    <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y-Spot Admin Panel</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../style.css">
+    <!-- Bootstrap 4 Toggle -->
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .image-container {
-            position: relative;
+        .room-form-container {
+            margin-top: 20px;
+        }
+        .room-details-form {
             margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-        }
-
-        .danger-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 10;
-        }
-
-        .toggle-btn {
-            position: relative;
-            width: 60px;
-            height: 34px;
-        }
-
-        .toggle-btn input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked+.slider {
-            background-color: red;
-        }
-
-        input:checked+.slider:before {
-            transform: translateX(26px);
         }
     </style>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <!-- <script src="firebase-config.js"></script> Include the config file -->
 </head>
 
 <body id="page-top">
+
+    <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -101,70 +33,59 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class=" mx-3 d-none d-sm-block">
-                    <img src="../img/logo.png" alt="">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-laugh-wink"></i>
                 </div>
+                <div class="sidebar-brand-text mx-3">Y-Spot Admin</div>
             </a>
 
             <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active " >
-                <a class="nav-link "  href="index.html">
-                    <i class=""><img src="../img/sidbar icons/person.png" alt=""></i>
-                    <span>User Profile</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link "  href="Hotels.html">
-                    <i class=""><img src="../img/sidbar icons/food_bank.png" alt=""></i>
-                    <span>Hotels</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link bg-dark m-1 " style="border-radius: 10px; width: 90%; " href="#">
-                    <i class=""><img src="../img/sidbar icons/meeting_room.png" alt=""></i>
-                    <span>Rooms</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="gustdetail.html">
-                    <i class=""><img src="../img/sidbar icons/location_home.png" alt=""></i>
-                    <span>Guest Details</span></a>
-            </li>
             <li class="nav-item active">
                 <a class="nav-link" href="index.html">
-                    <i class=""><img src="../img/sidbar icons/currency_rupee.png" alt=""></i>
-                    <span>Payments</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class=""><img src="../img/sidbar icons/format_list_bulleted.png" alt=""></i>
-                    <span>Orders</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class=""><img src="../img/sidbar icons/stars.png" alt=""></i>
-                    <span>Reviews</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class=""><img src="../img/sidbar icons/concierge.png" alt=""></i>
-                    <span>Room Status</span></a>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
             </li>
 
-            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+
+            <!-- Nav Item - Rooms -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRooms" aria-expanded="true" aria-controls="collapseRooms">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Rooms</span>
+                </a>
+                <div id="collapseRooms" class="collapse" aria-labelledby="headingRooms" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Manage Rooms:</h6>
+                        <a class="collapse-item" href="view-rooms.html">View Rooms</a>
+                        <a class="collapse-item" href="add-room.html">Add Room</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Reports -->
+            <li class="nav-item">
+                <a class="nav-link" href="reports.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Reports</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                <button class="btn btn-primary rounded-circle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
             </div>
-
-            <!-- Sidebar Message -->
-            <!-- <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div> -->
 
         </ul>
         <!-- End of Sidebar -->
@@ -174,47 +95,38 @@
 
             <!-- Main Content -->
             <div id="content">
+
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-light  d-md-none rounded-circle mr-2"
-                        style="background-color: #ff1717; color: #fff;">
-                        <i class="fa fa-bars"></i>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fas fa-bars"></i>
                     </button>
-                    <div class=" p-1 rounded d-md-none" style="background-color: #ff1717;">
-                        <img src="../img/logo.png" alt="">
-                    </div>
 
                     <!-- Topbar Search -->
-                    <!-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
                         </div>
-                    </form> -->
+                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
-
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mannager</span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                                 <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -223,11 +135,15 @@
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
                                 <div class="dropdown-divider"></div>
-                                <button class="dropdown-item" id="logout-button">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
-                                </button>
+                                </a>
                             </div>
                         </li>
 
@@ -235,31 +151,38 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                <script>
-                    document.getElementById('logout-button').addEventListener('click', function () {
-                        firebase.auth().signOut().then(() => {
-                            window.location.href = '../Login/login.html';  // Redirect to login page after logout
-                        }).catch((error) => {
-                            console.error('Error signing out:', error);
-                        });
-                    });
-                </script>
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div id="room-details-container"></div>
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Rooms</h1>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- Room Details -->
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <!-- Room Form -->
+                                <div class="col-12 room-form-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Content Row -->
+
                 </div>
                 <!-- /.container-fluid -->
-                <div class="d-flex align-items-right justify-content-end m-3">
-                    <h6><a href="#" id="add-more-btn">+ Add more</a></h6>
-                </div>
+
             </div>
-            <!-- End of Main Content -->
+            <!-- End Main Content -->
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Y.SPOT Rooms pvt ltd. 2024</span>
+                    <div class="text-center my-auto copyright">
+                        <span>Y-Spot Admin Panel &copy; 2024</span>
                     </div>
                 </div>
             </footer>
@@ -276,6 +199,24 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -286,21 +227,16 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-    <script src="../script.js"></script>
-    <!-- Page level custom scripts -->
-    <script src="../js/demo/chart-area-demo.js"></script>
-    <script src="../js/demo/chart-pie-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-    
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+
     <script>
-        // firebase-config.js
-        // Your Firebase configuration
-        const firebaseConfig = {
+        // Firebase configuration
+        var firebaseConfig = {
             apiKey: "AIzaSyCkTgEb7H_wNIgVhWwm-l-IzrHXDSe3ni4",
             authDomain: "testcrud-103a3.firebaseapp.com",
             databaseURL: "https://testcrud-103a3-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -310,254 +246,151 @@
             appId: "1:387302339276:web:e6c88525a1d80f9d154869",
             measurementId: "G-ZR3EB3CD3Z"
         };
-
+        
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-        const storage = firebase.storage();
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const roomFormContainer = document.querySelector('.room-form-container');
+            const user = { uid: 'YOUR_USER_ID' }; // Replace with actual user ID or authentication logic
 
-        // Load all room details
-        function loadAllRoomDetails(user) {
-            const hotelId = user.uid; // Assuming user.uid is the hotel ID
-
-            db.collection('hotels').doc(hotelId).collection('rooms').get().then((querySnapshot) => {
-                const roomDetailsContainer = document.getElementById('room-details-container');
-                roomDetailsContainer.innerHTML = ''; // Clear existing content
-
-                querySnapshot.forEach((doc) => {
-                    const roomData = doc.data();
-                    const roomForm = createRoomForm(doc.id, roomData);
-                    roomDetailsContainer.appendChild(roomForm);
-                });
-            }).catch((error) => {
-                console.log('Error getting documents:', error);
-            });
-        }
-
-        function createRoomForm(docId, roomData) {
-            const form = document.createElement('form');
-            form.className = 'room-details-form';
-            form.dataset.roomId = docId || ''; // Set data-room-id attribute to docId or an empty string
-            form.innerHTML = `
-                <div class="border p-4 shadow-sm rounded-3 my-4">
-                <div class="row">
-                    <h4>Room Type:</h4>
-                    <div class="col-lg-4 col-md-12 d-none">
-                        <div class="text-start mt-2">
-                            <h4 style="color: #ff0000;"><b>Room Images:</b></h4>
-                            <div class="form-group">
-                                <div class="row mt-3 roomImagesPreview"></div>
-                                <input type="file" class="form-control-file roomImages" accept="image/*" multiple>
-                            </div>
+            function createRoomForm(docId, roomData = {}) {
+                const form = `
+                    <div class="card shadow mb-4 room-details-form" data-room-id="${docId || ''}">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">${docId ? 'Edit' : 'Add'} Room</h6>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label for="Room Number">Room Number:</label>
+                                            <input type="text" class="form-control roomNumber" value="${roomData.roomNumber || ''}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Room Price">Room Price:</label>
+                                            <input type="text" class="form-control roomPrice" value="${roomData.roomPrice || ''}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Bed Type">Bed Type:</label>
+                                            <select name="" class="form-control bedType" required>
+                                                <option value="" disabled selected>Select your options</option>
+                                                <option value="Single Bed" ${roomData.bedType === 'Single Bed' ? 'selected' : ''}>Single Bed</option>
+                                                <option value="Twin Bed" ${roomData.bedType === 'Twin Bed' ? 'selected' : ''}>Twin Bed</option>
+                                                <option value="Double Bed" ${roomData.bedType === 'Double Bed' ? 'selected' : ''}>Double Bed</option>
+                                                <option value="Triple Bed" ${roomData.bedType === 'Triple Bed' ? 'selected' : ''}>Triple Bed</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Room Type">Room Type:</label>
+                                            <select name="" class="form-control roomType" required>
+                                                <option value="" disabled selected>Select your options</option>
+                                                <option value="Deluxe" ${roomData.roomType === 'Deluxe' ? 'selected' : ''}>Deluxe</option>
+                                                <option value="Standard" ${roomData.roomType === 'Standard' ? 'selected' : ''}>Standard</option>
+                                                <option value="Suite" ${roomData.roomType === 'Suite' ? 'selected' : ''}>Suite</option>
+                                                <option value="Economy" ${roomData.roomType === 'Economy' ? 'selected' : ''}>Economy</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label for="Per Adult Price">Per Adult Price:</label>
+                                            <input type="text" class="form-control PerAdultPrice" value="${roomData.PerAdultPrice || ''}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Per Child Price">Per Child Price:</label>
+                                            <input type="text" class="form-control PerChildPrice" value="${roomData.PerChildPrice || ''}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Bathroom Type">Bathroom Type:</label>
+                                            <select name="bothroomType" class="form-control bothroomType" required>
+                                                <option value="" disabled selected>Select your options</option>
+                                                <option value="Attached Bathroom" ${roomData.bothroomType === 'Attached Bathroom' ? 'selected' : ''}>Attached Bathroom</option>
+                                                <option value="Common Bathroom" ${roomData.bothroomType === 'Common Bathroom' ? 'selected' : ''}>Common Bathroom</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 text-right">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        ${docId ? `<button type="button" class="btn btn-danger remove-btn">Remove</button>` : ''}
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-12">
-                                <div class="form-group">
-                                    <label for="roomType">Room Type:</label>
-                                    <input type="text" class="form-control roomType" value="${roomData.roomType || ''}" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="roomNumber">Room Number:</label>
-                                    <input type="text" class="form-control roomNumber" value="${roomData.roomNumber || ''}" required>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="form-group">
-                                    <label for="roomType">Room Type:</label>
-                                    <input type="text" class="form-control roomType" value="${roomData.roomType || ''}" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="roomNumber">Room Number:</label>
-                                    <input type="text" class="form-control roomNumber" value="${roomData.roomNumber || ''}" required>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="form-group">
-                                    <label for="roomPrice">Room Price:</label>
-                                    <input type="number" class="form-control roomPrice" value="${roomData.roomPrice || ''}" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bedType">Bed Type:</label>
-                                    <input type="text" class="form-control bedType" value="${roomData.bedType || ''}" required>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12 mt-3 align-item-center">
-                                <label for="availability" class="p-2">Availability:</label>
-                                <label class="toggle-btn">
-                                    <input type="checkbox" class="availability" ${roomData.availability ? 'checked' : ''}>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="col-lg-4 col-md-12 text-center mt-3">
-                                <button type="submit" class="btn text-light save-btn" style="background-color: #ff0000;">Save</button>
-                            </div>
-                            <div class="col-lg-4 col-md-12 text-center mt-3">
-                                <button type="button" class="btn btn-danger remove-btn">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
-
-            const imagePreviewContainer = form.querySelector('.roomImagesPreview');
-            if (roomData.roomImages && roomData.roomImages.length > 0) {
-                roomData.roomImages.forEach((imageURL, index) => {
-                    const colDiv = document.createElement('div');
-                    colDiv.className = 'col-md-6';
-                    const imageContainer = document.createElement('div');
-                    imageContainer.className = 'image-container';
-                    const image = document.createElement('img');
-                    image.src = imageURL;
-                    image.alt = 'Room Image';
-                    image.className = 'img-thumbnail';
-                    image.style.width = '100%';
-                    image.style.height = '10rem';
-                    imageContainer.appendChild(image);
-
-                    const deleteButton = document.createElement('a');
-                    deleteButton.href = '#';
-                    deleteButton.className = 'btn btn-danger danger-button';
-                    deleteButton.innerText = 'Delete';
-                    deleteButton.onclick = function () {
-                        deleteImage(docId, index);
-                        return false; // Prevent default link behavior
-                    };
-
-                    imageContainer.appendChild(deleteButton);
-                    colDiv.appendChild(imageContainer);
-                    imagePreviewContainer.appendChild(colDiv);
-                });
+                `;
+                return form;
             }
 
-            form.addEventListener('submit', function (event) {
+            function saveRoomDetails(docId, form) {
+                const roomNumber = form.querySelector('.roomNumber').value;
+                const roomPrice = form.querySelector('.roomPrice').value;
+                const bedType = form.querySelector('.bedType').value;
+                const roomType = form.querySelector('.roomType').value;
+                const PerAdultPrice = form.querySelector('.PerAdultPrice').value;
+                const PerChildPrice = form.querySelector('.PerChildPrice').value;
+                const bothroomType = form.querySelector('.bothroomType').value;
+
+                const roomData = {
+                    roomNumber,
+                    roomPrice,
+                    bedType,
+                    roomType,
+                    PerAdultPrice,
+                    PerChildPrice,
+                    bothroomType
+                };
+
+                if (docId) {
+                    db.collection('hotels').doc(user.uid).collection('rooms').doc(docId).update(roomData)
+                        .then(() => {
+                            alert('Room details updated successfully!');
+                        })
+                        .catch((error) => {
+                            console.error('Error updating document: ', error);
+                        });
+                } else {
+                    db.collection('hotels').doc(user.uid).collection('rooms').add(roomData)
+                        .then(() => {
+                            alert('Room details added successfully!');
+                        })
+                        .catch((error) => {
+                            console.error('Error adding document: ', error);
+                        });
+                }
+            }
+
+            function removeRoom(docId) {
+                db.collection('hotels').doc(user.uid).collection('rooms').doc(docId).delete()
+                    .then(() => {
+                        alert('Room removed successfully!');
+                        document.querySelector(`form[data-room-id="${docId}"]`).remove();
+                    })
+                    .catch((error) => {
+                        console.error('Error removing document: ', error);
+                    });
+            }
+
+            // Example usage: Add form
+            roomFormContainer.innerHTML = createRoomForm();
+
+            // Add event listener to handle form submissions
+            roomFormContainer.addEventListener('submit', function (event) {
                 event.preventDefault();
+                const form = event.target.closest('form');
+                const docId = form.closest('.room-details-form').getAttribute('data-room-id');
                 saveRoomDetails(docId, form);
             });
 
-            form.querySelector('.remove-btn').addEventListener('click', function () {
-                if (confirm('Are you sure you want to delete this room?')) {
-                    deleteRoom(docId);
+            // Add event listener for remove buttons
+            roomFormContainer.addEventListener('click', function (event) {
+                if (event.target.classList.contains('remove-btn')) {
+                    const docId = event.target.closest('.room-details-form').getAttribute('data-room-id');
+                    removeRoom(docId);
                 }
             });
-
-            return form;
-        }
-
-        function saveRoomDetails(docId, form) {
-            const roomType = form.querySelector('.roomType').value;
-            const roomNumber = form.querySelector('.roomNumber').value;
-            const roomPrice = form.querySelector('.roomPrice').value;
-            const bedType = form.querySelector('.bedType').value;
-            const availability = form.querySelector('.availability').checked;
-            const user = firebase.auth().currentUser;
-            const hotelId = user.uid;
-
-            const roomData = {
-                roomType,
-                roomNumber,
-                roomPrice: parseFloat(roomPrice),
-                bedType,
-                availability
-            };
-
-            const roomImagesInput = form.querySelector('.roomImages');
-            const imageFiles = roomImagesInput.files;
-            const storageRef = storage.ref(`hotel-images/${hotelId}`);
-
-            // Step 1: Upload new images
-            const uploadPromises = [];
-            for (let i = 0; i < imageFiles.length; i++) {
-                const imageFile = imageFiles[i];
-                const imageRef = storageRef.child(imageFile.name);
-                uploadPromises.push(imageRef.put(imageFile));
-            }
-
-            Promise.all(uploadPromises).then(snapshots => {
-                // Step 2: Get download URLs for the new images
-                const downloadURLPromises = snapshots.map(snapshot => snapshot.ref.getDownloadURL());
-                return Promise.all(downloadURLPromises);
-            }).then(downloadURLs => {
-                // Step 3: Add new images URLs to roomData, preserving existing ones
-                if (docId) {
-                    // Fetch the existing document to merge images
-                    return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).get().then(doc => {
-                        if (doc.exists) {
-                            const existingData = doc.data();
-                            const existingImages = existingData.roomImages || [];
-                            roomData.roomImages = existingImages.concat(downloadURLs);
-                        } else {
-                            roomData.roomImages = downloadURLs;
-                        }
-                        return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).update(roomData);
-                    });
-                } else {
-                    roomData.roomImages = downloadURLs;
-                    return db.collection('hotels').doc(hotelId).collection('rooms').add(roomData);
-                }
-            }).then(() => {
-                alert('Room details saved successfully');
-                loadAllRoomDetails(user);
-            }).catch(error => {
-                console.error('Error saving room details:', error);
-                alert('Failed to save room details');
-            });
-        }
-
-        function deleteImage(docId, index) {
-            const user = firebase.auth().currentUser;
-            const hotelId = user.uid;
-
-            db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).get().then((doc) => {
-                if (doc.exists) {
-                    const roomData = doc.data();
-                    const imageURL = roomData.roomImages[index];
-                    const imageRef = storage.refFromURL(imageURL);
-
-                    imageRef.delete().then(() => {
-                        roomData.roomImages.splice(index, 1);
-                        return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).update({ roomImages: roomData.roomImages });
-                    }).then(() => {
-                        loadAllRoomDetails(user);
-                    }).catch((error) => {
-                        console.error('Error deleting image:', error);
-                    });
-                }
-            }).catch((error) => {
-                console.error('Error getting room data:', error);
-            });
-        }
-
-        function deleteRoom(docId) {
-            const user = firebase.auth().currentUser;
-            const hotelId = user.uid;
-
-            db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).delete().then(() => {
-                alert('Room deleted successfully');
-                loadAllRoomDetails(user);
-            }).catch(error => {
-                console.error('Error deleting room:', error);
-                alert('Failed to delete room');
-            });
-        }
-
-        // Redirect to login if not authenticated
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                loadAllRoomDetails(user);
-            } else {
-                window.location.href = '../Login/login.html';
-            }
-        });
-
-        document.getElementById('add-more-btn').addEventListener('click', function (event) {
-            event.preventDefault();
-            const roomDetailsContainer = document.getElementById('room-details-container');
-            const newRoomDetailsForm = createRoomForm(null, {});
-
-            roomDetailsContainer.appendChild(newRoomDetailsForm);
         });
     </script>
 </body>
