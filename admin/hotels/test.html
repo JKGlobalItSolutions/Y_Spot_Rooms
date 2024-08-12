@@ -21,7 +21,8 @@
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
-    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .image-container {
@@ -109,13 +110,13 @@
             <!-- Divider -->
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active " >
-                <a class="nav-link "  href="index.html">
+            <li class="nav-item active ">
+                <a class="nav-link " href="index.html">
                     <i class=""><img src="../img/sidbar icons/person.png" alt=""></i>
                     <span>User Profile</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link "  href="Hotels.html">
+                <a class="nav-link " href="Hotels.html">
                     <i class=""><img src="../img/sidbar icons/food_bank.png" alt=""></i>
                     <span>Hotels</span></a>
             </li>
@@ -150,7 +151,7 @@
                     <span>Room Status</span></a>
             </li>
 
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -296,7 +297,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-    
+
     <script>
         // firebase-config.js
         // Your Firebase configuration
@@ -341,6 +342,7 @@
             form.innerHTML = `
                 <div class="border p-4 shadow-sm rounded-3 my-4">
                 <div class="row">
+                    <h4>Room Type:</h4>
                     <div class="col-lg-4 col-md-12 d-none">
                         <div class="text-start mt-2">
                             <h4 style="color: #ff0000;"><b>Room Images:</b></h4>
@@ -350,7 +352,7 @@
                             </div>
                         </div>
                     </div>
-                                       <div class="col-12">
+                    <div class="col-12">
                         <div class="row">
                             <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
@@ -359,7 +361,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Per Night Price">Per Night Price:</label>
-                                    <input type="text" class="form-control PerNightPrice" value="${roomData.PerNightPrice || ''}" required>
+                                    <input type="text" class="form-control roomPrice" value="${roomData.roomPrice || ''}" required>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-12">
@@ -473,7 +475,7 @@
         function saveRoomDetails(docId, form) {
             const roomType = form.querySelector('.roomType').value;
             const roomNumber = form.querySelector('.roomNumber').value;
-            const PerNightPrice = form.querySelector('.PerNightPrice').value;
+            const roomPrice = form.querySelector('.roomPrice').value;
             const bedType = form.querySelector('.bedType').value;
             const PerAdultPrice = form.querySelector('.PerAdultPrice').value;
             const PerChildPrice = form.querySelector('.PerChildPrice').value;
@@ -487,7 +489,7 @@
             const roomData = {
                 roomType,
                 roomNumber,
-                PerNightPrice: parseFloat(PerNightPrice),
+                roomPrice: parseFloat(roomPrice),
                 bedType,
                 PerAdultPrice,
                 PerChildPrice,
@@ -499,7 +501,7 @@
 
             const roomImagesInput = form.querySelector('.roomImages');
             const imageFiles = roomImagesInput.files;
-            const storageRef = storage.ref(`hotel-images/${hotelId}`);
+            const storageRef = storage.ref(hotel-images/${hotelId});
 
             // Step 1: Upload new images
             const uploadPromises = [];
