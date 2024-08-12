@@ -258,7 +258,7 @@
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
+                    <div class="copyright text-center my-auto ">
                         <span>Copyright &copy; Y.SPOT Rooms pvt ltd. 2024</span>
                     </div>
                 </div>
@@ -350,62 +350,70 @@
                             </div>
                         </div>
                     </div>
-                                       <div class="col-12">
+                    <div class="col-12">
                         <div class="row">
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="Total Room">Total Room:</label>
                                     <input type="text" class="form-control roomNumber" value="${roomData.roomNumber || ''}" required>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="Per Night Price">Per Night Price:</label>
                                     <input type="text" class="form-control PerNightPrice" value="${roomData.PerNightPrice || ''}" required>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="Select Bed Type">Select Bed Type:</label>
-                                    <select name=""  class="form-control bedType" value="${roomData.bedType || ''}" required>
-                                        <option value="" disabled selected>Select your options</option>
-                                        <option value="Single Bed">Single Bed</option>
-                                        <option value="Twin Bed">Twin Bed</option>
-                                        <option value="Double Bed">Double Bed</option>
-                                        <option value="King Bed">King Bed</option>
-                                        <option value="Queen Bed">Queen Bed</option>
+                                    <select name="" class="form-control bedType" required>
+                                        <option value="" disabled>Select your options</option>
+                                        <option value="Single Bed" ${roomData.bedType === 'Single Bed' ? 'selected' : ''}>Single Bed</option>
+                                        <option value="Twin Bed" ${roomData.bedType === 'Twin Bed' ? 'selected' : ''}>Twin Bed</option>
+                                        <option value="Double Bed" ${roomData.bedType === 'Double Bed' ? 'selected' : ''}>Double Bed</option>
+                                        <option value="King Bed" ${roomData.bedType === 'King Bed' ? 'selected' : ''}>King Bed</option>
+                                        <option value="Queen Bed" ${roomData.bedType === 'Queen Bed' ? 'selected' : ''}>Queen Bed</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="roomType">Room Type:</label>
                                     <input type="text" class="form-control roomType" value="${roomData.roomType || ''}" required>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="erAdultPrice">Per Adult Price:</label>
                                     <input type="text" class="form-control PerAdultPrice" value="${roomData.PerAdultPrice || ''}" required>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="PerChildPrice">Per Child Price:</label>
                                     <input type="text" class="form-control PerChildPrice" value="${roomData.PerChildPrice || ''}" required>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="Discount">Discount(%):</label>
                                     <input type="number" class="form-control Discount" value="${roomData.Discount || ''}" required>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="MaxGuestsAllow">Max Guests Allow:</label>
                                     <input type="text" class="form-control MaxGuestsAllow" value="${roomData.MaxGuestsAllow || ''}" required>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="RoomSize">Room Size(sq ft):</label>
                                     <input type="text" class="form-control RoomSize" value="${roomData.RoomSize || ''}" required>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group ">
                                     <label for="availability" class="p-2">Availability:</label>
                                     <label class="toggle-btn">
@@ -414,10 +422,10 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12 text-center mt-3">
+                            <div class="col-lg-6 col-md-6 text-center mt-3">
                                 <button type="submit" class="btn text-light save-btn" style="background-color: #ff0000;">Save</button>
                             </div>
-                            <div class="col-lg-6 col-md-12 text-center mt-3">
+                            <div class="col-lg-12 col-md-12 justify-content-end mt-3">
                                 <button type="button" class="btn text-light  remove-btn" style="background-color: #ff0000;">Remove</button>
                             </div>
                         </div>
