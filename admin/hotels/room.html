@@ -251,7 +251,7 @@
                 </div>
                 <!-- /.container-fluid -->
                 <div class="d-flex align-items-right justify-content-end m-3">
-                    <h6><a href="#" id="add-more-btn" class="bg-success text-light p-2 rounded fw-bold">+ Add more</a></h6>
+                    <h6><a href="#" id="add-more-btn" style="text-decoration: none;" class="bg-light text-dark border p-2 rounded fw-bold"><b>+ Add more</b></a></h6>
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -310,20 +310,20 @@
             appId: "1:387302339276:web:e6c88525a1d80f9d154869",
             measurementId: "G-ZR3EB3CD3Z"
         };
-
+    
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const storage = firebase.storage();
-
+    
         // Load all room details
         function loadAllRoomDetails(user) {
             const hotelId = user.uid; // Assuming user.uid is the hotel ID
-
+    
             db.collection('hotels').doc(hotelId).collection('rooms').get().then((querySnapshot) => {
                 const roomDetailsContainer = document.getElementById('room-details-container');
                 roomDetailsContainer.innerHTML = ''; // Clear existing content
-
+    
                 querySnapshot.forEach((doc) => {
                     const roomData = doc.data();
                     const roomForm = createRoomForm(doc.id, roomData);
@@ -333,12 +333,12 @@
                 console.log('Error getting documents:', error);
             });
         }
-
+    
         function createRoomForm(docId, roomData) {
             const form = document.createElement('form');
             form.className = 'room-details-form';
             form.dataset.roomId = docId || ''; // Set data-room-id attribute to docId or an empty string
-
+    
             form.innerHTML = `
                 <div class="border p-4 shadow-sm rounded-3 my-4">
                     <div class="row">
@@ -346,7 +346,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
                                 <label for="Total Room">Total Room:</label>
-                                <input type="text" class="form-control roomNumber" value="${roomData.roomNumber || ''}" required>
+                                <input type="text" class="form-control totalRooms" value="${roomData.totalRooms || ''}" required>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -404,7 +404,7 @@
                                 <input type="text" class="form-control RoomSize" value="${roomData.RoomSize || ''}" required>
                             </div>
                         </div>
-
+    
                         <!-- Accommodation Facilities -->
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
@@ -420,12 +420,12 @@
                                     <option value="Laundry">Laundry</option>
                                     <option value="Air Conditioning">Air Conditioning</option>
                                     <option value="Attached Bathroom">Attached Bathroom</option>
-                                    <option value="Public  Bathroom">Public  Bathroom</option>
+                                    <option value="Public Bathroom">Public Bathroom</option>
                                 </select>
                                 <div id="selected-container-${docId}" class="d-flex flex-wrap mb-3 mt-2"></div>
                             </div>
                         </div>
-
+    
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
                                 <label for="availability" class="p-2">Availability:</label>
@@ -435,21 +435,21 @@
                                 </label>
                             </div>
                         </div>
-
+    
                         <div class="col-lg-4 col-md-4 text-center mt-3">
                             <button type="submit" class="btn text-light save-btn px-4" style="background-color: #ff0000;">Save</button>
                         </div>
-                        <div class="col-lg-12 col-md-12  mt-5" style="text-align: end;">
+                        <div class="col-lg-12 col-md-12 mt-5" style="text-align: end;">
                             <button type="button" class="btn text-light remove-btn px-1 p-1" style="background-color: #ff0000;"><i class="fa-solid fa-recycle p-1"></i>Remove</button>
                         </div>
                     </div>
                 </div>
             `;
-
+    
             const selectElement = form.querySelector(`#options-${docId}`);
             const selectedContainer = form.querySelector(`#selected-container-${docId}`);
             const selectedOptions = new Set(roomData.accommodationFacilities || []);
-
+    
             // Function to update the selected options container
             function updateSelectedContainer() {
                 selectedContainer.innerHTML = '';
@@ -463,10 +463,10 @@
                     selectedContainer.appendChild(selectedOption);
                 });
             }
-
+    
             // Initialize the selected container with saved options
             updateSelectedContainer();
-
+    
             // Handle select options
             selectElement.addEventListener('change', (event) => {
                 const selectedValue = event.target.value;
@@ -482,7 +482,7 @@
                     });
                 }
             });
-
+    
             window.removeSelectedOption = function (docId, option) {
                 const select = form.querySelector(`#options-${docId}`);
                 selectedOptions.delete(option);
@@ -493,24 +493,24 @@
                 optionElement.textContent = option;
                 select.appendChild(optionElement);
             };
-
+    
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
                 saveRoomDetails(docId, form);
             });
-
+    
             form.querySelector('.remove-btn').addEventListener('click', function () {
                 if (confirm('Are you sure you want to delete this room?')) {
                     deleteRoom(docId);
                 }
             });
-
+    
             return form;
         }
-
+    
         function saveRoomDetails(docId, form) {
             const roomType = form.querySelector('.roomType').value;
-            const roomNumber = form.querySelector('.roomNumber').value;
+            const totalRooms = form.querySelector('.totalRooms').value;
             const PerNightPrice = form.querySelector('.PerNightPrice').value;
             const bedType = form.querySelector('.bedType').value;
             const PerAdultPrice = form.querySelector('.PerAdultPrice').value;
@@ -522,10 +522,15 @@
             const selectedOptions = Array.from(form.querySelectorAll(`#selected-container-${form.dataset.roomId} .selected-option span`)).map(span => span.textContent);
             const user = firebase.auth().currentUser;
             const hotelId = user.uid;
-
+    
+            // Calculate totalMaxGuests
+            const totalRoomsValue = parseInt(totalRooms, 10) || 0;
+            const maxGuestsAllowValue = parseInt(MaxGuestsAllow, 10) || 0;
+            const totalMaxGuests = totalRoomsValue * maxGuestsAllowValue;
+    
             const roomData = {
                 roomType,
-                roomNumber,
+                totalRooms,
                 PerNightPrice: parseFloat(PerNightPrice),
                 bedType,
                 PerAdultPrice,
@@ -534,41 +539,65 @@
                 RoomSize,
                 MaxGuestsAllow,
                 availability,
-                accommodationFacilities: selectedOptions
+                accommodationFacilities: selectedOptions,
+                totalMaxGuests // Add the calculated value to the data
             };
-
+    
             const roomRef = db.collection('hotels').doc(hotelId).collection('rooms').doc(docId || firebase.firestore().collection('hotels').doc(hotelId).collection('rooms').doc().id);
-
-            roomRef.set(roomData, { merge: true }).then(() => {
-                alert('Room details saved successfully');
-                loadAllRoomDetails(user);
+    
+            roomRef.set(roomData, { merge: false }).then(() => {
+                // Update totalMaxGuests in the hotels collection
+                const hotelRef = db.collection('hotels').doc(hotelId);
+                return hotelRef.get().then(hotelDoc => {
+                    const hotelData = hotelDoc.data() || {};
+                    const existingMaxGuests = hotelData.totalMaxGuests || 0;
+                    const updatedMaxGuests = existingMaxGuests + totalMaxGuests;
+    
+                    return hotelRef.update({ totalMaxGuests: totalMaxGuests }).then(() => {
+                        alert('Room details saved successfully');
+                        loadAllRoomDetails(user);
+                    });
+                });
             }).catch(error => {
                 console.error('Error saving room details:', error);
                 alert('Failed to save room details');
             });
         }
-
+    
         function deleteRoom(docId) {
             const user = firebase.auth().currentUser;
             const hotelId = user.uid;
-
-            db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).delete().then(() => {
-                alert('Room deleted successfully');
-                loadAllRoomDetails(user);
+    
+            db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).get().then((doc) => {
+                const roomData = doc.data();
+                const totalMaxGuests = roomData.totalMaxGuests || 0;
+    
+                return db.collection('hotels').doc(hotelId).get().then(hotelDoc => {
+                    const hotelData = hotelDoc.data() || {};
+                    const existingMaxGuests = hotelData.totalMaxGuests || 0;
+                    const updatedMaxGuests = existingMaxGuests - totalMaxGuests;
+    
+                    return db.collection('hotels').doc(hotelId).update({ totalMaxGuests: updatedMaxGuests }).then(() => {
+                        return db.collection('hotels').doc(hotelId).collection('rooms').doc(docId).delete().then(() => {
+                            alert('Room deleted successfully');
+                            loadAllRoomDetails(user);
+                        });
+                    });
+                });
             }).catch(error => {
                 console.error('Error deleting room:', error);
                 alert('Failed to delete room');
             });
         }
-
+    
         document.getElementById('add-more-btn').addEventListener('click', function (event) {
             event.preventDefault();
             const roomDetailsContainer = document.getElementById('room-details-container');
             const newRoomDetailsForm = createRoomForm(null, {});
-
+    
             roomDetailsContainer.appendChild(newRoomDetailsForm);
         });
-
+    
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 loadAllRoomDetails(user);
@@ -578,8 +607,5 @@
         });
     </script>
     
-    
-    
 </body>
-
 </html>
