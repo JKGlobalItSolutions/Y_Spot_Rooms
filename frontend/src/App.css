@@ -1,4 +1,8 @@
-/* Add these styles to your existing App.css */
+@import '~@fontsource/urbanist/index.css';
+
+body {
+  font-family: 'Urbanist', sans-serif;
+}
 
 .container {
   max-width: 1200px;
@@ -21,22 +25,33 @@
   padding-left: 15px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .container {
     padding: 0 10px;
   }
-  
+
   .row {
     margin-right: -10px;
     margin-left: -10px;
   }
-  
+
   .col {
     padding-right: 10px;
     padding-left: 10px;
   }
 }
 
-/* Add any other global styles you need */
+.text-danger {
+  color: #FF1717 !important;
+}
+
+.btn-danger {
+  background-color: #FF1717 !important;
+  border-color: #FF1717 !important;
+}
+
+.btn-danger:hover {
+  background-color: #e60000 !important;
+  border-color: #e60000 !important;
+}
 

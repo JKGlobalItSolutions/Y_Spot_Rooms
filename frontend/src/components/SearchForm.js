@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import './SearchForm.css';
 
 function SearchForm() {
   const [location, setLocation] = useState('');
@@ -11,7 +12,6 @@ function SearchForm() {
   const [showGuestsDropdown, setShowGuestsDropdown] = useState(false);
 
   useEffect(() => {
-    // Load saved data from sessionStorage
     const savedLocation = sessionStorage.getItem('location') || 'Tiruvannamalai';
     const savedCheckin = sessionStorage.getItem('checkin');
     const savedCheckout = sessionStorage.getItem('checkout');
@@ -32,7 +32,6 @@ function SearchForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Save form data to sessionStorage
     sessionStorage.setItem('location', location);
     sessionStorage.setItem('checkin', startDate?.toLocaleDateString());
     sessionStorage.setItem('checkout', endDate?.toLocaleDateString());
@@ -48,7 +47,7 @@ function SearchForm() {
   };
 
   return (
-    <Container className="custom-container rounded" style={{ backgroundColor: '#1C1B1F', marginTop: '-85px' }}>
+    <Container className="search-form-container rounded" id="move2">
       <Form onSubmit={handleSubmit}>
         <Row className="justify-content-center rounded-3">
           <Col lg={3} md={6} sm={12}>
@@ -88,8 +87,31 @@ function SearchForm() {
               />
               {showGuestsDropdown && (
                 <div className="guests-dropdown">
-                  {/* Guests selection UI */}
-                  <Button onClick={() => setShowGuestsDropdown(false)}>Done</Button>
+                  <div className="guest-type">
+                    <span>Adults</span>
+                    <div className="guest-controls">
+                      <button type="button" onClick={() => updateGuests('adults', Math.max(1, guests.adults - 1))}>-</button>
+                      <span>{guests.adults}</span>
+                      <button type="button" onClick={() => updateGuests('adults', guests.adults + 1)}>+</button>
+                    </div>
+                  </div>
+                  <div className="guest-type">
+                    <span>Children</span>
+                    <div className="guest-controls">
+                      <button type="button" onClick={() => updateGuests('children', Math.max(0, guests.children - 1))}>-</button>
+                      <span>{guests.children}</span>
+                      <button type="button" onClick={() => updateGuests('children', guests.children + 1)}>+</button>
+                    </div>
+                  </div>
+                  <div className="guest-type">
+                    <span>Rooms</span>
+                    <div className="guest-controls">
+                      <button type="button" onClick={() => updateGuests('rooms', Math.max(1, guests.rooms - 1))}>-</button>
+                      <span>{guests.rooms}</span>
+                      <button type="button" onClick={() => updateGuests('rooms', guests.rooms + 1)}>+</button>
+                    </div>
+                  </div>
+                  <Button onClick={() => setShowGuestsDropdown(false)} className="w-100 mt-2">Done</Button>
                 </div>
               )}
             </Form.Group>

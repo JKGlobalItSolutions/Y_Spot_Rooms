@@ -1,0 +1,145 @@
+.hero-section {
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .recent-search-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .explore-india-scroll-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .explore-india-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .explore-india-card-container {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .explore-india-card {
+    flex: 0 0 auto;
+    width: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .explore-india-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .explore-india-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .explore-india-info {
+    padding: 0.5rem;
+    background-color: white;
+  }
+  
+  .explore-india-city {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .explore-india-properties {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .why-book-with-us h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .why-book-with-us .card {
+    border-color: #dc3545 !important;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .why-book-with-us .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .why-book-with-us .card-img-wrapper {
+    position: relative;
+    height: 80px;
+    margin-top: -40px;
+  }
+  
+  .why-book-with-us .card-img-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid white;
+    background-color: white;
+  }
+  
+  .why-book-with-us .card-body {
+    padding-top: 50px;
+  }
+  
+  .why-book-with-us .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .why-book-with-us .card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
+  @media (max-width: 992px) {
+    .why-book-with-us h1 {
+      font-size: 1.8rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: 300px;
+    }
+    
+    .why-book-with-us h1 {
+      font-size: 1.6rem;
+    }
+  }
+  
+  
