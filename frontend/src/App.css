@@ -1,57 +1,38 @@
-@import '~@fontsource/urbanist/index.css';
-
-body {
-  font-family: 'Urbanist', sans-serif;
+.App {
+  text-align: center;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.row {
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.col {
-  flex-basis: 0;
-  flex-grow: 1;
-  max-width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+.App-link {
+  color: #61dafb;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 0 10px;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-
-  .row {
-    margin-right: -10px;
-    margin-left: -10px;
-  }
-
-  .col {
-    padding-right: 10px;
-    padding-left: 10px;
+  to {
+    transform: rotate(360deg);
   }
 }
-
-.text-danger {
-  color: #FF1717 !important;
-}
-
-.btn-danger {
-  background-color: #FF1717 !important;
-  border-color: #FF1717 !important;
-}
-
-.btn-danger:hover {
-  background-color: #e60000 !important;
-  border-color: #e60000 !important;
-}
-
