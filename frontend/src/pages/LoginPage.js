@@ -91,7 +91,7 @@ function LoginPage() {
 
           <div className={`${styles.field} ${styles.mediaOptions}`}>
             <button onClick={handleGoogleSignIn} className="btn btn-outline-light w-100 d-flex align-items-center justify-content-center">
-              <FcGoogle className="me-2" />
+              <FcGoogle className="me-2 m-1" />
               <span>Login with Google</span>
             </button>
           </div>

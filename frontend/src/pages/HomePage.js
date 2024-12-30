@@ -1,109 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { signOut } from "firebase/auth";
-import { auth } from '../firebase/config';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function HomePage() {
+  const navigate = useNavigate();
   const [location, setLocation] = useState('');
   const [dates, setDates] = useState('');
   const [guests, setGuests] = useState('');
-  const [adults, setAdults] = useState(0);
+  const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [rooms, setRooms] = useState(1);
   const [showGuestsDropdown, setShowGuestsDropdown] = useState(false);
-  const navigate = useNavigate();
-  const { currentUser } = useAuth();
+  const datePickerRef = useRef(null);
+  const guestsDropdownRef = useRef(null);
 
   useEffect(() => {
-    flatpickr("#dates", {
+    // Initialize Flatpickr
+    const fp = flatpickr(datePickerRef.current, {
       mode: "range",
       dateFormat: "d, F Y",
       minDate: "today",
       defaultDate: [new Date(), new Date()],
       onChange: (selectedDates) => {
         if (selectedDates.length === 2) {
-          setDates(`${selectedDates[0].toLocaleDateString()} - ${selectedDates[1].toLocaleDateString()}`);
+          const [checkin, checkout] = selectedDates.map(date => date.toLocaleDateString());
+          setDates(`${checkin} - ${checkout}`);
+          sessionStorage.setItem('checkin', checkin);
+          sessionStorage.setItem('checkout', checkout);
         }
       }
     });
+
+    // Retrieve data from sessionStorage
+    const storedLocation = sessionStorage.getItem('location') || 'Tiruvannamalai';
+    const storedCheckin = sessionStorage.getItem('checkin');
+    const storedCheckout = sessionStorage.getItem('checkout');
+    const storedAdults = parseInt(sessionStorage.getItem('adults') || '1');
+    const storedChildren = parseInt(sessionStorage.getItem('children') || '0');
+    const storedRooms = parseInt(sessionStorage.getItem('rooms') || '1');
+
+    setLocation(storedLocation);
+    if (storedCheckin && storedCheckout) {
+      fp.setDate([new Date(storedCheckin), new Date(storedCheckout)]);
+    }
+    setAdults(storedAdults);
+    setChildren(storedChildren);
+    setRooms(storedRooms);
+
+    // Update guests display
+    updateGuests(storedAdults, storedChildren, storedRooms);
+
+    // Close dropdown when clicking outside
+    const handleClickOutside = (event) => {
+      if (guestsDropdownRef.current && !guestsDropdownRef.current.contains(event.target)) {
+        setShowGuestsDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
-  const handleLogout = () => {
-    signOut(auth).then(() => {
-      alert('Logged out successfully');
-      navigate('/login');
-    }).catch((error) => {
-      console.error('Error logging out: ', error);
-      alert('Error logging out. Please try again.');
-    });
-  };
-
-  const updateGuests = () => {
-    setGuests(`${adults} Adults, ${children} Children, ${rooms} Rooms`);
+  const updateGuests = (a, c, r) => {
+    setGuests(`${a} Adults, ${c} Children, ${r} Rooms`);
   };
 
   const handleGuestsClick = () => {
     setShowGuestsDropdown(!showGuestsDropdown);
   };
 
+  const incrementValue = (setter, value, maxValue) => {
+    if (value < maxValue) {
+      setter(value + 1);
+    }
+  };
+
+  const decrementValue = (setter, value, minValue) => {
+    if (value > minValue) {
+      setter(value - 1);
+    }
+  };
+
+  const handleDone = () => {
+    setShowGuestsDropdown(false);
+    updateGuests(adults, children, rooms);
+    sessionStorage.setItem('adults', adults.toString());
+    sessionStorage.setItem('children', children.toString());
+    sessionStorage.setItem('rooms', rooms.toString());
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', { location, dates, guests });
+    sessionStorage.setItem('location', location);
+    navigate('/details');
   };
 
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }}>
-      <header>
-        <nav className="navbar navbar-expand topbarstatic-top" style={{backgroundColor: "#FF1717"}}>
-          <div className="container">
-            <div className="row w-100">
-              <div className="col-lg-4"></div>
-              <div className="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center">
-                <Link className="navbar-brand" to="/">
-                  <img src="/assets/img/Frame 223.png" alt="" className="align-top" />
-                </Link>
-              </div>
-              <div className="col-12 col-md-7 col-lg-4 d-flex justify-content-center align-items-center mt-2">
-                <div className="d-flex justify-content-end align-items-center mx-auto ps-4 ms-2">
-                  {!currentUser ? (
-                    <Link className="nav-link" to="/login">
-                      <button type="button" className="btn btn-light text-danger"
-                        style={{height: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                        <b>Login</b>
-                      </button>
-                    </Link>
-                  ) : (
-                    <div className="nav-item dropdown no-arrow">
-                      <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {currentUser.photoURL && <img src={currentUser.photoURL} alt="User Photo" style={{width: "30px", height: "30px", borderRadius: "50%"}} />}
-                        <span className="mr-2 d-none d-lg-inline text-gray-600 text-light">{currentUser.displayName || "User"}</span>
-                      </a>
-                      <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a className="dropdown-item" href="#">
-                          <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                          Profile
-                        </a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#" onClick={handleLogout}>
-                          <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                          Logout
-                        </a>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
-
       <main>
         <div className="p-5 mb-4 bg-body-tertiary" style={{
           backgroundImage: "url(/assets/img/Rectangle\\ 377.jpg)",
@@ -119,52 +117,82 @@ function HomePage() {
         </div>
 
         <div className="container bg-dark custom-container rounded" id="move2" style={{ marginTop: "-85px" }}>
-          <div className="container">
+          <div className="container py-3">
             <form id="bookingForm" onSubmit={handleSubmit}>
-              <div className="row justify-content-center rounded-3">
-                <div className="form-group col-lg-3 col-md-6 col-sm-12">
-                  <input type="text" className="form-control" id="location" name="location" placeholder="Enter destination" required
-                    value={location} onChange={(e) => setLocation(e.target.value)} style={{ height: "50px", marginTop: "20px" }} />
+              <div className="row g-2 align-items-center">
+                <div className="col-lg">
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    id="location" 
+                    name="location" 
+                    placeholder="Enter destination" 
+                    required
+                    value={location} 
+                    onChange={(e) => setLocation(e.target.value)} 
+                    style={{ height: "50px" }} 
+                  />
                 </div>
-                <div className="form-group col-lg-4 col-md-6 col-sm-12">
-                  <input type="text" className="form-control" id="dates" name="dates" placeholder="Check-in - Check-out" required
-                    value={dates} onChange={(e) => setDates(e.target.value)} style={{ height: "50px", marginTop: "20px" }} />
+                <div className="col-lg">
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    id="dates" 
+                    name="dates" 
+                    placeholder="Check-in - Check-out" 
+                    required
+                    value={dates} 
+                    ref={datePickerRef}
+                    style={{ height: "50px" }} 
+                  />
                 </div>
-                <div className="form-group col-lg-3 col-md-6 col-sm-12">
-                  <input type="text" className="form-control" id="guests" name="guests" placeholder="Adults, Children & Rooms" required
-                    value={guests} onClick={handleGuestsClick} readOnly style={{ height: "50px", marginTop: "20px" }} />
-                  {showGuestsDropdown && (
-                    <div className="dropdown-menu show p-3" id="guestsDropdown">
-                      <div className="form-group">
-                        <label htmlFor="adults">Adults</label>
-                        <div className="input-group">
-                          <button className="btn btn-outline-secondary" type="button" onClick={() => setAdults(Math.max(0, adults - 1))}>-</button>
-                          <input type="number" className="form-control" id="adults" value={adults} readOnly />
-                          <button className="btn btn-outline-secondary" type="button" onClick={() => setAdults(adults + 1)}>+</button>
+                <div className="col-lg">
+                  <div ref={guestsDropdownRef}>
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      id="guests" 
+                      name="guests" 
+                      placeholder="Adults, Children & Rooms" 
+                      required
+                      value={guests} 
+                      onClick={handleGuestsClick} 
+                      readOnly 
+                      style={{ height: "50px" }} 
+                    />
+                    {showGuestsDropdown && (
+                      <div className="dropdown-menu show p-3" id="guestsDropdown">
+                        <div className="form-group">
+                          <label htmlFor="adults">Adults</label>
+                          <div className="input-group">
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => decrementValue(setAdults, adults, 1)} style={{backgroundColor: adults > 1 ? 'red' : 'gray', color: 'white'}}>-</button>
+                            <input type="number" className="form-control" id="adults" value={adults} readOnly />
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => incrementValue(setAdults, adults, 30)} style={{backgroundColor: adults >= 30 ? 'gray' : 'red', color: 'white'}}>+</button>
+                          </div>
                         </div>
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="children">Children</label>
-                        <div className="input-group">
-                          <button className="btn btn-outline-secondary" type="button" onClick={() => setChildren(Math.max(0, children - 1))}>-</button>
-                          <input type="number" className="form-control" id="children" value={children} readOnly />
-                          <button className="btn btn-outline-secondary" type="button" onClick={() => setChildren(children + 1)}>+</button>
+                        <div className="form-group">
+                          <label htmlFor="children">Children</label>
+                          <div className="input-group">
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => decrementValue(setChildren, children, 0)} style={{backgroundColor: children > 0 ? 'red' : 'gray', color: 'white'}}>-</button>
+                            <input type="number" className="form-control" id="children" value={children} readOnly />
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => incrementValue(setChildren, children, 10)} style={{backgroundColor: children >= 10 ? 'gray' : 'red', color: 'white'}}>+</button>
+                          </div>
                         </div>
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="rooms">Rooms</label>
-                        <div className="input-group">
-                          <button className="btn btn-outline-secondary" type="button" onClick={() => setRooms(Math.max(1, rooms - 1))}>-</button>
-                          <input type="number" className="form-control" id="rooms" value={rooms} readOnly />
-                          <button className="btn btn-outline-secondary" type="button" onClick={() => setRooms(rooms + 1)}>+</button>
+                        <div className="form-group">
+                          <label htmlFor="rooms">Rooms</label>
+                          <div className="input-group">
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => decrementValue(setRooms, rooms, 1)} style={{backgroundColor: rooms > 1 ? 'red' : 'gray', color: 'white'}}>-</button>
+                            <input type="number" className="form-control" id="rooms" value={rooms} readOnly />
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => incrementValue(setRooms, rooms, 30)} style={{backgroundColor: rooms >= 30 ? 'gray' : 'red', color: 'white'}}>+</button>
+                          </div>
                         </div>
+                        <button className="btn btn-primary mt-3" onClick={handleDone}>Done</button>
                       </div>
-                      <button className="btn btn-primary mt-3" onClick={() => { updateGuests(); setShowGuestsDropdown(false); }}>Done</button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-                <div className="form-group col-lg-2 col-md-6 col-sm-12">
-                  <button type="submit" className="btn text-light" id="search" style={{backgroundColor: "#FF1717", height: "50px", width: "150px", marginTop: "20px"}}>Search</button>
+                <div className="col-lg-auto">
+                  <button type="submit" className="btn text-light w-100" id="search" style={{backgroundColor: "#FF1717", height: "50px"}}>Search</button>
                 </div>
               </div>
             </form>
@@ -261,33 +289,51 @@ function HomePage() {
           <h3 className="text-dark">Explore India</h3>
           <p className="text-dark">These popular destinations have a lot to offer</p>
           <div className="image-container-wrapper" style={{overflow: "hidden", width: "100%", position: "relative"}}>
-            <div className="image-container1" style={{display: "flex", animation: "scroll 20s linear infinite"}}>
-              <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
-                <img src="/assets/img/explore india/1.png" alt="Bangalore" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
-                <p className="p-1"><b>Bangalore </b><br /> 3,458 properties</p>
-              </div>
-              <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
-                <img src="/assets/img/explore india/2.png" alt="New Delhi" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
-                <p className="p-1"><b>New Delhi </b><br /> 2,657 properties</p>
-              </div>
-              <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
-                <img src="/assets/img/explore india/3.png" alt="Kerala" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
-                <p className="p-1"><b>Kerala </b><br />3,821 properties</p>
-              </div>
-              <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
-                <img src="/assets/img/explore india/4.png" alt="Mumbai" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
-                <p className="p-1"><b>Mumbai </b><br />1,523 properties</p>
-              </div>
-              <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
-                <img src="/assets/img/explore india/5.png" alt="Goa" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
-                <p className="p-1"><b>Goa </b><br />4,231 properties</p>
-              </div>
-              <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
-                <img src="/assets/img/explore india/6.png" alt="Ooty" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
-                <p className="p-1"><b>Ooty </b><br />866 properties</p>
-              </div>
+            <div className="image-container1" style={{
+              display: "flex",
+              animation: "scroll 40s linear infinite",
+              width: "calc(150px * 12)", // 6 original cards * 2 for duplication
+            }}>
+              {[...Array(2)].map((_, index) => (
+                <React.Fragment key={index}>
+                  <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
+                    <img src="/assets/img/explore india/1.png" alt="Bangalore" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
+                    <p className="p-1"><b>Bangalore </b><br /> 3,458 properties</p>
+                  </div>
+                  <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
+                    <img src="/assets/img/explore india/2.png" alt="New Delhi" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
+                    <p className="p-1"><b>New Delhi </b><br /> 2,657 properties</p>
+                  </div>
+                  <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
+                    <img src="/assets/img/explore india/3.png" alt="Kerala" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
+                    <p className="p-1"><b>Kerala </b><br />3,821 properties</p>
+                  </div>
+                  <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
+                    <img src="/assets/img/explore india/4.png" alt="Mumbai" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
+                    <p className="p-1"><b>Mumbai </b><br />1,523 properties</p>
+                  </div>
+                  <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
+                    <img src="/assets/img/explore india/5.png" alt="Goa" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
+                    <p className="p-1"><b>Goa </b><br />4,231 properties</p>
+                  </div>
+                  <div className="image-card" style={{flex: "0 0 auto", width: "150px", margin: "0 10px", backgroundColor: "white", borderRadius: "8px"}}>
+                    <img src="/assets/img/explore india/6.png" alt="Ooty" style={{width: "100%", height: "auto", borderRadius: "8px 8px 0 0"}} />
+                    <p className="p-1"><b>Ooty </b><br />866 properties</p>
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
           </div>
+          <style jsx>{`
+            @keyframes scroll {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(calc(-150px * 6));
+              }
+            }
+          `}</style>
 
           <h3 className="text-dark pt-3">Discover Your property type </h3>
           <div className="container card-container-wrapper">
@@ -370,60 +416,6 @@ function HomePage() {
           </div>
         </div>
       </main>
-
-      <footer className="footer pt-4" style={{backgroundColor: "#001524", color: "#ffffff"}}>
-        <div className="container">
-          <div className="row">
-            <div className="col-6 col-sm-3 col-lg-2 mb-4">
-              <h6><b>Help</b></h6>
-              <ul className="list-unstyled">
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>FAQ</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Privacy policy</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Cookies privacy</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Terms of use</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Help centre</a></li>
-              </ul>
-            </div>
-            <div className="col-6 col-sm-3 col-lg-2 mb-4">
-              <h6><b>Get the App</b></h6>
-              <ul className="list-unstyled">
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>IOS app</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Android app</a></li>
-              </ul>
-            </div>
-            <div className="col-6 col-sm-3 col-lg-2 mb-4">
-              <h6><b>Company</b></h6>
-              <ul className="list-unstyled">
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>About Us</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Blog</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Careers</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>PointMAX</a></li>
-              </ul>
-            </div>
-            <div className="col-6 col-sm-3 col-lg-2 mb-4">
-              <h6><b>Destination</b></h6>
-              <ul className="list-unstyled">
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Cities</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Spiritual places</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Hill Stations</a></li>
-                <li><a href="#" className="text-white" style={{textDecoration: "none", fontSize: "0.9rem"}}>Solo Travel places</a></li>
-              </ul>
-            </div>
-            <div className="col-12 col-lg-4 mb-4">
-              <h6 className="d-flex justify-content-center"><b>Social Networks</b></h6>
-              <ul className="list-unstyled d-flex justify-content-center p-2">
-                <li className="me-2"><a href="#"><img src="/assets/img/footer social meadia icons/Frame 406.png" alt="Facebook" className="rounded-pill" /></a></li>
-                <li className="me-2"><a href="#"><img src="/assets/img/footer social meadia icons/Frame 407.png" alt="Twitter" className="rounded-pill" /></a></li>
-                <li className="me-2"><a href="#"><img src="/assets/img/footer social meadia icons/Frame 408.png" alt="Instagram" className="rounded-pill" /></a></li>
-                <li className="me-2"><a href="#"><img src="/assets/img/footer social meadia icons/Frame 410.png" alt="LinkedIn" className="rounded-pill" /></a></li>
-                <li className="me-2"><a href="#"><img src="/assets/img/footer social meadia icons/Frame 409.png" alt="YouTube" className="rounded-pill" /></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="horizontal-line bg-white my-3" style={{height: "1px"}}></div>
-        <h6 className="text-center mx-5 pt-3">&copy; 2023 Y.SPOT Rooms pvt .ltd.</h6>
-      </footer>
 
       <button id="backToTop" className="btn" style={{backgroundColor: "#ff0000", position: "fixed", bottom: "90px", right: "40px", display: "none", zIndex: 100}}>
         <i className="fa-solid fa-arrow-up text-light"></i>
