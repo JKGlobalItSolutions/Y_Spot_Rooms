@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase/firebase'; // Adjust based on your Firebase setup
+import { auth } from '../firebase/config'; // Ensure this path is correct
 
 const AuthContext = createContext();
 
@@ -21,11 +21,14 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const value = { user };
+  const value = {
+    user,
+    loading
+  };
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };

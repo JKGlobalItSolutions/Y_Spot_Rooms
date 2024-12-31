@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
@@ -12,59 +12,41 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        navigate('/');
-      }
-    });
-
-    return () => unsubscribe();
-  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+      await navigateToAdminPanel(user.uid);
+    } catch (error) {
+      console.error('Failed to sign in with email and password:', error);
+      toast.error('Invalid email or password. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-      const docRef = doc(db, 'adminProfiles', user.uid);
+  const navigateToAdminPanel = async (userId) => {
+    try {
+      const docRef = doc(db, 'adminProfiles', userId);
       const docSnap = await getDoc(docRef);
 
-      if (!docSnap.exists()) {
-        toast.error('No profile found. Please register a property.');
-        await auth.signOut();
-        return;
-      }
-
-      const data = docSnap.data();
-      const propertyType = data.propertyType;
-
-      toast.success('Login successful!');
-
-      // Redirect based on propertyType
-      switch (propertyType) {
-        case 'Hotel':
-          navigate('/hotels');
-          break;
-        case 'Apartment':
-          navigate('/apartments');
-          break;
-        case 'Homestay':
-          navigate('/homestays');
-          break;
-        default:
-          console.error('Unknown propertyType:', propertyType);
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('adminType', userData.propertyType || 'unknown');
+        navigate('/profile');
+      } else {
+        toast.error('User profile not found. Please contact support.');
       }
     } catch (error) {
-      if (error.code === 'auth/wrong-password') {
-        toast.error('Invalid password. Please try again.');
-      } else {
-        toast.error('Login failed. Please check your credentials.');
-      }
+      console.error('Error retrieving user profile from Firestore:', error);
+      toast.error('An error occurred. Please try again.');
     }
   };
 
@@ -106,7 +88,9 @@ function Login() {
             </div>
 
             <div className="field button-field">
-              <button type="submit">Login</button>
+              <button type="submit" disabled={isLoading}>
+                {isLoading ? 'Logging in...' : 'Login'}
+              </button>
             </div>
           </form>
 
@@ -115,10 +99,14 @@ function Login() {
           </div>
         </div>
       </div>
+      {isLoading && (
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+        </div>
+      )}
       <ToastContainer position="top-center" />
     </section>
   );
 }
 
 export default Login;
-

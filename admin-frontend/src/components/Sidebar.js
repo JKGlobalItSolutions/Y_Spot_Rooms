@@ -1,224 +1,273 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import usericon from '../Images/Sidebar-icons/person.png';
+import hotelicon from '../Images/Sidebar-icons/food_bank.png';
+import roomsicon from '../Images/Sidebar-icons/meeting_room.png'
+import locationicon from '../Images/Sidebar-icons/location_home.png'
+import rupees from '../Images/Sidebar-icons/currency_rupee.png'
+import OrdersIcon from '../Images/Sidebar-icons/format_list_bulleted.png'
+import Reviewicon from '../Images/Sidebar-icons/stars.png'
+import RoomstatusIcon from '../Images/Sidebar-icons/concierge.png'
+import logo from '../Images/Logo/Y-spot-logo.png'
+import logout from '../Images/Sidebar-icons/logout.png'
+import { X } from 'lucide-react'
 
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+const Sidebar = ({ isOpen, toggle }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  const isActive = (path) => {
-    return location.pathname === path ? 'active' : '';
+  const sidebarStyle = `
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 250px;
+      background-color: #ff0000;
+      color: white;
+      padding: 20px;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-item {
+      margin-bottom: 15px;
+    }
+
+    .menu-link {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      padding: 12px 15px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-link:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+      transform: translateX(5px);
+    }
+
+    .menu-link.active {
+      background-color: #000000;
+      transform: translateX(5px);
+    }
+
+    .menu-link img,
+    .menu-link i {
+      width: 20px;
+      height: 20px;
+      margin-right: 15px;
+      opacity: 0.9;
+    }
+
+    .menu-text {
+      white-space: nowrap;
+      font-size: 15px;
+      letter-spacing: 0.3px;
+    }
+
+    .close-button {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .logout-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+    }
+
+    .logout-modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .logout-modal-buttons {
+      margin-top: 20px;
+    }
+
+    .logout-modal-buttons button {
+      margin: 0 10px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .logout-modal-buttons button:first-child {
+      background-color: #ff0000;
+      color: white;
+    }
+
+    .logout-modal-buttons button:last-child {
+      background-color: #ccc;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(${isOpen ? '0' : '-100%'});
+      }
+
+      .close-button {
+        display: block;
+      }
+    }
+  `;
+
+  const handleLinkClick = () => {
+    if (window.innerWidth <= 1024) {
+      toggle();
+    }
+  };
+
+  const handleLogout = () => {
+    setShowLogoutModal(true);
+  };
+
+  const confirmLogout = () => {
+    // Perform logout logic here
+    // For example: clear local storage, reset state, etc.
+    setShowLogoutModal(false);
+    navigate('/login'); // Redirect to login page after logout
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutModal(false);
   };
 
   return (
     <>
-      <div className={`sidebar-overlay ${isOpen ? 'show' : ''}`} onClick={toggleSidebar}></div>
-      <div className={`sidebar ${isOpen ? 'open' : ''} vh-100`}>
-        <a className="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-          <div className="mx-3 d-none d-sm-block">
-            <img src="/img/logo.png" alt="Logo" />
-          </div>
-        </a>
-
-        <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-          <li className={`nav-item ${isActive('/')}`}>
-            <Link className="nav-link bg-dark m-1" style={{ borderRadius: '10px', width: '90%' }} to="/">
-              <i><img src="/img/sidbar icons/person.png" alt="" /></i>
-              <span>User Profile</span>
+      <style>{sidebarStyle}</style>
+      <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <button className="close-button" onClick={toggle}>
+          <X size={24} />
+        </button>
+        <div className="logo text-center ">
+          <img className='text-center mb-5 ' src={logo} alt="" />
+        </div>
+        <ul className="sidebar-menu">
+          <li className="menu-item">
+            <Link 
+              to="/profile" 
+              className={`menu-link ${location.pathname === '/profile' ? 'active' : ''}`}
+              onClick={handleLinkClick}
+            >
+              <img  src={usericon} alt="" />
+              <span className="menu-text">User Profile</span>
             </Link>
           </li>
-          <li className={`nav-item ${isActive('/hotels')}`}>
-            <Link className="nav-link" to="/hotels">
-              <i><img src="/img/sidbar icons/food_bank.png" alt="" /></i>
-              <span>Hotels</span>
+          <li className="menu-item">
+            <Link 
+              to="/hotels" 
+              className={`menu-link ${location.pathname === '/hotels' ? 'active' : ''}`}
+              onClick={handleLinkClick}
+            >
+              <img src={hotelicon} alt="" />
+              <span className="menu-text">Hotels</span>
             </Link>
           </li>
-          <li className={`nav-item ${isActive('/rooms')}`}>
-            <Link className="nav-link" to="/rooms">
-              <i><img src="/img/sidbar icons/meeting_room.png" alt="" /></i>
-              <span>Rooms</span>
+          <li className="menu-item">
+            <Link 
+              to="/rooms" 
+              className={`menu-link ${location.pathname === '/rooms' ? 'active' : ''}`}
+              onClick={handleLinkClick}
+            >
+              <img src={roomsicon} alt="" />
+              <span className="menu-text">Rooms</span>
             </Link>
           </li>
-          <li className={`nav-item ${isActive('/guest-details')}`}>
-            <Link className="nav-link" to="/guest-details">
-              <i><img src="/img/sidbar icons/location_home.png" alt="" /></i>
-              <span>Guest Details</span>
+          <li className="menu-item">
+            <Link 
+              to="/guest-details" 
+              className={`menu-link ${location.pathname === '/guest-details' ? 'active' : ''}`}
+              onClick={handleLinkClick}
+            >
+              <img src={locationicon} alt="" />
+              <span className="menu-text">Guest Details</span>
             </Link>
           </li>
-          <li className={`nav-item ${isActive('/payments')}`}>
-            <Link className="nav-link" to="/payments">
-              <i><img src="/img/sidbar icons/currency_rupee.png" alt="" /></i>
-              <span>Payments</span>
+          <li className="menu-item">
+            <Link 
+              to="/payments" 
+              className={`menu-link ${location.pathname === '/payments' ? 'active' : ''}`}
+              onClick={handleLinkClick}
+            >
+             <img src={rupees} alt="" />
+              <span className="menu-text">Payments</span>
             </Link>
           </li>
-          <li className={`nav-item ${isActive('/orders')}`}>
-            <Link className="nav-link" to="/orders">
-              <i><img src="/img/sidbar icons/format_list_bulleted.png" alt="" /></i>
-              <span>Orders</span>
+        
+          <li className="menu-item">
+            <Link 
+              to="/reviews" 
+              className={`menu-link ${location.pathname === '/reviews' ? 'active' : ''}`}
+              onClick={handleLinkClick}
+            >
+              <img src={Reviewicon} alt="" />
+              <span className="menu-text">Reviews</span>
             </Link>
           </li>
-          <li className={`nav-item ${isActive('/reviews')}`}>
-            <Link className="nav-link" to="/reviews">
-              <i><img src="/img/sidbar icons/stars.png" alt="" /></i>
-              <span>Reviews</span>
+          <li className="menu-item">
+            <Link 
+              to="/room-status" 
+              className={`menu-link ${location.pathname === '/room-status' ? 'active' : ''}`}
+              onClick={handleLinkClick}
+            >
+              <img src={RoomstatusIcon} alt="" />
+              <span className="menu-text">Room Status</span>
             </Link>
           </li>
-          <li className={`nav-item ${isActive('/room-status')}`}>
-            <Link className="nav-link" to="/room-status">
-              <i><img src="/img/sidbar icons/concierge.png" alt="" /></i>
-              <span>Room Status</span>
-            </Link>
+          <li className="menu-item">
+            <div className="menu-link" onClick={handleLogout} style={{cursor: 'pointer'}}>
+              <img src={logout} alt="" />
+              <span className="menu-text">Logout</span>
+            </div>
           </li>
         </ul>
-
-        <hr className="sidebar-divider d-none d-md-block" />
-
-        <div className="text-center d-none d-md-inline">
-          <button className="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
       </div>
-
-      <style jsx>{`
-        .sidebar {
-          position: fixed;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          width: 250px;
-          z-index: 996;
-          transition: all 0.3s;
-          padding: 20px;
-          overflow-y: auto;
-          scrollbar-width: thin;
-          scrollbar-color: #aab7cf transparent;
-          box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-          background-color: #fff;
-        }
-
-        .sidebar-nav {
-          padding: 0;
-          margin: 0;
-          list-style: none;
-        }
-
-        .sidebar-nav li {
-          padding: 0;
-          margin: 0;
-          list-style: none;
-        }
-
-        .sidebar-nav .nav-item {
-          margin-bottom: 5px;
-        }
-
-        .sidebar-nav .nav-heading {
-          font-size: 11px;
-          text-transform: uppercase;
-          color: #899bbd;
-          font-weight: 600;
-          margin: 10px 0 5px 15px;
-        }
-
-        .sidebar-nav .nav-link {
-          display: flex;
-          align-items: center;
-          font-size: 15px;
-          font-weight: 600;
-          color: #4154f1;
-          transition: 0.3;
-          background: #f6f9ff;
-          padding: 10px 15px;
-          border-radius: 4px;
-        }
-
-        .sidebar-nav .nav-link i {
-          font-size: 16px;
-          margin-right: 10px;
-          color: #4154f1;
-        }
-
-        .sidebar-nav .nav-link.collapsed {
-          color: #012970;
-          background: #fff;
-        }
-
-        .sidebar-nav .nav-link.collapsed i {
-          color: #899bbd;
-        }
-
-        .sidebar-nav .nav-link:hover {
-          color: #4154f1;
-          background: #f6f9ff;
-        }
-
-        .sidebar-nav .nav-link:hover i {
-          color: #4154f1;
-        }
-
-        .sidebar-nav .nav-link .bi-chevron-down {
-          margin-right: 0;
-          transition: transform 0.2s ease-in-out;
-        }
-
-        .sidebar-nav .nav-link:not(.collapsed) .bi-chevron-down {
-          transform: rotate(180deg);
-        }
-
-        .sidebar-nav .nav-content {
-          padding: 5px 0 0 0;
-          margin: 0;
-          list-style: none;
-        }
-
-        .sidebar-nav .nav-content a {
-          display: flex;
-          align-items: center;
-          font-size: 14px;
-          font-weight: 600;
-          color: #012970;
-          transition: 0.3;
-          padding: 10px 0 10px 40px;
-          transition: 0.3s;
-        }
-
-        .sidebar-nav .nav-content a i {
-          font-size: 6px;
-          margin-right: 8px;
-          line-height: 0;
-          border-radius: 50%;
-        }
-
-        .sidebar-nav .nav-content a:hover,
-        .sidebar-nav .nav-content a.active {
-          color: #4154f1;
-        }
-
-        .sidebar-nav .nav-content a.active i {
-          background-color: #4154f1;
-        }
-
-        @media (min-width: 1200px) {
-          #main,
-          #footer {
-            margin-left: 300px;
-          }
-        }
-
-        @media (max-width: 1199px) {
-          .toggle-sidebar .sidebar {
-            left: 0;
-          }
-        }
-
-        @media (min-width: 1200px) {
-          .toggle-sidebar #main,
-          .toggle-sidebar #footer {
-            margin-left: 0;
-          }
-
-          .toggle-sidebar .sidebar {
-            left: -300px;
-          }
-        }
-      `}</style>
+      {showLogoutModal && (
+        <div className="logout-modal">
+          <div className="logout-modal-content">
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to logout?</p>
+            <div className="logout-modal-buttons">
+              <button onClick={confirmLogout}>Yes</button>
+              <button onClick={cancelLogout}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
