@@ -6,7 +6,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Sidebar from './components/Sidebar';
-import Navbar from './components/Navbar';
 import UserProfile from './Pages/UserProfile';
 import './styles/global.css';
 import Hotels from './Pages/Hotels';
@@ -27,7 +26,6 @@ function Layout({ children }) {
     <div className="App">
       <Sidebar isOpen={sidebarOpen} toggle={toggleSidebar} />
       <div className="main-content">
-        <Navbar toggleSidebar={toggleSidebar} />
         {children}
       </div>
     </div>
@@ -41,7 +39,17 @@ function PrivateRoute({ children }) {
     return <div>Loading...</div>;
   }
 
-  return user ? <Layout>{children}</Layout> : <Navigate to="/login" />;
+  return user ? <Layout>{children}</Layout> : <Navigate to="/login" replace />;
+}
+
+function PublicRoute({ children }) {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return user ? <Navigate to="/profile" replace /> : children;
 }
 
 function App() {
@@ -49,8 +57,16 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          } />
+          <Route path="/register" element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          } />
           <Route path="/*" element={
             <PrivateRoute>
               <Routes>
@@ -61,7 +77,7 @@ function App() {
                 <Route path="/payments" element={<PaymentPage />} />
                 <Route path="/reviews" element={<Reviews />} />
                 <Route path="/room-status" element={<RoomStatus />} />
-                <Route path="/" element={<Navigate to="/profile" />} />
+                <Route path="/" element={<Navigate to="/profile" replace />} />
               </Routes>
             </PrivateRoute>
           } />

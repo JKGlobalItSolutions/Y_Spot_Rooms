@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 import usericon from '../Images/Sidebar-icons/person.png';
 import hotelicon from '../Images/Sidebar-icons/food_bank.png';
 import roomsicon from '../Images/Sidebar-icons/meeting_room.png'
 import locationicon from '../Images/Sidebar-icons/location_home.png'
 import rupees from '../Images/Sidebar-icons/currency_rupee.png'
-import OrdersIcon from '../Images/Sidebar-icons/format_list_bulleted.png'
 import Reviewicon from '../Images/Sidebar-icons/stars.png'
 import RoomstatusIcon from '../Images/Sidebar-icons/concierge.png'
 import logo from '../Images/Logo/Y-spot-logo.png'
-import logout from '../Images/Sidebar-icons/logout.png'
+import logoutIcon from '../Images/Sidebar-icons/logout.png'
 import { X } from 'lucide-react'
 
 const Sidebar = ({ isOpen, toggle }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const { logout } = useAuth();
 
   const sidebarStyle = `
     .sidebar {
@@ -155,11 +156,10 @@ const Sidebar = ({ isOpen, toggle }) => {
     setShowLogoutModal(true);
   };
 
-  const confirmLogout = () => {
-    // Perform logout logic here
-    // For example: clear local storage, reset state, etc.
+  const confirmLogout = async () => {
+    await logout();
     setShowLogoutModal(false);
-    navigate('/login'); // Redirect to login page after logout
+    navigate('/login');
   };
 
   const cancelLogout = () => {
@@ -183,7 +183,7 @@ const Sidebar = ({ isOpen, toggle }) => {
               className={`menu-link ${location.pathname === '/profile' ? 'active' : ''}`}
               onClick={handleLinkClick}
             >
-              <img  src={usericon} alt="" />
+              <img src={usericon} alt="" />
               <span className="menu-text">User Profile</span>
             </Link>
           </li>
@@ -227,7 +227,6 @@ const Sidebar = ({ isOpen, toggle }) => {
               <span className="menu-text">Payments</span>
             </Link>
           </li>
-        
           <li className="menu-item">
             <Link 
               to="/reviews" 
@@ -250,7 +249,7 @@ const Sidebar = ({ isOpen, toggle }) => {
           </li>
           <li className="menu-item">
             <div className="menu-link" onClick={handleLogout} style={{cursor: 'pointer'}}>
-              <img src={logout} alt="" />
+              <img src={logoutIcon} alt="" />
               <span className="menu-text">Logout</span>
             </div>
           </li>

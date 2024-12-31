@@ -1,14 +1,14 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase/config'; // Ensure this path is correct
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { auth } from '../firebase/config';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 const AuthContext = createContext();
 
-export const useAuth = () => {
+export function useAuth() {
   return useContext(AuthContext);
-};
+}
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -18,18 +18,31 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     });
 
-    return () => unsubscribe();
+    return unsubscribe;
   }, []);
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      // Clear any user-related data from localStorage
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('adminType');
+      setUser(null);
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
 
   const value = {
     user,
-    loading
+    loading,
+    logout
   };
 
   return (
     <AuthContext.Provider value={value}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
-};
+}
 

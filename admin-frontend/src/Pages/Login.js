@@ -33,19 +33,27 @@ function Login() {
 
   const navigateToAdminPanel = async (userId) => {
     try {
-      const docRef = doc(db, 'adminProfiles', userId);
-      const docSnap = await getDoc(docRef);
+      const homestayDocRef = doc(db, 'Homestays', userId);
+      const hotelDocRef = doc(db, 'Hotels', userId);
+      
+      const [homestayDocSnap, hotelDocSnap] = await Promise.all([
+        getDoc(homestayDocRef),
+        getDoc(hotelDocRef)
+      ]);
 
-      if (docSnap.exists()) {
-        const userData = docSnap.data();
+      if (homestayDocSnap.exists()) {
         localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('adminType', userData.propertyType || 'unknown');
-        navigate('/profile');
+        localStorage.setItem('adminType', 'homestay');
+        navigate('/homestay-admin');
+      } else if (hotelDocSnap.exists()) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('adminType', 'hotel');
+        navigate('/hotel-admin');
       } else {
-        toast.error('User profile not found. Please contact support.');
+        toast.error('Property type not found. Please contact support.');
       }
     } catch (error) {
-      console.error('Error retrieving user profile from Firestore:', error);
+      console.error('Error retrieving property type from Firestore:', error);
       toast.error('An error occurred. Please try again.');
     }
   };
@@ -110,3 +118,4 @@ function Login() {
 }
 
 export default Login;
+

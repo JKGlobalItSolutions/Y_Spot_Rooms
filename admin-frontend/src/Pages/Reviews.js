@@ -1,52 +1,59 @@
-import React, { useState } from 'react';
-import { ThumbsUp, ThumbsDown, Filter } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ThumbsUp, ThumbsDown, Filter, Minus } from 'lucide-react';
+import { collection, query, onSnapshot } from 'firebase/firestore';
+import { auth, db } from '../firebase/config';
 
 const Reviews = () => {
-  const [paymentData, setPaymentData] = useState({
-    guest: 'jk',
-    reservationDate: '24-12-2024',
-    contactDetails: '8438438413',
-    totalPrice: '2185.0',
-    paymentMethod: 'Check-In Pay',
-    paymentStatus: 'Pending'
-  });
-
+  const [reviews, setReviews] = useState([]);
   const [filterType, setFilterType] = useState('All');
   const [showFilter, setShowFilter] = useState(false);
-  
-  const reviews = [
-    {
-      id: 1,
-      guestName: 'Jkglobalitsolution',
-      reviewDate: '04-11-2024',
-      rating: 7.8,
-      comment: 'hum',
-      type: 'Good'
-    },
-    {
-      id: 2,
-      guestName: 'Jkglobalitsolution',
-      reviewDate: '04-11-2024',
-      rating: 3.8,
-      comment: '',
-      type: 'Bad'
+
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (!user) {
+      console.error('No user logged in');
+      return;
     }
-  ];
 
-  const filteredReviews = filterType === 'All' 
-    ? reviews
-    : reviews.filter(review => review.type === filterType);
+    const reviewsRef = collection(db, 'Hotels', user.uid, 'Reviews');
+    const q = query(reviewsRef);
 
-  const handleStatusChange = (e) => {
-    setPaymentData(prev => ({
-      ...prev,
-      paymentStatus: e.target.value
-    }));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const reviewsData = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setReviews(reviewsData);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const calculateOverallRating = (review) => {
+    const { amenities, luxury, price, staffReview } = review;
+    return ((amenities + luxury + price + staffReview) / 4) * 2;
   };
 
-  const handleSave = () => {
-    console.log('Saving payment details:', paymentData);
+  const getFilteredReviews = () => {
+    switch (filterType) {
+      case 'Good':
+        return reviews.filter(review => calculateOverallRating(review) >= 7);
+      case 'Average':
+        return reviews.filter(review => calculateOverallRating(review) === 6);
+      case 'Bad':
+        return reviews.filter(review => calculateOverallRating(review) <= 4);
+      default:
+        return reviews;
+    }
   };
+
+  const formatDate = (timestamp) => {
+    if (!timestamp) return 'No Date';
+    const date = timestamp.toDate();
+    return date.toLocaleDateString('en-GB'); // Format as dd/mm/yyyy
+  };
+
+  const filteredReviews = getFilteredReviews();
 
   return (
     <div className="guest-details-container p-lg-3">
@@ -56,24 +63,6 @@ const Reviews = () => {
             margin-left: 250px;
             margin-top: 60px;
             max-width: calc(100% - 250px);
-          }
-          
-          .payment-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-          }
-          
-          .payment-header {
-            background: #ff0000;
-            color: white;
-            padding: 1rem;
-            position: relative;
-            margin-bottom: 1rem;
-          }
-          
-          .payment-content {
-            padding: 1.5rem;
           }
           
           .filter-container {
@@ -135,14 +124,13 @@ const Reviews = () => {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #4CAF50;
             font-size: 1.2rem;
             margin-bottom: 1rem;
           }
 
-          .review-type.bad {
-            color: #f44336;
-          }
+          .review-type.good { color: #4CAF50; }
+          .review-type.average { color: #FFA500; }
+          .review-type.bad { color: #f44336; }
 
           .review-info {
             display: grid;
@@ -206,14 +194,10 @@ const Reviews = () => {
           }
           
           @media (max-width: 768px) {
-            .payment-card {
+            .review-card {
               border-radius: 0;
             }
             
-            .payment-content {
-              padding: 1rem;
-            }
-
             .review-info {
               grid-template-columns: 1fr;
             }
@@ -224,7 +208,7 @@ const Reviews = () => {
       <div className="container-fluid p-0">
         <div className="row g-0">
           <div className="col-12">
-            <div className="filter-container mt-3 mt-lg-0 ">  
+            <div className="filter-container mt-3 mt-lg-0">  
               <button className="filter-button" onClick={() => setShowFilter(!showFilter)}>
                 <Filter size={24} />
                 Filter
@@ -247,49 +231,55 @@ const Reviews = () => {
               )}
             </div>
 
-            <h1 className="reviews-header mt-0 ">All Reviews</h1>
+            <h1 className="reviews-header mt-0">All Reviews</h1>
             
-            {filteredReviews.map(review => (
-              <div key={review.id} className="review-card">
-                <div className={`review-type ${review.type.toLowerCase()}`}>
-                  {review.type === 'Good' ? (
-                    <>
-                      <ThumbsUp size={24} />
-                      <span>Good</span>
-                    </>
-                  ) : (
-                    <>
-                      <ThumbsDown size={24} />
-                      <span>Bad</span>
-                    </>
-                  )}
+            {filteredReviews.map(review => {
+              const overallRating = calculateOverallRating(review);
+              let reviewType, ReviewIcon;
+              if (overallRating >= 7) {
+                reviewType = 'good';
+                ReviewIcon = ThumbsUp;
+              } else if (overallRating === 6) {
+                reviewType = 'average';
+                ReviewIcon = Minus;
+              } else {
+                reviewType = 'bad';
+                ReviewIcon = ThumbsDown;
+              }
+
+              return (
+                <div key={review.id} className="review-card">
+                  <div className={`review-type ${reviewType}`}>
+                    <ReviewIcon size={24} />
+                    <span>{reviewType.charAt(0).toUpperCase() + reviewType.slice(1)}</span>
+                  </div>
+
+                  <div className="review-info">
+                    <div className="review-field">
+                      <span className="review-label">Guest Name</span>
+                      <div className="review-value">{review.username || 'Anonymous'}</div>
+                    </div>
+
+                    <div className="review-field">
+                      <span className="review-label">Review Date</span>
+                      <div className="review-value">{formatDate(review.timestamp)}</div>
+                    </div>
+
+                    <div className="review-field">
+                      <span className="review-label">Rating</span>
+                      <div className="review-value">{overallRating.toFixed(1)}</div>
+                    </div>
+                  </div>
+
+                  <div className="review-comments">
+                    <span className="review-label">Comments</span>
+                    <div className="review-field">
+                      {review.comments || 'No comments'}
+                    </div>
+                  </div>
                 </div>
-
-                <div className="review-info">
-                  <div className="review-field">
-                    <span className="review-label">Guest Name</span>
-                    <div className="review-value">{review.guestName}</div>
-                  </div>
-
-                  <div className="review-field">
-                    <span className="review-label">Review Date</span>
-                    <div className="review-value">{review.reviewDate}</div>
-                  </div>
-
-                  <div className="review-field">
-                    <span className="review-label">Rating</span>
-                    <div className="review-value">{review.rating}</div>
-                  </div>
-                </div>
-
-                <div className="review-comments">
-                  <span className="review-label">Comments</span>
-                  <div className="review-field">
-                    {review.comment || 'No comments'}
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
@@ -298,3 +288,4 @@ const Reviews = () => {
 };
 
 export default Reviews;
+
