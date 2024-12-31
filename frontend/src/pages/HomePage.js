@@ -21,12 +21,12 @@ function HomePage() {
     // Initialize Flatpickr
     const fp = flatpickr(datePickerRef.current, {
       mode: "range",
-      dateFormat: "d, F Y",
+      dateFormat: "Y-m-d",
       minDate: "today",
-      defaultDate: [new Date(), new Date()],
+      defaultDate: [new Date(), new Date(new Date().setDate(new Date().getDate() + 1))],
       onChange: (selectedDates) => {
         if (selectedDates.length === 2) {
-          const [checkin, checkout] = selectedDates.map(date => date.toLocaleDateString());
+          const [checkin, checkout] = selectedDates.map(date => date.toISOString().split('T')[0]);
           setDates(`${checkin} - ${checkout}`);
           sessionStorage.setItem('checkin', checkin);
           sessionStorage.setItem('checkout', checkout);
@@ -97,7 +97,19 @@ function HomePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     sessionStorage.setItem('location', location);
-    navigate('/details');
+    
+    const [checkIn, checkOut] = dates.split(' - ');
+    
+    // Create URL parameters
+    const params = new URLSearchParams();
+    params.append('location', location);
+    params.append('checkIn', checkIn);
+    params.append('checkOut', checkOut);
+    params.append('guests', `${adults + children}`);
+    params.append('rooms', rooms.toString());
+    
+    // Navigate to the hotel list page with search parameters
+    navigate(`/hotels?${params.toString()}`);
   };
 
   return (
@@ -271,7 +283,7 @@ function HomePage() {
                   </div>
                 </div>
                 <div className="col-md-4">
-                  <div className="image-container" style={{position: "relative", display: "inline-block"}}>
+                  <div className="image-container" style={{position: "relative", display:"inline-block"}}>
                     <img src="/assets/img/tending destinations/Cochin 3.png" className="img-fluid pb-2" alt="Kerala" />
                     <div className="overlay-text" style={{position: "absolute", top: "1%", left: "1%", transform: "translate(1%, 1%)", color: "white", padding: "10px", borderRadius: "5px", textAlign: "center"}}><b>Kerala</b></div>
                   </div>
@@ -425,4 +437,3 @@ function HomePage() {
 }
 
 export default HomePage;
-
