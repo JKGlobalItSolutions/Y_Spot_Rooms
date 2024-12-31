@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { auth } from './firebase/config';
+import { AuthProvider, useAuth } from './auth/AuthContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
-import Login from './components/Login';
-import Register from './components/Register';
-import Dashboard from './components/Dashboard';
+import UserProfile from './Pages/UserProfile';
 import './styles/global.css';
+import Hotels from './Pages/Hotels';
+import Rooms from './Pages/Rooms';
+import GuestDetails from './Pages/GuestDetails';
+import PaymentPage from './Pages/PaymentaPage';
+import Reviews from './Pages/Reviews';
+import RoomStatus from './Pages/RoomStatus';
 
-// Layout component
 function Layout({ children }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -18,47 +25,49 @@ function Layout({ children }) {
 
   return (
     <div className="App">
-      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="content">
+      <Sidebar isOpen={sidebarOpen} toggle={toggleSidebar} />
+      <div className="main-content">
         <Navbar toggleSidebar={toggleSidebar} />
-        <div className="main-content">{children}</div>
+        {children}
       </div>
     </div>
   );
 }
 
-// PrivateRoute component
 function PrivateRoute({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = React.useState(null);
+  const { user, loading } = useAuth();
 
-  React.useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setIsAuthenticated(!!user);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  if (isAuthenticated === null) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
-  return isAuthenticated ? <Layout>{children}</Layout> : <Navigate to="/login" />;
+  return user ? <Layout>{children}</Layout> : <Navigate to="/login" />;
 }
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/*" element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        } />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/*" element={
+            <PrivateRoute>
+              <Routes>
+                <Route path="/profile" element={<UserProfile />} />
+                <Route path="/hotels" element={<Hotels />} />
+                <Route path="/rooms" element={<Rooms />} />
+                <Route path="/guest-details" element={<GuestDetails />} />
+                <Route path="/payments" element={<PaymentPage />} />
+                <Route path="/reviews" element={<Reviews />} />
+                <Route path="/room-status" element={<RoomStatus />} />
+                <Route path="/" element={<Navigate to="/profile" />} />
+              </Routes>
+            </PrivateRoute>
+          } />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
