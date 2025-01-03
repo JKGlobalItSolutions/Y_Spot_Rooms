@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { FaLocationDot, FaCheck, FaArrowUp, FaStar } from 'react-icons/fa6';
-
-// Make sure to include Bootstrap 5 CSS in your project
-// You can add this to your index.html or import it in your main JS file:
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaLocationDot, FaCheck, FaArrowUp } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
 
 const HotelListing = () => {
+  const navigate = useNavigate();
   const [filters, setFilters] = useState({
     airConditioning: false,
     breakfastIncluded: false,
@@ -16,6 +16,15 @@ const HotelListing = () => {
   });
 
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [location, setLocation] = useState('Tiruvannamalai');
+  const [dates, setDates] = useState('');
+  const [guests, setGuests] = useState('1 Adults, 0 Children, 1 Rooms');
+  const [showGuestsDropdown, setShowGuestsDropdown] = useState(false);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [rooms, setRooms] = useState(1);
+  const datePickerRef = useRef(null);
+  const guestsDropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +32,34 @@ const HotelListing = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Initialize Flatpickr
+    const fp = flatpickr(datePickerRef.current, {
+      mode: "range",
+      dateFormat: "Y-m-d",
+      minDate: "today",
+      defaultDate: [new Date(), new Date(new Date().setDate(new Date().getDate() + 1))],
+      onChange: (selectedDates) => {
+        if (selectedDates.length === 2) {
+          const [checkin, checkout] = selectedDates.map(date => date.toISOString().split('T')[0]);
+          setDates(`${checkin} - ${checkout}`);
+        }
+      }
+    });
+
+    // Close dropdown when clicking outside
+    const handleClickOutside = (event) => {
+      if (guestsDropdownRef.current && !guestsDropdownRef.current.contains(event.target)) {
+        setShowGuestsDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const handleFilterChange = (filterName) => {
@@ -33,22 +69,89 @@ const HotelListing = () => {
     }));
   };
 
+  const updateGuests = (a, c, r) => {
+    setGuests(`${a} Adults, ${c} Children, ${r} Rooms`);
+  };
+
+  const handleGuestsClick = () => {
+    setShowGuestsDropdown(!showGuestsDropdown);
+  };
+
+  const incrementValue = (setter, value, maxValue) => {
+    if (value < maxValue) {
+      setter(value + 1);
+    }
+  };
+
+  const decrementValue = (setter, value, minValue) => {
+    if (value > minValue) {
+      setter(value - 1);
+    }
+  };
+
+  const handleDone = () => {
+    setShowGuestsDropdown(false);
+    updateGuests(adults, children, rooms);
+  };
+
+  const handleSeeAvailability = (hotelId) => {
+    navigate(`/hotel-details/${hotelId}`);
+  };
+
   const hotels = [
     {
       id: 1,
-      name: 'Shubam hotel',
-      address: 'Arunachala nagar, Tiruvannamalai',
+      name: 'dhakshuhotels',
+      address: 'nethaji nagar tiruvannamalai',
       price: 470,
-      originalPrice: 4999,
+      originalPrice: 3699,
       rating: 5.2,
       reviewCount: 480,
       image: '/placeholder.svg?height=200&width=300',
     },
-    // Add more sample hotels as needed
+    {
+      id: 2,
+      name: 'Hotel Trishul',
+      address: 'Car Street, Tiruvannamalai',
+      price: 599,
+      originalPrice: 4299,
+      rating: 4.8,
+      reviewCount: 320,
+      image: '/placeholder.svg?height=200&width=300',
+    },
+    {
+      id: 3,
+      name: 'Hotel Arunachala',
+      address: 'Temple View Road, Tiruvannamalai',
+      price: 750,
+      originalPrice: 5499,
+      rating: 4.9,
+      reviewCount: 560,
+      image: '/placeholder.svg?height=200&width=300',
+    }
   ];
 
   return (
-    <div className="container-fluid p-0">
+    <div className="container-fluid px-5 pb-5 pt-3 bg-light">
+      <SearchForm
+        location={location}
+        setLocation={setLocation}
+        dates={dates}
+        guests={guests}
+        datePickerRef={datePickerRef}
+        handleGuestsClick={handleGuestsClick}
+        showGuestsDropdown={showGuestsDropdown}
+        guestsDropdownRef={guestsDropdownRef}
+        adults={adults}
+        children={children}
+        rooms={rooms}
+        incrementValue={incrementValue}
+        decrementValue={decrementValue}
+        setAdults={setAdults}
+        setChildren={setChildren}
+        setRooms={setRooms}
+        handleDone={handleDone}
+      />
       <Breadcrumb />
       <div className="container mt-4">
         <div className="row">
@@ -56,10 +159,13 @@ const HotelListing = () => {
             <Filters filters={filters} onFilterChange={handleFilterChange} />
           </div>
           <div className="col-lg-9">
-            <SearchForm />
             <div className="mt-4">
               {hotels.map(hotel => (
-                <HotelCard key={hotel.id} hotel={hotel} />
+                <HotelCard 
+                  key={hotel.id} 
+                  hotel={hotel} 
+                  onSeeAvailability={() => handleSeeAvailability(hotel.id)}
+                />
               ))}
             </div>
           </div>
@@ -69,6 +175,101 @@ const HotelListing = () => {
     </div>
   );
 };
+
+const SearchForm = ({
+  location,
+  setLocation,
+  dates,
+  guests,
+  datePickerRef,
+  handleGuestsClick,
+  showGuestsDropdown,
+  guestsDropdownRef,
+  adults,
+  children,
+  rooms,
+  incrementValue,
+  decrementValue,
+  setAdults,
+  setChildren,
+  setRooms,
+  handleDone
+}) => (
+  <div className="bg-black p-4">
+    <div className="container">
+      <div className="row g-2">
+        <div className="col-md-3">
+          <input 
+            type="text" 
+            className="form-control form-control-lg" 
+            placeholder="Enter destination"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+        <div className="col-md-3">
+          <input 
+            type="text" 
+            className="form-control form-control-lg" 
+            placeholder="Check-in - Check-out"
+            value={dates}
+            ref={datePickerRef}
+            readOnly
+          />
+        </div>
+        <div className="col-md-4">
+          <div ref={guestsDropdownRef}>
+            <input 
+              type="text" 
+              className="form-control form-control-lg" 
+              placeholder="Adults, Children & Rooms" 
+              value={guests}
+              onClick={handleGuestsClick}
+              readOnly
+            />
+            {showGuestsDropdown && (
+              <div className="dropdown-menu show p-3" id="guestsDropdown">
+                <div className="form-group">
+                  <label htmlFor="adults">Adults</label>
+                  <div className="input-group">
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => decrementValue(setAdults, adults, 1)} style={{backgroundColor: adults > 1 ? 'red' : 'gray', color: 'white'}}>-</button>
+                    <input type="number" className="form-control" id="adults" value={adults} readOnly />
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => incrementValue(setAdults, adults, 30)} style={{backgroundColor: adults >= 30 ? 'gray' : 'red', color: 'white'}}>+</button>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="children">Children</label>
+                  <div className="input-group">
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => decrementValue(setChildren, children, 0)} style={{backgroundColor: children > 0 ? 'red' : 'gray', color: 'white'}}>-</button>
+                    <input type="number" className="form-control" id="children" value={children} readOnly />
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => incrementValue(setChildren, children, 10)} style={{backgroundColor: children >= 10 ? 'gray' : 'red', color: 'white'}}>+</button>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="rooms">Rooms</label>
+                  <div className="input-group">
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => decrementValue(setRooms, rooms, 1)} style={{backgroundColor: rooms > 1 ? 'red' : 'gray', color: 'white'}}>-</button>
+                    <input type="number" className="form-control" id="rooms" value={rooms} readOnly />
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => incrementValue(setRooms, rooms, 30)} style={{backgroundColor: rooms >= 30 ? 'gray' : 'red', color: 'white'}}>+</button>
+                  </div>
+                </div>
+                <button className="btn btn-primary mt-3" onClick={handleDone}>Done</button>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="col-md-2">
+          <button 
+            type="submit" 
+            className="btn btn-danger btn-lg w-100 fw-bold"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const Breadcrumb = () => (
   <nav aria-label="breadcrumb" className="bg-light py-2">
@@ -80,27 +281,6 @@ const Breadcrumb = () => (
       </ol>
     </div>
   </nav>
-);
-
-const SearchForm = () => (
-  <div className="bg-dark rounded p-4">
-    <form>
-      <div className="row g-3">
-        <div className="col-md-3">
-          <input type="text" className="form-control" placeholder="Enter destination" />
-        </div>
-        <div className="col-md-3">
-          <input type="text" className="form-control" placeholder="Check-in - Check-out" />
-        </div>
-        <div className="col-md-3">
-          <input type="text" className="form-control" placeholder="Adults, Children & Rooms" />
-        </div>
-        <div className="col-md-3">
-          <button type="submit" className="btn btn-danger w-100">Search</button>
-        </div>
-      </div>
-    </form>
-  </div>
 );
 
 const Filters = ({ filters, onFilterChange }) => (
@@ -147,7 +327,20 @@ const Filters = ({ filters, onFilterChange }) => (
         <FilterCheckbox label="₹9000 - ₹12000" />
         <FilterCheckbox label="₹12000 - ₹15000" />
       </FilterSection>
-      {/* Add more filter sections as needed */}
+      <FilterSection title="Star Rating">
+        <FilterCheckbox label="5 Star" />
+        <FilterCheckbox label="4 Star" />
+        <FilterCheckbox label="3 Star" />
+        <FilterCheckbox label="2 Star" />
+        <FilterCheckbox label="1 Star" />
+      </FilterSection>
+      <FilterSection title="Property Type">
+        <FilterCheckbox label="Hotel" />
+        <FilterCheckbox label="Resort" />
+        <FilterCheckbox label="Homestay" />
+        <FilterCheckbox label="Villa" />
+        <FilterCheckbox label="Apartment" />
+      </FilterSection>
     </div>
   </div>
 );
@@ -174,7 +367,7 @@ const FilterCheckbox = ({ label, checked, onChange }) => (
   </div>
 );
 
-const HotelCard = ({ hotel }) => (
+const HotelCard = ({ hotel, onSeeAvailability }) => (
   <div className="card mb-4 shadow-sm">
     <div className="row g-0">
       <div className="col-md-4">
@@ -202,7 +395,9 @@ const HotelCard = ({ hotel }) => (
           <p className="card-text">
             <small className="text-muted">+ ₹{Math.round(hotel.price * 0.18)} TAXES & FEES</small>
           </p>
-          <button className="btn btn-danger">See availability</button>
+          <button className="btn btn-danger" onClick={onSeeAvailability}>
+            See availability
+          </button>
         </div>
       </div>
       <div className="col-md-3">
@@ -239,4 +434,3 @@ const BackToTopButton = ({ show }) => {
 };
 
 export default HotelListing;
-
