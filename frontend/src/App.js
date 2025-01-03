@@ -9,6 +9,7 @@ import HotelList from './pages/Hotel-list';
 import HotelDetails from './pages/HotelDetails';
 import MapScreen from './pages/MapScreen';
 import './styles/global.css';
+import RoomDetails from './pages/RoomDetails';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/hotels" element={<HotelList />} />
               <Route path="/hotel/:id" element={<HotelDetails />} />
+              <Route path="hotel-details/1" element={<RoomDetails />} />
               <Route path="/map" element={<MapScreen />} />
             </Routes>
           </main>
