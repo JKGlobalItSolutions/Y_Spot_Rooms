@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { collection, doc, getDocs, setDoc, deleteDoc, updateDoc, getDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, setDoc, deleteDoc, updateDoc, getDoc, addDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase/config';
 import { toast } from 'react-toastify';
 
@@ -182,7 +182,7 @@ const RoomManagement = () => {
   const RoomCard = ({ room, index, onSubmit, onRemove }) => (
     <div className="card shadow-sm mb-4">
       <div className="card-body">
-        <h2 className="card-title mb-4">Room {index + 1}</h2>
+        <h2 className="card-title mb-4 fw-bold">ROOM {index + 1}</h2>
         <form onSubmit={(e) => onSubmit(e, index)}>
           <div className="row g-3">
             <div className="col-md-6">
@@ -338,13 +338,11 @@ const RoomManagement = () => {
               ))}
             </div>
           </div>
-          <div className="mt-4 d-flex justify-content-between">
-            <button type="submit" className="btn btn-primary" disabled={isUploading}>
+          <div className="mt-4 d-flex justify-content-end">
+            <button type="submit" className="btn btn-danger mx-2" disabled={isUploading}>
               {isUploading ? 'Saving...' : 'Save'}
             </button>
-            {index > 0 && (
-              <button type="button" className="btn btn-danger" onClick={() => onRemove(index)}>Remove Room</button>
-            )}
+            <button type="button" className="btn btn-danger mx-2" onClick={() => onRemove(index)}>Remove Room</button>
           </div>
         </form>
       </div>
@@ -385,7 +383,7 @@ const RoomManagement = () => {
               />
             ))}
             <div className="text-center mt-4 mb-5">
-              <button onClick={addRoom} className="btn btn-success">Add New Room</button>
+              <button onClick={addRoom} className="btn btn-success">+ Add New Room</button>
             </div>
           </div>
         </div>

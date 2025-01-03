@@ -5,12 +5,12 @@ import { db, storage } from '../firebase/config';
 import { useAuth } from '../auth/AuthContext';
 import { toast } from 'react-toastify';
 
-const HomestaysManagement = () => {
+const HotelManagement = () => {
   const { user, loading } = useAuth();
   const [formData, setFormData] = useState({
-    homestayName: '',
-    homestayAddress: '',
-    homestayContact: '',
+    hotelName: '',
+    hotelAddress: '',
+    hotelContact: '',
     about: '',
     map: '',
     parking: '',
@@ -20,7 +20,7 @@ const HomestaysManagement = () => {
     additionalNotes: '',
     nearbyPlaces: '',
     transportation: '',
-    homestayImages: []
+    hotelImages: []
   });
 
   const [selectedFacilities, setSelectedFacilities] = useState([]);
@@ -45,43 +45,39 @@ const HomestaysManagement = () => {
     { name: 'Lift/Elevator', icon: 'elevator' },
     { name: 'Non-Smoking Area', icon: 'smoke_free' },
     { name: 'Smoke Free Area', icon: 'smoking_rooms' },
-    { name: 'Sofa', icon: 'chair' },
-    { name: 'Living Room', icon: 'living' },
-    { name: 'Mountain view', icon: 'landscape' },
-    { name: 'Balcony', icon: 'balcony' },
   ];
 
-  const fetchHomestayDetails = useCallback(async (uid) => {
+  const fetchHotelDetails = useCallback(async (uid) => {
     setIsLoading(true);
     setError(null);
     try {
       const docRef = doc(db, 'Homestays', uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        const homestayData = docSnap.data();
+        const hotelData = docSnap.data();
         setFormData({
-          homestayName: homestayData['Property Name'] || '',
-          homestayAddress: homestayData['Property Address'] || '',
-          homestayContact: homestayData['Property contact'] || '',
-          about: homestayData.About || '',
-          map: homestayData.map || '',
-          parking: homestayData.Parking || '',
-          internet: homestayData.Internet || '',
-          checkInTime: homestayData['Check-in Time'] || '',
-          checkOutTime: homestayData['Check-out Time'] || '',
-          additionalNotes: homestayData['Additional Notes'] || '',
-          nearbyPlaces: homestayData['Nearby Iconic Places'] || '',
-          transportation: homestayData.Transportation || '',
-          homestayImages: homestayData['Property Images'] || []
+          hotelName: hotelData['Property Name'] || '',
+          hotelAddress: hotelData['Property Address'] || '',
+          hotelContact: hotelData['Property contact'] || '',
+          about: hotelData.About || '',
+          map: hotelData.map || '',
+          parking: hotelData.Parking || '',
+          internet: hotelData.Internet || '',
+          checkInTime: hotelData['Check-in Time'] || '',
+          checkOutTime: hotelData['Check-out Time'] || '',
+          additionalNotes: hotelData['Additional Notes'] || '',
+          nearbyPlaces: hotelData['Nearby Iconic Places'] || '',
+          transportation: hotelData.Transportation || '',
+          hotelImages: hotelData['Property Images'] || []
         });
-        setSelectedFacilities(homestayData['Accommodation Facilities'] || []);
+        setSelectedFacilities(hotelData['Accommodation Facilities'] || []);
       } else {
         console.log('No such document!');
-        setError('No homestay data found. Please fill in your homestay details.');
+        setError('No hotel data found. Please fill in your hotel details.');
       }
     } catch (error) {
-      console.error('Error fetching homestay details:', error);
-      setError('Failed to load homestay details. Please try again.');
+      console.error('Error fetching hotel details:', error);
+      setError('Failed to load hotel details. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -89,12 +85,12 @@ const HomestaysManagement = () => {
 
   useEffect(() => {
     if (!loading && user) {
-      fetchHomestayDetails(user.uid);
+      fetchHotelDetails(user.uid);
     } else if (!loading && !user) {
       setIsLoading(false);
-      setError('Please log in to manage your homestay details.');
+      setError('Please log in to manage your hotel details.');
     }
-  }, [user, loading, fetchHomestayDetails]);
+  }, [user, loading, fetchHotelDetails]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -108,7 +104,7 @@ const HomestaysManagement = () => {
     const files = Array.from(e.target.files);
     setFormData(prev => ({
       ...prev,
-      homestayImages: [...prev.homestayImages, ...files]
+      hotelImages: [...prev.hotelImages, ...files]
     }));
   };
 
@@ -126,12 +122,12 @@ const HomestaysManagement = () => {
 
   const removeImage = async (index) => {
     if (user) {
-      if (typeof formData.homestayImages[index] === 'string') {
+      if (typeof formData.hotelImages[index] === 'string') {
         try {
-          const imageRef = ref(storage, formData.homestayImages[index]);
+          const imageRef = ref(storage, formData.hotelImages[index]);
           await deleteObject(imageRef);
-          const updatedImages = formData.homestayImages.filter((_, i) => i !== index);
-          setFormData(prev => ({ ...prev, homestayImages: updatedImages }));
+          const updatedImages = formData.hotelImages.filter((_, i) => i !== index);
+          setFormData(prev => ({ ...prev, hotelImages: updatedImages }));
           await updateDoc(doc(db, 'Homestays', user.uid), {
             'Property Images': updatedImages
           });
@@ -143,7 +139,7 @@ const HomestaysManagement = () => {
       } else {
         setFormData(prev => ({
           ...prev,
-          homestayImages: prev.homestayImages.filter((_, i) => i !== index)
+          hotelImages: prev.hotelImages.filter((_, i) => i !== index)
         }));
       }
     }
@@ -154,23 +150,23 @@ const HomestaysManagement = () => {
     if (user) {
       setIsUploading(true);
       try {
-        const homestayRef = doc(db, 'Homestays', user.uid);
+        const hotelRef = doc(db, 'Homestays', user.uid);
         
         // Upload new images
-        const newImages = formData.homestayImages.filter(img => !(typeof img === 'string'));
+        const newImages = formData.hotelImages.filter(img => !(typeof img === 'string'));
         const uploadPromises = newImages.map(file => {
-          const fileRef = ref(storage, `homestayImages/${user.uid}/${file.name}`);
+          const fileRef = ref(storage, `hotelImages/${user.uid}/${file.name}`);
           return uploadBytes(fileRef, file).then(() => getDownloadURL(fileRef));
         });
 
         const uploadedUrls = await Promise.all(uploadPromises);
-        const existingUrls = formData.homestayImages.filter(img => typeof img === 'string');
+        const existingUrls = formData.hotelImages.filter(img => typeof img === 'string');
         const allImageUrls = [...existingUrls, ...uploadedUrls];
 
-        await setDoc(homestayRef, {
-          'Property Name': formData.homestayName,
-          'Property Address': formData.homestayAddress,
-          'Property contact': formData.homestayContact,
+        await setDoc(hotelRef, {
+          'Property Name': formData.hotelName,
+          'Property Address': formData.hotelAddress,
+          'Property contact': formData.hotelContact,
           About: formData.about,
           'Nearby Iconic Places': formData.nearbyPlaces,
           Transportation: formData.transportation,
@@ -183,10 +179,10 @@ const HomestaysManagement = () => {
           'Property Images': allImageUrls
         }, { merge: true });
 
-        toast.success("Homestay details saved successfully!");
+        toast.success("Hotel details saved successfully!");
       } catch (error) {
-        console.error("Error saving homestay details: ", error);
-        toast.error("Error saving homestay details: " + error.message);
+        console.error("Error saving hotel details: ", error);
+        toast.error("Error saving hotel details: " + error.message);
       } finally {
         setIsUploading(false);
       }
@@ -202,20 +198,20 @@ const HomestaysManagement = () => {
   }
 
   if (!user) {
-    return <div className="alert alert-warning">Please log in to manage your homestay details.</div>;
+    return <div className="alert alert-warning">Please log in to manage your hotel details.</div>;
   }
 
   return (
-    <div className="homestay-management-container p-lg-3 p-0 ">
+    <div className="hotel-management-container p-lg-3 p-0 ">
       <style>
         {`
-          .homestay-management-container {
+          .hotel-management-container {
             margin-left: 250px;
             margin-top: 60px;
             max-width: calc(100% - 250px);
           }
           @media (max-width: 768px) {
-            .homestay-management-container {
+            .hotel-management-container {
               margin-left: 0;
               max-width: 100%;
             }
@@ -227,65 +223,70 @@ const HomestaysManagement = () => {
           <div className="col-12">
             <div className="card shadow-sm">
               <div className="card-body">
-                <h2 className="card-title mb-4">Homestay Management</h2>
+                <h2 className="card-title mb-4">Hotel Management</h2>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    <label className="form-label" htmlFor="homestayImages">Homestay Images</label>
-                    <input
-                      type="file"
-                      id="homestayImages"
-                      name="homestayImages"
-                      accept="image/*"
-                      multiple
-                      onChange={handleFileChange}
-                      className="form-control"
-                    />
-                    <div className="d-flex flex-wrap gap-2 mt-2">
-                      {formData.homestayImages.map((image, index) => (
-                        <div key={index} className="position-relative" style={{width: '100px', height: '100px'}}>
-                          <img 
-                            src={typeof image === 'string' ? image : URL.createObjectURL(image)} 
-                            alt={`Preview ${index}`} 
-                            className="img-fluid rounded" 
-                            style={{width: '100%', height: '100%', objectFit: 'cover'}} 
-                          />
-                          <button type="button" className="btn btn-danger btn-sm position-absolute top-0 end-0" onClick={() => removeImage(index)}>×</button>
+                    <label className="form-label" htmlFor="hotelImages">Hotel Images</label>
+                      <div className="card">
+                        <div className="d-flex flex-wrap gap-2 mt-2 justify-content-center">
+                          {formData.hotelImages.map((image, index) => (
+                            <div key={index} className="position-relative" style={{width: '100px', height: '100px'}}>
+                              <img 
+                                src={typeof image === 'string' ? image : URL.createObjectURL(image)} 
+                                alt={`Preview ${index}`} 
+                                className="img-fluid rounded" 
+                                style={{width: '100%', height: '100%', objectFit: 'cover'}} 
+                              />
+                              <button type="button" className="btn btn-danger btn-sm position-absolute top-0 end-0" onClick={() => removeImage(index)}>×</button>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
+                        <label htmlFor="hotelImages" className="btn mx-5 my-2  d-flex justify-content-center " style={{ backgroundColor: '#ff0000', borderColor: '#ff0000', color: 'white' }}>
+                          Add Image
+                        </label>
+                        <input
+                          type="file"
+                          id="hotelImages"
+                          name="hotelImages"
+                          accept="image/*"
+                          multiple
+                          onChange={handleFileChange}
+                          className="form-control d-none"
+                        />
+                      </div>
                   </div>
                   <div className="row g-3">
                     <div className="col-md-6">
-                      <label className="form-label" htmlFor="homestayName">Homestay Name</label>
+                      <label className="form-label" htmlFor="hotelName">Hotel Name</label>
                       <input
                         type="text"
-                        id="homestayName"
-                        name="homestayName"
-                        value={formData.homestayName}
+                        id="hotelName"
+                        name="hotelName"
+                        value={formData.hotelName}
                         onChange={handleInputChange}
                         className="form-control"
                         required
                       />
                     </div>
                     <div className="col-md-6">
-                      <label className="form-label" htmlFor="homestayAddress">Homestay Address</label>
+                      <label className="form-label" htmlFor="hotelAddress">Hotel Address</label>
                       <input
                         type="text"
-                        id="homestayAddress"
-                        name="homestayAddress"
-                        value={formData.homestayAddress}
+                        id="hotelAddress"
+                        name="hotelAddress"
+                        value={formData.hotelAddress}
                         onChange={handleInputChange}
                         className="form-control"
                         required
                       />
                     </div>
                     <div className="col-md-6">
-                      <label className="form-label" htmlFor="homestayContact">Homestay Contact</label>
+                      <label className="form-label" htmlFor="hotelContact">Hotel Contact</label>
                       <input
                         type="tel"
-                        id="homestayContact"
-                        name="homestayContact"
-                        value={formData.homestayContact}
+                        id="hotelContact"
+                        name="hotelContact"
+                        value={formData.hotelContact}
                         onChange={handleInputChange}
                         className="form-control"
                         required
@@ -352,7 +353,7 @@ const HomestaysManagement = () => {
                                 className="form-select"
                               >
                                 <option value="">Select your options</option>
-                                <option value="Free Parking">Free Parking</option><option value="Free Parking">Free Parking</option>
+                                <option value="Free Parking">Free Parking</option>
                                 <option value="Paid Parking">Paid Parking</option>
                               </select>
                             </div>
@@ -462,5 +463,5 @@ const HomestaysManagement = () => {
   );
 };
 
-export default HomestaysManagement;
+export default HotelManagement;
 

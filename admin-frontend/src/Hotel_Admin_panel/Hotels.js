@@ -227,28 +227,33 @@ const HotelManagement = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label className="form-label" htmlFor="hotelImages">Hotel Images</label>
-                    <input
-                      type="file"
-                      id="hotelImages"
-                      name="hotelImages"
-                      accept="image/*"
-                      multiple
-                      onChange={handleFileChange}
-                      className="form-control"
-                    />
-                    <div className="d-flex flex-wrap gap-2 mt-2">
-                      {formData.hotelImages.map((image, index) => (
-                        <div key={index} className="position-relative" style={{width: '100px', height: '100px'}}>
-                          <img 
-                            src={typeof image === 'string' ? image : URL.createObjectURL(image)} 
-                            alt={`Preview ${index}`} 
-                            className="img-fluid rounded" 
-                            style={{width: '100%', height: '100%', objectFit: 'cover'}} 
-                          />
-                          <button type="button" className="btn btn-danger btn-sm position-absolute top-0 end-0" onClick={() => removeImage(index)}>×</button>
+                      <div className="card">
+                        <div className="d-flex flex-wrap gap-2 mt-2 justify-content-center">
+                          {formData.hotelImages.map((image, index) => (
+                            <div key={index} className="position-relative" style={{width: '100px', height: '100px'}}>
+                              <img 
+                                src={typeof image === 'string' ? image : URL.createObjectURL(image)} 
+                                alt={`Preview ${index}`} 
+                                className="img-fluid rounded" 
+                                style={{width: '100%', height: '100%', objectFit: 'cover'}} 
+                              />
+                              <button type="button" className="btn btn-danger btn-sm position-absolute top-0 end-0" onClick={() => removeImage(index)}>×</button>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
+                        <label htmlFor="hotelImages" className="btn mx-5 my-2  d-flex justify-content-center " style={{ backgroundColor: '#ff0000', borderColor: '#ff0000', color: 'white' }}>
+                          Add Image
+                        </label>
+                        <input
+                          type="file"
+                          id="hotelImages"
+                          name="hotelImages"
+                          accept="image/*"
+                          multiple
+                          onChange={handleFileChange}
+                          className="form-control d-none"
+                        />
+                      </div>
                   </div>
                   <div className="row g-3">
                     <div className="col-md-6">
