@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import React, { useState, useEffect, useCallback } from 'react';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
-import { auth, db, storage } from '../firebase/config';
+import { db, storage } from '../firebase/config';
+import { useAuth } from '../auth/AuthContext';
+import { toast } from 'react-toastify';
 
 const HotelManagement = () => {
+  const { user, loading } = useAuth();
   const [formData, setFormData] = useState({
     hotelName: '',
     hotelAddress: '',
-    numRooms: '',
+    hotelContact: '',
     about: '',
     map: '',
     parking: '',
@@ -21,40 +24,73 @@ const HotelManagement = () => {
   });
 
   const [selectedFacilities, setSelectedFacilities] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const facilityOptions = [
+    { name: 'Wi-Fi', icon: 'wifi' },
+    { name: 'Parking', icon: 'local_parking' },
+    { name: 'Pool', icon: 'pool' },
+    { name: 'Gym', icon: 'fitness_center' },
+    { name: 'Restaurant', icon: 'restaurant' },
+    { name: 'Spa', icon: 'spa' },
+    { name: 'Bar', icon: 'local_bar' },
+    { name: 'Room Service', icon: 'room_service' },
+    { name: 'Family Room', icon: 'family_restroom' },
+    { name: 'Laundry', icon: 'local_laundry_service' },
+    { name: 'Air Conditioning', icon: 'ac_unit' },
+    { name: 'CCTV', icon: 'videocam' },
+    { name: 'Facility for Disabled guests', icon: 'wheelchair_pickup' },
+    { name: 'Lift/Elevator', icon: 'elevator' },
+    { name: 'Non-Smoking Area', icon: 'smoke_free' },
+    { name: 'Smoke Free Area', icon: 'smoking_rooms' },
+  ];
+
+  const fetchHotelDetails = useCallback(async (uid) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const docRef = doc(db, 'Hotels', uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const hotelData = docSnap.data();
+        setFormData({
+          hotelName: hotelData['Property Name'] || '',
+          hotelAddress: hotelData['Property Address'] || '',
+          hotelContact: hotelData['Property contact'] || '',
+          about: hotelData.About || '',
+          map: hotelData.map || '',
+          parking: hotelData.Parking || '',
+          internet: hotelData.Internet || '',
+          checkInTime: hotelData['Check-in Time'] || '',
+          checkOutTime: hotelData['Check-out Time'] || '',
+          additionalNotes: hotelData['Additional Notes'] || '',
+          nearbyPlaces: hotelData['Nearby Iconic Places'] || '',
+          transportation: hotelData.Transportation || '',
+          hotelImages: hotelData['Property Images'] || []
+        });
+        setSelectedFacilities(hotelData['Accommodation Facilities'] || []);
+      } else {
+        console.log('No such document!');
+        setError('No hotel data found. Please fill in your hotel details.');
+      }
+    } catch (error) {
+      console.error('Error fetching hotel details:', error);
+      setError('Failed to load hotel details. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    const fetchHotelDetails = async () => {
-      if (auth.currentUser) {
-        try {
-          const docRef = doc(db, 'hotels', auth.currentUser.uid);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            const hotelData = docSnap.data();
-            setFormData({
-              hotelName: hotelData.hotelName || '',
-              hotelAddress: hotelData.hotelAddress || '',
-              numRooms: hotelData.numRooms || '',
-              about: hotelData.About || '',
-              map: '',
-              parking: hotelData.Parking || '',
-              internet: hotelData.Internet || '',
-              checkInTime: hotelData.CheckinTime || '',
-              checkOutTime: hotelData.CheckoutTime || '',
-              additionalNotes: hotelData.AdditionalNotes || '',
-              nearbyPlaces: hotelData.Nearby_Iconic_Places || '',
-              transportation: hotelData.Transportation || '',
-              hotelImages: hotelData.hotelImages || []
-            });
-            setSelectedFacilities(hotelData.accommodationDetails || []);
-          }
-        } catch (error) {
-          console.error("Error fetching hotel details: ", error);
-        }
-      }
-    };
-
-    fetchHotelDetails();
-  }, []);
+    if (!loading && user) {
+      fetchHotelDetails(user.uid);
+    } else if (!loading && !user) {
+      setIsLoading(false);
+      setError('Please log in to manage your hotel details.');
+    }
+  }, [user, loading, fetchHotelDetails]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -74,62 +110,52 @@ const HotelManagement = () => {
 
   const handleFacilityChange = (e) => {
     const value = e.target.value;
-    if (!selectedFacilities.includes(value)) {
-      setSelectedFacilities(prev => [...prev, value]);
+    const facility = facilityOptions.find(f => f.name === value);
+    if (facility && !selectedFacilities.some(f => f.name === facility.name)) {
+      setSelectedFacilities(prev => [...prev, facility]);
     }
   };
 
-  const removeFacility = (facility) => {
-    setSelectedFacilities(prev => prev.filter(f => f !== facility));
+  const removeFacility = (facilityName) => {
+    setSelectedFacilities(prev => prev.filter(f => f.name !== facilityName));
   };
 
   const removeImage = async (index) => {
-    if (typeof formData.hotelImages[index] === 'string') {
-      // It's an existing image URL
-      try {
-        const imageRef = ref(storage, formData.hotelImages[index]);
-        await deleteObject(imageRef);
-        const updatedImages = formData.hotelImages.filter((_, i) => i !== index);
-        setFormData(prev => ({ ...prev, hotelImages: updatedImages }));
-        await updateDoc(doc(db, 'hotels', auth.currentUser.uid), {
-          hotelImages: updatedImages
-        });
-      } catch (error) {
-        console.error("Error deleting image: ", error);
+    if (user) {
+      if (typeof formData.hotelImages[index] === 'string') {
+        try {
+          const imageRef = ref(storage, formData.hotelImages[index]);
+          await deleteObject(imageRef);
+          const updatedImages = formData.hotelImages.filter((_, i) => i !== index);
+          setFormData(prev => ({ ...prev, hotelImages: updatedImages }));
+          await updateDoc(doc(db, 'Hotels', user.uid), {
+            'Property Images': updatedImages
+          });
+          toast.success('Image deleted successfully!');
+        } catch (error) {
+          console.error("Error deleting image: ", error);
+          toast.error('Failed to delete image. Please try again.');
+        }
+      } else {
+        setFormData(prev => ({
+          ...prev,
+          hotelImages: prev.hotelImages.filter((_, i) => i !== index)
+        }));
       }
-    } else {
-      // It's a newly added File object
-      setFormData(prev => ({
-        ...prev,
-        hotelImages: prev.hotelImages.filter((_, i) => i !== index)
-      }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (auth.currentUser) {
+    if (user) {
+      setIsUploading(true);
       try {
-        const hotelRef = doc(db, 'hotels', auth.currentUser.uid);
-        await setDoc(hotelRef, {
-          hotelName: formData.hotelName,
-          hotelAddress: formData.hotelAddress,
-          numRooms: formData.numRooms,
-          About: formData.about,
-          Nearby_Iconic_Places: formData.nearbyPlaces,
-          Transportation: formData.transportation,
-          Internet: formData.internet,
-          Parking: formData.parking,
-          CheckinTime: formData.checkInTime,
-          CheckoutTime: formData.checkOutTime,
-          AdditionalNotes: formData.additionalNotes,
-          accommodationDetails: selectedFacilities
-        }, { merge: true });
-
+        const hotelRef = doc(db, 'Hotels', user.uid);
+        
         // Upload new images
         const newImages = formData.hotelImages.filter(img => !(typeof img === 'string'));
         const uploadPromises = newImages.map(file => {
-          const fileRef = ref(storage, `hotelImages/${auth.currentUser.uid}/${file.name}`);
+          const fileRef = ref(storage, `hotelImages/${user.uid}/${file.name}`);
           return uploadBytes(fileRef, file).then(() => getDownloadURL(fileRef));
         });
 
@@ -137,27 +163,52 @@ const HotelManagement = () => {
         const existingUrls = formData.hotelImages.filter(img => typeof img === 'string');
         const allImageUrls = [...existingUrls, ...uploadedUrls];
 
-        await updateDoc(hotelRef, {
-          hotelImages: allImageUrls
-        });
+        await setDoc(hotelRef, {
+          'Property Name': formData.hotelName,
+          'Property Address': formData.hotelAddress,
+          'Property contact': formData.hotelContact,
+          About: formData.about,
+          'Nearby Iconic Places': formData.nearbyPlaces,
+          Transportation: formData.transportation,
+          Internet: formData.internet,
+          Parking: formData.parking,
+          'Check-in Time': formData.checkInTime,
+          'Check-out Time': formData.checkOutTime,
+          'Additional Notes': formData.additionalNotes,
+          'Accommodation Facilities': selectedFacilities,
+          'Property Images': allImageUrls
+        }, { merge: true });
 
-        alert("Hotel details saved successfully!");
+        toast.success("Hotel details saved successfully!");
       } catch (error) {
         console.error("Error saving hotel details: ", error);
-        alert("Error saving hotel details: " + error.message);
+        toast.error("Error saving hotel details: " + error.message);
+      } finally {
+        setIsUploading(false);
       }
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="alert alert-danger">{error}</div>;
+  }
+
+  if (!user) {
+    return <div className="alert alert-warning">Please log in to manage your hotel details.</div>;
+  }
 
   return (
     <div className="hotel-management-container p-lg-3 p-0 ">
       <style>
         {`
           .hotel-management-container {
-            margin-left: 250px; /* Adjust based on your sidebar width */
-            margin-top: 60px; /* Adjust based on your navbar height */
-          
-            max-width: calc(100% - 250px); /* Adjust based on your sidebar width */
+            margin-left: 250px;
+            margin-top: 60px;
+            max-width: calc(100% - 250px);
           }
           @media (max-width: 768px) {
             .hotel-management-container {
@@ -225,21 +276,22 @@ const HotelManagement = () => {
                       />
                     </div>
                     <div className="col-md-6">
-                      <label className="form-label" htmlFor="numRooms">Number of Rooms</label>
+                      <label className="form-label" htmlFor="hotelContact">Hotel Contact</label>
                       <input
-                        type="number"
-                        id="numRooms"
-                        name="numRooms"
-                        value={formData.numRooms}
+                        type="tel"
+                        id="hotelContact"
+                        name="hotelContact"
+                        value={formData.hotelContact}
                         onChange={handleInputChange}
                         className="form-control"
                         required
+                        pattern="[0-9]{10}"
+                        title="Please enter a 10-digit phone number"
                       />
                     </div>
                     <div className="col-md-6">
                       <label className="form-label" htmlFor="about">About</label>
-                      <input
-                        type="text"
+                      <textarea
                         id="about"
                         name="about"
                         value={formData.about}
@@ -257,18 +309,15 @@ const HotelManagement = () => {
                         className="form-select"
                       >
                         <option value="">Select your options</option>
-                        <option value="WiFi">WiFi</option>
-                        <option value="Food">Food</option>
-                        <option value="Parking">Parking</option>
-                        <option value="AC">AC</option>
-                        <option value="Water Heater">Water Heater</option>
-                        <option value="Restaurant">Restaurant</option>
+                        {facilityOptions.map((facility, index) => (
+                          <option key={index} value={facility.name}>{facility.name}</option>
+                        ))}
                       </select>
                       <div className="d-flex flex-wrap gap-2 mt-2">
                         {selectedFacilities.map((facility, index) => (
                           <span key={index} className="badge bg-light text-dark">
-                            {facility}
-                            <button type="button" className="btn-close ms-2" onClick={() => removeFacility(facility)}></button>
+                            {facility.name}
+                            <button type="button" className="btn-close ms-2" onClick={() => removeFacility(facility.name)}></button>
                           </span>
                         ))}
                       </div>
@@ -319,40 +368,33 @@ const HotelManagement = () => {
                             </div>
                             <div className="col-md-6">
                               <label className="form-label" htmlFor="checkInTime">Check-in Time</label>
-                              <select
+                              <input
+                                type="text"
                                 id="checkInTime"
                                 name="checkInTime"
                                 value={formData.checkInTime}
                                 onChange={handleInputChange}
-                                className="form-select"
+                                className="form-control"
+                                placeholder="e.g. 1:00 PM"
                                 required
-                              >
-                                <option value="">Select time</option>
-                                {[...Array(24)].map((_, i) => (
-                                  <option key={i} value={`${i}:00`}>{`${i}:00`}</option>
-                                ))}
-                              </select>
+                              />
                             </div>
                             <div className="col-md-6">
                               <label className="form-label" htmlFor="checkOutTime">Check-out Time</label>
-                              <select
+                              <input
+                                type="text"
                                 id="checkOutTime"
                                 name="checkOutTime"
                                 value={formData.checkOutTime}
                                 onChange={handleInputChange}
-                                className="form-select"
+                                className="form-control"
+                                placeholder="e.g. 11:00 AM"
                                 required
-                              >
-                                <option value="">Select time</option>
-                                {[...Array(24)].map((_, i) => (
-                                  <option key={i} value={`${i}:00`}>{`${i}:00`}</option>
-                                ))}
-                              </select>
+                              />
                             </div>
                             <div className="col-12">
                               <label className="form-label" htmlFor="additionalNotes">Additional Notes</label>
-                              <input
-                                type="text"
+                              <textarea
                                 id="additionalNotes"
                                 name="additionalNotes"
                                 value={formData.additionalNotes}
@@ -370,8 +412,7 @@ const HotelManagement = () => {
                           <h5 className="card-title">Surrounding Environments</h5>
                           <div className="mb-3">
                             <label className="form-label" htmlFor="nearbyPlaces">Nearby Iconic Place With Distance</label>
-                            <input
-                              type="text"
+                            <textarea
                               id="nearbyPlaces"
                               name="nearbyPlaces"
                               value={formData.nearbyPlaces}
@@ -382,8 +423,7 @@ const HotelManagement = () => {
                           </div>
                           <div className="mb-3">
                             <label className="form-label" htmlFor="transportation">Transportation With Distance</label>
-                            <input
-                              type="text"
+                            <textarea
                               id="transportation"
                               name="transportation"
                               value={formData.transportation}
@@ -397,7 +437,9 @@ const HotelManagement = () => {
                     </div>
                   </div>
                   <div className="text-center mt-4">
-                    <button type="submit" className="btn btn-danger px-5">Save Changes</button>
+                    <button type="submit" className="btn btn-danger px-5" disabled={isUploading}>
+                      {isUploading ? 'Saving...' : 'Save Changes'}
+                    </button>
                   </div>
                 </form>
               </div>
@@ -405,6 +447,13 @@ const HotelManagement = () => {
           </div>
         </div>
       </div>
+      {isUploading && (
+        <div className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 9999 }}>
+          <div className="spinner-border text-light" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
