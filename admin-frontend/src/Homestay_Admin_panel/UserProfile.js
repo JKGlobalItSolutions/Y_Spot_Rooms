@@ -178,18 +178,6 @@ const UserProfile = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      toast.success('Logged out successfully!');
-      // Redirect to login page or home page after logout
-      // You might want to use React Router's useNavigate hook for this
-    } catch (error) {
-      console.error('Error logging out:', error);
-      toast.error('Failed to log out. Please try again.');
-    }
-  };
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -363,9 +351,6 @@ const UserProfile = () => {
                   <div className="text-center mt-4">
                     <button type="submit" className="btn btn-danger px-5 me-2" disabled={isUploading}>
                       {isUploading ? 'Saving...' : 'Save Changes'}
-                    </button>
-                    <button type="button" className="btn btn-secondary px-5" onClick={handleLogout}>
-                      Logout
                     </button>
                   </div>
                 </form>

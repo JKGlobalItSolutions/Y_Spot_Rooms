@@ -59,7 +59,7 @@ function Login() {
   };
 
   return (
-    <section className="container forms">
+    <section className="containerr forms">
       <div className="form login">
         <div className="form-content">
           <header>Login</header>
