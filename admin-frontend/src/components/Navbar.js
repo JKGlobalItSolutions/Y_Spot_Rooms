@@ -1,6 +1,81 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase/config';
 
 const Navbar = ({ toggleSidebar }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [adminType, setAdminType] = useState('');
+  const [profileImage, setProfileImage] = useState(null);
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  useEffect(() => {
+    const checkAdminType = () => {
+      const storedAdminType = localStorage.getItem('adminType');
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (isLoggedIn === 'true' && storedAdminType) {
+        setAdminType(storedAdminType);
+      } else {
+        setAdminType('');
+      }
+    };
+
+    const fetchProfileImage = async () => {
+      if (user) {
+        const docRef = doc(db, 'admin profile', user.uid);
+        try {
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setProfileImage(data['ProfilePicture'] || null);
+          }
+        } catch (error) {
+          console.error('Error fetching profile image:', error);
+        }
+      }
+    };
+
+    checkAdminType();
+    fetchProfileImage();
+
+    window.addEventListener('storage', checkAdminType);
+    return () => {
+      window.removeEventListener('storage', checkAdminType);
+    };
+  }, [user]);
+
+  const toggleDropdown = () => setShowDropdown(!showDropdown);
+
+  const handleProfile = () => {
+    setShowDropdown(false);
+    if (adminType === 'hotel') {
+      navigate('/hotel');
+    } else if (adminType === 'homestay') {
+      navigate('/homestay');
+    }
+  };
+
+  const handleLogout = () => {
+    setShowDropdown(false);
+    setShowLogoutModal(true);
+  };
+
+  const confirmLogout = async () => {
+    await logout();
+    setShowLogoutModal(false);
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('adminType');
+    setAdminType('');
+    navigate('/login');
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutModal(false);
+  };
+
   const navbarStyle = `
     .navbar {
       position: fixed;
@@ -54,6 +129,7 @@ const Navbar = ({ toggleSidebar }) => {
     .profile-info {
       display: flex;
       align-items: center;
+      position: relative;
     }
 
     .profile-name {
@@ -62,11 +138,69 @@ const Navbar = ({ toggleSidebar }) => {
       color: #333;
     }
 
-    .profile-image {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
+    .profile-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    .profile-dropdown.show {
+      display: block;
+    }
+
+    .profile-dropdown-item {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .profile-dropdown-item:hover {
+      background-color: #f0f0f0;
+    }
+
+    .logout-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+    }
+
+    .logout-modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .logout-modal-buttons {
+      margin-top: 20px;
+    }
+
+    .logout-modal-buttons button {
+      margin: 0 10px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .logout-modal-buttons button:first-child {
+      background-color: #ff0000;
+      color: white;
+    }
+
+    .logout-modal-buttons button:last-child {
+      background-color: #ccc;
     }
 
     @media (max-width: 768px) {
@@ -97,10 +231,37 @@ const Navbar = ({ toggleSidebar }) => {
             <i className="bi bi-gear"></i>
           </div>
           <div className="navbar-item profile-info">
-            <img style={{height:"45px"}} src='https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-default-male-avatar-png-image_2811083.jpg' alt="Profile" className="profile-image" />
+            <img 
+              src={profileImage || './default-profile/default-profile-icon.png'} 
+              alt="Profile" 
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                cursor: 'pointer'
+              }}
+              onClick={toggleDropdown}
+            />
+            <div className={`profile-dropdown ${showDropdown ? 'show' : ''}`}>
+              <div className="profile-dropdown-item" onClick={handleProfile}>Profile</div>
+              <div className="profile-dropdown-item" onClick={handleLogout}>Logout</div>
+            </div>
           </div>
         </div>
       </div>
+      {showLogoutModal && (
+        <div className="logout-modal">
+          <div className="logout-modal-content">
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to logout?</p>
+            <div className="logout-modal-buttons">
+              <button onClick={confirmLogout}>Yes</button>
+              <button onClick={cancelLogout}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

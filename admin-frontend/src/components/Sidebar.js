@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 import usericon from '../Images/Sidebar-icons/person.png';
@@ -17,6 +17,29 @@ const Sidebar = ({ isOpen, toggle }) => {
   const navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const { logout } = useAuth();
+  const [adminType, setAdminType] = useState('');
+
+  const checkAdminType = () => {
+    const storedAdminType = localStorage.getItem('adminType');
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true' && storedAdminType) {
+      setAdminType(storedAdminType);
+    } else {
+      setAdminType('');
+    }
+  };
+
+  useEffect(() => {
+    checkAdminType();
+    window.addEventListener('storage', checkAdminType);
+    return () => {
+      window.removeEventListener('storage', checkAdminType);
+    };
+  }, []);
+
+  useEffect(() => {
+    checkAdminType();
+  });
 
   const sidebarStyle = `
     .sidebar {
@@ -159,12 +182,41 @@ const Sidebar = ({ isOpen, toggle }) => {
   const confirmLogout = async () => {
     await logout();
     setShowLogoutModal(false);
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('adminType');
+    setAdminType('');
     navigate('/login');
   };
 
   const cancelLogout = () => {
     setShowLogoutModal(false);
   };
+
+  const hotelMenuItems = [
+    { to: "/hotel", text: "User Profile", icon: usericon },
+    { to: "/hotel-Page", text: "Hotels", icon: hotelicon },
+    { to: "/hotel-Rooms", text: "Rooms", icon: roomsicon },
+    { to: "/hotel-GuestDetails", text: "Guest Details", icon: locationicon },
+    { to: "/hotel-Payments", text: "Payments", icon: rupees },
+    { to: "/hotel-Reviews", text: "Reviews", icon: Reviewicon },
+    { to: "/hotel-RoomStatus", text: "Room Status", icon: RoomstatusIcon },
+  ];
+
+  const homestayMenuItems = [
+    { to: "/homestay", text: "User Profile", icon: usericon },
+    { to: "/homestay-Page", text: "Homestays", icon: hotelicon },
+    { to: "/homestay-Rooms", text: "Rooms", icon: roomsicon },
+    { to: "/homestay-GuestDetails", text: "Guest Details", icon: locationicon },
+    { to: "/homestay-Payment", text: "Payments", icon: rupees },
+    { to: "/homestay-Reviews", text: "Reviews", icon: Reviewicon },
+    { to: "/homestay-RoomStatus", text: "Room Status", icon: RoomstatusIcon },
+  ];
+
+  const menuItems = adminType === 'hotel' ? hotelMenuItems : homestayMenuItems;
+
+  if (!adminType) {
+    return null;
+  }
 
   return (
     <>
@@ -177,76 +229,18 @@ const Sidebar = ({ isOpen, toggle }) => {
           <img className='text-center mb-5 ' src={logo} alt="" />
         </div>
         <ul className="sidebar-menu">
-          <li className="menu-item">
-            <Link 
-              to="/profile" 
-              className={`menu-link ${location.pathname === '/profile' ? 'active' : ''}`}
-              onClick={handleLinkClick}
-            >
-              <img src={usericon} alt="" />
-              <span className="menu-text">User Profile</span>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link 
-              to="/hotels" 
-              className={`menu-link ${location.pathname === '/hotels' ? 'active' : ''}`}
-              onClick={handleLinkClick}
-            >
-              <img src={hotelicon} alt="" />
-              <span className="menu-text">Hotels</span>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link 
-              to="/rooms" 
-              className={`menu-link ${location.pathname === '/rooms' ? 'active' : ''}`}
-              onClick={handleLinkClick}
-            >
-              <img src={roomsicon} alt="" />
-              <span className="menu-text">Rooms</span>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link 
-              to="/guest-details" 
-              className={`menu-link ${location.pathname === '/guest-details' ? 'active' : ''}`}
-              onClick={handleLinkClick}
-            >
-              <img src={locationicon} alt="" />
-              <span className="menu-text">Guest Details</span>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link 
-              to="/payments" 
-              className={`menu-link ${location.pathname === '/payments' ? 'active' : ''}`}
-              onClick={handleLinkClick}
-            >
-             <img src={rupees} alt="" />
-              <span className="menu-text">Payments</span>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link 
-              to="/reviews" 
-              className={`menu-link ${location.pathname === '/reviews' ? 'active' : ''}`}
-              onClick={handleLinkClick}
-            >
-              <img src={Reviewicon} alt="" />
-              <span className="menu-text">Reviews</span>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link 
-              to="/room-status" 
-              className={`menu-link ${location.pathname === '/room-status' ? 'active' : ''}`}
-              onClick={handleLinkClick}
-            >
-              <img src={RoomstatusIcon} alt="" />
-              <span className="menu-text">Room Status</span>
-            </Link>
-          </li>
+          {menuItems.map((item, index) => (
+            <li className="menu-item" key={index}>
+              <Link 
+                to={item.to} 
+                className={`menu-link ${location.pathname === item.to ? 'active' : ''}`}
+                onClick={handleLinkClick}
+              >
+                <img src={item.icon} alt="" />
+                <span className="menu-text">{item.text}</span>
+              </Link>
+            </li>
+          ))}
           <li className="menu-item">
             <div className="menu-link" onClick={handleLogout} style={{cursor: 'pointer'}}>
               <img src={logoutIcon} alt="" />

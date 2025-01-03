@@ -44,11 +44,11 @@ function Login() {
       if (homestayDocSnap.exists()) {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('adminType', 'homestay');
-        navigate('/homestay-admin');
+        navigate('/homestay');
       } else if (hotelDocSnap.exists()) {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('adminType', 'hotel');
-        navigate('/hotel-admin');
+        navigate('/hotel');
       } else {
         toast.error('Property type not found. Please contact support.');
       }

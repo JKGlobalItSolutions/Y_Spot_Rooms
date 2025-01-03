@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThumbsUp, ThumbsDown, Filter, ChevronLeft, ChevronRight, Users, Bed, Calendar, Clock } from 'lucide-react';
+import { collection, query, getDocs, Timestamp } from 'firebase/firestore';
+import { auth, db } from '../firebase/config';
 
 const RoomStatus = () => {
+  const [rooms, setRooms] = useState([]);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showFilter, setShowFilter] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [events, setEvents] = useState({});
 
   const daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay();
@@ -12,6 +17,78 @@ const RoomStatus = () => {
   const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
+
+  useEffect(() => {
+    fetchRoomData();
+  }, []);
+
+  const fetchRoomData = async () => {
+    try {
+      const user = auth.currentUser;
+      if (!user) {
+        console.error('No user logged in');
+        setLoading(false);
+        return;
+      }
+
+      const roomsSnapshot = await getDocs(collection(db, 'Homestays', user.uid, 'Rooms'));
+      const guestsSnapshot = await getDocs(collection(db, 'Homestays', user.uid, 'Guest Details'));
+
+      const roomsData = roomsSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        occupiedRooms: 0,
+        upcomingRooms: 0,
+        availableRooms: 0,
+        bookedDates: []
+      }));
+
+      const eventsData = {};
+
+      guestsSnapshot.docs.forEach(guestDoc => {
+        const guestData = guestDoc.data();
+        if (guestData.Rooms && Array.isArray(guestData.Rooms)) {
+          guestData.Rooms.forEach(roomData => {
+            const room = roomsData.find(r => r.roomType === roomData.roomType);
+            if (room) {
+              const checkInDate = guestData['Check-In Date'].toDate();
+              const checkOutDate = guestData['Check-Out Date'].toDate();
+              const roomCount = roomData.roomsCount;
+
+              if (checkInDate <= new Date() && checkOutDate > new Date()) {
+                room.occupiedRooms += roomCount;
+              } else if (checkInDate > new Date()) {
+                room.upcomingRooms += roomCount;
+              }
+
+              for (let date = new Date(checkInDate); date < checkOutDate; date.setDate(date.getDate() + 1)) {
+                const dateString = date.toISOString().split('T')[0];
+                if (!eventsData[dateString]) {
+                  eventsData[dateString] = [];
+                }
+                eventsData[dateString].push({
+                  roomType: roomData.roomType,
+                  count: roomCount
+                });
+                room.bookedDates.push(new Date(date));
+              }
+            }
+          });
+        }
+      });
+
+      roomsData.forEach(room => {
+        room.availableRooms = room.totalRooms - room.occupiedRooms - room.upcomingRooms;
+      });
+
+      setRooms(roomsData);
+      setEvents(eventsData);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching room data:', error);
+      setLoading(false);
+    }
+  };
 
   const prevMonth = () => {
     setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
@@ -34,10 +111,28 @@ const RoomStatus = () => {
       date.getFullYear() === selectedDate.getFullYear();
   };
 
+  const getDateStatus = (date) => {
+    const dateString = date.toISOString().split('T')[0];
+    if (events[dateString]) {
+      const totalRooms = rooms.reduce((sum, room) => sum + parseInt(room.totalRooms), 0);
+      const bookedRooms = events[dateString].reduce((sum, event) => sum + event.count, 0);
+      if (bookedRooms >= totalRooms) {
+        return 'fully-booked';
+      } else {
+        return 'partially-booked';
+      }
+    }
+    return '';
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="guest-details-container">
+    <div className="room-status-container p-lg-3">
       <style jsx>{`
-        .guest-details-container {
+        .room-status-container {
           margin-left: 250px;
           margin-top: 60px;
           max-width: calc(100% - 250px);
@@ -103,60 +198,6 @@ const RoomStatus = () => {
           background-color: #f5f5f5;
         }
 
-        .reviews-header {
-          font-size: 2rem;
-          color: #ff0000;
-          margin: 1rem 0;
-        }
-
-        .review-card {
-          background: white;
-          border-radius: 10px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-          padding: 1.5rem;
-          margin-bottom: 1rem;
-        }
-
-        .review-type {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          color: #4CAF50;
-          font-size: 1.2rem;
-          margin-bottom: 1rem;
-        }
-
-        .review-type.bad {
-          color: #f44336;
-        }
-
-        .review-info {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-
-        .review-field {
-          background: #f5f5f5;
-          padding: 0.5rem 1rem;
-          border-radius: 5px;
-        }
-
-        .review-label {
-          font-weight: 500;
-          margin-bottom: 0.25rem;
-          display: block;
-        }
-
-        .review-value {
-          font-size: 1rem;
-        }
-
-        .review-comments {
-          margin-top: 1rem;
-        }
-
         .calendar-container {
           background: white;
           border-radius: 10px;
@@ -213,6 +254,16 @@ const RoomStatus = () => {
 
         .calendar-day.today {
           border: 2px solid #ff0000;
+        }
+
+        .calendar-day.fully-booked {
+          background-color: #f44336;
+          color: white;
+        }
+
+        .calendar-day.partially-booked {
+          background-color: #FFA000;
+          color: white;
         }
 
         .room-card {
@@ -334,7 +385,7 @@ const RoomStatus = () => {
         }
         
         @media (max-width: 1024px) {
-          .guest-details-container {
+          .room-status-container {
             margin-left: 0;
             max-width: 100%;
             padding: 60px 1rem 1rem;
@@ -374,7 +425,7 @@ const RoomStatus = () => {
         }
         
         @media (max-width: 768px) {
-          .guest-details-container {
+          .room-status-container {
             padding: 60px 0.5rem 0.5rem;
           }
 
@@ -387,10 +438,6 @@ const RoomStatus = () => {
           
           .payment-content {
             padding: 1rem;
-          }
-
-          .review-info {
-            grid-template-columns: 1fr;
           }
 
           .quick-stats {
@@ -466,7 +513,7 @@ const RoomStatus = () => {
                 </div>
                 <div className="stat-info">
                   <h3>Total Guests</h3>
-                  <p>42</p>
+                  <p>{rooms.reduce((sum, room) => sum + room.occupiedRooms, 0)}</p>
                 </div>
               </div>
               <div className="stat-card">
@@ -475,7 +522,7 @@ const RoomStatus = () => {
                 </div>
                 <div className="stat-info">
                   <h3>Rooms Occupied</h3>
-                  <p>18 / 30</p>
+                  <p>{rooms.reduce((sum, room) => sum + room.occupiedRooms, 0)} / {rooms.reduce((sum, room) => sum + parseInt(room.totalRooms), 0)}</p>
                 </div>
               </div>
               <div className="stat-card">
@@ -484,7 +531,7 @@ const RoomStatus = () => {
                 </div>
                 <div className="stat-info">
                   <h3>Reservations Today</h3>
-                  <p>5</p>
+                  <p>{events[new Date().toISOString().split('T')[0]]?.length || 0}</p>
                 </div>
               </div>
               <div className="stat-card">
@@ -492,8 +539,8 @@ const RoomStatus = () => {
                   <Clock size={24} />
                 </div>
                 <div className="stat-info">
-                  <h3>Avg. Stay Duration</h3>
-                  <p>3.2 days</p>
+                  <h3>Upcoming Bookings</h3>
+                  <p>{rooms.reduce((sum, room) => sum + room.upcomingRooms, 0)}</p>
                 </div>
               </div>
             </div>
@@ -521,7 +568,7 @@ const RoomStatus = () => {
                     return (
                       <div
                         key={index}
-                        className={`calendar-day ${isSelected(date) ? 'selected' : ''} ${isToday(date) ? 'today' : ''}`}
+                        className={`calendar-day ${isSelected(date) ? 'selected' : ''} ${isToday(date) ? 'today' : ''} ${getDateStatus(date)}`}
                         onClick={() => setSelectedDate(date)}
                       >
                         {index + 1}
@@ -532,74 +579,41 @@ const RoomStatus = () => {
               </div>
 
               <div className="room-cards-container">
-                <div className="room-card">
-                  <h3 className="room-title">Standard Rooms</h3>
-                  <div className="room-type">Bed Type: Single Bed</div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="room-stats">
-                      <div className="stat  ">
-                        <div className="stat-occupied">Occupied: 3</div>
+                {rooms.map(room => (
+                  <div key={room.id} className="room-card">
+                    <h3 className="room-title">{room.roomType}</h3>
+                    <div className="room-type">Bed Type: {room.bedType}</div>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <div className="room-stats">
+                        <div className="stat">
+                          <div className="stat-occupied">Occupied: {room.occupiedRooms}</div>
+                        </div>
+                        <div className="stat">
+                          <div className="stat-available">Available: {room.availableRooms}</div>
+                        </div>
+                        <div className="stat">
+                          <div className="stat-upcoming">Upcoming: {room.upcomingRooms}</div>
+                        </div>
                       </div>
-                      <div className="stat">
-                        <div className="stat-available">Available: 2</div>
-                      </div>
-                      <div className="stat">
-                        <div className="stat-upcoming">Upcoming: 1</div>
-                      </div>
+                      <div>Total: {room.totalRooms}</div>
                     </div>
-                    <div>Total: 5</div>
                   </div>
-                </div>
-
-                <div className="room-card">
-                  <h3 className="room-title">Deluxe Room</h3>
-                  <div className="room-type">Bed Type: Double Bed</div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="room-stats">
-                      <div className="stat">
-                        <div className="stat-occupied">Occupied: 1</div>
-                      </div>
-                      <div className="stat">
-                        <div className="stat-available">Available: 1</div>
-                      </div>
-                      <div className="stat">
-                        <div className="stat-upcoming">Upcoming: 0</div>
-                      </div>
-                    </div>
-                    <div>Total: 2</div>
-                  </div>
-                </div>
+                ))}
 
                 <div className="upcoming-events">
                   <h3>Upcoming Events</h3>
                   <div className="event-list">
-                    <div className="event-item">
-                      <div className="event-icon">
-                        <Users size={20} />
+                    {Object.entries(events).slice(0, 3).map(([date, bookings]) => (
+                      <div key={date} className="event-item">
+                        <div className="event-icon">
+                          <Users size={20} />
+                        </div>
+                        <div className="event-info">
+                          <h4>New Guest Check-in</h4>
+                          <p>{new Date(date).toLocaleDateString()} - {bookings.map(b => `${b.roomType} (${b.count})`).join(', ')}</p>
+                        </div>
                       </div>
-                      <div className="event-info">
-                        <h4>New Guest Check-in</h4>
-                        <p>Room 101 - Standard Room</p>
-                      </div>
-                    </div>
-                    <div className="event-item">
-                      <div className="event-icon">
-                        <Calendar size={20} />
-                      </div>
-                      <div className="event-info">
-                        <h4>Room Maintenance</h4>
-                        <p>Room 205 - Deluxe Room</p>
-                      </div>
-                    </div>
-                    <div className="event-item">
-                      <div className="event-icon">
-                        <Clock size={20} />
-                      </div>
-                      <div className="event-info">
-                        <h4>Late Check-out</h4>
-                        <p>Room 303 - Standard Room</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
